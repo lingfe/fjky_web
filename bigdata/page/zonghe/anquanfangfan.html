@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>安全防范</title>
+    <link rel="stylesheet" href="../../css/com.css"> 
+    <link rel="stylesheet" href="./css/anquanfangfan.css?="+date> 
+   
+   <link rel="stylesheet" href="../../lib/layui-v2.5.5/css/layui.css" media="all">
+
+    <!-- <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@1.11.3/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js?_v_=1598903772045"></script> -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+
+<body class="layuimini-all">
+    <div class="content">
+        <div class="main">
+            <div class="col-left fl">
+                <div class="left-title"><a href="yanglaoyun.html">养老云图</a></div>
+                <div class="leftcon baojing">
+                    <div class="data_tab" id="baojins">
+                        <h3>一键报警系统</h3>
+                        <div class="time">
+                            <a href="###"id="baojin2_jidu">季</a>
+                            <a href="###" id="month">月</a>
+                            <a href="###" class="cur" id="day">日</a>
+                        </div>
+                    </div>
+                    <div id="baojin"></div>
+                    <div id="baojin_month"></div>
+                    <div id="baojin2_jidu"></div>
+                    <div class="data_tab">
+                        <h3>响应速度</h3>
+
+                    </div>
+                    <div id="sudu">
+                        <img src="./images/pic_circle.png" alt="">
+                    </div>
+                </div>
+                <div class="leftcon hujiao">
+                    <div class="data_tab" id="hujiao-tab">
+                        <h3>呼叫系统</h3>
+                        <div class="time">
+                            <a href="###">季</a>
+                            <a href="###">月</a>
+                            <a href="###" class="cur">日</a>
+                        </div>
+                    </div>
+                    <div id="hujiao1"></div>
+                    <div id="hujiao2"></div>
+                </div>
+            </div>
+            <div class="col-center fl">
+                <div class="left-title tit-center"><a href="./index.html">养老综合统计分析</a></div>
+                <div class="center-con" id="center-con">
+                    <div class="hf-alert daoru-con hide" id="daoru-con">
+                            <form class="layui-form" action="">
+                                <h3>导入监控</h3>                                
+                                <!-- <h3>请选择回放监控器</h3> -->
+                                <dl>
+                                    <dt>监控组名称</dt>
+                                    <div class="layui-form-item" pane="">
+                                    <!-- <label class="layui-form-label">原始复选框</label> -->
+                                        <div class="layui-input-block">
+                                            <input type="checkbox" name="like1[write]" lay-skin="primary" title="监控名称" checked="">                                            
+                                        </div>
+                                        <div class="layui-input-block">
+                                            <input type="checkbox" name="like1[write]" lay-skin="primary" title="监控名称" checked="">                                            
+                                        </div>
+                                        <div class="layui-input-block">
+                                            <input type="checkbox" name="like1[write]" lay-skin="primary" title="监控名称" checked="">                                            
+                                        </div>
+                                    </div>
+                                </dl>
+                                <dl>
+                                    <dt>监控组名</dt>
+                                    <div class="layui-form-item" pane="">
+                                        <div class="layui-input-block">
+                                            <input type="checkbox" name="like1[write]" lay-skin="primary" title="监控名称" checked="">                                            
+                                        </div>
+                                        <div class="layui-input-block">
+                                            <input type="checkbox" name="like1[write]" lay-skin="primary" title="监控名称" checked="">                                            
+                                        </div>
+                                        <div class="layui-input-block">
+                                            <input type="checkbox" name="like1[write]" lay-skin="primary" title="监控名称" checked="">                                            
+                                        </div>
+                                    </div>
+                                </dl>
+                            </form>
+                            <div class="yesOrNo" id="daoru-yn"><a href="###" class="ok">确定</a><a href="###" class="no">取消</a></div>
+                    </div>
+                    <div class="change3D" id="D3">
+                        <img src="./images/111-ok.png" alt="">
+                        <div class="kong"></div>
+                        <div class="d3-pic hide">
+                            <img src="./images/3d-pic.png" alt="">
+                        </div>
+                        <div class="xiaokuang hide">
+                            <h3>智慧养老一体化</h3>
+                            <ul>
+                                <li class="fagnjian"><span style="">房间号</span><span>5-12</span></li>
+                            </ul>
+
+                            <ul class="kuang">
+                                <li>
+                                    <p>设备（3）</p><span>状态</span>
+                                </li>
+                                <li>
+                                    <p>设备名称</p><span><img src="./images/onoff1.png" alt=""></span>
+                                </li>
+                                <li>
+                                    <p>设备名称</p><span><img src="./images/onoff2.png" alt=""></span>
+                                </li>
+                                <li>
+                                    <p>设备名称</p><span><img src="./images/onoff2.png" alt=""></span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="change3D hide">
+                        <div class="vList-con">
+                            <ul class="v-list" id="v-list">
+                                <li><img src="./images/8.png" alt="">
+                                    <p class="v-title">监控视频</p>
+                                    <p class="v-time">2020-09-20 17:22:36</p>
+                                </li>
+                                <li class="cur"><img src="./images/9.png" alt="">
+                                    <p class="v-title">监控视频</p>
+                                    <p class="v-time">2020-09-20 17:22:36</p>
+                                </li>
+                                <li><img src="./images/10.png" alt="">
+                                    <p class="v-title">监控视频</p>
+                                    <p class="v-time">2020-09-20 17:22:36</p>
+                                </li>
+                                <li><img src="./images/11.png" alt="">
+                                    <p class="v-title">监控视频</p>
+                                    <p class="v-time">2020-09-20 17:22:36</p>
+                                </li>
+                            </ul>
+                            <div class="v-process hide" id="v-process">
+                                <div class="line"></div>
+                                <div class="v-time">
+                                    <span class="time-left">2019.10.12 12:20</span>
+                                    <span class="time-right">2019.10.12 12:20</span>
+                                </div>
+                            </div>
+                        </div>                      
+                        
+                        <div class="hf-alert hide" id="hf-alert">                            
+                             <form class="layui-form" action="">
+                                <h3>请选择回放时段</h3>
+                                <div class="timeDur">
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label">开始时间</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="date" class="inpstyle" id="date" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                                        </div>
+                                        <label class="layui-form-label" style="text-align:right;">结束时间</label>
+                                        <div class="layui-input-inline">
+                                            <input type="text" name="date1" class="inpstyle" id="date1" lay-verify="date1" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                                        </div>
+                                    </div>
+                                </div>
+                                <h3>请选择回放监控器</h3>
+                                <dl>
+                                    <dt>监控组名</dt>
+                                    <div class="layui-form-item" pane="">
+                                    <!-- <label class="layui-form-label">原始复选框</label> -->
+                                        <div class="layui-input-block">
+                                            <input type="checkbox" name="like1[write]" lay-skin="primary" title="监控名称" checked="">                                            
+                                        </div>
+                                        <div class="layui-input-block">
+                                            <input type="checkbox" name="like1[write]" lay-skin="primary" title="监控名称" checked="">                                            
+                                        </div>
+                                        <div class="layui-input-block">
+                                            <input type="checkbox" name="like1[write]" lay-skin="primary" title="监控名称" checked="">                                            
+                                        </div>
+                                    </div>
+                                </dl>
+                                <dl>
+                                    <dt>监控组名</dt>
+                                    <div class="layui-form-item" pane="">
+                                        <div class="layui-input-block">
+                                            <input type="checkbox" name="like1[write]" lay-skin="primary" title="监控名称" checked="">                                            
+                                        </div>
+                                        <div class="layui-input-block">
+                                            <input type="checkbox" name="like1[write]" lay-skin="primary" title="监控名称" checked="">                                            
+                                        </div>
+                                        <div class="layui-input-block">
+                                            <input type="checkbox" name="like1[write]" lay-skin="primary" title="监控名称" checked="">                                            
+                                        </div>
+                                    </div>
+                                </dl>
+                            </form>
+                            <div class="yesOrNo" id="yesOrNo"><a href="###" id="ok-huifang">确定</a><a href="###" id="no-huifang">取消</a></div>                                                       
+                        </div>
+                        <div class="hf-alert jk-list hide" id="jk-list">                            
+                             <form class="layui-form" action="">
+                                <h3>监控列表</h3>                                 
+                             <!--    <h3>请选择回放监控器</h3> -->
+                                <dl>
+                                    <dt>监控组名称</dt>
+                                    <div class="layui-form-item" pane="">
+                                    <!-- <label class="layui-form-label">原始复选框</label> -->
+                                        <div class="layui-input-block">
+                                            <input type="checkbox" name="like1[write]" lay-skin="primary" title="监控名称" checked="">                                            
+                                        </div>
+                                        <div class="layui-input-block">
+                                            <input type="checkbox" name="like1[write]" lay-skin="primary" title="监控名称" checked="">                                            
+                                        </div>
+                                        <div class="layui-input-block">
+                                            <input type="checkbox" name="like1[write]" lay-skin="primary" title="监控名称" checked="">                                            
+                                        </div>
+                                    </div>
+                                </dl>
+                                <dl>
+                                    <dt>监控组名</dt>
+                                    <div class="layui-form-item" pane="">
+                                        <div class="layui-input-block">
+                                            <input type="checkbox" name="like1[write]" lay-skin="primary" title="监控名称" checked="">                                            
+                                        </div>
+                                        <div class="layui-input-block">
+                                            <input type="checkbox" name="like1[write]" lay-skin="primary" title="监控名称" checked="">                                            
+                                        </div>
+                                        <div class="layui-input-block">
+                                            <input type="checkbox" name="like1[write]" lay-skin="primary" title="监控名称" checked="">                                            
+                                        </div>
+                                    </div>
+                                </dl>
+                            </form>
+                            <div class="yesOrNo" id="jk-yn"><a href="###" >确定</a><a href="###">取消</a></div>                                                       
+                        </div>
+
+                        <div class="v-control" id="v-control">
+                            <p class="huifang">回放</p>
+                            <p class="shezhongdian">设为重点监控</p>
+                            <p class="duijiang">对讲</p>
+                            <p class="quanping">全屏</p>
+                            <p class="jiankong-list">监控列表</p>
+                        </div>
+                    </div>
+                    <div class="kshzh hide" id="kshzh">
+                        <dl class="zh-con">
+                            <dt>
+                                <img src="./images/1.png" alt="">
+                                <p>摄像头名称</p>
+                            </dt>
+                            <dd>
+                                <h3>主楼4楼安全通道</h3>
+                                <h4>线路起火</h4>
+                                <span>2020.10.12  18:22</span>
+                                <p class="dj">对讲</p>
+                                <p class="phone">0856-XXXXXXXX</p>
+                            </dd>
+                        </dl>
+                        <div class="yesOrNo" id="kshzh-crt"><a href="###" id="ok-zh">处理完毕</a><a href="###" id="no-zh">取消</a></div>
+                    </div>
+                    <div class="to3D" id="to3D">
+                        <span class="cur">物联控制</span><span>实时监控</span>
+                    </div>
+
+                </div>
+                <div class="center-bottom">
+                    <div class="com-con">
+                        <div class="data_tab">
+                            <h3>养老机构</h3>
+                            <div class="inp-sou"><input placeholder="请输入机构名称" type="text"></div>
+                        </div>
+                        <ul id="daoru">
+                            <li class="li-header">
+                                <p class="col-1">机构名称</p>
+                                <p>地址</p>
+                                <p>重点监控</p>
+                                <p>个人终端</p>
+                                <p>导入监控</p>
+
+                            </li>
+                            <li class="cur">
+                                <p class="col-1">碧江区XXX养老院</p>
+                                <p>120890</p>
+                                <p>120890</p>
+                                <p>120890</p>
+                                <p class="daoru"><span>导入</span></p>
+                            </li>
+                            <li>
+                                <p class="col-1">碧江区XXX养老院</p>
+                                <p>120890</p>
+                                <p>120890</p>
+                                <p>120890</p>
+                                <p class="daoru"><span>导入</span></p>
+
+                            </li>
+                            <li>
+                                <p class="col-1">万山区XXX养老院</p>
+                                <p>120890</p>
+                                <p>120890</p>
+                                <p>120890</p>
+                                <p class="daoru"><span>导入</span></p>
+                            </li>
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-right fr">
+                <div class="left-title cur">安全系统防范</div>
+                <div class="zhihui">
+                    <div class="data_tab">
+                        <h3>管理部门可视化指挥</h3>
+                    </div>
+                    <div class="list-v" id="v-deal">
+                        <dl>
+                            <dt><img src="./images/1.png" alt=""><span class="notdo">待处理</span></dt>
+                            <dd>
+                                <h3>主楼4楼安全通道</h3>
+                                <h4>线路起火</h4>
+                                <p>2020.10.12 18:55:21</p>
+                                <p class="opp"><span class="todo">去处理</span><span class="ok">已处理</span></p>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><img src="./images/2.png" alt=""><span class="notdo">待处理</span></dt>
+                            <dd>
+                                <h3>主楼4楼安全通道</h3>
+                                <h4>线路起火</h4>
+                                <p>2020.10.12 18:55:21</p>
+                                <p class="opp"><span class="todo">去处理</span><span class="ok">已处理</span></p>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><img src="./images/3.png" alt=""></dt>
+                            <dd>
+                                <h3>主楼4楼安全通道</h3>
+                                <h4>线路起火</h4>
+                                <p>2020.10.12 18:55:21</p>
+                                <p class="opp"><span class="ok">已处理</span></p>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="jiankong">
+                    <div class="data_tab">
+                        <h3>重点监控</h3>
+                    </div>
+                    <div class="list-v">
+                        <dl>
+                            <dt><img src="./images/4.png" alt="" /><a href="" class="icon"></a></dt>
+                            <dd>
+                                <h3>碧江区养老院</h3>
+                                <h4><span>详细地址</span><span class="wt">5栋4楼12B</span></h4>
+                                <h4><span>床位等级</span><span class="wt">二级</span></h4>
+                                <h4><span>状态</span><span class="wt">健康</span></h4>
+
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><img src="./images/5.png" alt=""><a href="" class="icon"></a></dt>
+                            <dd>
+                                <h3>碧江区养老院</h3>
+                                <h4><span>详细地址</span><span class="wt">5栋4楼12B</span></h4>
+                                <h4><span>床位等级</span><span class="wt">二级</span></h4>
+                                <h4><span>状态</span><span class="wt">健康</span></h4>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><img src="./images/6.png" alt=""><a href="" class="icon"></a></dt>
+                            <dd>
+                                <h3>碧江区养老院</h3>
+                                <h4><span>详细地址</span><span class="wt">5栋4楼12B</span></h4>
+                                <h4><span>床位等级</span><span class="wt">二级</span></h4>
+                                <h4><span>状态</span><span class="wt">健康</span></h4>
+                            </dd>
+                        </dl>
+                        <dl>
+                            <dt><img src="./images/7.png" alt=""><a href="" class="icon"></a></dt>
+                            <dd>
+                                <h3>碧江区养老院</h3>
+                                <h4><span>详细地址</span><span class="wt">5栋4楼12B</span></h4>
+                                <h4><span>床位等级</span><span class="wt">二级</span></h4>
+                                <h4><span>状态</span><span class="wt">健康</span></h4>
+                            </dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="../../js/jquery-3.4.1.min.js" charset="utf-8"></script>
+    <script src="../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script src="./js/anquanfangfan.js"></script>
+    <script>
+        var date = new Date();
+        $(function () {
+            let $box = $("#center-con .change3D");
+            $("#to3D").on("click", "span", function () {
+                let _this = this;
+                $(_this).addClass("cur").siblings().removeClass("cur");
+                let index = $(_this).index();
+                $box.eq(index).show().siblings(".change3D").hide();
+
+            })
+        });
+        // $(function () {
+        //     let $box = $("#D3");
+        //     $box.on("click", function (e) {
+        //         let _this = this;
+        //         $img = $(_this).find(".d3-pic img"); //
+        //         $(_this).find(".xiaokuang").show();
+        //         $box.find(".d3-pic").css({
+        //             left: e.clientX - 2 * $img[0].naturalWidth - 200 + 'px',
+        //             top: e.clientY - 50 + 'px',
+        //             display: "block"
+        //         });
+        //         //$box.show();
+        //     })
+        // });
+        $(function(){
+            $("#daoru").on("click",".daoru",function(){
+                $("#daoru-con").show();
+            });
+            $("#daoru").on("click","li",function(){
+                let _this = this;
+                $(_this).addClass("cur").siblings().removeClass("cur");
+                // $("#daoru-con").show();
+            })
+        })
+        $(function(){//展示监控列表
+            $("#jk-yn").on("click","a",function(){
+                $("#jk-list").hide();
+            })
+        })
+        $(function(){//管理部门可视化指挥
+            let $kshzh = $("#kshzh");
+            $("#v-deal").on("click",".todo",function(){
+                $kshzh.show();
+            })
+            $("#kshzh-crt").on("click","a",function(){
+                $kshzh.hide();
+            })
+        })
+        $(function(){
+            $("#baojins").on("click","a",function(){
+                 let _this = this;
+                 $(_this).addClass("cur").siblings().removeClass("cur");
+                
+            })
+        })
+        $(function(){
+            $("#hujiao-tab").on("click","a",function(){
+                let _this = this;
+                 $(_this).addClass("cur").siblings().removeClass("cur");
+            })
+        })
+
+    </script>
+<script>
+    layui.use(['form', 'layedit', 'laydate'], function () {
+        var form = layui.form
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
+
+        //日期
+        laydate.render({
+            elem: '#date'
+        });
+        laydate.render({
+            elem: '#date1'
+        });
+
+       
+
+        //表单初始赋值
+        form.val('example', {
+            "username": "贤心" // "name": "value"
+            , "password": "123456"
+            , "interest": 1
+            , "like[write]": true //复选框选中状态
+            , "close": true //开关状态
+            , "sex": "女"
+            , "desc": "我爱 layui"
+        })
+
+
+    });
+</script>
+<script>
+    $(function(){
+        let $box =$("#center-con .change3D");
+        let $vList = $("#v-list");
+        $("#to3D").on("click","span",function(){
+            let _this =this;
+            $(_this).addClass("cur").siblings().removeClass("cur");
+            let index = $(_this).index();
+            $box.eq(index).show().siblings(".change3D").hide();
+
+        })
+        $vList.on("click","li",function(){
+            let _this =this;
+            $(_this).addClass("cur").siblings().removeClass("cur");                   
+        })
+        $("#v-control").on("click","p",function(e){//control 点击事件
+            let _this = this;
+            if(e.target.className =="huifang"){//回访 ----》实时
+                $("#hf-alert").show();
+                $(_this).addClass("fanhui")
+                $(_this).html("回到实时")
+                //$("#v-process").hide();
+                return;
+               console.log(e);     
+            }
+            if(e.target.className.indexOf("fanhui") != -1){//实时--》回放
+                $(_this).removeClass("fanhui");
+                $("#v-process").hide();
+                $(_this).html("回放");
+                let index = $(_this).index();
+                $vList.find("li").eq(index).addClass("cur");
+                return;
+            }
+            if(e.target.className =="jiankong-list"){
+                $("#jk-list").show();
+               console.log(e);     
+            }
+            console.log(e);
+        })
+        $("#yesOrNo").on("click","a",function(e){
+            if(e.target.id =="no-huifang"){
+                $("#hf-alert").hide();
+            }else if(e.target.id =="ok-huifang"){
+                $("#v-process").show();
+                $("#hf-alert").hide();
+                $vList.find("li").removeClass("cur");
+
+            }
+        });
+        $("#daoru-yn").on("click","a",function(){
+            $("#daoru-con").hide();
+        })
+    });
+    $(function(){
+        let $box =$("#D3");
+        $box.on("click",".kong",function(e){
+            let _this = this;
+            //$img =$(_this).find(".d3-pic img"); //
+            $(_this).find(".xiaokuang").show();
+            $box.find(".d3-pic").css({
+                left:e.pageX-800+'px',
+                top:e.pageY-200+'px',
+                display:"block"
+            });
+                //$box.show();
+        })
+    });
+</script>
+</body>
+</html>

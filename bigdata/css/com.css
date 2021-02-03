@@ -1,0 +1,24 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.hide{
+	display: none;
+}
+.fl{float: left;}
+.fr{
+	float: right;
+}
+a{
+	text-decoration: none;
+}
+.left-title a {
+	color: #8DDCFF;
+}
+.tit-center a{
+	color: #8DDCFF;
+}
+.tit-right a{
+	color: #8DDCFF;
+}

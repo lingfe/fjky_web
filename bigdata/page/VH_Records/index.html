@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>可视化健康档案</title>
+    <!-- 引入页面样式 -->
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/normalize.css">
+</head>
+
+<body style="font-size: 18px;">
+    <!-- 头部区域 -->
+    <header>
+        <div class="box">
+            <div class="time">
+                <p id="d"></p>
+                <p id="t"></p>
+            </div>
+        </div>
+        <div class="tit">健康管理</div>
+        <div class="person"><span></span><i></i></div>
+    </header>
+
+    <!-- 视图区域 -->
+    <div class="viewport">
+        <!-- 第一列 -->
+        <div class="column">
+            <!-- 用户 -->
+            <div class="user">
+                <div class="header">登记用户</div>
+                <div class="content">
+                    <div class="head">
+                        <span class="col">姓名</span>
+                        <span class="col">年龄</span>
+                        <span class="col">是否入住</span>
+                        <span class="col">健康档案</span>
+                    </div>
+                    <div class="con">
+                        <div class="info" id="id_info">
+                            <div class="line" id="1">
+                                <span class="col">杨桂花</span>
+                                <span class="col">70</span>
+                                <span class="col">已入住</span>
+                                <span class="col">查看</span>
+                            </div>
+                            <div class="line" id="2">
+                                <span class="col">黄世奇</span>
+                                <span class="col">50</span>
+                                <span class="col">已入住</span>
+                                <span class="col">查看</span>
+                            </div>
+                            <div class="line" id="3">
+                                <span class="col">杨胜洪</span>
+                                <span class="col">76</span>
+                                <span class="col">已入住</span>
+                                <span class="col">查看</span>
+                            </div>
+                            <div class="line" id="4">
+                                <span class="col">黄世忠</span>
+                                <span class="col">59</span>
+                                <span class="col">已入住</span>
+                                <span class="col">查看</span>
+                            </div>
+                            <div class="line" id="5">
+                                <span class="col">熊新保</span>
+                                <span class="col">63</span>
+                                <span class="col">已入住</span>
+                                <span class="col">查看</span>
+                            </div>
+                            <div class="line" id="6">
+                                <span class="col">龙翠芬</span>
+                                <span class="col">87</span>
+                                <span class="col">已入住</span>
+                                <span class="col">查看</span>
+                            </div>
+                            <div class="line" id="7">
+                                <span class="col">雷化仙</span>
+                                <span class="col">70</span>
+                                <span class="col">已入住</span>
+                                <span class="col">查看</span>
+                            </div>
+                            <div class="line" id="8">
+                                <span class="col">李琳燕</span>
+                                <span class="col">57</span>
+                                <span class="col">已入住</span>
+                                <span class="col">查看</span>
+                            </div>
+
+                            <div class="line" id="9">
+                                <span class="col">吴先华</span>
+                                <span class="col">75</span>
+                                <span class="col">已入住</span>
+                                <span class="col">查看</span>
+                            </div>
+                            <div class="line" id="10">
+                                <span class="col">蒋启亲</span>
+                                <span class="col">56</span>
+                                <span class="col">已入住</span>
+                                <span class="col">查看</span>
+                            </div>
+                            <div class="line" id="11">
+                                <span class="col">潘木德</span>
+                                <span class="col">82</span>
+                                <span class="col">已入住</span>
+                                <span class="col">查看</span>
+                            </div>
+                            <div class="line" id="12">
+                                <span class="col">王成举</span>
+                                <span class="col">68</span>
+                                <span class="col">已入住</span>
+                                <span class="col">查看</span>
+                            </div>
+                            <div class="line" id="13">
+                                <span class="col">王建国</span>
+                                <span class="col">63</span>
+                                <span class="col">已入住</span>
+                                <span class="col">查看</span>
+                            </div>
+                            <div class="line" id="14">
+                                <span class="col">赵汉云</span>
+                                <span class="col">80</span>
+                                <span class="col">已入住</span>
+                                <span class="col">查看</span>
+                            </div>
+                            <div class="line" id="15">
+                                <span class="col">吴玉仙</span>
+                                <span class="col">79</span>
+                                <span class="col">已入住</span>
+                                <span class="col">查看</span>
+                            </div>
+                            <div class="line" id="16">
+                                <span class="col">杨秀英</span>
+                                <span class="col">86</span>
+                                <span class="col">已入住</span>
+                                <span class="col">查看</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 设备 -->
+            <div class="device">
+                <div class="header">智能设备</div>
+                <div class="goods">
+                    <ul class="subnav">
+                        <li><i><span><img src="./image/手环.png" alt=""></span><span class="lab">智能手环</span></i></li>
+                        <li><i><span><img src="./image/床垫-灰.png" alt=""></span><span class="lab">智能床垫</span></i></li>
+                        <li><i><span><img src="./image/门铃.png" alt=""></span><span class="lab">智能门铃</span></i></li>
+                        <li><i><span><img src="./image/摄像头.png" alt=""></span><span class="lab">智能摄像</span></i></li>
+                        <li><i><span><img src="./image/马桶-灰.png" alt=""></span><span class="lab">智能马桶</span></i></li>
+                        <li><i><span><img src="./image/药箱-灰.png" alt=""></span><span class="lab">智能药箱</span></i></li>
+                        <li><i><span><img src="./image/台灯-灰.png" alt=""></span><span class="lab">智能台灯</span></i></li>
+                        <li><i><span><img src="./image/智能开关面板-灰.png" alt=""></span><span class="lab">智能开关</span></i></li>
+                        <li><i><span><img src="./image/窗帘.png" alt=""></span><span class="lab">智能窗帘</span></i></li>
+                        <li><i><span><img src="" alt=""></span><span></span></i></li>
+
+                    </ul>
+                    <div class="home">
+                        <div class="tip1" style="position: absolute; left: 0.7rem;top: 1rem; background-color: rgba(0, 0, 0, .5);">
+                            <div class="layui-form-item tip_item1">
+                                <label class="layui-form-label">设备名称：</label>
+                                <input type="text" id="ipt1" name="title" disabled="disabled" readonly value="智能手环">
+                            </div>
+                            <div class="layui-form-item tip_item2">
+                                <label class="layui-form-label">设备状态：</label>
+                                <input type="text" id="ipt2" name="title" disabled="disabled" readonly value="在线">
+                            </div>
+                        </div>
+                        <!-- <div class="tip2" style="position: absolute; left: 2rem;top: 2rem;">
+                            <div class="layui-form-item tip_item1">
+                                <label class="layui-form-label">设备名称：</label>
+                                <input type="text" id="ipt1" name="title" disabled="disabled" readonly value="智能门铃">
+                            </div>
+                            <div class="layui-form-item tip_item2">
+                                <label class="layui-form-label">设备状态：</label>
+                                <input type="text" id="ipt2" name="title" disabled="disabled" readonly value="在线">
+                            </div>
+                        </div>
+                        <div class="tip3" style="position: absolute; left: 0rem;top: 2rem;">
+                            <div class="layui-form-item tip_item1">
+                                <label class="layui-form-label">设备名称：</label>
+                                <input type="text" id="ipt1" name="title" disabled="disabled" readonly value="智能床垫">
+                            </div>
+                            <div class="layui-form-item tip_item2">
+                                <label class="layui-form-label">设备状态：</label>
+                                <input type="text" id="ipt2" name="title" disabled="disabled" readonly value="在线">
+                            </div>
+                        </div>
+                        <div class="tip4" style="position: absolute; right: 0rem;top: 0.5rem;">
+                            <div class="layui-form-item tip_item1">
+                                <label class="layui-form-label">设备名称：</label>
+                                <input type="text" id="ipt1" name="title" disabled="disabled" readonly value="智能台灯">
+                            </div>
+                            <div class="layui-form-item tip_item2">
+                                <label class="layui-form-label">设备状态：</label>
+                                <input type="text" id="ipt2" name="title" disabled="disabled" readonly value="在线">
+                            </div>
+                        </div>
+                        <div class="tip5" style="position: absolute; left: 0rem;top: 0rem;">
+                            <div class="layui-form-item tip_item1">
+                                <label class="layui-form-label">设备名称：</label>
+                                <input type="text" id="ipt1" name="title" disabled="disabled" readonly value="智能窗帘">
+                            </div>
+                            <div class="layui-form-item tip_item2">
+                                <label class="layui-form-label">设备状态：</label>
+                                <input type="text" id="ipt2" name="title" disabled="disabled" readonly value="在线">
+                            </div>
+                        </div> -->
+
+                        <div class="shouhuan ">
+                            <div class="dot "></div>
+                            <div class="pulse "></div>
+                        </div>
+                        <div class="chuangdian ">
+                            <div class="dot "></div>
+                            <div class="pulse "></div>
+                        </div>
+                        <div class="menling ">
+                            <div class="dot "></div>
+                            <div class="pulse "></div>
+                        </div>
+                        <div class="shexiangtou ">
+                            <div class="dot "></div>
+                            <div class="pulse "></div>
+                        </div>
+                        <div class="matong ">
+                            <div class="dot "></div>
+                            <div class="pulse "></div>
+                        </div>
+                        <div class="yaoxiang ">
+                            <div class="dot "></div>
+                            <div class="pulse "></div>
+                        </div>
+                        <div class="taideng ">
+                            <div class="dot "></div>
+                            <div class="pulse "></div>
+                        </div>
+                        <div class="kaiguan ">
+                            <div class="dot "></div>
+                            <div class="pulse "></div>
+                        </div>
+                        <div class="chuanglian ">
+                            <div class="dot "></div>
+                            <div class="pulse "></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- 第二列 -->
+        <div class="column ">
+            <div class="monitor ">
+                <div class="left" style="width: 3.844464rem;height: 100%;float: left;padding: 0.164763rem 0.054921rem 0.054921rem 0.109842rem; ">
+                    <form action="" lay-filter="userInfo">
+                        <!-- 单独一行 -->
+                        <div class="layui-form-item ">
+                            <label class="layui-form-label " style="color:#54C7FF; ">姓&#12288;&#12288;名：</label>
+                            <input type="text " name="title" disabled="disabled " readonly id="full_name" value="杨桂花">
+                        </div>
+                        <!-- 单独一行 -->
+                        <div class="layui-inline-item ">
+                            <label class="layui-form-label " style="color:#54C7FF; ">性&#12288;&#12288;别：</label>
+                            <input type="text " name="title " disabled="disabled" readonly autocomplete="off" id="gender" value="女">
+                        </div>
+                        <!-- 单独一行 -->
+                        <div class="layui-form-item ">
+                            <label class="layui-form-label " style="color:#54C7FF; ">年&#12288;&#12288;龄：</label>
+                            <input type="text " name="title " id="age" disabled="disabled " readonly autocomplete="off" value="70 ">
+                        </div>
+                        <!-- 单独一行 -->
+                        <div class="layui-form-item ">
+                            <label class="layui-form-label " style="color:#54C7FF; ">电&#12288;&#12288;话：</label>
+                            <input type="text " name="title " disabled="disabled " readonly autocomplete="off" id="phone" value="15286425001">
+                        </div>
+                        <!-- 单独一行 -->
+                        <div class="layui-form-item ">
+                            <label class="layui-form-label " style="color:#54C7FF; ">住&#12288;&#12288;址：</label>
+                            <input type="text " name="title " disabled="disabled " readonly autocomplete="off" id="address" value="万山特区万山镇杉木董路6-366号 ">
+                        </div>
+                        <!-- 单独一行 -->
+                        <div class="layui-form-item ">
+                            <label class="layui-form-label " style="color:#54C7FF; ">民&#12288;&#12288;族：</label>
+                            <input type="text " name="title " disabled="disabled " readonly autocomplete="off" id="nation" value="独居 ">
+                        </div>
+                        <!-- 单独一行 -->
+                        <div class="layui-form-item ">
+                            <label class="layui-form-label " style="color:#54C7FF; ">身份证号：</label>
+                            <input type="text " name="title " disabled="disabled " readonly autocomplete="off" id="id_card" value="半自理 ">
+                        </div>
+
+                        <!-- 单独一行 -->
+                        <div class="layui-form-item ">
+                            <label class="layui-form-label " style="color:#54C7FF; ">所在床位：</label>
+                            <input type="text " name="title " disabled="disabled " readonly autocomplete="off" id="bed" value="三无老人 ">
+                        </div>
+                        <!-- 单独一行 -->
+                        <div class="layui-form-item ">
+                            <label class="layui-form-label " style="color:#54C7FF; ">联&ensp;系&ensp;人：</label>
+                            <input type="text " name="title " disabled="disabled " readonly id="contacts" value="健康养老服务热线 ">
+                        </div>
+                        <!-- 单独一行 -->
+                        <div class="layui-form-item ">
+                            <label class="layui-form-label " style="color:#54C7FF; ">联系电话：</label>
+                            <input type="text " name="title " disabled="disabled " readonly autocomplete="off " id="number" value="12349 ">
+                        </div>
+                        <!-- 单独一行 -->
+                        <div class="layui-form-item ">
+                            <label class="layui-form-label " style="color:#54C7FF; ">身&#12288;&#12288;高：</label>
+                            <input type="text " name="title " disabled="disabled " readonly autocomplete="off " id="height" value="124cm ">
+                        </div>
+                        <!-- 单独一行 -->
+                        <div class="layui-form-item ">
+                            <label class="layui-form-label " style="color:#54C7FF; ">体&#12288;&#12288;重：</label>
+                            <input type="text " name="title " disabled="disabled " readonly autocomplete="off " id="weight" value="38kg ">
+                        </div>
+                        <!-- 单独一行 -->
+                        <div class="layui-form-item ">
+                            <label class="layui-form-label " style="color:#54C7FF; ">B&ensp;&ensp;M&ensp;&ensp;I：</label>
+                            <input type="text " name="title " disabled="disabled " readonly autocomplete="off " id="bmi" value="24.71 ">
+                        </div>
+                        <!-- 单独一行 -->
+                        <div class="layui-form-item ">
+                            <label class="layui-form-label " style="color:#54C7FF; ">腰&#12288;&#12288;围：</label>
+                            <input type="text " name="title " disabled="disabled " readonly autocomplete="off " id="the_waist" value="70cm ">
+                        </div>
+                        <!-- 单独一行 -->
+                        <div class="layui-form-item ">
+                            <label class="layui-form-label " style="color:#54C7FF; ">臀&#12288;&#12288;围：</label>
+                            <input type="text " name="title " disabled="disabled " readonly autocomplete="off " id="hipline" value="80cm ">
+                        </div>
+                        <!-- 单独一行 -->
+                        <div class="layui-form-item ">
+                            <label class="layui-form-label " style="color:#54C7FF; ">腰&ensp;臀&ensp;比：</label>
+                            <input type="text " name="title " disabled="disabled " readonly autocomplete="off " id="scale" value="0.8 ">
+                        </div>
+                    </form>
+                </div>
+                <div class="center" style="position: relative; width: 4.173989rem;height: 7.469244rem;float: left; ">
+                    <img src="./image/女人.png " alt=" " style="height: 7.271529rem;width: 2.88884rem;position: absolute;left: 24%; ">
+                    <img src="./image/光BG.png " alt=" " style="width: 9.492091rem;height: 4.295255rem; position: absolute;left: -56%;bottom: -4%; ">
+                </div>
+                <div class="right" style="width: 4.393673rem;height: 100%;float: right; ">
+                    <div id="xinlv" class="layui-row layui-col-space10 " style="width: 45%;height: 25%;float: left;"></div>
+                    <div id="xueya" class="layui-row layui-col-space10 " style="width: 45%;height: 25%;float: left;"></div>
+                    <div id="xueyang" class="layui-row layui-col-space10 " style="width: 45%;height: 25%;float: left;"></div>
+                    <div id="tiwen" class="layui-row layui-col-space10 " style="width: 45%;height: 25%;float: left;"></div>
+                    <div id="niaosuan" class="layui-row layui-col-space10 " style="width: 45%;height: 25%;float: left;"></div>
+                    <div id="sugar" class="layui-row layui-col-space10 " style="width: 45%;height: 25%;float: left;"></div>
+                    <div id="sleep" class="layui-row layui-col-space10 " style="width: 45%;height: 25%;float: left;"></div>
+                    <div id="steps" class="layui-row layui-col-space10 " style="width: 45%;height: 25%;float: left;"></div>
+                </div>
+            </div>
+            <div class="chronic ">
+                <div class="count ">
+                    <!-- 数据报表1 慢性病统计 -->
+                    <div id="tb1" style="height: 100%;;width: 100%;"></div>
+                </div>
+                <div class="survey ">
+                    <!--数据报表2 慢性病监测-->
+                    <div id="tb2" style="height: 100%;;width: 100%; "></div>
+                    <!-- <div id="main2 "></div> -->
+                </div>
+            </div>
+        </div>
+        <!-- 第三列 -->
+        <div class="column ">
+            <div class="video ">
+                <div class="header ">实时视频</div>
+                <div class="contant" style="color: #54C7FF; line-height: 4.53647rem;text-align: center;">
+                    暂无设备连接
+                    <!-- <div class="row ">
+                        <div>
+                            <video src="./upload/video1.mp4 " autoplay="autoplay " muted="·muted " loop="loop"></video>
+                        </div>
+                        <div>
+                            <video src="./upload/video1.mp4 " autoplay="autoplay " muted="muted " loop="loop "></video>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div>
+                            <video src="./upload/video1.mp4 " autoplay="autoplay " muted="muted " loop="loop"></video>
+                        </div>
+                        <div>
+                            <video src="./upload/video1.mp4 " autoplay="autoplay " muted="muted " loop="loop "></video>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div>
+                            <video src="./upload/video1.mp4 " autoplay="autoplay " muted="muted " loop="loop"></video>
+                        </div>
+                        <div>
+                            <video src="./upload/video1.mp4 " autoplay="autoplay " muted="muted " loop="loop "></video>
+                        </div>
+                    </div> -->
+                </div>
+            </div>
+            <div class="map ">
+                <div class="main" id="main" style="height: 100%;width: 100%"></div>
+            </div>
+            <div class="analysis ">
+                <!--数据报表3 慢性病分析-->
+                <div id="tb3" style="height: 100%;width: 100%"></div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- 引入js资源 -->
+    <script type="text/javascript " src="https://cdn.jsdelivr.net/npm/jquery@1.11.3/dist/jquery.min.js "></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js?_v_=1598903772045"></script>
+    <script src="./js/flexible.js "></script>
+    <script src="./js/index.js "></script>
+
+    <!-- 登记用户 -->
+    <script type="text/javascript">
+        var data_ess_info = {};
+        //得到数据
+        getData();
+
+        function getData() {
+            $.ajax({
+                url: '/sys_fkcy/essential_information/getPageCustomerRelated.action',
+                headers: {
+                    token: JSON.parse(localStorage.getItem("token"))
+                },
+                context: document.body,
+                success: function(data) {
+                    //验证
+                    if (data.state == 200) {
+                        data_ess_info = data.data.data;
+                        //标签拼接
+                        var html = '';
+                        for (var i = 0; i < data_ess_info.length; i++) {
+                            html += '<div class="line" id="' + i + '">' +
+                                '<span class="col">' + data_ess_info[i].full_name + '</span>' +
+                                '<span class="col">' + data_ess_info[i].age + '</span>' +
+                                '<span class="col">已入住</span>' +
+                                '<span class="col">查看</span>' +
+                                '</div>';
+                        }
+                        $("#id_info").html(html);
+                    } else {
+                        alert(data.msg);
+                    }
+                }
+            });
+        };
+
+        // 点击用户行   切换信息数据
+        $(".info").on('click', ".line", function() {
+            //基本信息
+            var index = $(this).attr('id');
+            $("#full_name").val(data_ess_info[index].full_name);
+            $("#gender").val(data_ess_info[index].gender);
+            $("#age").val(data_ess_info[index].age);
+            $("#phone").val(data_ess_info[index].phone);
+            $("#address").val(data_ess_info[index].permanent_address);
+            $("#nation").val(data_ess_info[index].nation);
+            $("#id_card").val(data_ess_info[index].id_card);
+            $("#bed").val(data_ess_info[index].bed);
+            //紧急联系人信息
+            $("#contacts").val(data_ess_info[index].fam_full_name);
+            $("#number").val(data_ess_info[index].fam_phone);
+            //身体信息
+            var ess_stature = data_ess_info[index].ess_stature;
+            $("#height").val(ess_stature == undefined ? '未填写' : ess_stature);
+            var ess_weight = data_ess_info[index].ess_weight;
+            $("#weight").val(ess_weight == undefined ? '未填写' : ess_weight);
+            var ess_bmi = data_ess_info[index].ess_bmi;
+            $("#bmi").val(ess_bmi == undefined ? '未填写' : ess_bmi);
+            var ess_waistline = data_ess_info[index].ess_waistline;
+            $("#the_waist").val(ess_waistline == undefined ? '未填写' : ess_waistline);
+            var ess_hipline = data_ess_info[index].ess_hipline;
+            $("#hipline").val(ess_hipline == undefined ? '未填写' : ess_hipline);
+            var ess_wh_than = data_ess_info[index].ess_wh_than;
+            $("#scale").val(ess_wh_than == undefined ? '未填写' : ess_wh_than);
+
+            //健康数值
+            var jk_list = data_ess_info[index].jk_list;
+            for (var i = 0; i < jk_list.length; i++) {
+                let myChart = echarts.init(document.getElementById(jk_list[i].id));
+                var option = {
+                    title: {
+                        text: jk_list[i].value
+                    }
+                }
+                myChart.setOption(option);
+            }
+        });
+    </script>
+    <!-- option1 慢性病统计-->
+    <script type="text/javascript">
+        // 得到main
+        var myChart = echarts.init(document.getElementById('tb1'));
+        var x_data = [156, 217, 173, 186, 268, 107, 266, 175]
+        var y_data = ['糖尿病', '高血压', '高血脂', '冠心病', '肺心病', '麻风病', '帕金森氏病', '结核病']
+        option1 = {
+                backgroundColor: 'transparent',
+                title: {
+                    text: '慢性病统计',
+                    textStyle: {
+                        align: 'center',
+                        color: '#5DD8FF',
+                        fontSize: 14,
+                    },
+                    top: '0%',
+                    left: '0%',
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'shadow'
+                    }
+                },
+                grid: {
+                    left: '10px',
+                    right: '30px',
+                    bottom: '0%',
+                    top: '20px',
+                    containLabel: true //grid 区域是否包含坐标轴的刻度标签。
+                },
+                xAxis: {
+                    type: 'value',
+                    axisLabel: {
+                        show: false,
+                        textStyle: {
+                            color: '#cfe2f0' //字体颜色
+                        }
+                    },
+                    splitLine: { //保留网格线
+                        show: true,
+                        lineStyle: { //y轴网格线设置
+                            color: '#0a2b52',
+                            width: 1,
+                            type: 'solid'
+                        }
+                    },
+                },
+                yAxis: {
+                    type: 'category',
+                    axisLine: {
+                        lineStyle: {
+                            color: '#14568d',
+                            width: 1, //这里是为了突出显示加上的
+                        }
+                    },
+                    axisLabel: {
+                        show: true,
+                        textStyle: {
+                            color: '#cfe2f0' //字体颜色
+                        }
+                    },
+                    splitLine: { //保留网格线
+                        show: false,
+                    },
+                    data: y_data,
+                },
+                series: [{
+                    type: 'bar',
+                    barWidth: 12,
+                    z: 1,
+                    label: {
+                        normal: {
+                            show: true,
+                            position: 'right',
+                            formatter: '{c}',
+                            textStyle: {
+                                color: '#fff' //color of value
+                            }
+                        }
+                    },
+                    itemStyle: {
+                        normal: {
+                            barBorderRadius: [10, 10, 10, 10],
+                            color: {
+                                type: 'linear',
+                                colorStops: [{
+                                    offset: 0,
+                                    color: 'transparent '
+                                }, {
+                                    offset: 0.5,
+                                    color: '#0786B3'
+                                }, {
+                                    offset: 1,
+                                    color: '#0DEFFB'
+                                }]
+                            }
+                        },
+                    },
+                    data: x_data
+                }, ]
+            }
+            // 加在到数据报表1 慢性病统计
+        myChart.setOption(option1);
+        //跟随屏幕缩放
+        window.addEventListener('resize', function() {
+            myChart.resize();
+        })
+    </script>
+    <!-- option2 慢性病监测-->
+    <script type="text/javascript">
+        // 得到main1
+        var myChart1 = echarts.init(document.getElementById('tb2'));
+        // 基础数据
+        var x_data = ['12:10', '12:20', '12:30', '12:40', '12:50', '13:00',
+            '13:10', '13:20', '13:30', '13:40', '13:50', '14:00',
+            '14:10', '14:20', '14:30', '14:40', '14:50', '15:00',
+            '15:10', '15:20', '15:30', '15:40', '15:50', '16:00',
+            '16:10', '16:20', '16:30', '16:40', '16:50', '17:00',
+            '17:10', '17:20', '17:30', '17:40', '17:50', '18:00'
+        ]
+        var y_data = [50, 100, 75, 102, 142, 150, 200, 220, 130, 270, 120, 160, 176, 249,
+            50, 100, 75, 102, 142, 150, 200, 220, 130, 270, 120, 160, 176, 249,
+            50, 100, 75, 102, 142, 150, 200, 220, 130, 270, 120, 160, 176, 249,
+            50, 100, 75, 102, 142, 150, 200, 220, 130, 270, 120, 160, 176, 249,
+            50, 100, 75, 102, 142, 150, 200, 220, 130, 270, 120, 160, 176, 249,
+            50, 100, 75, 102, 142, 150, 200, 220, 130, 270, 120, 160, 176, 249
+        ]
+        var charts = {
+            names: ['慢性病患者'],
+            lineX: x_data,
+            value: [y_data]
+        }
+        var color = ['rgba(23, 255, 243', 'rgba(255,100,97']
+        var lineY = []
+        for (var i = 0; i < charts.names.length; i++) {
+            var x = i
+            if (x > color.length - 1) {
+                x = color.length - 1
+            }
+            var data = {
+                name: charts.names[i],
+                type: 'line',
+                color: color[x] + ')',
+                smooth: true,
+                areaStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: color[x] + ', 0.3)'
+                        }, {
+                            offset: 0.8,
+                            color: color[x] + ', 0)'
+                        }], false),
+                        shadowColor: 'rgba(0, 0, 0, 0.1)',
+                        shadowBlur: 10
+                    }
+                },
+                symbol: 'circle',
+                symbolSize: 5,
+                data: charts.value[i]
+            }
+            lineY.push(data)
+        }
+        var option2 = {
+            backgroundColor: 'transparent',
+
+            title: {
+                text: '慢性病监测',
+                textStyle: {
+                    align: 'center',
+                    color: '#5DD8FF',
+                    fontSize: 14,
+                },
+                top: '0%',
+                left: '0%',
+            },
+            tooltip: {
+                trigger: 'axis'
+            },
+            legend: {
+                data: charts.names,
+                textStyle: {
+                    fontSize: 12,
+                    color: 'rgb(0,253,255,0.6)'
+                },
+                right: '4%'
+            },
+            grid: {
+                top: '15%',
+                left: '10%',
+                right: '5%',
+                bottom: '15%',
+                // containLabel: true
+            },
+            xAxis: {
+                type: 'category',
+                boundaryGap: false,
+                data: charts.lineX,
+                axisLabel: {
+                    textStyle: {
+                        color: '#5DD8FF'
+                    }
+                }
+            },
+            yAxis: {
+                name: charts.unit,
+                type: 'value',
+                axisLabel: {
+                    formatter: '{value}',
+                    textStyle: {
+                        color: 'rgb(0,253,255,0.6)'
+                    }
+                },
+                splitLine: {
+                    lineStyle: {
+                        color: 'rgb(23,255,243,0.3)'
+                    }
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: 'rgb(0,253,255,0.6)'
+                    }
+                }
+            },
+            series: lineY
+        }
+        setInterval(() => {
+                myChart.setOption({
+                    legend: {
+                        selected: {
+                            '慢性病患者': false,
+                        }
+                    }
+                })
+                myChart.setOption({
+                    legend: {
+                        selected: {
+                            '慢性病患者': true,
+                        }
+                    }
+                })
+            }, 10000)
+            // 加载到数据报表2 慢性病检测
+        myChart1.setOption(option2);
+        //跟随屏幕缩放
+        window.addEventListener('resize', function() {
+            myChart1.resize();
+        })
+    </script>
+    <!-- option3 慢性病分析-->
+    <script type="text/javascript">
+        // 基础数据    
+        x_data = ['12', '2020/01', '03', '04', '05', '06']
+        zll = [40, 80, 68, 84, 76, 65]
+        dbl = [40, 46, 49, 55, 67, 15]
+        zcl = [20, 15, 25, 40, 15, 35]
+        swl = [60, 35, 40, 20, 25, 27]
+            // 得到main2
+        var myChart2 = echarts.init(document.getElementById('tb3'));
+        option3 = {
+            backgroundColor: '',
+            title: {
+                text: '慢性病分析',
+                textStyle: {
+                    align: 'center',
+                    color: '#5DD8FF',
+                    fontSize: 14,
+                },
+                top: '0%',
+                left: '0%',
+            },
+            // legend 颜色
+            color: ['#FFB600', '#3AFFE4', '#FFF262', '#FF584A'],
+            legend: {
+                orient: 'horizontal',
+                x: 'right', //可设定图例在左、右、居中
+                y: 'top', //可设定图例在上、下、居中
+                icon: 'square',
+                padding: [20, 50, 0, 0], //可设定图例[距上方距离，距右方距离，距下方距离，距左方距离]
+                data: [{
+                    name: '治疗率',
+                    textStyle: {
+                        color: '#FFB600'
+                    }
+                }, {
+                    name: '达标率',
+                    textStyle: {
+                        color: '#3AFFE4'
+                    }
+                }, {
+                    name: '致残率',
+                    textStyle: {
+                        color: '#FFF262'
+                    }
+                }, {
+                    name: '死亡率',
+                    textStyle: {
+                        color: '#FF584A'
+                    }
+                }],
+                textStyle: {
+                    fontSize: 10,
+                    color: '#fff'
+                }
+            },
+
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: {
+                    lineStyle: {
+                        color: {
+                            type: 'linear',
+                            x: 0,
+                            y: 0,
+                            x2: 0,
+                            y2: 1,
+                            colorStops: [{
+                                offset: 0,
+                                color: 'rgba(0, 255, 233,0)'
+                            }, {
+                                offset: 0.5,
+                                color: 'rgba(255, 255, 255,1)',
+                            }, {
+                                offset: 1,
+                                color: 'rgba(0, 255, 233,0)'
+                            }],
+                            global: false
+                        }
+                    },
+                },
+            },
+            grid: {
+                top: '15%',
+                left: '5%',
+                right: '5%',
+                bottom: '12%',
+                // containLabel: true
+            },
+            xAxis: [{
+                type: 'category',
+                axisLine: {
+                    show: true
+                },
+                splitArea: {
+                    // show: true,
+                    color: '#f00',
+                    lineStyle: {
+                        color: '#f00'
+                    },
+                },
+                axisLabel: {
+                    color: '#5DD8FF'
+                },
+                splitLine: {
+                    show: false
+                },
+                boundaryGap: false,
+                data: x_data,
+
+            }],
+
+            yAxis: [{
+                position: 'left',
+                type: 'value',
+                min: 0,
+                // max: 140,
+                splitNumber: 4,
+                splitLine: {
+                    show: true,
+                    lineStyle: {
+                        color: 'rgba(255,255,255,0.1)'
+                    }
+                },
+                axisLine: {
+                    show: true,
+                },
+                axisLabel: {
+                    show: true,
+                    margin: 0,
+                    textStyle: {
+                        color: '#46A5CF',
+                    },
+                },
+                axisTick: {
+                    show: false,
+                },
+            }],
+            series: [{
+                name: '治疗率',
+                type: 'line',
+                smooth: false, //是否平滑  
+                label: {
+                    show: false
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        label: {
+                            backgroundColor: '#6a7985'
+                        }
+                    }
+                },
+                areaStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgba(255,182,0,0.4)'
+                        }, {
+                            offset: 1,
+                            color: 'rgba(0,179,244,0)'
+                        }], false),
+                        shadowColor: 'rgba(255,182,0, 0.9)',
+                        shadowBlur: 20
+                    }
+                },
+                data: zll
+            }, {
+                name: '达标率',
+                type: 'line',
+                smooth: false, //是否平滑
+                showAllSymbol: false,
+                label: {
+                    // 数据
+                    show: false,
+                    position: 'top',
+                    textStyle: {
+                        color: '#00b3f4',
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        label: {
+                            backgroundColor: '#6a7985'
+                        }
+                    }
+                },
+                areaStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgba(0,179,244,0.3)'
+                        }, {
+                            offset: 1,
+                            color: 'rgba(0,179,244,0)'
+                        }], false),
+                        shadowColor: 'rgba(0,179,244, 0.9)',
+                        shadowBlur: 20
+                    }
+                },
+                data: dbl
+            }, {
+                name: '致残率',
+                type: 'line',
+                smooth: false, //是否平滑
+                showAllSymbol: true,
+                label: {
+                    show: false,
+                    position: 'top',
+                    textStyle: {
+                        color: '#00b3f4',
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        label: {
+                            backgroundColor: '#6a7985'
+                        }
+                    }
+                },
+                areaStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgba(255,253,99,0.3)'
+                        }, {
+                            offset: 1,
+                            color: 'rgba(0,179,244,0)'
+                        }], false),
+                        shadowColor: 'rgba(255,253,99, 0.9)',
+                        shadowBlur: 20
+                    }
+                },
+                data: zcl
+            }, {
+                name: '死亡率',
+                type: 'line',
+                smooth: false, //是否平滑
+                label: {
+                    show: false,
+                    position: 'top',
+                    textStyle: {
+                        color: '#00b3f4',
+                    }
+                },
+                tooltip: {
+                    trigger: 'axis',
+                    axisPointer: {
+                        type: 'cross',
+                        label: {
+                            backgroundColor: '#6a7985'
+                        }
+                    }
+                },
+                areaStyle: {
+                    normal: {
+                        color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+                            offset: 0,
+                            color: 'rgba(255,88,74,0.3)'
+                        }, {
+                            offset: 1,
+                            color: 'rgba(0,179,244,0)'
+                        }], false),
+                        shadowColor: 'rgba(255,88,74, 0.9)',
+                        shadowBlur: 20
+                    }
+                },
+                data: swl
+            }, ]
+        };
+        // 渲染到main2 数据报表3 慢性病分析
+        myChart2.setOption(option3);
+        //跟随屏幕缩放
+        window.addEventListener('resize', function() {
+            myChart2.resize();
+        })
+    </script>
+    <!-- 地图 -->
+    <script type="text/javascript">
+        //加载到该div
+        var myChart_map = echarts.init(document.getElementById('main'));
+        //开始加载
+        myChart_map.showLoading();
+        //得到地图json数据
+        $.get('./json/trs.json', function(usaJson) {
+            myChart_map.hideLoading();
+            //熏染
+            echarts.registerMap('USA', usaJson);
+
+            //数据信息
+            var data = [{
+                name: "碧江区",
+                value: [22, 22, 22]
+            }, {
+                name: "万山区",
+                value: [22, 22, 22]
+            }, {
+                name: "江口县",
+                value: [22, 22, 22]
+            }, {
+                name: "玉屏侗族自治县",
+                value: [22, 22, 22]
+            }, {
+                name: "松桃苗族自治县",
+                value: [22, 22, 22]
+            }, {
+                name: "印江土家族苗族自治县",
+                value: [22, 22, 22]
+            }, {
+                name: "思南县",
+                value: [22, 22, 22]
+            }, {
+                name: "石阡县",
+                value: [22, 22, 22]
+            }, {
+                name: "德江县",
+                value: [22, 22, 22]
+            }, {
+                name: "沿河土家族自治县",
+                value: [22, 22, 22]
+            }];
+
+
+
+            //各项指令数据
+            option = {
+                //背景颜色
+                backgroundColor: 'rgba(128, 128, 128, 0.01)', //rgba设置透明度0.1 
+
+                tooltip: {
+                    trigger: 'item',
+                    showDelay: 0,
+                    transitionDuration: 0.2,
+                    formatter: function(params) {
+                        var value = (params.value + '').split('.');
+                        value = value[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,');
+                        return params.seriesName + '<br/>' + params.name + ': ' + value;
+                    }
+                }, //工具
+                series: [{
+                        name: '',
+                        zoom: 2,
+                        type: 'map',
+                        symbolSize: 5,
+                        roam: true,
+                        map: 'USA',
+                        selectedMode: false, //single 表示单选;multiple表示多选 默认flase不选
+                        label: {
+                            normal: {
+                                formatter: '{b}',
+                                position: 'right',
+                                color: '#fff',
+                                textStyle: {
+                                    fontSize: 9,
+                                },
+                                show: true
+                            },
+                            emphasis: {
+                                show: true
+                            }
+                        },
+                        itemStyle: {
+                            normal: {
+                                color: '#fff',
+                                areaColor: '#3a7fd5',
+                                borderColor: '#0a53e9', //线
+                                shadowColor: '#092f8f', //外发光
+                                shadowBlur: 20
+                            },
+                            emphasis: {
+                                areaColor: '#0a2dae', //悬浮区背景
+                            }
+                        },
+                    },
+
+                ]
+            }
+
+            //设置
+            myChart_map.setOption(option);
+            //跟随屏幕缩放
+            window.addEventListener('resize', function() {
+                myChart_map.resize();
+            })
+        });
+    </script>
+</body>
+
+</html>

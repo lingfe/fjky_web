@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>地图demo</title>
+	</head>
+
+	<body>
+		<!-- 实时地图 -->
+		<div id="main" style="width: 600px;height:400px;"></div>
+
+		<!-- 引入js资源 -->
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@1.11.3/dist/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js?_v_=1598903772045"></script>
+		<script type="text/javascript">
+			//加载到该div
+			var myChart = echarts.init(document.getElementById('main'));
+			//开始加载
+			myChart.showLoading();
+			//得到地图json数据
+			$.get('./json/trs.json', function (usaJson) {
+				myChart.hideLoading();
+				//熏染
+				echarts.registerMap('USA', usaJson);
+				
+				//数据信息
+				var data = [
+					{name:"碧江区",value:199},
+					{name:"万山区",value:42},
+					{name:"江口县",value:102},
+					{name:"玉屏侗族自治县",value:81},
+					{name:"松桃苗族自治县",value:47},
+					{name:"印江土家族苗族自治县",value:67},
+					{name:"思南县",value:82},
+					{name:"石阡县",value:123},
+					{name:"德江县",value:28},
+					{name:"沿河土家族自治县",value:24}  
+				];
+				
+				//各项指令数据
+				option = {
+					//背景颜色
+					backgroundColor: {
+						type: 'linear',
+						x: 0,
+						y: 0,
+						x2: 1,
+						y2: 1,
+						colorStops: [{
+							offset: 0, color: '#0f378f' // 0% 左上角到中间 处的颜色
+						}, {
+							offset: 1, color: '#00091a' // 100% 右下角到中间 处的颜色
+						}],
+						globalCoord: false 
+					},//标题内容
+					title: {
+						text: '铜仁地区实时地图(2020)',
+						subtext: '梵净.康养 www.fjkyly.com',
+						sublink: 'http://fjkyly.com/', //跳转路径url
+						left: 'right',
+						textStyle: {
+							color: '#fff'
+						}
+					},//标签
+					tooltip: {
+						trigger: 'item',
+						showDelay: 0,
+						transitionDuration: 0.2,
+						formatter: function (params) {
+							var value = (params.value + '').split('.');
+							value = value[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,');
+							return params.seriesName + '<br/>' + params.name + ': ' + value;
+						}
+					},//工具
+					toolbox: {
+						show: true,
+						//orient: 'vertical',
+						left: 'left',
+						iconStyle:{
+							normal:{
+								color:'#fff',//设置颜色
+							}
+						},
+						top: 'top',
+						feature: {
+							dataView: {readOnly: false},
+							restore: {},
+							saveAsImage: {}
+						}
+					},
+					series: [
+						{
+							name: 'USA 实时数据',
+							type: 'map',
+							roam: true,
+							map: 'USA',
+							selectedMode: 'multiple',//single 表示单选;multiple表示多选 默认flase不选
+							itemStyle:{
+								 normal: {					//未选中状态
+									borderWidth:2,			//边框大小
+									borderColor:'#fff',		//边框颜色
+									areaColor: '#666',		//背景颜色
+									label: {
+										show: true,			//显示名称
+										color:'#fff',
+									}
+								},
+								emphasis:{
+									label:{
+										show: true,			//显示名称
+										color:'#fff',
+									},
+									areaColor: '#000',		//背景颜色
+								}
+							},
+							// 文本位置修正
+							textFixed: {
+								Alaska: [20, -20]
+							},
+							data:data
+						},    
+					]
+				}
+				
+				//设置
+				myChart.setOption(option);
+			});
+		</script>
+	</body>
+</html>
