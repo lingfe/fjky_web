@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>添加床位信息</title>
+    <!-- 引入css资源 -->
+    <link rel="stylesheet" href="../../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../css/public.css" media="all">
+    <link rel="stylesheet" href="../../../lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
+</head>
+
+<body>
+    <div class="layui-form layuimini-form">
+        <div class="layui-form-item" id="dong">
+            <label class="layui-form-label required">楼栋名称</label>
+            <div class="layui-input-block">
+                <input type="text" id="floor_tung_name" name="floor_tung_name" lay-reqtext="请输入楼栋名称" lay-verify="required" placeholder="请输入楼栋名称" value="" class="layui-input" style="width: 60%;">
+            </div>
+        </div>
+        <div class="layui-form-item" id="ceng">
+            <label class="layui-form-label">楼层名称</label>
+            <div class="layui-input-block">
+                <input type="text" id="floor_layer" name="floor_layer" placeholder="请输入楼层名称" value="" class="layui-input" style="width: 60%;">
+            </div>
+        </div>
+        <div class="layui-form-item" id="jian">
+            <label class="layui-form-label ">房间号</label>
+            <div class="layui-input-block">
+                <input type="text" id="room_number" name="room_number" placeholder="请输入房间号" value="" class="layui-input" style="width: 60%;">
+            </div>
+        </div>
+        <div class="layui-form-item" id="hao">
+            <label class="layui-form-label required">床位号</label>
+            <div class="layui-input-block">
+                <input type="text" id="bed_number" name="bed_number" placeholder="请输入床位号" value="" lay-verify="required" lay-reqtext="请输入床位号" class="layui-input" style="width: 60%;">
+            </div>
+        </div>
+        <div class="layui-form-item" id="huli">
+            <label class="layui-form-label">床位类型</label>
+            <div class="layui-input-block">
+                <div class="layui-input-inline">
+                    <input id="nursing_type" type="text" name="nursing_type" lay-submit lay-filter="bed_typeBt" placeholder="请选择床位类型" value="" class="layui-input">
+                </div>
+            </div>
+        </div>
+        <input id="pid" type="text" style="display: none" readonly="" value=''>
+        <input id="data_type" type="text" style="display: none" readonly="" value=''>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">保存</button>
+            </div>
+        </div>
+    </div>
+    <!-- 引入js资源 -->
+    <script src="../../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+    <script src="../../../lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+    <script src="../../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+    <script src="../../bcxt/login/login.js"></script>
+    <script>
+        layui.use(['form'], function() {
+            var form = layui.form,
+                layer = layui.layer,
+                $ = layui.$;
+            var token = Storage.get("token");
+
+            /* 监听床位类型输入框*/
+            form.on('submit(bed_typeBt)', function(data) {
+                var index = layer.open({
+                    title: '请选择床位类型',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin: true,
+                    shadeClose: true,
+                    area: ['90%', '90%'],
+                    content: './chooseBed.html',
+                    success: function(layero, index) { //弹出层打开后的回调函数
+                        // layer.full(index);
+                        var iframe = window['layui-layer-iframe' + index];
+                    }
+                });
+            });
+            //监听提交
+            form.on('submit(saveBtn)', function(data) {
+                if($("#nursing_type").val()!=""&&$("#nursing_type").val()!=null){
+                    $.ajax({
+                    url: '/sys_fkcy/bed_info/save.action',
+                    headers: header,
+                    context: document.body,
+                    type: "POST",
+                    data: {
+                        "floor_tung_name": $("#floor_tung_name").val(),
+                        "floor_layer": $("#floor_layer").val(),
+                        "room_number": $("#room_number").val(),
+                        "bed_number": $("#bed_number").val(),
+                        "data_type": $("#data_type").val(),
+                        "nursing_type": $("#nursing_type").val(),
+                        "pid": $("#pid").val()
+                    },
+                    xhrFields: {
+                        withCredentials: true
+                    },
+                    success: function(data) {
+                        if (data.state == 200) {
+                            layer.msg(data.msg, {
+                                icon: 6, //成功的表情
+                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                            }, function() {
+                                window.parent.location.reload();
+                            });
+                        } else {
+                            layer.msg(data.msg, {
+                                icon: 5, //失败的表情
+                                time: 1000
+                            });
+                            return;
+                        }
+                    }
+                });
+                }else{
+                    layer.msg('请选择床位类型！', {
+                                icon: 5, //失败的表情
+                                time: 1000
+                            });
+                            return;
+                }
+             
+                return false;
+            });
+
+        });
+        // 获取选择类型页面传来的值
+        function getDataFromSon(data) {
+            var $ = layui.$;
+            // $("#ess_id").val(data.id);
+            $("#nursing_type").val(data.bt_name);
+        }
+        //获取父级数据
+        function child(data) {
+            $ = layui.$;
+            var data_type = data.data_type;
+            if (data_type == null || data_type == "") { //没有点击节点时
+                var admin = 'admin';
+                $('#pid').val(admin);
+                $('#data_type').val('栋');
+                $("#ceng").hide();
+                $("#jian").hide();
+                $("#hao").hide();
+                $("#huli").hide();
+            } else if (data_type == "栋") { //点击节点为“栋”时
+                $('#floor_tung_name').val(data.floor_tung_name);
+                $('#floor_tung_name').attr("readOnly", true);
+                $('#data_type').val('层');
+                $('#pid').val(data.id);
+                $("#jian").hide();
+                $("#hao").hide();
+                $("#huli").hide();
+            } else if (data_type == "层") { //点击节点为层时
+                $('#floor_tung_name').val(data.floor_tung_name);
+                $('#floor_layer').val(data.floor_layer);
+                $('#floor_tung_name').attr("readOnly", true);
+                $('#floor_layer').attr("readOnly", true);
+                $('#data_type').val('间');
+                $('#pid').val(data.id);
+                $("#hao").hide();
+                $("#huli").hide();
+            } else if (data_type == "间") {
+                $('#floor_tung_name').val(data.floor_tung_name);
+                $('#floor_layer').val(data.floor_layer);
+                $('#room_number').val(data.room_number);
+                $('#floor_tung_name').attr("readOnly", true);
+                $('#floor_layer').attr("readOnly", true);
+                $('#room_number').attr("readOnly", true);
+                $('#data_type').val('号');
+                $('#pid').val(data.id);
+            } else {
+                $('#floor_tung_name').val(data.floor_tung_name);
+                $('#floor_layer').val(data.floor_layer);
+                $('#room_number').val(data.room_number);
+                $('#floor_tung_name').attr("readOnly", true);
+                $('#floor_layer').attr("readOnly", true);
+                $('#room_number').attr("readOnly", true);
+                $('#data_type').val('号');
+                $('#pid').val(data.pid);
+            }
+        }
+    </script>
+</body>
+
+</html>
