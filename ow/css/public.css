@@ -1,0 +1,181 @@
+/*清除元素默认的内外边距  */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+
+/*清除浮动*/
+
+.clearfix:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+
+/*让所有斜体 不倾斜*/
+
+em,
+i {
+    font-style: normal;
+}
+
+
+/*去掉列表前面的小点*/
+
+li {
+    list-style: none;
+}
+
+
+/*图片没有边框   去掉图片底侧的空白缝隙*/
+
+img {
+    border: 0;
+    /*ie6*/
+    vertical-align: middle;
+}
+
+
+/*让button 按钮 变成小手*/
+
+button {
+    cursor: pointer;
+}
+
+
+/*取消链接的下划线*/
+
+a {
+    color: #464646;
+    text-decoration: none;
+    font-size: 18px;
+}
+
+a:hover {
+    color: #F2331F;
+    text-decoration: none;
+}
+
+h4 {
+    font-weight: 400;
+}
+
+p {
+    margin: 0 0 5px;
+}
+
+.current {
+    color: #F2331F;
+}
+
+
+/* 头部区域 */
+
+.header {
+    height: 70px;
+    line-height: 70px;
+}
+
+.logo {
+    float: left;
+}
+
+nav {
+    float: right;
+}
+
+nav ul li {
+    float: left;
+    margin: 0px 25px;
+}
+
+
+/* 标题公共样式 */
+
+.title {
+    height: 110px;
+    line-height: 110px;
+    text-align: center;
+    font-size: 28px;
+    font-weight: 600;
+    color: #282828;
+    margin-top: 20px;
+}
+
+
+/* 视频区域 */
+
+.banner {
+    width: 100%;
+    height: 670px;
+    overflow: hidden
+}
+
+.banner video {
+    width: 100%;
+    height: 100%;
+}
+
+
+/* 底部区域 */
+
+.container-fluid {
+    margin-top: 90px;
+    padding: 0;
+}
+
+.container-fluid .row {
+    margin: 0;
+}
+
+.footer {
+    width: 100%;
+    height: 256px;
+    background-color: #F8F8F8;
+}
+
+dl dt {
+    font-size: 18px;
+    font-weight: bold;
+    margin: 30px 0px;
+}
+
+dl dd {
+    font-size: 16px;
+    color: #212121;
+    margin: 10px 0;
+}
+
+dl dd a {
+    font-size: 16px;
+    color: #212121;
+}
+
+.btns {
+    display: none;
+    width: 91px;
+    height: 28px;
+    border: 0px;
+    color: #FFFFFF;
+    font-size: 16px;
+    line-height: 28px;
+    background-color: #F12511;
+}
+
+.erweima {
+    width: 83px;
+    height: 83px;
+    margin: 0 auto;
+}
+
+dl:nth-child(4) {
+    margin-top: 25px;
+    text-align: center;
+}
