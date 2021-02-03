@@ -1,0 +1,98 @@
+/* 服务对象区域 */
+
+.server .content .row {
+    margin-bottom: 30px;
+}
+
+.server .row .img {
+    height: 214px;
+}
+
+img {
+    width: 100%;
+    height: 100%;
+}
+
+.server .row .tit {
+    height: 65px;
+    line-height: 65px;
+    color: #282828;
+    font-size: 24px;
+    text-align: center;
+}
+
+.server .row .text p {
+    font-size: 16px;
+    color: #656565;
+    text-align: center;
+}
+
+
+/* 智能设备区域 */
+
+.equipment .row {
+    margin-bottom: 40px;
+}
+
+.equip {
+    height: 82px;
+    padding: 0 35px;
+}
+
+.con {
+    float: left;
+    width: 82px;
+    height: 82px;
+    padding: 0px!important;
+}
+
+.equip_text {
+    float: right;
+    box-sizing: border-box;
+    margin-top: 5px;
+    padding-left: 15px;
+}
+
+.equip_tit {
+    font-size: 18px;
+    font-weight: bold;
+    color: #282828;
+}
+
+.equip_text p:nth-child(2) {
+    font-size: 16px;
+    color: #656565;
+    word-wrap: break-word
+}
+
+
+/*  便民服务区域 */
+
+.services li {
+    padding: 0 0 10px 10px;
+}
+
+.services .box {
+    position: relative;
+    width: 100%;
+    height: 180px;
+}
+
+.services .text {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    text-align: center;
+    color: #FFFFFF;
+    padding-top: 60px;
+}
+
+.services .text p:nth-child(1) {
+    font-size: 20px;
+}
+
+.services .text p:nth-child(2) {
+    font-size: 16px;
+}
