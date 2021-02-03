@@ -1,0 +1,110 @@
+.head{
+	     margin-top: 4%;
+}
+.tab{
+	    height: 37px;
+    line-height: 37px;
+     
+        width: 90%;
+    margin: 0 auto;
+}
+.tab li {
+     border: 1px solid #FF4700;
+	float: left;
+    width: 33.33%;
+    text-align: center;
+    font-family: PingFang-SC;
+font-size: 16px;
+color: #FF4700;
+letter-spacing: 0;
+text-align: center;
+
+}
+.tab li.cur {background-color:#FF4700 ; color: #fff; }
+.page{
+ 
+ 	overflow: hidden;
+	height: 100%;
+	position: relative;
+}
+.ul{
+	overflow: hidden;
+	border-top: 1px solid #EDEDED;
+	border-bottom: 1px solid #EDEDED;
+	position: relative;
+    left: 1px;
+	 
+}
+.ul .item{
+	width: 50%;
+    float: left;
+    text-align: center;
+    border-right: 1px solid #EDEDED;
+    font-size: 1.2rem;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.item span {font-size: 28px}
+p{margin: 0px; }
+ 
+.zhufan {
+     width: 114px;
+    height: 114px;
+    border-radius: 50%;
+    line-height: 114px;
+    font-weight: bold;
+    position: absolute;
+    left: 50%;
+    margin-left: -50px;
+    top: 60%;
+    font-family: PingFangSC-Medium;
+    font-size: 20px;
+    color: #FFFFFF;
+    letter-spacing: 0;
+    text-align: center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-image: url(../../images/bcnew/icon_refresh.png);
+}
+.total {        
+	width: 169px;
+    height: 134px;
+    margin: 0 auto;
+    margin-top: 4rem; 
+text-align: center;
+}
+.total span {
+	font-family: PingFangSC;
+    font-size: 70px;
+    color: #222222;
+    height: 70px;
+    letter-spacing: 0;
+    text-align: center;
+    line-height: 70px;
+    display: inline-block;
+        font-weight: bold;
+}
+.total p{
+	    font-family: PingFang;
+    font-size: 17px;
+    color: #666666;
+    letter-spacing: 0;
+    text-align: center;
+    line-height: 48px;
+    height: 48px;
+ 
+}
+.item .num {
+	font-family: PingFangSC-Semibold;
+font-size: 22px;
+color: #222222;
+letter-spacing: 0;
+text-align: center;
+}
+.item p {
+	font-family: PingFang-SC-Medium;
+font-size: 15px;
+color: #666666;
+letter-spacing: 0;
+text-align: center;
+}

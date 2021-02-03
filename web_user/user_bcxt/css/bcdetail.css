@@ -1,0 +1,11 @@
+.page_view{font-size: 1.6rem}
+.iszhifu{color: blue}
+.con{font-size: 1.2rem;}
+.my-bc{    
+	padding: 1rem 0rem;
+    background-color: #fff;
+}
+.con li {
+	line-height: 2rem;
+    height: 2rem;
+}

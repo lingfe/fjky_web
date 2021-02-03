@@ -1,0 +1,67 @@
+*{
+  list-style: none;
+  margin: 0;
+  padding:0;
+  text-decoration: none;
+}
+/*html {font-size: 100rem}*/
+/*底部菜单*/
+.dibu{
+  width:100%;
+  height:4.5rem;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  background-color: #fff;
+  font-size: 1rem;
+      border-top: 1px solid #eee;
+}
+.dibu_model{
+  width:33.3%;
+  height:100%;
+  float:left;
+}
+.model_img{
+  width:100%;
+  height:3rem;
+}
+.img{
+  width: 100%;
+  height: 3rem;
+  background-size: 21%;
+  background-position: 50%;
+  background-position-y: 6px;
+  background-position-y: 4px;
+}
+.model_text{
+  width:100%;
+  height:1.5rem;
+  line-height: 1.5rem;
+  font-size: 1rem;
+  text-align: center;
+    color: #FF4700;
+}
+.bg1{
+  background-image:url(../images/bcnew/icon_home_hl.png);
+
+  background-repeat: no-repeat;
+}
+.bg2{
+  background-image:url(../images/bcnew/icon_report_meal_hl.png);
+
+  background-repeat: no-repeat;
+}
+.bg3{
+   background-image:url(../images/bcnew/icon_me_hl.png);
+
+  background-repeat: no-repeat;
+}
+
+/*背景颜色 start */
+.bg_red{
+  background-color: red;
+}
+.fr {float: right;}
+.hui .model_text {
+    color: #ccc;
+}

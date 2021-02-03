@@ -1,0 +1,92 @@
+body{
+	background-color: #ddd;
+    font-size: 14px;
+    font-family: "微软雅黑";
+}
+html {background-color: #fff;
+}
+ 
+.page {
+    height: 100%;
+ 
+    background-color: #fff;
+}
+.carousel {
+    height: 160px;
+    overflow: hidden;
+}
+.carousel-inner>.item>img {
+    width: 100%;
+    height: 100%;
+}
+.styf{
+	overflow: hidden;
+	margin-bottom: 0;
+}
+.styf li {
+	float: left;
+	width: 33.33%;
+	text-align: center;
+    border-right: 1px solid #EDEDED;
+    border-bottom:  1px solid #EDEDED;
+    padding: 15px 10px;
+    /*transform: rotate(-270deg);*/
+
+}
+h3{
+	font-size:1.5rem;    
+	margin-top: 0;
+    margin-bottom: 0;
+    font-weight: bold;
+    padding-left: 1.4rem;
+}
+.page_view{
+
+	background-color: #fff;
+	border-radius: 1rem;
+ 
+    overflow: hidden; 
+    border-radius: 8px;
+}
+.yf-img  img {   height: 5rem; }
+.styf a p {color: #2a2828;font-size: 1.5rem;}
+.tongzhi{
+	background-image: url(../images/bcnew/icon_notice.png);
+    height: 4rem;
+    line-height: 4rem;
+    background-position: 1rem;
+    background-repeat: no-repeat;
+    background-size:6%;
+    background-color: #fff;
+    padding-left: 4rem; 
+    margin-top: 5px;
+}
+.tongzhi span {
+    /*font-size: 1.2rem;*/
+     margin: 0;
+font-family: PingFangSC-Regular;
+font-size: 16px;
+color: #FF4700;
+letter-spacing: 0;
+}
+.page-top {
+    margin: 0 auto;
+    overflow: hidden;
+    padding-bottom: 3rem;
+}
+.bg2{
+    background-image: url(../images/bcnew/icon_report_meal.png);
+}
+.bg3{
+    background-image: url(../images/bcnew/icon_me.png);
+}
+.hui .model_text { color: #ccc }
+.carousel-inner {height: 160px;}
+.carousel .item{height: 100%}
+.carousel-indicators {    height: 13px;}
+
+.item img {height: 12rem;}
+.arrright { float:right;  color: #999999;    top: 1.3rem;}
+.look{float: right;color: #999999; font-size: 14px;}
+.look a {color: #999999;}
+.noborder li {border-bottom: none; }
