@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>入住登记</title>
+    <!-- 引入css资源 -->
+    <link rel="stylesheet" href="../../../lib/layui-v2.5.5/css/layui.css" media="all">
+    <link rel="stylesheet" href="../../../css/public.css" media="all">
+    <!-- 文件上传css -->
+    <link rel="stylesheet" href="../../../lib/jq-module/zyupload/zyupload-1.0.0.min.css" media="all">
+    <!-- 分布表单样式 -->
+    <link rel="stylesheet" href="../../../js/lay-module/step-lay/step.css" media="all">
+</head>
+
+<body>
+    <!-- 分布表单内容-start- -->
+    <div class="layuimini-container" style="height:800px">
+        <div class="layuimini-main">
+            <div class="layui-card-body" style="padding-top: 40px;">
+                <div class="layui-carousel" id="stepForm" lay-filter="stepForm" style="margin: 0 auto;">
+                    <div carousel-item>
+                        <!-- 基本信息 -->
+                        <div>
+                            <form class="layui-form" style="margin: 0 auto;max-width: 800px;padding-top: 40px;">
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label class="layui-input-label required">姓&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;名：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="full_name"
+                                            lay-verify="required" lay-reqtext="请输入姓名" placeholder="请输入姓名" value=""
+                                            style="width: 240px;">
+                                    </div>
+                                </div>
+
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label class="layui-input-label required">身份证号：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="id_card"
+                                            lay-verify="identity" lay-reqtext="请输入身份证号" placeholder="请输入身份证号" value=""
+                                            style="width: 240px;">
+                                    </div>
+                                </div>
+
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label class="layui-input-label">生&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;日：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" id="birthday" name="birthday" lay-verify="date"
+                                            placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input"
+                                            style="width:240px">
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">性别：</label>
+                                    <div class="layui-input-block" id="gender">
+                                        <input type="radio" name="gender" lay-verify="required" id="genderMan"
+                                            checked="" lay-reqtext="请选择性别" value="男" title="男">
+                                        <input type="radio" name="gender" lay-verify="required" id="genderWoman"
+                                            lay-reqtext="请选择性别" value="女" title="女">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label class="layui-input-label required">年&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;龄：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="age"
+                                            oninput="value=value.replace(/[^\d]/g,'')" lay-verify="required"
+                                            lay-reqtext="请输入年龄" placeholder="请输入年龄" value="" style="width: 240px;">
+                                    </div>
+                                </div>
+                                <div class="layui-inline">
+                                    <label class="layui-form-label">民族：</label>
+                                    <div class="layui-input-inline">
+                                        <select id="nation" name="nation" lay-verify="required" lay-reqtext="请选择民族"
+                                            class="select_wd120">
+                                            <option value="汉族">汉族</option>
+                                            <option value="蒙古族">蒙古族</option>
+                                            <option value="回族">回族</option>
+                                            <option value="藏族">藏族</option>
+                                            <option value="维吾尔族">维吾尔族</option>
+                                            <option value="苗族">苗族</option>
+                                            <option value="彝族">彝族</option>
+                                            <option value="壮族">壮族</option>
+                                            <option value="布依族">布依族</option>
+                                            <option value="朝鲜族">朝鲜族</option>
+                                            <option value="满族">满族</option>
+                                            <option value="侗族">侗族</option>
+                                            <option value="瑶族">瑶族</option>
+                                            <option value="白族">白族</option>
+                                            <option value="土家族">土家族</option>
+                                            <option value="哈尼族">哈尼族</option>
+                                            <option value="哈萨克族">哈萨克族</option>
+                                            <option value="傣族">傣族</option>
+                                            <option value="黎族">黎族</option>
+                                            <option value="傈僳族">傈僳族</option>
+                                            <option value="佤族">佤族</option>
+                                            <option value="畲族">畲族</option>
+                                            <option value="高山族">高山族</option>
+                                            <option value="拉祜族">拉祜族</option>
+                                            <option value="水族">水族</option>
+                                            <option value="东乡族">东乡族</option>
+                                            <option value="纳西族">纳西族</option>
+                                            <option value="景颇族">景颇族</option>
+                                            <option value="柯尔克孜族">柯尔克孜族</option>
+                                            <option value="土族">土族</option>
+                                            <option value="达斡尔族">达斡尔族</option>
+                                            <option value="仫佬族">仫佬族</option>
+                                            <option value="羌族">羌族</option>
+                                            <option value="布朗族">布朗族</option>
+                                            <option value="撒拉族">撒拉族</option>
+                                            <option value="毛南族">毛南族</option>
+                                            <option value="仡佬族">仡佬族</option>
+                                            <option value="锡伯族">锡伯族</option>
+                                            <option value="阿昌族">阿昌族</option>
+                                            <option value="普米族">普米族</option>
+                                            <option value="塔吉克族">塔吉克族</option>
+                                            <option value="怒族">怒族</option>
+                                            <option value="乌孜别克族">乌孜别克族</option>
+                                            <option value="俄罗斯族">俄罗斯族</option>
+                                            <option value="鄂温克族">鄂温克族</option>
+                                            <option value="德昂族">德昂族</option>
+                                            <option value="保安族">保安族</option>
+                                            <option value="裕固族">裕固族</option>
+                                            <option value="京族">京族</option>
+                                            <option value="塔塔尔族">塔塔尔族</option>
+                                            <option value="独龙族">独龙族</option>
+                                            <option value="鄂伦春族">鄂伦春族</option>
+                                            <option value="赫哲族">赫哲族</option>
+                                            <option value="门巴族">门巴族</option>
+                                            <option value="珞巴族">珞巴族</option>
+                                            <option value="基诺族">基诺族</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label class="layui-input-label required">联系电话：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="phone"
+                                            lay-verify="tellphone" lay-reqtext="请输入联系电话" placeholder="请输入联系电话"
+                                            value="" style="width: 240px;">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label class="layui-input-label required">户籍地址：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="permanent_address"
+                                            lay-verify="required" lay-reqtext="请输入户籍地址" placeholder="请输入户籍地址" value=""
+                                            style="width: 240px;">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label
+                                        class="layui-input-label required">爱&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;好：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="hobby" lay-verify="required"
+                                            lay-reqtext="请输入爱好" placeholder="请输入爱好" value="" style="width: 240px;">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label class="layui-input-label required">饮食禁忌：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="diet_taboo"
+                                            lay-verify="required" lay-reqtext="请输入饮食禁忌" placeholder="请输入饮食禁忌" value=""
+                                            style="width: 240px;">
+                                    </div>
+                                </div>
+                                <!-- 并列一行 start -->
+                                <div class="layui-inline" style="margin-top:10px;">
+                                    <div class="layui-inline">
+                                        <label
+                                            class="layui-form-label">头&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;像：</label>
+                                        <div class="layui-input-inline">
+                                            <button type="button" class="layui-btn" id="test1"><i
+                                                    class="layui-icon layui-icon-upload"></i>上传头像</button>
+                                        </div>
+                                    </div>
+                                    <div class="layui-inline">
+                                        <label class="layui-form-label"><img class="comm_img"
+                                                style="width:auto;height:50px;" id="img" src="" alt="" /></label>
+                                    </div>
+                                </div>
+                                <div class="layui-form-item" style="margin: 20px auto;padding: 5px auto;">
+                                    <div class="layui-input-block" style="margin-left: 290px;">
+                                        <button class="layui-btn" lay-submit lay-filter="formStep">
+                                            &emsp;下一步&emsp;
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- 家属信息 -->
+                        <div>
+                            <form class="layui-form" style="margin: 0 auto;max-width: 750px;padding-top: 40px;">
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label class="layui-input-label required">家属姓名：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="family_name"
+                                            lay-verify="required" lay-reqtext="请输入家属姓名" placeholder="请输入姓名" value=""
+                                            style="width: 240px;">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label class="layui-input-label required">联系电话：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="family_phone"
+                                            lay-verify="required|phone" lay-reqtext="请输入联系电话" placeholder="请输入联系电话"
+                                            value="" style="width: 240px;">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label class="layui-input-label required">身份证号：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="id_card"
+                                            lay-verify="identity" lay-reqtext="请输入身份证号" placeholder="请输入身份证号" value=""
+                                            style="width: 240px;">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label class="layui-input-label required">联系地址：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="contact_address"
+                                            lay-verify="required" lay-reqtext="请输入联系地址" placeholder="请输入联系地址" value=""
+                                            style="width: 240px;">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;">
+                                    <label class="layui-form-label required" style="width:100px">与客户关系：</label>
+                                    <div class="layui-input-inline">
+                                        <select id="and_relation" name="and_relation" lay-verify="required"
+                                            lay-reqtext="请选择关系" class="select_wd120">
+                                            <option value="祖孙">祖孙</option>
+                                            <option value="父子">父子</option>
+                                            <option value="母子">母子</option>
+                                            <option value="母女">母女</option>
+                                            <option value="姐妹">姐妹</option>
+                                            <option value="兄妹">兄妹</option>
+                                            <option value="姐弟">姐弟</option>
+                                            <option value="叔侄">叔侄</option>
+                                            <option value="公孙">公孙</option>
+                                            <option value="孙女">孙女</option>
+                                            <option value="孙子">孙子</option>
+                                            <option value="兄弟">兄弟</option>
+                                            <option value="侄女">侄女</option>
+                                            <option value="外孙女">外孙女</option>
+                                            <option value="妻子">妻子</option>
+                                            <option value="姊妹">姊妹</option>
+                                            <option value="配偶">配偶</option>
+                                            <option value="女婿">女婿</option>
+                                            <option value="儿媳">儿媳</option>
+                                            <option value="婆媳">婆媳</option>
+                                            <option value="夫妻">夫妻</option>
+                                            <option value="户主">户主</option>
+                                            <option value="子女">子女</option>
+                                        </select>
+                                    </div>
+                                </div>
+
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px;width:300px">
+                                    <label class="layui-form-label required" style="width:100px">是否监护人：</label>
+                                    <div class="layui-input-block" id="is_guardian">
+                                        <input type="radio" name="is_guardian" lay-verify="required"
+                                            lay-reqtext="请选择是否监护人" value="是" title="是" checked="">
+                                        <input type="radio" name="is_guardian" lay-verify="required"
+                                            lay-reqtext="请选择是否监护人" value="否" title="否">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item" style="margin-top: 20px;margin-left: 30%;">
+                                    <div class="layui-input-block">
+                                        <button class="layui-btn" lay-submit lay-filter="formStep2">
+                                            &emsp;下一步&emsp;
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- 健康信息 -->
+                        <div>
+                            <form class="layui-form" style="margin: 0 auto;max-width: 800px;padding-top: 30px;">
+                                <div class="layui-inline" style="margin-top:10px;margin-left:20px">
+                                    <label class="layui-form-label required">自理情况：</label>
+                                    <div class="layui-input-inline">
+                                        <select id="hea_zili_situation" name="hea_zili_situation" lay-verify="required"
+                                            lay-reqtext="请选择自理情况" class="select_wd120">
+                                            <option value="介助">介助</option>
+                                            <option value="介护">介护</option>
+                                            <option value="失能老人">失能老人</option>
+                                            <option value="半失能老人">半失能老人</option>
+                                            <option value="其他">其他</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:20px">
+                                    <label class="layui-form-label required">视力情况：</label>
+                                    <div class="layui-input-inline">
+                                        <select id="hea_vision" name="hea_vision" lay-verify="required"
+                                            lay-reqtext="请选择视力情况" class="select_wd120">
+                                            <option value="正常">正常</option>
+                                            <option value="有损">有损</option>
+                                            <option value="失明">失明</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:20px">
+                                    <label class="layui-form-label required">听力情况：</label>
+                                    <div class="layui-input-inline">
+                                        <select id="hea_hearing" name="hea_hearing" lay-verify="required"
+                                            lay-reqtext="请选择听力情况" class="select_wd120">
+                                            <option value="正常">正常</option>
+                                            <option value="轻度听力障碍">轻度听力障碍</option>
+                                            <option value="重度听力障碍">重度听力障碍</option>
+                                            <option value="失聪">失聪</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:45px">
+                                    <label class="layui-input-label">主治医院：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="hea_zhuzhi_hospital"
+                                            placeholder="请输入主治医院" value="" style="width: 200px;">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:45px">
+                                    <label class="layui-input-label">主治医师：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="hea_zhuzhi_doctor"
+                                            placeholder="请输入主治医师" value="" style="width: 200px;">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:45px">
+                                    <label class="layui-input-label">医院电话：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="hea_hospital_phone"
+                                            placeholder="请输入医院电话" value="" style="width: 200px;">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:45px">
+                                    <label class="layui-input-label">过敏药物：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="hea_allergy_medicine"
+                                            placeholder="请输入过敏药物" value="" style="width: 200px;">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:45px">
+                                    <label class="layui-input-label">病史情况：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="hea_medical_history"
+                                            placeholder="请输入病史情况" value="" style="width: 200px;">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item" style="margin-top:10px;margin-left:20px">
+                                    <label class="layui-form-label">主要疾病：</label>
+                                    <div class="layui-input-block" id="hea_zhuyao_disease">
+                                        <input type="checkbox" name="hea_zhuyao_disease" value="高血糖" title="高血糖">
+                                        <input type="checkbox" name="hea_zhuyao_disease" value="高血压" title="高血压">
+                                        <input type="checkbox" name="hea_zhuyao_disease" value="心脏病" title="心脏病">
+                                        <input type="checkbox" name="hea_zhuyao_disease" value="脑血栓" title="脑血栓">
+                                        <input type="checkbox" name="hea_zhuyao_disease" value="冠心病" title="冠心病">
+                                        <input type="checkbox" name="hea_zhuyao_disease" value="关节炎" title="关节炎">
+                                        <input type="checkbox" name="hea_zhuyao_disease" value="风湿" title="风湿">
+                                        <input type="checkbox" name="hea_zhuyao_disease" value="其他" title="其他">
+                                    </div>
+                                </div>
+                                <div class="layui-form-item" style="margin-top:40px;margin-left:200px">
+                                    <div class="layui-input-block">
+                                        <button class="layui-btn" lay-submit lay-filter="formStep3">
+                                            &emsp;下一步&emsp;
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- 护理任务 -->
+                        <div>
+                            <form class="layui-form" style="margin: 0 auto;max-width: 750px;padding-top: 40px;">
+                                <div class="layui-inline" style="margin-top:10px;">
+                                    <label class="layui-form-label required" style="width:100px">护理级别：</label>
+                                    <div class="layui-input-inline">
+                                        <select id="nt_level" name="nt_level" lay-verify="required"
+                                            lay-reqtext="请选择护理级别" class="select_wd120">
+                                            <option value="普通护理">普通护理</option>
+                                            <option value="中级护理">中级护理</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label class="layui-input-label required">护理费用：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="nt_level_cost"
+                                            oninput="value=value.replace(/[^\d]/g,'')" lay-verify="required"
+                                            lay-reqtext="请输入护理费用" placeholder="请输入护理费用" value="" style="width: 240px;">
+
+                                    </div>
+                                </div>
+                                <div class="layui-form-item" style="margin-top: 20px;margin-left: 30%;">
+                                    <div class="layui-input-block">
+                                        <button class="layui-btn" lay-submit lay-filter="formStep4">
+                                            &emsp;下一步&emsp;
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <!-- 床位选择 -->
+                        <div>
+                            <form class="layui-form" style="margin: 0 auto;max-width: 700px;padding-top: 40px;">
+                                <div class="layui-inline" style="margin-top:10px;margin-left:10px">
+                                    <label class="layui-form-label required">床位类型：</label>
+                                    <div class="layui-input-block">
+                                        <input type="radio" name="bed_type" lay-verify="required" lay-reqtext="请选择床位类型"
+                                            value="高级" title="高级" checked="">
+                                        <input type="radio" name="bed_type" lay-verify="required" lay-reqtext="请选择床位类型"
+                                            value="中级" title="中级">
+                                        <input type="radio" name="bed_type" lay-verify="required" lay-reqtext="请选择床位类型"
+                                            value="一般" title="一般">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:10px">
+                                    <label class="layui-form-label required">是否包房：</label>
+                                    <div class="layui-input-block">
+                                        <input type="radio" name="bed_is_baofang" lay-verify="required"
+                                            lay-reqtext="请选择是否包房" value="是" title="是" checked="">
+                                        <input type="radio" name="bed_is_baofang" lay-verify="required"
+                                            lay-reqtext="请选择是否包房" value="否" title="否">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label
+                                        class="layui-input-label required">费&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;用：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="bed_cost"
+                                            oninput="value=value.replace(/[^\d]/g,'')" lay-verify="required"
+                                            lay-reqtext="请输入费用" placeholder="请输入费用" value="" style="width: 240px;">
+
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label
+                                        class="layui-input-label required">床&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="bed" lay-submit
+                                            lay-filter="bedbutton" style="width: 240px;">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label class="layui-input-label ">床位描述：</label>
+                                    <div class="layui-input-inline">
+                                        <!-- <input type="text" class="layui-input dateIcon" id="bed_describe" placeholder="请输入床位描述" value="" style="width: 240px;">  -->
+                                        <textarea id="bed_describe" name="" placeholder="请输入床位描述" class="layui-textarea"
+                                            style="width: 340px;height: 50px;"></textarea>
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label
+                                        class="layui-input-label ">备&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;注：</label>
+                                    <div class="layui-input-inline">
+                                        <!-- <input type="text" class="layui-input dateIcon" id="bed_remark" placeholder="请输入备注" value="" style="width: 240px;"> -->
+                                        <textarea id="bed_remark" name="" placeholder="请输入备注" class="layui-textarea"
+                                            style="width: 340px;"></textarea>
+                                    </div>
+                                </div>
+                                <!-- 床位id -->
+                                <input id="bedId" type="text" style="display: none" readonly="" value=''>
+
+                                <div class="layui-form-item" style="margin-top:10px">
+                                    <div class="layui-input-block">
+                                        <button class="layui-btn" lay-submit lay-filter="formStep5">
+                                            &emsp;下一步&emsp;
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <!-- 入院缴费 -->
+                        <div>
+                            <form class="layui-form" style="margin: 0 auto;max-width: 750px;padding-top: 20px;">
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label class="layui-input-label required">押&#12288;&#12288;金：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="ap_deposit"
+                                            lay-verify="required" lay-reqtext="请输入押金"
+                                            oninput="value=value.replace(/[^\d]/g,'')" placeholder="请输入押金" value=""
+                                            style="width: 240px;">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label class="layui-input-label required">套餐费用：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="ap_cost_meal_package"
+                                            lay-verify="required" lay-reqtext="请输入餐饮套餐费用"
+                                            oninput="value=value.replace(/[^\d]/g,'')" placeholder="请输入餐饮套餐费用" value=""
+                                            style="width: 240px;">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label class="layui-input-label required">床位费用：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="ap_cost_bed"
+                                            lay-verify="required" lay-reqtext="请输入床位费用"
+                                            oninput="value=value.replace(/[^\d]/g,'')" placeholder="请输入床位费用" value=""
+                                            style="width: 240px;">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label class="layui-input-label required">应缴费用：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="ap_cost_payable"
+                                            lay-verify="required" lay-reqtext="请输入应缴费用"
+                                            oninput="value=value.replace(/[^\d]/g,'')" placeholder="请输入应缴费用" value=""
+                                            style="width: 240px;">
+                                    </div>
+                                </div>
+                                <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label class="layui-input-label">预缴费用：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="ap_cost_advance"
+                                            oninput="value=value.replace(/[^\d]/g,'')" placeholder="请输入预缴费用" value=""
+                                            style="width: 240px;">
+                                    </div>
+                                </div>
+                                <!-- <div class="layui-inline" style="margin-top:10px;margin-left:40px">
+                                    <label class="layui-input-label required">实缴合计：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="ap_cost_total"
+                                            lay-verify="required" lay-reqtext="请输入实缴合计费用" lay-filter="heji"
+                                            oninput="value=value.replace(/[^\d]/g,'')" placeholder="请输入实缴费用" value=""
+                                            style="width: 240px;">
+                                        <div class="layui-form-mid layui-word-aux" style="float: left;">应缴+预缴+押金</div>
+                                    </div>
+                                </div> -->
+                                <!-- 单独一行(带说明) -->
+                                <div class="layui-form-item" style="margin-top:10px;">
+                                    <label class="layui-form-label">实缴合计：</label>
+                                    <div class="layui-input-inline">
+                                        <input type="text" class="layui-input dateIcon" id="ap_cost_total"
+                                            lay-verify="required" lay-reqtext="请输入实缴合计费用" lay-filter="heji"
+                                            oninput="value=value.replace(/[^\d]/g,'')" placeholder="请输入实缴费用" value=""
+                                            style="width: 240px;">
+                                    </div>
+                                    <div class="layui-form-mid layui-word-aux" style="margin-left:60px;">应缴+预缴+押金</div>
+                                </div>
+                                <input id="family_id" type="text" style="display: none" readonly="" value=''>
+                                <div class="layui-form-item" style="margin-top:40px">
+                                    <div class="layui-input-block">
+                                        <button class="layui-btn" lay-submit lay-filter="formStep6">
+                                            &emsp;完成登记&emsp;
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <input id="guanlian_id" type="text" style="display: none" readonly="" value=''>
+                        <!-- 结束标题 -->
+                        <div>
+                            <div style="text-align: center;margin-top: 90px;">
+                                <i class="layui-icon layui-circle"
+                                    style="color: white;font-size:30px;font-weight:bold;background: #52C41A;padding: 20px;line-height: 80px;">&#xe605;</i>
+                                <div style="font-size: 24px;color: #333;font-weight: 500;margin-top: 30px;">
+                                    填写完毕！
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- 分布表单内容--end -->
+
+    <!-- 引入js资源 -->
+    <script src="../../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+    <script src="../../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
+    <script src="../../../lib/jquery-3.4.1/jquery-3.4.1.min.js" charset="utf-8"></script>
+    <script src="../../../lib/jq-module/zyupload/zyupload-1.0.0.min.js" charset="utf-8"></script>
+    <script src="../../bcxt/login/login.js"></script>
+    <script>
+        // 加载组件
+        layui.use(['form', 'step', "tree", 'treetable', 'laydate', 'upload', 'layarea'], function () {
+            var $ = layui.$,
+                form = layui.form,
+                layer = layui.layer,
+                laydate = layui.laydate;
+            var tree = layui.tree;
+            var treetable = layui.treetable;
+            var layarea = layui.layarea;
+            var upload = layui.upload;
+            step = layui.step;
+            var token = Storage.get("token");
+
+                 //验证电话号码或座机号码
+                 var mobile = /^1[3|4|5|7|8]\d{9}$/, phone = /^0\d{2,3}-?\d{7,8}$/;
+            form.verify({
+                tellphone: function (value) {
+                    var flag = mobile.test(value) || phone.test(value);
+                    if (!flag) {
+                        return '请输入正确座机号码或手机号';
+                    }
+                }
+            });
+
+            // 图片上传
+            var uploadInst = upload.render({
+                elem: '#test1',
+                url: '/sys_fkcy/images/imageUpload.action',
+                headers: header,
+                done: function (res, index, upload) {
+                    $("#img").attr("src", res.data.imgUrl);
+                    layer.msg(res.msg, {
+                        icon: 6,//成功的表情
+                        time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                    }, function () {
+                        //location.reload();
+                    });
+                    console.log(res);
+                },
+                error: function (res) {
+                    console.log(res);
+                }
+            });
+            layarea.render({
+                elem: '#ins_address',
+                change: function (res) {
+                    //选择结果
+                    console.log(res);
+                }
+            });
+
+            /* 监听床位信息*/
+            form.on('submit(bedbutton)', function (data) {
+                var index = layer.open({
+                    title: '床位信息',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin: true,
+                    shadeClose: true,
+                    area: ['400px', '350px'],
+                    content: './bedselection/bedInfo.html',
+                    success: function (layero, index) {//弹出层打开后的回调函数
+                        // layer.full(index);
+                        var iframe = window['layui-layer-iframe' + index];
+
+                    }
+                });
+
+            });
+
+            //3秒请求一次刷新数据
+            window.reloadView = function () {
+                getAge();
+                getheji();
+            }
+            setInterval('reloadView()', 1000);
+            getAge();
+            // 根据身份证信息获取生日、性别、年龄
+            function getAge() {
+                //获取输入身份证号码 
+                var UUserCard = $("#id_card").val();
+                if (UUserCard != null && UUserCard != '') {
+                    //获取生日
+                    var birthday = UUserCard.substring(6, 10) + "-" + UUserCard.substring(10, 12) + "-" + UUserCard.substring(12, 14);
+                    $("#birthday").val(birthday);
+                    //获取性别 
+                    if (parseInt(UUserCard.substr(16, 1)) % 2 == 1) {
+                        $(".gender").val('男');
+                        $("#genderMan").prop("checked", true);
+                        $("#genderWoman").prop("checked", false);
+                    } else {
+                        $(".gender").val('女');
+                        $("#genderWoman").prop("checked", true);
+                        $("#genderMan").prop("checked", false);
+                    }
+                    //获取年龄 
+                    var myDate = new Date();
+                    var month = myDate.getMonth() + 1;
+                    var day = myDate.getDate();
+                    var age = myDate.getFullYear() - UUserCard.substring(6, 10) - 1;
+                    if (UUserCard.substring(10, 12) < month || UUserCard.substring(10, 12) == month && UUserCard.substring(12, 14) <= day) {
+                        age++;
+                    }
+                    $("#age").val(age);
+                }
+            }
+            // 实缴合计
+            function getheji() {
+                var ap_deposit = $("#ap_deposit").val();
+                var ap_cost_payable = $("#ap_cost_payable").val();
+                var ap_cost_advance = $("#ap_cost_advance").val();
+                var heji = parseFloat(ap_deposit) + parseFloat(ap_cost_payable) + parseFloat(ap_cost_advance);
+                $("#ap_cost_total").val(heji);
+
+            }
+            // 56个民族
+            var nations = ["汉族", "蒙古族", "回族", "藏族", "维吾尔族", "苗族", "彝族", "壮族", "布依族", "朝鲜族", "满族", "侗族", "瑶族", "白族", "土家族",
+                "哈尼族", "哈萨克族", "傣族", "黎族", "傈僳族", "佤族", "畲族", "高山族", "拉祜族", "水族", "东乡族", "纳西族", "景颇族", "柯尔克孜族",
+                "土族", "达斡尔族", "仫佬族", "羌族", "布朗族", "撒拉族", "毛南族", "仡佬族", "锡伯族", "阿昌族", "普米族", "塔吉克族", "怒族", "乌孜别克族",
+                "俄罗斯族", "鄂温克族", "德昂族", "保安族", "裕固族", "京族", "塔塔尔族", "独龙族", "鄂伦春族", "赫哲族", "门巴族", "珞巴族", "基诺族"];
+            function initNations() {
+                var staff_nation = document.getElementById("staff_nation");
+                for (var i in nations) {
+                    staff_nation.add(new Option(nations[i], i));
+                }
+            }
+
+            //日期-生日
+            laydate.render({
+                elem: '#birthday'
+            });
+
+            // 分布表单标题步骤
+            step.render({
+                elem: '#stepForm',
+                filter: 'stepForm',
+                width: '100%', //设置容器宽度
+                stepWidth: '900px',
+                height: '450px',
+                stepItems: [{
+                    title: '填写基本信息'
+                }, {
+                    title: '填写家属信息'
+                }, {
+                    title: '填写健康信息'
+                }, {
+                    title: '护理任务设置'
+                }, {
+                    title: '餐饮床位选择'
+                }, {
+                    title: '入院缴费'
+                }, {
+                    title: '完成'
+                }]
+            });
+
+            /*
+            监听基本信息
+            */
+            form.on('submit(formStep)', function (data) {
+                $.ajax({
+                    url: '/sys_fkcy/essential_information/save.action',
+                    context: document.body,
+                    headers: { //通过 request 头传递
+                        token: token
+                    },
+                    type: "POST",
+                    // dataType: "data",
+                    data: {
+                        "full_name": $("#full_name").val(),
+                        "id_card": $("#id_card").val(),
+                        "birthday": $("#birthday").val(),
+                        "gender": $("input[name='gender']:checked").val(),
+                        "age": $("#age").val(),
+                        "nation": $("#nation").val(),
+                        "phone": $("#phone").val(),
+                        "permanent_address": $("#permanent_address").val(),
+                        "hobby": $("#hobby").val(),
+                        "img": $("#img").attr("src"),
+                        "diet_taboo": $("#diet_taboo").val()
+                    }, xhrFields: {
+                        withCredentials: true
+                    },
+                    success: function (data) {
+                        if (data.state == 200) {
+                            layer.msg(data.msg, {
+                                icon: 6,//成功的表情
+                                time: 1000, //1秒关闭（如果不配置，默认是3秒）
+                            });
+                            $("#guanlian_id").val(data.data.id);
+                        }
+                    }
+                });
+                step.next('#stepForm');
+                return false;
+            });
+
+            /*
+            监听家庭信息
+            */
+            form.on('submit(formStep2)', function (data) {
+
+                $.ajax({
+                    url: '/sys_fkcy/family_information/save.action',
+                    context: document.body,
+                    headers: { //通过 request 头传递
+                        token: token
+                    },
+                    type: "POST",
+                    // dataType: "data",
+                    data: {
+                        "yw_id": $("#guanlian_id").val(),
+                        "full_name": $("#family_name").val(),
+                        "phone": $("#family_phone").val(),
+                        "id_card": $("#id_card").val(),
+                        "contact_address": $("#contact_address").val(),
+                        "and_relation": $("#and_relation").val(),
+                        "is_guardian": $("input[name='is_guardian']:checked").val()
+
+                    }, xhrFields: {
+                        withCredentials: true
+                    },
+                    success: function (data) {
+                        if (data.state == 200) {
+                            layer.msg(data.msg, {
+                                icon: 6,//成功的表情
+                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                            });
+                        }
+                    }
+                });
+                step.next('#stepForm');
+                return false;
+            });
+
+
+            /*
+             监听健康信息
+             */
+            form.on('submit(formStep3)', function (data) {
+                //获取checkbox[name='hea_zhuyao_disease]的值
+                var arr = new Array();
+                $("input:checkbox[name='hea_zhuyao_disease']:checked").each(function (i) {
+                    arr[i] = $(this).val();
+                });
+                var hea_zhuyao_disease = arr.join(",");//将数组合并成字符串
+                $.ajax({
+                    url: '/sys_fkcy/healthy_info/save.action',
+                    context: document.body,
+                    headers: { //通过 request 头传递
+                        token: token
+                    },
+                    type: "POST",
+                    // dataType: "data",
+                    data: {
+                        "yw_id": $("#guanlian_id").val(),
+                        "hea_zili_situation": $("#hea_zili_situation").val(),
+                        "hea_vision": $("#hea_vision").val(),
+                        "hea_hearing": $("#hea_hearing").val(),
+                        "hea_zhuzhi_hospital": $("#hea_zhuzhi_hospital").val(),
+                        "hea_zhuzhi_doctor": $("#hea_zhuzhi_doctor").val(),
+                        "hea_hospital_phone": $("#hea_hospital_phone").val(),
+                        "hea_allergy_medicine": $("#hea_allergy_medicine").val(),
+                        "hea_medical_history": $("#hea_medical_history").val(),
+                        "hea_zhuyao_disease": hea_zhuyao_disease
+
+                    }, xhrFields: {
+                        withCredentials: true
+                    },
+                    success: function (data) {
+                        if (data.state == 200) {
+                            layer.msg(data.msg, {
+                                icon: 6,//成功的表情
+                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                            });
+                        }
+                    }
+                });
+                step.next('#stepForm');
+                return false;
+            });
+
+            /* 
+            监听护理任务
+             */
+            form.on('submit(formStep4)', function (data) {
+                $.ajax({
+                    url: '/sys_fkcy/jggl/nursing_task/save.action',
+                    context: document.body,
+                    headers: { //通过 request 头传递
+                        token: token
+                    },
+                    type: "POST",
+                    // dataType: "data",
+                    data: {
+                        "yw_id": $("#guanlian_id").val(),
+                        "nt_level": $("#nt_level").val(),
+                        "nt_level_cost": $("#nt_level_cost").val()
+                    }, xhrFields: {
+                        withCredentials: true
+                    },
+                    success: function (data) {
+                        if (data.state == 200) {
+                            layer.msg(data.msg, {
+                                icon: 6,//成功的表情
+                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                            });
+                        }
+                    }
+                });
+                step.next('#stepForm');
+                return false;
+            });
+
+            /*
+             监听床位选择
+             */
+            form.on('submit(formStep5)', function (data) {
+                $.ajax({
+                    url: '/sys_fkcy/bed_selection/save.action',
+                    context: document.body,
+                    headers: { //通过 request 头传递
+                        token: token
+                    },
+                    type: "POST",
+                    // dataType: "data",
+                    data: {
+                        "yw_id": $("#guanlian_id").val(),
+                        "bed_id": $("#bedId").val(),
+                        "bed_type": $("input[name='bed_type']:checked").val(),
+                        "bed_is_baofang": $("input[name='bed_is_baofang']:checked").val(),
+                        "bed_cost": $("#bed_cost").val(),
+                        "bed_remark": $("#bed_remark").val(),
+                        "bed": $("#bed").val(),
+                        "bed_describe": $("#bed_describe").val()
+
+                    }, xhrFields: {
+                        withCredentials: true
+                    },
+                    success: function (data) {
+                        if (data.state == 200) {
+                            layer.msg(data.msg, {
+                                icon: 6,//成功的表情
+                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                            });
+                            step.next('#stepForm');
+                        } else {
+                            layer.msg(data.msg, {
+                                icon: 5,
+                                time: 1000
+                            });
+                        }
+                    }
+                });
+                step.next('#stepForm');
+                return false;
+            });
+            /* 
+            监听入院缴费
+             */
+            form.on('submit(formStep6)', function (data) {
+                $.ajax({
+                    url: '/sys_fkcy/admission_payment/save.action',
+                    context: document.body,
+                    headers: { //通过 request 头传递
+                        token: token
+                    },
+                    type: "POST",
+                    // dataType: "data",
+                    data: {
+                        "yw_id": $("#guanlian_id").val(),
+                        "ap_deposit": $("#ap_deposit").val(),
+                        "ap_cost_meal_package": $("#ap_cost_meal_package").val(),
+                        "ap_cost_bed": $("#ap_cost_bed").val(),
+                        "ap_cost_payable": $("#ap_cost_payable").val(),
+                        "ap_cost_advance": $("#ap_cost_advance").val(),
+                        "ap_cost_total": $("#ap_cost_total").val()
+                    }, xhrFields: {
+                        withCredentials: true
+                    },
+                    success: function (data) {
+                        if (data.state == 200) {
+                            layer.msg(data.msg, {
+                                icon: 6,//成功的表情
+                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                            });
+                        }
+                    }
+                });
+                step.next('#stepForm');
+                return false;
+            });
+        })
+
+        // 获取第二个子页面传来的值并修改
+        function getDataFromSon(data) {
+            $("#bed").val(data.floor_tung_name + '-' + data.floor_layer + '-' + data.room_number + '-' + data.bed_number);
+            $("#bedId").val(data.id);
+        }
+    </script>
+
+</body>
+
+</html>
