@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>综合统计</title>
+    <meta name="keywords" content="">
+    <meta name="description"
+        content="">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta http-equiv="Access-Control-Allow-Origin" content="*">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+ 
+    <link rel="stylesheet" href="./css/index.css"> 
+    <link rel="stylesheet" href="../../css/com.css"> 
+
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->    
+</head>
+<body class="layui-layout-body layuimini-all">
+     <div class="content">
+        <div class="main">
+            <div class="col-left fl">
+                <div class="left-title"><a href="./yanglaoyun.html">养老云图</a></div>
+                <div class="leftcon con1" >
+                    <div id="leftcon1" class="leftcon1"></div>
+                </div>
+                <div class="leftcon con2" id="jiankang">
+                    <div class="data_tab">
+                        <h3>大健康数据分析</h3>
+                        <p id="data_tab">
+                            <a href="###" class="cur">医疗数据</a>
+                            <a href="##">慢性病</a>
+                        </p>
+                    </div>                    
+                    <div id="leftcon-two" class="leftcon1"></div>
+                    <div id="leftcon2" class="leftcon1"></div>
+                </div>
+                <div class="leftcon con3">
+                    <div class="data_tab">
+                        <h3>养老服务需求</h3>                         
+                    </div>
+                    <div class="xiaokuang"  style="margin-right:-40px;height: 90px;margin-top: 20px;">
+                        <ul>
+                            <li><p>助餐</p><span>15.1%</span></li>
+                            <li><p>起居</p><span>15.1%</span></li>
+                            <li><p>助浴</p><span>15.1%</span></li>
+                            <li><p>代办</p><span>15.1%</span></li>
+                        </ul>
+                    </div>
+                    <div id="leftcon-three" class="leftcon1" style="height:170px;"></div>
+                </div>
+                <div class="leftcon con4">
+                    <div class="data_tab">
+                        <h3>社区养老服务设施</h3>                         
+                    </div>
+                    <dl>
+                        <dt><img src="./images/pic_category.png" alt=""></dt>
+                        <dd>
+                            <p><span>···</span>社区娱乐中心</p>
+                            <p><span>···</span>社区图书馆</p>
+                            <p><span>···</span>社区复健设施</p>
+                        </dd>
+                        <dd class="dd-two">
+                            <p>使用率</p>
+                            <a href="##" class="xia">4.26%</a>
+                            <a href="##" class="xia">4.26%</a>
+                            <a href="##" class="shang">7.02%</a>
+                        </dd>
+                    </dl>
+                    <div class="sheshi">
+                        <span>室内设施</span><div class="shinei"><div class="snbg"></div>                        
+                        </div>  
+                        <span class="bili">65%</span>                      
+                    </div>
+                    <div class="sheshi">
+                        <span>室外设施</span><div class="shiwai"><div class="swbg"></div></div>
+                        <span class="bili">35%</span>
+                    </div>                    
+                </div>
+            </div>
+            <div class="col-center fl">
+                <div class="left-title tit-center">养老综合统计分析</div>
+                <ul class="tongji">
+                    <li class="tj-one">
+                        <div><p>1485.6万</p><span>老年人总数</span></div>
+                    </li>
+                    <li class="tj-two"><div><p>14.6万</p><span>养老机构总数</span></div></li>
+                    <li class="tj-three"><div><p>145.6万</p><span>床位总数</span></div></li>
+                </ul>
+                <div class="old-people">
+                    <div id="laoren"></div>
+                    <div class="diandian">
+                        <a href="###" class="liushi"><span></span>60-69岁</a>
+                        <a href="###" class="qishi"><span></span>70-79岁</a>
+                        <a href="###" class="bashi"><span></span>80-89岁</a>
+                        <a href="###" class="jiushi"><span></span>90-99岁</a>
+                        <a href="###" class="yibai"><span></span>100岁以上</a>
+                    </div>
+                </div>
+                
+                <div class="center-map">
+                    <div class="xiaokuang">
+                        <h3>老人类型</h3>
+                        <ul>
+                            <li><p>类型</p><p>占比</p></li>
+                            <li><p>优抚老人</p><span>15.1%</span></li>
+                            <li><p>空巢老人</p><span>15.1%</span></li>
+                            <li><p>双低老人</p><span>15.1%</span></li>
+                            <li><p>普通老人</p><span>15.1%</span></li>
+                        </ul>
+                    </div>
+                    <div id="main"></div>
+                </div>
+                <div class="commendata">
+                    <div class="com-con">
+                        <div class="data_tab">
+                            <h3>养老机构基本信息</h3>       
+                            <div class="inp-sou"><input placeholder="请输入机构名称" type="text"/></div>                  
+                        </div>
+                        <ul>
+                            <li class="li-header">
+                                <p class="col-1">名称</p>
+                                <p>入住（床位）</p>
+                                <p>空闲（床位）</p>
+                                <p>护工（人）</p>
+                                <p>护工等级（）</p>
+                                <p>人员配比</p>
+                                <p>入住率</p>
+                                <p>推主率</p>
+                            </li>
+                            <li>
+                                <p class="col-1">碧江区XXX养老院</p>
+                                <p>120890</p>
+                                <p>120890</p>
+                                <p>120890</p>
+                                <p>1:2:555</p>
+                                <p>1:5</p>
+                                <p class="shang">12.5%</p>
+                                <p class="xia">1203</p>
+                            </li>
+                            <li>
+                                <p class="col-1">碧江区XXX养老院</p>
+                                <p>120890</p>
+                                <p>120890</p>
+                                <p>120890</p>
+                                <p>1:2:555</p>
+                                <p>1:5</p>
+                                <p class="xia">12.5%</p>
+                                <p>1203</p>
+                            </li>
+                            <li>
+                                <p class="col-1">万山区XXX养老院</p>
+                                <p>120890</p>
+                                <p>120890</p>
+                                <p>120890</p>
+                                <p>1:2:555</p>
+                                <p>1:5</p>
+                                <p>12.5%</p>
+                                <p class="shang">1203</p>
+                                
+                                
+                            </li>
+                            <li>
+                                <p class="col-1">碧江区XXX养老院</p>
+                                <p>120890</p>
+                                <p>120890</p>
+                                <p>120890</p>
+                                <p>1:2:555</p>
+                                <p>1:5</p>
+                                <p>12.5%</p>
+                                <p>1203</p>
+                            </li>
+                            <li>
+                                <p class="col-1">沿河区XXX养老院</p>
+                                <p>120890</p>
+                                <p>120890</p>
+                                <p>120890</p>
+                                <p>1:2:555</p>
+                                <p>1:5</p>
+                                <p>12.5%</p>
+                                <p>1203</p>
+                            </li>
+                        </ul>
+                    </div> 
+                </div>
+            </div>
+            <div class="col-right fr">
+                <div class="left-title"><a href="./anquanfangfan.html">安全系统防范</a></div>
+                <div class="rightcon1">
+                    <div class="data_tab" style="padding-left: 0;">
+                        <h3>机构总资产</h3>                         
+                    </div>
+                    <div class="shuizhu">
+                        <div id="shuizhu" style="height: 100px;"></div>
+                    </div>
+                    <div class="zichan"><a href="@@">2</a><a href="@@">2</a><a href="@@">,</a><a href="@@">2</a><a href="@@">2</a><a href="@@">2</a><a href="@@">,</a><a href="@@">2</a><a href="@@">2</a><a href="@@">2</a> 
+                    <span>万元</span></div>
+                    <div class="data_tab" style="padding-left: 0;">
+                        <h3>设备折旧</h3>                         
+                    </div>                    
+                    <div class="zhejiu" id="zhejiu">
+                        
+                    </div>
+                </div>
+                <div class="caiwu" id="caiwucon">
+                    <div class="data_tab" style="padding-left: 0;">
+                        <h3>机构财务数据</h3>
+                        <div class="yue"><a href="@@" class="arrLeft"></a>10<a class="arrRight"></a></div>                         
+                    </div> 
+                    <div class="com-con com-con2">                         
+                        <ul>
+                            <li class="li-header">
+                                <p class="col-1" style="color: #061b27;">.&#32</p>
+                                <p>总收入</p>
+                                <p>欠费金额</p>
+                                
+                            </li>
+                            <li>
+                                <p class="col-1">碧江区XXX养老院</p>                      
+                                <p class="">123455万元</p>
+                                <p class="">120223万元</p>
+                            </li>
+                            <li>
+                                <p class="col-1">碧江区XXX养老院</p>                      
+                                <p class="">123455万元</p>
+                                <p class="">120003万元</p>
+                            </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+                <div class="one-one">
+                    <div class="one1 one-l">
+                        <div class="data_tab" style="padding-left: 0;">
+                            <h3>机构物质需求</h3>                                                 
+                        </div>  
+                        <div id="wuzhi"></div>  
+                    </div>
+                    <div class="one1 one-r">
+                        <div class="data_tab" style="text-indent: 21px;padding-left: 0;">
+                            <h3>投诉建议分析</h3>                                                 
+                        </div>
+                        <div id="jianyi"></div>
+                    </div>
+                </div>
+                <div class="aixin">
+                    <div class="data_tab" style="padding-left: 0;">
+                        <h3>爱心活动数据</h3> 
+                        <p class="fubiao" style="float:right;margin-right:50px;margin-top:10px;font-size:14px;color:#fFFFFF;letter-spacing:0;line-height:10px;">志愿者：<span>802，882，07（人）</span></p >                                                   
+                    </div>
+                    <div id="aixin"></div>  
+                </div>
+            </div>
+        </div>
+        
+     </div>
+      
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery@1.11.3/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+    <script src="https://oisanjavax.github.io/echarts-wordcloud/dist/echarts-wordcloud.min.js"></script>
+     <script src="https://echarts.baidu.com/resource/echarts-liquidfill-latest/dist/echarts-liquidfill.min.js"></script>
+     <!-- 词云图需要额外引入 词云图js  -->
+     <script src="./js/baobiao.js"></script>
+ 
+     <script type="text/javascript">
+       $(function(){
+            let $con  = $("#jiankang>.leftcon1");
+            $con.eq(1).hide();
+            $("#data_tab").on('mouseover mouseout','a',function(e){                
+                    
+                    let _this = this;                    
+                    if(e.type=="mouseover"){
+                        $(_this).addClass("cur").siblings().removeClass("cur");
+                        let index =$(_this).index();
+                        $con.eq(index).show().siblings(".leftcon1").hide();                     
+                    }else if(e.type=="mouseout"){
+                        //$box.hide();
+                        //$(this).removeClass("bigimg");
+                    }
+                    
+                }) 
+
+       })
+     </script>
+</body>
+
+</html>
