@@ -1,0 +1,114 @@
+@charset "utf-8";
+
+/*【重定义浏览器默认样式】*/
+*{
+  list-style: none;
+  text-decoration: none;
+  padding: 0px;
+  margin: 0px;
+}
+body{
+	background-color:#ddd;
+	margin: 0px;
+	padding:0px;
+  font-size: 100rem;
+}
+
+.news-topic .header {
+    max-width: 640px;
+    left: auto;
+    height: 44px;
+    background: #b4110c;
+    width: 100%;
+    z-index: 9;
+    text-align: center;
+    position: fixed;
+    top: 0;
+}
+.goback {
+    height: 44px;
+    width: 44px;
+    display: block;
+    position: absolute;
+    overflow: hidden;
+    text-indent: -9999px;
+}
+.goback:before {
+    content: '';
+    height: 12px;
+    width: 12px;
+    display: block;
+    border: 2px solid #fff;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
+    -moz-transform: rotate(-45deg);
+    -o-transform: rotate(-45deg);
+    -ms-transform: rotate(-45deg);
+    position: absolute;
+    top: 15px;
+    left: 17px;
+}
+
+
+.page{
+	width:100%;
+	height:100%;
+  background-color:#fff;
+  font-size: 1.3rem;
+}
+
+/*【重定义浏览器默认样式】end*/
+
+
+/*【头部组件】 start*/
+.header{
+	width:100%;
+	height:40px;
+	background-color:#000;
+	color:#fff;
+	text-align: center;
+	font-size:10px;
+	line-height:40px;
+}
+
+
+/*底部菜单*/
+.dibu{
+  width:100%;
+  height:50px;
+  position: fixed;
+  left: 0px;
+  bottom: 0px;
+  background-color: #fff;
+}
+.dibu_model{
+  width:28%;
+  height:50px;
+  margin-left: 3.5%;
+  float:left;
+}
+.model_img{
+  width:100%;
+  height:25px;
+  margin-top:4px;
+}
+.img{
+  width:33%;
+  height:25px;
+  margin-left: 33%;
+}
+.model_text{
+  width:100%;
+  height:20px;
+  line-height: 20px;
+  font-size: 10px;
+  text-align: center;
+}
+
+
+/*背景颜色 start */
+.bg_red{
+  background-color: red;
+}

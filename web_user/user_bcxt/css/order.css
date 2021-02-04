@@ -1,0 +1,131 @@
+ @charset "utf-8";
+
+.page_view{
+  width: 100%;
+  height:auto;
+  background-color: #fff;
+  padding-top:10px;
+  padding-bottom: 50px;
+}
+
+
+/*搜索*/
+.search{
+    width:90%;
+    height:34px;
+    margin: auto;
+    background-color:#fff;
+    border-radius: 20px;
+    border:1px solid #666;
+}
+.form_img{
+    width:6%;
+    height:16px;
+    float:left;
+    margin-left:20px;
+    margin-top:10px;
+}
+.form_input{
+    width:80%;
+    float:left;
+    height:16px;
+    margin-left:10px;
+    margin-top:9px;
+    background-color:#fff;
+    border:none;
+    padding-left:5px;
+}
+
+/* 报备数据 start */
+/*数据 start*/
+ .list{
+  width: 100%;
+  height: auto;
+  padding-bottom: 10px;
+  margin-top: 14px;
+ }
+ .list_item{
+   width: 90%;
+   height: auto;
+   background-color:#fff;
+   font-size: 12px;
+   color: #666; 
+   margin:20px auto;
+   border: 1px solid #fff;
+   box-shadow: 2px 2px 5px #888888;
+   border-radius: 10px;
+   padding-bottom: 6px;
+ }
+ .item{
+  width: 100%;
+  background-color: #fff;
+ }
+.item_text{
+  width: 97%;
+  margin-top:10px;
+  margin-left: 3%;
+  overflow: hidden; /**自动隐藏文字*/
+  text-overflow: ellipsis; /**文字隐藏后添加省略号*/
+   white-space: nowrap; /*强制不换行 */
+ }
+ .item_static{
+   width: 24%;
+   float: right;
+   text-align: center;
+   
+ }
+ .item_static_img{
+   width: 40px;
+   height: 40px;
+   border-radius: 30px;
+ }
+ .item_static_text{
+   position: relative;
+   left: -2px;
+   color: #fff;
+   background-color: blue;
+   padding: 5px;
+   box-shadow: 2px 2px 5px #888888;
+   border-radius: 10px;
+   font-size: 14px;
+ }
+.item_border{
+  width: 100%;
+  margin-top:10px;
+  border-top: 1px #aaa solid;
+  background-color: #fff;
+}
+.item_btn{
+  width: 100%;
+  font-size: 26px;
+  text-align: center;
+  padding-top: 18px;
+}
+ .list_item_img{
+   width: 90%;
+   height: 240px;
+   font-size: 26px;
+   color: #666; 
+   margin:20px auto;
+   border: 1px solid #F7F8F3;
+    /* background: url('https://ss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=3235371633,811784834&fm=27&gp=0.jpg');
+   background-repeat: no-repeat;
+   background-size: 100% 100%;  */
+ }
+.item_img{
+  width: 90%;
+  margin-top:100px;
+  text-align: center;
+  color: #000;
+  margin-left: 20px;
+}
+
+/* 报备统计 */
+.tojie_data{
+  width: 100%;
+  text-align: center;
+  height:30px;
+  line-height: 40px;
+  font-weight: bold;
+  font-size: 16px;
+}

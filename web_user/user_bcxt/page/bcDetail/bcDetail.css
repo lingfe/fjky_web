@@ -1,0 +1,166 @@
+.page {  
+    height: 100%;  
+     
+}
+.page_view {
+    background-color: #fff;
+    margin: 0 auto;
+    overflow: hidden;
+    padding: 0rem 2rem;
+/*    box-shadow: 0px 0px 3px 0px #888888;*/
+    border-radius: 8px;
+    padding: 1rem 0.2rem;
+}
+.bcjilu{
+    padding: 0rem .8rem;
+}
+.ls{
+    
+        padding: 1rem 0;
+    overflow: hidden;
+}
+.bcjilu p{
+    margin: 0
+}
+.page {
+
+}
+.list {
+    font-size: 2rem;
+    padding-bottom: 1rem;
+    font-weight: bold;
+}
+
+.zhifu.ok {background-color: #aaa;}
+.zhifu a {color: #fff;}
+.panel {
+    background: #FFFFFF;
+box-shadow: 0 3px 14px 0 rgba(100,103,119,0.30);
+border-radius: 8px;
+    }
+.imgbig{
+    height: 120px;
+    overflow: hidden;
+}
+.imgbig img {height: 100%;width: 100%;}
+.panel > div {width: 90%;margin: 0 auto;position:relative;}
+.ls-a{
+    padding-top: 2px;
+}
+.bianhao{font-family: PingFangSC-Regular;
+font-size: 13px;
+color: #888888;
+letter-spacing: 0.39px;}
+.bianhao span {
+    font-family: PingFangSC-Regular;
+font-size: 13px;
+color: #FF4700;
+letter-spacing: 0.39px;
+text-align: right;
+float: right;
+}
+.dl{        
+    padding-top: 1rem;
+    border-bottom: 1px solid rgba(0,0,0,0.10);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+    margin-top: 15px;
+    }
+.dl dt{float: left;    padding-right: 1rem;}
+.dl dt img {width: 60px;height: 60px;}
+.dl dd {overflow: hidden;}
+.dl dd p{
+    font-family: PingFangSC-Regular;
+font-size: 13px;
+color: #888888;
+letter-spacing: 0.39px;
+    padding: 4px 0px;
+}
+.num{
+    font-family: PingFang-SC-Medium;
+    font-size: 12px;
+    color: #FF4700;
+    letter-spacing: 0.36px;
+    text-align: center;
+    width: 21px;
+    height: 18px;
+    line-height: 15px;
+    border: 1px solid #FF4700;
+    border-radius: 3px;
+    margin-left: 4px;
+    display: inline-block;
+}
+.dl  h3{
+    font-family: PingFangSC-Regular;
+    font-size: 18px;
+    color: #222222;
+    letter-spacing: 0.54px;
+    margin: 0;
+    height: 18px;
+    line-height: 18px;
+    margin-bottom: 6px;
+}
+.dl dt p {
+    width: 35px;
+    height: 19px;
+    border: 1px solid #FF4700 ;
+    border-radius: 8px;
+font-family: PingFang-SC-Medium;
+font-size: 12px;
+color: #FF4700;
+letter-spacing: 0.36px;
+text-align: center;
+    font-weight: 100;
+        margin: 0 auto;
+    margin-top: 4px;
+}
+.pay {
+
+}
+.pay p { 
+    width: 80px;
+    height: 28px;
+    line-height: 28px;
+    border: 1px solid #D0D0D0;
+border-radius: 30.5px;
+text-align: center;
+    float: right;
+    font-family: PingFang-SC-Medium;
+font-size: 14px;
+color: #C5C2C2;
+letter-spacing: 0.42px;
+text-align: center;
+    margin-left: 1rem;
+ }
+ .zhifu a{
+    font-size: 14px;
+ 
+ }
+ .pay .zhifu{
+    background-color: #FF4700;
+    border: none;
+}
+.heji{
+    font-family: PingFang-SC-Regular;
+    font-size: 14px;
+    color: #222222;
+    letter-spacing: 0.42px;
+    text-align: center;
+    line-height: 34px;
+    height: 34px;
+    width:100px;
+    left: 143px;
+    position: relative;
+}
+    
+ 
+.heji span{    
+    position: relative;
+ 
+    font-family: PingFangSC-Semibold;
+    font-size: 18px;
+    color: #222222;
+    letter-spacing: 0.54px;
+    text-align: center;
+    line-height: 44px;
+}
