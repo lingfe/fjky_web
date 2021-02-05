@@ -41,16 +41,6 @@
 			<a class="layui-btn layui-btn-danger layui-btn-xs data-count-delete" lay-event="delete"><i class="layui-icon layui-icon-delete"></i>删除</a>
 		</script>
 
-	<!-- 默认角色标记 -->
-	<script type="text/html" id="id_role_name">
-			{{#if (d.yw_id.indexOf(d.id)!=-1 ) { }}
-				<div class='layui-btn layui-btn-xs layui-btn-danger'>默认</div>
-				<div class='layui-btn layui-btn-xs'>{{d.role_name}}</div>
-			{{# }else { }}
-				{{ d.role_name }}
-			{{# } }}
-		</script>
-
 	<!-- 引入js资源 -->
 	<script src="../../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 	<script src="../../bcxt/login/login.js" charset="utf-8"></script>
@@ -60,7 +50,7 @@
 			//定义layui组件变量
 			var $ = layui.jquery,
 				form = layui.form,
-				table = layui.table;
+				table = layui.table; 
 
 			//数据列表
 			table.render({
@@ -173,8 +163,8 @@
 						type: 2,
 						shade: 0.2,
 						maxmin: true,
-						shadeClose: true,
-						area: ['500px', 'auto'],
+						shadeClose: true, 
+						area: ['500px', '400px'],
 						content: './type_device_edit.html',
 						success: function (layero, index) {//弹出层打开后的回调函数
 							result = JSON.stringify(data);
@@ -239,7 +229,7 @@
 			//显示图片
 			function setPic(data) {
 				if (data.dtype_icon) {
-					return '<img class="tableImg" src=' + data.dtype_icon + '/>';
+					return '<img style="width:50px;height:auto;" src=" ' + data.dtype_icon + ' "/>';
 				}
 			}
 
