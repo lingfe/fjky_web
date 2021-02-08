@@ -97,8 +97,8 @@
             table.on('row(currentTableFilter)', function (obj) {
                 // 向父级页面传值
                 var data = obj.data;
-                sendToParent(data) 
-                var index = parent.layer.getFrameIndex(window.name);
+                sendToParent(data)
+                var index = parent.layer.getFrameIndex(window.name); 
                 parent.layer.close(index); //关闭当前弹框
                 //标注选中样式
                 obj.tr.addClass('layui-table-click').siblings().removeClass('layui-table-click');
@@ -106,7 +106,7 @@
 
             // 定义向父级页面传值函数
             function sendToParent(data) {
-                parent.getDataFromSon_supp(data);
+                parent.getDataFromSon_supp(data); 
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
             }

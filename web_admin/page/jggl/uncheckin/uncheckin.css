@@ -6,7 +6,7 @@
     border: 1px solid #ECECEC;
     border-radius: 4px;
     margin-right: 10px;
-    width: 180px;
+    width: 300px;
     margin-bottom: 10px;
     display: inline-block;
 }
@@ -19,7 +19,7 @@
     margin-right: 10px;
     margin-bottom: 10px;
     display: inline-block;
-    color: #1594FF;
+    color: #1594FF; 
 }
 .delTest{
     height: 30px;

@@ -19,15 +19,15 @@
 
 <body>
     <!-- 按钮 --> 
-    <button type="button" id='upfile' class="layui-btn layui-btn-sm layui-btn-normal">
+    <!-- <button type="button" id='upfile' class="layui-btn layui-btn-sm layui-btn-normal">
         <i class="layui-icon">&#xe642;</i>
         批量录入
     </button> 
     <button type="button" class="layui-btn layui-btn-sm layui-btn-warm ">
         <i class="layui-icon">&#xe62d;</i>
         <a style='color:white;text-decoration:none;' href="http://47.106.198.137:81/uploadFiles/publics/设备信息导入模板.xls">录入模板</a>
-    </button>
-    <!-- 表单 --> 
+    </button> -->
+    <!-- 表单 -->
     <form class="layui-form fontB" action="" style='margin-top:15px;'>
         <div class="layui-form-item lay_item">
             <label class="layui-form-label label_title fontB">设备类型：</label>
@@ -85,8 +85,9 @@
     <script src="../../bcxt/login/login.js?date"></script>
     <script>
         //全局变量
-        var dtype_id = '';
-        var supp_id = '';
+        var dtype_id = ''; //设备类型id
+        var supp_id = ''; //供应商id
+        var id = ''; //设备id
         // 加载组件
         layui.use(['form', 'layarea', 'upload'], function () {
             var form = layui.form,
@@ -131,7 +132,7 @@
                         icon: 6,//成功的表情
                         time: 1000 //1秒关闭（如果不配置，默认是3秒）
                     }, function () {
-                        //location.reload();
+                        location.reload();
                     });
                     console.log(res);
                 },
@@ -139,37 +140,17 @@
                     console.log(res);
                 }
             });
-            layarea.render({
+            layarea.render({ 
                 elem: '#ins_address',
                 change: function (res) {
                     //选择结果
                     console.log(res);
                 }
             });
-            //文件上传
-            var uploadFile = upload.render({
-                elem: '#upfile',
-                url: '/sys_fkcy//device/importDevice.action', 
-                headers: header,
-                accept:'file',
-                done: function (res, index, upload) {
-                    console.log(res);
-                    layer.msg(res.msg, {
-                        icon: 6,//成功的表情
-                        time: 1000 //1秒关闭（如果不配置，默认是3秒）
-                    }, function () {
-                        //location.reload(); 
-                    });
-                    console.log(res);
-                },
-                error: function (res) { 
-                    console.log(res);
-                }
-            });
             //监听提交
             form.on('submit(saveBtn)', function (data) {
                 $.ajax({
-                    url: '/sys_fkcy/device/save.action',
+                    url: '/sys_fkcy/device/updateWhereId.action',
                     headers: header,
                     context: document.body,
                     type: "POST",
@@ -177,15 +158,14 @@
                     data: {
                         "dname": $("#d_name").val(), //设备名称
                         "dmodel": $("#dmodel").val(),   //设备型号
-                        "dtype_id": dtype_id,     // 设备类型id
                         "dtype_name": $("#dtype_name").val(),  //设备类型名称
                         "imei": $("#d_IMEI").val(),  //设备 imei 码
-                        "supp_id": supp_id,   //供应商id
                         "supp_name": $("#supp_name").val(),   //供应商 名称  
+                        'id':id, //设备id
                     },
                     xhrFields: {
                         withCredentials: true
-                    }, 
+                    },
                     success: function (data) { 
                         if (data.state == 200) {
                             //提交过并且成功!
@@ -195,7 +175,7 @@
                                 icon: 6,//成功的表情 
                                 time: 1000 //1秒关闭（如果不配置，默认是3秒） 
                             }, function () {
-                                window.parent.location.reload();
+                                // window.parent.location.reload();
                             });
                         }
                         else {
@@ -231,7 +211,7 @@
             })
         }
         // 设备供应商选择 
-        function open_child_chiceDeviceSuppert() {
+        function open_child_chiceDeviceSuppert(){
             layui.use(['layer', 'jquery'], function () {
                 var layer = layui.layer;
 
@@ -248,11 +228,21 @@
             })
         }
 
-        // 获取选择项目页面传来的值
-        function getDataFromSon_supp(data) { 
+        function child(d){
+            var $ = layui.$; 
+            $("#d_name").val(d.dname);
+            $("#dmodel").val(d.dmodel);
+            $("#dtype_name").val(d.dtype_name);
+            $("#d_IMEI").val(d.imei);
+            $("#supp_name").val(d.supp_name);
+            console.log(d);
+            id = d.id;
+        }
+
+            // 获取选择项目页面传来的值 
+            function getDataFromSon_supp(data) { 
             var $ = layui.$;
             supp_id = data.id;
-            console.log(data); 
             $("#supp_name").val(data.supp_name);
         }
 
@@ -260,7 +250,6 @@
         function getDataFromSon(data) {
             var $ = layui.$;
             dtype_id = data.id;
-            console.log(data);
             $("#dtype_name").val(data.dtype_name);
         }
     </script>
