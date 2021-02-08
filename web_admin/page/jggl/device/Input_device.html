@@ -1,3 +1,7 @@
+<!--
+创建者:qiuyuling
+时间：2021-2-4
+-->
 <!DOCTYPE html>
 <html>
 
@@ -12,91 +16,84 @@
     <link rel="stylesheet" href="../css/device.css">
 </head>
 
-
 <body>
-<!-- 按钮 -->
-<button type="button" class="layui-btn layui-btn-sm layui-btn-normal">
-    <i class="layui-icon">&#xe642;</i> 
-    批量录入
-  </button>
-  <button type="button" class="layui-btn layui-btn-sm layui-btn-warm">
-    <i class="layui-icon">&#xe62d;</i>
-    录入模板
-  </button>
-<!-- 表单 -->
-<form class="layui-form" action="" style='margin-top:15px;'>
-    <div class="layui-form-item lay_item">
-        <label class="layui-form-label label_title">设备类型：</label>
-        <div class="layui-input-inline lay_line">
-            <select id="doc_title" name="doc_title" lay-verify="required" class="select_wd120" style="width: 100px;">
-                <option value="安防">安防设备</option>
-                <option value="健康">健康设备</option>
-                <option value="家居">家具设备</option> 
-            </select>
-        </div>
-        <label class="layui-form-label label_title">设备名称：</label>
-        <div class="layui-input-inline lay_line">
-            <select id="doc_title" name="doc_title" lay-verify="required" class="select_wd120" style="width: 100px;">
-                <option value="智能摄像头">智能摄像头</option>
-                <option value="智能手表">智能手表</option>
-                <option value="智能药箱">智能药箱</option>
-                <option value="智能马桶">智能马桶</option>
-                <option value="智能窗帘">智能窗帘</option>
-                <option value="智能台灯">智能台灯</option>
-                <option value="智能门铃">智能门铃</option>
-                <option value="智能开关">智能开关</option>
-            </select>
-        </div>
-    </div>
-    <div class="layui-form-item lay_item" style="margin-top:0px;border-top: 0px;">
-        <label class="layui-form-label label_title">设备型号：</label>
-        <div class="layui-input-inline lay_line">
-            <input type="text" id="doc_phone" name="doc_phone" lay-verify="required|tellphone" placeholder="" autocomplete="off" class="layui-input">
-        </div>
-        <label class="layui-form-label label_title">设备ID：</label>
-        <div class="layui-input-inline lay_line">
-            <input type="text" id="doc_department" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
-        </div>
-    </div>
-    <div class="layui-form-item lay_item" style="margin-top:0px;border-top: 0px;">
-        <label class="layui-form-label label_title">设备供应商：</label>
-        <div class="layui-input-inline lay_line">
-            <input type="text" id="doc_hosptital" name="doc_hosptital" lay-verify="required" placeholder="" autocomplete="off" class="layui-input">
-        </div>
-        <label class="layui-form-label label_title"></label>
-        <div class="layui-input-inline lay_line">
-        </div>
-    </div>
-
-    <div class="layui-row" style="margin-top: 40px;">
-        <div class="layui-col-xs-offset9">
-            <div class="layui-form-item">
-                <div class="layui-input-block" style="margin-left: 166px;">
-                    <button class="layui-btn layui-btn-primary" id="close">取消</button>
-                    <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">保存</button>
-                </div>
+    <!-- 按钮 -->
+    <button type="button" class="layui-btn layui-btn-sm layui-btn-normal ">
+        <i class="layui-icon">&#xe642;</i>
+        批量录入
+    </button>
+    <button type="button" class="layui-btn layui-btn-sm layui-btn-warm ">
+        <i class="layui-icon">&#xe62d;</i>
+        录入模板
+    </button>
+    <!-- 表单 -->
+    <form class="layui-form" action="" style='margin-top:15px;'>
+        <div class="layui-form-item lay_item">
+            <label class="layui-form-label label_title">设备类型123：</label>
+            <div class="layui-input-inline lay_line" style='height: 100px;' onclick="open_child_chiceDeviceType()">
+                <input type="text" id="dtype_name" name="dtype_name" lay-verify="required" placeholder="请选择设备类型"
+                    autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label label_title">设备名称：</label>
+            <div class="layui-input-inline lay_line" style='height: 100px;'>
+                <input type="text" id="d_name" name="d_name" lay-verify="required" placeholder="请选择设备名称"
+                    autocomplete="off" class="layui-input">
             </div>
         </div>
-    </div>
-    <!-- 按钮 -->
-    <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">新增</button>
-</form>
+        <div class="layui-form-item lay_item" style="margin-top:0px;border-top: 0px;">
+            <label class="layui-form-label label_title">设备型号：</label>
+            <div class="layui-input-inline lay_line">
+                <input type="text" id="dmodel" name="dmodel" lay-verify="required" placeholder="请输入设备型号"
+                    autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label label_title">设备IMEI码：</label>
+            <div class="layui-input-inline lay_line">
+                <input type="text" id="d_IMEI" lay-verify="required" placeholder="请输入设备IMEI码" autocomplete="off"
+                    class="layui-input">
+            </div>
+        </div>
+        <div class="layui-form-item lay_item" style="margin-top:0px;border-top: 0px;">
+            <label class="layui-form-label label_title">设备供应商：</label>
+            <div class="layui-input-inline lay_line" style='height: 100px;' onclick="open_child_chiceDeviceSuppert()">
+                <input type="text" id="supp_name" name="supp_name" lay-verify="required" placeholder="请选择设备供应商"
+                    autocomplete="off" class="layui-input">
+            </div>
+            <label class="layui-form-label label_title"></label>
+            <div class="layui-input-inline lay_line">
+            </div>
+        </div>
+
+        <div class="layui-row" style="margin-top: 40px;">
+            <div class="layui-col-xs-offset9">
+                <div class="layui-form-item">
+                    <div class="layui-input-block" style="margin-left: 166px;">
+                        <button class="layui-btn layui-btn-primary" id="close">取消</button>
+                        <button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">保存</button>
+                    </div>
+                </div> 
+            </div>
+        </div>
+        <!-- 按钮 -->
+        <button class="layui-btn layui-btn-normal " lay-submit lay-filter="saveBtn">新增</button>
+    </form>
     <!-- 引入js资源 -->
     <script src="../../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
     <script src="../../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
-    <script src="../../../js/jquery.min.js" charset="utf-8"></script>
+    <script src="../../../js/jquery.min.js" charset="utf-8"></script> 
     <script src="../../../lib/jq-module/zyupload/zyupload-1.0.0.min.js" charset="utf-8"></script>
     <script src="../../bcxt/login/login.js?date"></script>
     <script>
+        //全局变量
+        var dtype_id = '';
+        var supp_id = '';
         // 加载组件
-        layui.use(['form', 'layarea', 'upload'], function () { 
+        layui.use(['form', 'layarea', 'upload'], function () {
             var form = layui.form,
                 layer = layui.layer,
                 $ = layui.$;
             var layarea = layui.layarea;
             var upload = layui.upload;
             var date = new Date();
-
             //是否操作过
             var is_caozuo = false;
             //关闭或刷新
@@ -125,7 +122,7 @@
             // 图片上传
             var uploadInst = upload.render({
                 elem: '#test1',
-                url: '/sys_fkcy/images/imageUpload.action',
+                url: '/sys_fkcy/images/imageUpload.action', 
                 headers: header,
                 done: function (res, index, upload) {
                     $("#comm_img").attr("src", res.data.imgUrl);
@@ -152,35 +149,33 @@
             //监听提交
             form.on('submit(saveBtn)', function (data) {
                 $.ajax({
-                    url: '/sys_fkcy/institution/save.action',
+                    url: '/sys_fkcy/device/save.action',
                     headers: header,
                     context: document.body,
                     type: "POST",
                     // dataType: "data",
                     data: {
-                        "ins_name": $("#ins_name").val(),
-                        "ins_address": $("#province").val() + "-" + $("#city").val() + "-" + $("#county").val(),
-                        "ins_address_detailed": $("#ins_address_detailed").val(),
-                        "ins_corporation_phone": $("#ins_corporation_phone").val(),
-                        "ins_service_phone": $("#ins_service_phone").val(),
-                        "ins_prf_name": $("#ins_prf_name").val(),
-                        "ins_prf_phone": $("#ins_prf_phone").val(),
-                        "ins_corporation": $("#ins_corporation").val(),
-                        "ins_corporation_phone": $("#ins_corporation_phone").val(),
-                        "ins_business_license_img": $("#comm_img").attr("src"),
-                        "ins_type": $("input[name='ins_type']:checked").val()
+                        "dname": $("#d_name").val(), //设备名称
+                        "dmodel": $("#dmodel").val(),   //设备型号
+                        "dtype_id": dtype_id,     // 设备类型id
+                        "dtype_name": $("#dtype_name").val(),  //设备类型名称
+                        "imei": $("#d_IMEI").val(),  //设备 imei 码
+                        "supp_id": supp_id,   //供应商id
+                        "supp_name": $("#supp_name").val(),   //供应商 名称  
                     },
                     xhrFields: {
                         withCredentials: true
-                    },
-                    success: function (data) {
+                    }, 
+                    success: function (data) { 
                         if (data.state == 200) {
                             //提交过并且成功!
                             is_caozuo = true;
-                            layer.msg(data.msg, {
-                                icon: 6,//成功的表情
-                                time: 1000 //1秒关闭（如果不配置，默认是3秒）
+                            
+                            layer.msg(data.msg, { 
+                                icon: 6,//成功的表情 
+                                time: 1000 //1秒关闭（如果不配置，默认是3秒） 
                             }, function () {
+                                return false;
                                 window.parent.location.reload();
                             });
                         }
@@ -196,6 +191,59 @@
                 return false;
             });
         });
+
+        // 选择框
+
+        // 设备类型选择
+        function open_child_chiceDeviceType() {
+            layui.use(['layer', 'jquery'], function () {
+                var layer = layui.layer;
+
+                var index = layer.open({
+                    title: '请选择设备类型',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin: true,
+                    shadeClose: true,
+                    area: ['60%', '60%'],
+                    content: './chiocePopup/chiceDeviceType.html'
+                });
+
+            })
+        }
+        // 设备供应商选择 
+        function open_child_chiceDeviceSuppert() {
+            layui.use(['layer', 'jquery'], function () {
+                var layer = layui.layer;
+
+                var index = layer.open({
+                    title: '请选择供应商',
+                    type: 2,
+                    shade: 0.2,
+                    maxmin: true,
+                    shadeClose: true,
+                    area: ['60%', '60%'],
+                    content: './chiocePopup/chiceDeviceSuppert.html'
+                });
+
+            })
+        }
+
+        // 获取选择项目页面传来的值
+        function getDataFromSon_supp(data) {
+            var $ = layui.$;
+            supp_id = data.id;
+            console.log(data);
+            $("#supp_name").val(data.supp_name);
+        }
+
+        // 获取选择项目页面传来的值
+        function getDataFromSon(data) {
+            var $ = layui.$;
+            dtype_id = data.id;
+            console.log(data);
+            $("#dtype_name").val(data.dtype_name);
+        }
     </script>
 </body>
 

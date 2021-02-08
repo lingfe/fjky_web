@@ -4,12 +4,12 @@
 <head>
     <meta charset="utf-8">
     <!-- 引入css资源 -->
-    <title>选择人员</title>
+    <title>选择设备类型</title>
     <link rel="stylesheet" href="../../../../lib/layui-v2.5.5/css/layui.css" media="all">
 </head>
 
 <body>
-    <div class="layuimini-container">
+    <div class="layuimini-container"> 
         <div class="layuimini-main">
             <!-- tab数据列表 -->
             <table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
@@ -22,15 +22,14 @@
     <script>
         // 加载组件
         layui.use(['form', 'table'], function() {
-            var $ = layui.jquery,
+            var $ = layui.jquery, 
                 form = layui.form,
-                table = layui.table;
+                table = layui.table; 
             var token = Storage.get("token");
-
             //数据列表
             table.render({
                 elem: '#currentTableId',
-                url: '/sys_fkcy/jggl/staff/getPage.action', //数据接口
+                url: '/sys_fkcy/device_types/getPage.action', //数据接口
                 cellMinWidth: 100, //全局定义所有常规单元格的最小宽度（默认：60），优先级低于minWidth
                 headers: { //通过 request 头传递
                     token: token
@@ -42,17 +41,20 @@
                 }],
                 cols: [
                     [{
-                        field: 'ename',
-                        title: '员工姓名',
+                        field: 'dtype_name',
+                        title: '设备类型名称',
                         align: "center"
-                    }, {
-                        field: 'id_card',
-                        title: '身份证号',
-                        align: "center"
-                    }, {
-                        field: 'phone',
-                        title: '电话号码',
+                    },
+                    //  {
+                    //     field: 'dtype_explain',
+                    //     title: '设备类型说明',
+                    //     align: "center"
+                    // }, 
+                    {
+                        field: 'dtype_icon',
+                        title: '设备类型图片',
                         align: "center",
+                        templet:showPic,
                     }]
                 ],
                 response: {
@@ -91,9 +93,9 @@
                 limit: 15,
                 page: true,
                 skin: 'line'
-            }); 
+            });
 
-            //监听行单击事件（双击事件为：rowDouble）
+            //监听行单击事件（双击事件为：rowDouble） 
             table.on('row(currentTableFilter)', function(obj) {
                 // 向父级页面传值
                 var data = obj.data;
@@ -105,11 +107,18 @@
             });
 
             // 定义向父级页面传值函数
-            function sendToParent(data) {
+            function sendToParent(data){ 
                 parent.getDataFromSon(data);
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
             }
+
+            //显示图片
+			function showPic(data) {
+				if (data.dtype_icon) {
+					return '<img style="width:50px;height:auto;" src=" ' + data.dtype_icon + ' "/>';
+				}
+			}
         });
     </script>
 </body>

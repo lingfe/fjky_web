@@ -1,3 +1,7 @@
+<!--
+创建者:qiuyuling
+时间：2021-2-4
+-->
 <!DOCTYPE html>
 <html lang="en">
 
@@ -133,7 +137,7 @@
                 headers: header,
                 before: function(obj) {
                     //预读本地文件示例，不支持ie8
-                    obj.preview(function(index, file, result) {
+                    obj.preview(function(index, file, result) { 
                         $('.demo1').attr('src', result); //图片链接（base64）
                     });
                 },

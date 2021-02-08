@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <!-- 引入css资源 -->
-    <title>选择人员</title>
+    <title>选择设备供应商</title>
     <link rel="stylesheet" href="../../../../lib/layui-v2.5.5/css/layui.css" media="all">
 </head>
 
@@ -21,7 +21,7 @@
     <script src="../../../bcxt/login/login.js"></script>
     <script>
         // 加载组件
-        layui.use(['form', 'table'], function() {
+        layui.use(['form', 'table'], function () {
             var $ = layui.jquery,
                 form = layui.form,
                 table = layui.table;
@@ -30,7 +30,7 @@
             //数据列表
             table.render({
                 elem: '#currentTableId',
-                url: '/sys_fkcy/jggl/staff/getPage.action', //数据接口
+                url: '/sys_fkcy/jggl/supplier/getPage.action', //数据接口
                 cellMinWidth: 100, //全局定义所有常规单元格的最小宽度（默认：60），优先级低于minWidth
                 headers: { //通过 request 头传递
                     token: token
@@ -42,16 +42,16 @@
                 }],
                 cols: [
                     [{
-                        field: 'ename',
-                        title: '员工姓名',
+                        field: 'supp_name',
+                        title: '供应商名称',
                         align: "center"
                     }, {
-                        field: 'id_card',
-                        title: '身份证号',
+                        field: 'supp_address',
+                        title: '供应商地址',
                         align: "center"
                     }, {
-                        field: 'phone',
-                        title: '电话号码',
+                        field: 'supp_person_in_charge',
+                        title: '负责人',
                         align: "center",
                     }]
                 ],
@@ -63,14 +63,14 @@
                     pageName: 'pageIndex', //当前页，默认page，
                     limitName: 'pageNum', //页容量，默认limit
                 },
-                parseData: function(res) {
+                parseData: function (res) {
                     //验证是否有权限
                     if (res.state != 200) {
                         layer.msg(res.msg, {
-                                icon: 5,
-                                time: 1000
-                            },
-                            function() {
+                            icon: 5,
+                            time: 1000
+                        },
+                            function () {
                                 //获取当前窗口的name
                                 var index = parent.layer.getFrameIndex(window.name);
                                 //关闭窗口
@@ -91,13 +91,13 @@
                 limit: 15,
                 page: true,
                 skin: 'line'
-            }); 
+            });
 
             //监听行单击事件（双击事件为：rowDouble）
-            table.on('row(currentTableFilter)', function(obj) {
+            table.on('row(currentTableFilter)', function (obj) {
                 // 向父级页面传值
                 var data = obj.data;
-                sendToParent(data)
+                sendToParent(data) 
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index); //关闭当前弹框
                 //标注选中样式
@@ -106,10 +106,11 @@
 
             // 定义向父级页面传值函数
             function sendToParent(data) {
-                parent.getDataFromSon(data);
+                parent.getDataFromSon_supp(data);
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
             }
+        
         });
     </script>
 </body>

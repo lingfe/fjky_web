@@ -62,7 +62,6 @@
 				cols: [[
 					{ type: "checkbox" },
 					{ field: 'dtype_name', width: 120, title: '类型名称', align: "center", },
-					// { field: 'role_name', minWidth: 150, title: '名称', align: "left",toolbar:'#id_role_name' },
 					{ templet: setPic, title: '图片', align: 'center', width: '12%' },
 					{ field: 'dtype_explain', title: '说明', align: "left" },
 					{ title: '操作', minWidth: 150, width: 250, toolbar: '#currentTableBar', align: "center" }
@@ -95,7 +94,7 @@
 				// 监听添加操作
 				if (obj.event === 'add') {
 					var index = layer.open({ 
-						title: '添加角色',
+						title: '添加设备类型',
 						type: 2,
 						shade: 0.2,
 						maxmin: true,
@@ -119,7 +118,7 @@
 						layer.confirm('确认删除所选的信息吗?注意:该操作不可恢复!', { title: "批量删除提示", icon: 3 }, function (index) {
 							for (var i = 0; i < data.length; i++) {
 								$.ajax({
-									url: '/sys_fkcy/role/deleteWhereId.action?id=' + data[i].id,
+									url: '/sys_fkcy/device_types/deleteWhereId.action?id=' + data[i].id,
 									type: 'post',
 									headers: header,
 									success: function (data) {
@@ -128,8 +127,9 @@
 												icon: 6,//成功的表情
 												time: 1000 //1秒关闭（如果不配置，默认是3秒）
 											}, function () {
-												obj.del();
+												// obj.del();
 												layer.close;
+												window.location.reload();
 											});
 										} else {
 											layer.msg(data.msg, { icon: 5 });//失败的表情
@@ -182,7 +182,7 @@
 				} else if (obj.event === 'delete') {
 					layer.confirm('确认删除吗？', { title: "删除提示", icon: 3 }, function (index) {
 						$.ajax({
-							url: '/sys_fkcy/role/deleteWhereId.action?id=' + data.id,
+							url: '/sys_fkcy/device_types/deleteWhereId.action?id=' + data.id,
 							type: 'post',
 							headers: header,
 							success: function (data) {
