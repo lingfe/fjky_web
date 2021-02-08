@@ -29,7 +29,7 @@
     <!-- 表单 -->
     <form class="layui-form" action="" style='margin-top:15px;'>
         <div class="layui-form-item lay_item">
-            <label class="layui-form-label label_title">设备类型123：</label>
+            <label class="layui-form-label label_title">设备类型：</label>
             <div class="layui-input-inline lay_line" style='height: 100px;' onclick="open_child_chiceDeviceType()">
                 <input type="text" id="dtype_name" name="dtype_name" lay-verify="required" placeholder="请选择设备类型"
                     autocomplete="off" class="layui-input">
@@ -114,7 +114,7 @@
             form.verify({
                 tellphone: function (value) {
                     var flag = mobile.test(value) || phone.test(value);
-                    if (!flag) {
+                    if (!flag) { 
                         return '请输入正确座机号码或手机号';
                     }
                 }
@@ -175,7 +175,6 @@
                                 icon: 6,//成功的表情 
                                 time: 1000 //1秒关闭（如果不配置，默认是3秒） 
                             }, function () {
-                                return false;
                                 window.parent.location.reload();
                             });
                         }
