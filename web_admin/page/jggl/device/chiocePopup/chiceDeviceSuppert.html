@@ -110,6 +110,14 @@
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index);
             }
+            
+        // 获取选择项目页面传来的值
+        function getDataFromSon_supp(data) { 
+            var $ = layui.$;
+            supp_id = data.id;
+            console.log(data);  
+            $("#supp_name").val(data.supp_name);
+        }
         
         });
     </script>

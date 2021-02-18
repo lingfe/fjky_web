@@ -73,7 +73,7 @@
                                 <input type="text" name="" id="bed" readonly style="border:0px;width: 110px;">
                             </li>
                             <li><label>年龄：</label>
-                                <input type="text" name="" id="age" readonly style="border:0px;width: 110px;"> 
+                                <input type="text" name="" id="age" readonly style="border:0px;width: 110px;">  
                             </li>
                         </ul>
                         <!-- 左侧导航区域 -->
@@ -84,12 +84,12 @@
                                 <li><a href="./kehuinfo_jzbl_info.html" target="fm">就诊病历</a></li>
                                 <li><a href="./gwbs/main.html" target="fm">过往病史</a> </li>
                                 <li><a href="./kehuinfo_tjbg_info.html" target="fm">体检报告</a></li>
-                                <li><a href="./binded_device_list.html" target="fm">已绑设备</a></li> 
+                                <li><a href="./binded_device_list.html" target="fm">已绑设备</a></li>
                             </ul>
                         </nav>
                     </div> 
                 </div>
-                <!-- 外部内容区域 end -->
+                <!-- 外部内容区域 end -->  
 
                 <!-- 内嵌内容区域start -->
                 <div class="layui-col-md10">
@@ -128,7 +128,7 @@
             var cwin = document.getElementById(iframeId);
             if (document.getElementById) {
                 if (cwin && !window.opera) {
-                    if (cwin.contentDocument && cwin.contentDocument.body.offsetHeight) {
+                    if (cwin.contentDocument && cwin.contentDocument.body.offsetHeight) { 
                         cwin.height = cwin.contentDocument.body.offsetHeight + "px"; //FF NS
                         // console.log("FF NS cwin.height=" + cwin.height);
                     } else if (cwin.Document && cwin.Document.body.scrollHeight) {
@@ -142,7 +142,7 @@
         }
 
         //接收父级页面基本信息
-        function child(data) {
+        function child(data) { 
             layui.use(['jquery'], function() {
                 var $ = layui.$;
                 $('#ess_id').val(data.id);

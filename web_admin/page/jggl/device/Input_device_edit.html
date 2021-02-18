@@ -162,9 +162,12 @@
                         "imei": $("#d_IMEI").val(),  //设备 imei 码
                         "supp_name": $("#supp_name").val(),   //供应商 名称  
                         'id':id, //设备id
+                        'supp_id': supp_id,//供应商id 
+                        'dtype_id':dtype_id //设备类型id 
+                        
                     },
                     xhrFields: {
-                        withCredentials: true
+                        withCredentials: true 
                     },
                     success: function (data) { 
                         if (data.state == 200) {
@@ -235,10 +238,11 @@
             $("#dtype_name").val(d.dtype_name);
             $("#d_IMEI").val(d.imei);
             $("#supp_name").val(d.supp_name);
-            console.log(d);
+            // console.log(d); 
             id = d.id;
+            dtype_id = d.dtype_id;
+            supp_id=d.supp_id;
         }
-
             // 获取选择项目页面传来的值 
             function getDataFromSon_supp(data) { 
             var $ = layui.$;

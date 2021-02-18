@@ -223,12 +223,12 @@
                     type: 2,
                     shade: 0.2,
                     maxmin: true,
-                    shadeClose: true,
+                    shadeClose: true, 
                     area: ['60%', '60%'],
                     content: './chiocePopup/chiceDeviceType.html'
                 });
 
-            })
+            }) 
         }
         // 设备供应商选择 
         function open_child_chiceDeviceSuppert() {
@@ -241,7 +241,7 @@
                     shade: 0.2,
                     maxmin: true,
                     shadeClose: true,
-                    area: ['60%', '60%'],
+                    area: ['60%', '60%'],  
                     content: './chiocePopup/chiceDeviceSuppert.html'
                 });
 
@@ -252,7 +252,7 @@
         function getDataFromSon_supp(data) { 
             var $ = layui.$;
             supp_id = data.id;
-            console.log(data); 
+            console.log(data);  
             $("#supp_name").val(data.supp_name);
         }
 
