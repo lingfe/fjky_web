@@ -61,16 +61,24 @@
         <a class="redColor" lay-event="delete">删除</a>
     </script>
     <!-- 列表操作 end -->
-    <!-- 设备状态模板 -->
+    <!-- 设备佩戴状态模板 -->
     <script type='text/html' id='temWear'>
         {{# if(d.wear === undefined || ''){ }}
             <span  style='color:red;'>无状态值</span>
         {{#  }else if(d.wear === true){ }}
-        <span style='color:#1594FF'>在线</span> 
+        <span style='color:#1594FF'>佩戴中</span> 
          {{#  }else if (d.wear == false){ }} 
-        <span style='color:gray;'>离线</span>
+        <span style='color:gray;'>闲置中</span>
         {{#  } }}
-       
+    </script>
+    <!-- 设备在线离线状态 -->
+    <script type='text/html' id='temState'>
+        {{# if(d.state == 0){ }}
+            <span  style='color:gray;'>离线</span>
+        {{#  }else{  }}
+        <span style='color:#1594FF'>在线</span> 
+        {{# } }}
+
     </script>
     <!-- 引入js资源 -->
     <script src="../../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
@@ -147,10 +155,17 @@
                         },
                         {
                             field: 'wear',
-                            title: '状态',
+                            title: '佩戴状态',
                             align: "center",
                             templet: "#temWear"
-                        }, {
+                        },
+                        {
+                            field:'state',
+                            title:'设备状态',
+                            align:'center',
+                            templet:'#temState',
+                        },
+                        {
                             title: '操作',
                             minWidth: 200,
                             toolbar: '#currentTableBar',
@@ -229,9 +244,15 @@
                         },
                         {
                             field: 'wear',
-                            title: '状态',
+                            title: '佩戴状态',
                             align: "center",
                             templet: "#temWear"
+                        },
+                        {
+                            field:'state',
+                            title:'设备状态',
+                            align:'center',
+                            templet:'#temState',
                         }, {
                             title: '操作',
                             minWidth: 200,

@@ -9,7 +9,6 @@
 	<link rel="stylesheet" href="../../../lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
 	<link rel="stylesheet" href="../../../css/public.css" media="all">
 </head>
-
 <body>
 	<!-- 内容 start -->
 	<div class="layuimini-container">
@@ -31,7 +30,14 @@
 		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
 		<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="add"><i class="layui-icon layui-icon"></i>添加</a>
 	</script>
-
+	<!-- 排序列 -->
+	<script id='sortTemp' type='text/html'>
+		{{# if(d){  }}
+		<i class="layui-icon layui-icon-return" style='color:green;display: inline-block;transform: rotate(90deg);' data-id='{{d.id}}' onclick='upSort()'></i>
+		&nbsp;
+		<i class="layui-icon layui-icon-return" style='color: red;display: inline-block;transform: rotate(-90deg);' data-id='{{d.id}}' onclick='downSort()'></i>
+		{{# }else }}
+	</script>
 	<!-- 验证状态 -->
 	<script type="text/html" id="id_state">
 		{{#if (d.state == 0) { }}
@@ -40,7 +46,6 @@
 			<input type="checkbox"  id="{{d.id}}" value="1" name="state,{{d.id}}"  lay-skin="switch" lay-text="正常|不可分配" lay-filter="saveBtn"/>
 		{{# } }}
 	</script>
-
 	<!-- 图标 -->
 	<script type="text/html" id="iconPicker">
 		{{# if (d.icon == 'fa ') { }}
@@ -49,70 +54,112 @@
 			<i class="{{d.icon}}"></i>
 		{{# } }}
 	</script>
-
 	<!-- 引入js资源 -->
 	<script src="../../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 	<script src="../../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
 	<script src="../../bcxt/login/login.js"></script>
 	<script>
+		//菜单向上排序
+		function upSort() {
+			var $ = layui.jquery;
+			var id = $(event.target).data('id');
+			$.ajax({
+				url: '/sys_fkcy/main_menu/sortUp',
+				type: 'post',
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+				async: false,
+				headers: header,
+				data: {
+					id: id,
+				},
+				success: function (ret) {
+					layer.msg(ret.msg,function(){
+						window.location.reload();
+					});
+				},
+				error: function (xhr, textstatus, thrown) {
+					layer.msg(ret.msg);
+				}
+			});
+		}
+		//菜单向下排序
+		function downSort(d) {
+			var $ = layui.jquery;
+			var id = $(event.target).data('id');
+			$.ajax({
+				url: '/sys_fkcy/main_menu/sortDown',
+				type: 'post',
+				contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+				async: false,
+				headers: header,
+				data: {
+					id: id,
+				},
+				success: function (ret) {
+					layer.msg(ret.msg,function(){
+						window.location.reload();
+					});
+				},
+				error: function (xhr, textstatus, thrown){
+					layer.msg(ret.msg);
+				}
+			});
+		}
 		//加载layui指定组件
-		layui.use(['table', 'form', 'treetable','iconPickerFa'], function () {
+		layui.use(['table', 'form', 'treetable', 'iconPickerFa'], function () {
 			//定义layui组件变量
 			var iconPickerFa = layui.iconPickerFa;
 			var $ = layui.jquery;
 			var form = layui.form;
 			var table = layui.table;
 			var treetable = layui.treetable;
-
 			//请求通行证
 			var token = Storage.get("token");
-			
+
 			// 监听状态操作
 			form.on('switch(saveBtn)', function (obj) {
-				var da =treetable.data;
+				var da = treetable.data;
 				// 通过截取name获取id
 				var name = obj.elem.name;
 				var resu = name.split(","); //字符分割
 				var id = resu[1];
 				//修改当前父节点状态
-				var chck=$("#"+id +"").prop('checked');
+				var chck = $("#" + id + "").prop('checked');
 				//调用修改状态
-				getstate(chck?0:1,id);
-
+				getstate(chck ? 0 : 1, id);
 				//执行递归得到子节点
-				fun(id,chck?0:1,chck);
-				function fun(id,state,chck) {
+				fun(id, chck ? 0 : 1, chck);
+				function fun(id, state, chck) {
 					for (var i = 0; i < da.length; i++) {
 						if (da[i].superior_id == id) {
 							//修改属性,指定表单属性重载
-							$("#"+da[i].id +"").prop('checked',chck); 
+							$("#" + da[i].id + "").prop('checked', chck);
 							form.render('checkbox');
 							//调用修改状态
-							getstate(state,id);
-							
+							getstate(state, id);
 							//同时改变上级状态，递归2
-							fun2(da[i],state,chck);
-							function fun2(data,state,chck) {
+							fun2(da[i], state, chck);
+							function fun2(data, state, chck) {
 								for (var j = 0; j < da.length; j++) {
-									if( data.superior_id == da[j].id){
-										
+									if (data.superior_id == da[j].id) {
+
 										//修改属性,指定表单属性重载
-										$("#"+da[j].id +"").prop('checked',chck); 
+										$("#" + da[j].id + "").prop('checked', chck);
 										form.render('checkbox');
-										
+
 										//调用修改状态
-										getstate(state,da[j].id);
-										
+										getstate(state, da[j].id);
+
 										//递归2
-										fun2(da[j],state,chck);
-									}else {
+										fun2(da[j], state, chck);
+									} else {
 										continue;
 									}
 								}
 							}
-							
+
 							//递归
-							fun(da[i].id,state,chck);
+							fun(da[i].id, state, chck);
 						} else {
 							continue;
 						}
@@ -121,7 +168,7 @@
 			});
 
 			// 状态开关请求
-			function getstate(state,id) {
+			function getstate(state, id) {
 				$.ajax({
 					url: '/sys_fkcy/main_menu/updateWhereId.action',
 					context: document.body,
@@ -159,6 +206,7 @@
 				cols: [[
 					{ type: 'numbers', title: '序号' },
 					{ field: 'title', title: '菜单名称', align: 'center' },
+					{ templet: '#sortTemp', title: '排序', align: 'center', },
 					{
 						field: 'state', width: 70, align: 'center', templet: function (d) {
 							if (d.action != 'undefined' && d.action != "" && d.action != null) {
