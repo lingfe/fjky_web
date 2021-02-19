@@ -49,16 +49,12 @@
 				//logo上传
 				var uploadInst = upload.render({
 					elem : '#logoUpload',
-					url : 'http://192.168.124.8/sys_fkcy/excel/importExcel',
+					url :'http://192.168.124.25/sys_fkcy/device/importDevice.action',//'http://192.168.124.8/sys_fkcy/excel/importExcel',
 					headers : header,
 					accept:'file',
 					exts: 'xls|xlsx',
 					field:'file',//设定文件域的字段名,默认file
-					data:{
-						'key_name':function re(){
-							return $("#key_name").val();
-						}
-					},
+					
 					done : function(res, index, upload) {
 						if(res.state==200){
 							$("#logo_image").attr("src", res.data.imgUrl);
