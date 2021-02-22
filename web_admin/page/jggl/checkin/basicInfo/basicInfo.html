@@ -33,7 +33,7 @@
 	<script type="text/html" id="currentTableBar">
 			<a class="layui-btn layui-btn-normal layui-btn-xs data-count-edit" lay-event="edit"><i class="layui-icon layui-icon-edit"></i>编辑</a>
 			<a class="layui-btn layui-btn-danger layui-btn-xs data-count-delete" lay-event="delete"><i class="layui-icon layui-icon-delete"></i>删除</a>
-		</script>
+	</script>
 	<!-- 操作 end -->
 	<!-- 验证头像 -->
 	<script type="text/html" id="id_img">
@@ -254,7 +254,7 @@
 							result = $.parseJSON(result);
 							var iframe = window['layui-layer-iframe' + index];
 							// 向子页面的全局函数child传参
-							iframe.child(result);
+							iframe.child(result); 
 						}
 					});
 					$(window).on("resize", function () {

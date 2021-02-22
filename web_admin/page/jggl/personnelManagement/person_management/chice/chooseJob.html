@@ -98,7 +98,6 @@
                 var index = parent.layer.getFrameIndex(window.name);
                 parent.layer.close(index); //关闭当前页
                 var parent$ = window.parent.layui.jquery;
-                parent$('#department_id').val(obj.data.department_name);
                 parent$('#job_title').val(obj.data.job_title);
             });
         });
