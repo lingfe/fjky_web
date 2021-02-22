@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="../../../lib/font-awesome-4.7.0/css/font-awesome.min.css" media="all">
 	<link rel="stylesheet" href="../../../css/public.css" media="all">
 </head>
+
 <body>
 	<!-- 内容 start -->
 	<div class="layuimini-container">
@@ -73,8 +74,9 @@
 					id: id,
 				},
 				success: function (ret) {
-					layer.msg(ret.msg,function(){
-						window.location.reload();
+					layer.msg(ret.msg, function () {
+						// window.location.reload(); 
+						reloadTable();
 					});
 				},
 				error: function (xhr, textstatus, thrown) {
@@ -96,11 +98,13 @@
 					id: id,
 				},
 				success: function (ret) {
-					layer.msg(ret.msg,function(){
-						window.location.reload();
+					layer.msg(ret.msg, function () {
+						// window.location.reload();
+						reloadTable();
+
 					});
 				},
-				error: function (xhr, textstatus, thrown){
+				error: function (xhr, textstatus, thrown) {
 					layer.msg(ret.msg);
 				}
 			});
@@ -115,7 +119,6 @@
 			var treetable = layui.treetable;
 			//请求通行证
 			var token = Storage.get("token");
-
 			// 监听状态操作
 			form.on('switch(saveBtn)', function (obj) {
 				var da = treetable.data;
@@ -331,6 +334,53 @@
 				}
 			});
 		});
+
+		//封装表格渲染的函数
+		function reloadTable() {
+			var treetable = layui.treetable;
+			var token = Storage.get("token");
+			// 渲染表格
+			treetable.render({
+				treeColIndex: 1,
+				treeSpid: "admin",
+				treeIdName: 'id',
+				treePidName: 'superior_id',
+				elem: '#munu-table',
+				cellMinWidth: 180,
+				url: '/sys_fkcy/main_menu/getAll?token=' + token,
+				page: false,
+				cols: [[
+					{ type: 'numbers', title: '序号' },
+					{ field: 'title', title: '菜单名称', align: 'center' },
+					{ templet: '#sortTemp', title: '排序', align: 'center', },
+					{
+						field: 'state', width: 70, align: 'center', templet: function (d) {
+							if (d.action != 'undefined' && d.action != "" && d.action != null) {
+								return '<span class="layui-badge layui-bg-green">权限</span>';
+							}
+							if (d.superior_id == 'admin') {
+								return '<span class="layui-badge layui-bg-blue">目录</span>';
+							} else {
+								return '<span class="layui-badge-rim">菜单</span>';
+							}
+						}, title: '类型'
+					},
+					{ field: 'icon', title: '菜单图标', align: 'center' },
+					{ field: 'icon', width: 60, title: 'icon', toolbar: '#iconPicker', align: 'center' },
+					{ field: 'action', title: '权限标识', align: 'center' },
+					{ field: 'href', title: '菜单url', align: 'center' },
+					{ field: 'state', width: 120, title: '状态', toolbar: '#id_state', align: "center" },
+					{ templet: '#auth-state', minWidth: 220, align: 'center', title: '操作', fixed: "right" },
+
+				]],
+				parseData: function (res) {
+					$("#iconPicker").val(data.icon);
+				},
+				done: function () {
+					layer.closeAll('loading');
+				}
+			});
+		}
 	</script>
 </body>
 
