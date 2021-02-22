@@ -483,7 +483,7 @@
 			<!-- 健康信息 end -->
 
 			<!-- 护理任务 start -->
-			<div class="step-list">
+			<div class="step-list"> 
 				<form class="layui-form" lay-filter="nursing_info"
 					style="margin: 0 auto;max-width: 800px;padding-top: 20px;">
 					<!-- 单独一行 -->
@@ -503,10 +503,9 @@
 					<div class="layui-form-item">
 						<label class="layui-form-label">护理费用</label>
 						<div class="layui-input-inline">
-							<input class="layui-input" type="text" name="nt_level_cost"
-								oninput="value=value.replace(/[^\d]/g,'')" placeholder="请输入护理费用" disabled>
+							<input class="layui-input" type="text" disabled id='ging_cost'>
 						</div>
-						<div class="layui-form-mid layui-word-aux">元/月</div>
+						<div class="layui-form-mid layui-word-aux">元/月</div> 
 					</div>
 
 					<!-- 隐藏的参数 -->
@@ -555,13 +554,12 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">套餐费用</label>
 							<div class="layui-input-inline">
-								<input class="layui-input" id="bed_cost_meal_package" name="bed_cost_meal_package"
-									oninput="value=value.replace(/[^\d]/g,'')" placeholder="请输入费用" />
+								<input class="layui-input" id='sm_price' placeholder="请输入费用" />
 							</div>
 							<div class="layui-form-mid layui-word-aux">元/月</div>
 						</div>
 					</div>
-					<!-- 并列一行 end -->
+					<!-- 并列一行 end -->  
 
 					<!-- 单独一行 -->
 					<div class="layui-form-item">
@@ -1139,11 +1137,15 @@
 			var $ = layui.$;
 			// console.log(data);
 			$("#ging_name").val(data.ging_name);
+            $("#ging_cost").val(data.ging_cost);
+
 		}
 		function getDataFromSon_2(data) {
 			// console.log(data);
 			var $ = layui.$;
 			$('#sm_name').val(data.sm_name);
+            $('#sm_price').val(data.sm_price);
+
 		}
 	</script>
 </body>

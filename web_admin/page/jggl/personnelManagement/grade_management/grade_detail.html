@@ -143,12 +143,12 @@
                         title: '新增等级',
                         type: 2,
                         shade: 0.2,
-                        maxmin: true,
+                        maxmin: true, 
                         shadeClose: true,
                         scrollbar: false, 
-                        area: ['800px', '250px'],
+                        area: ['700px', '200px'],
                         content: './grade_add.html',
-                    }); 
+                    });  
                     $(window).on("resize", function() {
                         layer.full(index);
                     });
@@ -166,13 +166,13 @@
                         shade: 0.2,
                         maxmin: true,
                         shadeClose: true,
-                        area: ['800px', '250px'],
+                        area: ['450px', '300px'],
                         content: './grade_edit.html',
                         success: function(layero, index) { //弹出层打开后的回调函数
                             result = JSON.stringify(data);
                             result = $.parseJSON(result);
                             var iframe = window['layui-layer-iframe' + index];
-                            // 向子页面的全局函数child传参
+                            // 向子页面的全局函数child传参 
                             iframe.child(result);
                             //高度自适应
                             layer.iframeAuto(index);
