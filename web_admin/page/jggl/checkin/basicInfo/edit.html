@@ -565,7 +565,7 @@
 						</div>
 					</div>
 
-					<!-- 单独一行 -->
+					<!-- 单独一行 
 					<div class="layui-form-item">
 						<label class="layui-form-label">床位类型</label>
 						<div class="layui-input-block">
@@ -574,7 +574,7 @@
 							<input class="layui-input" type="radio" name="bed_type" value="中级" title="中级" />
 							<input class="layui-input" type="radio" name="bed_type" value="一般" title="一般" />
 						</div>
-					</div>
+					</div>-->
 
 					<!-- 并列一行 start -->
 					<div class="layui-form-item">
@@ -588,7 +588,7 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">床位费用</label>
 							<div class="layui-input-inline">
-								<input class="layui-input" id="bed_cost" name="bed_cost"
+								<input class="layui-input" id="bed_cost" name="bed_cost" disabled=""
 									oninput="value=value.replace(/[^\d]/g,'')" placeholder="请输入费用" />
 							</div>
 							<div class="layui-form-mid layui-word-aux">元/月</div>
@@ -596,14 +596,14 @@
 					</div>
 					<!-- 并列一行 end -->
 
-					<!-- 单独一行 -->
+					<!-- 单独一行 
 					<div class="layui-form-item">
 						<label class="layui-form-label">是否包房</label>
 						<div class="layui-input-block">
 							<input type="radio" name="bed_is_baofang" value="是" title="是" checked="true" />
 							<input type="radio" name="bed_is_baofang" value="否" title="否" />
 						</div>
-					</div>
+					</div>-->
 
 					<!-- 单独一行 -->
 					<div class="layui-form-item">
@@ -1093,6 +1093,7 @@
 			var $ = layui.$;
 			$("#bed").val(data.floor_tung_name + '-' + data.floor_layer + '-' + data.room_number + '-' + data.bed_number);
 			$("#bed_id").val(data.id);
+			$("#bed_cost").val(data.mapBedType.bt_cost_month);
 		}
 	</script>
 </body>
