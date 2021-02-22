@@ -64,7 +64,8 @@
 		function upSort() {
 			var $ = layui.jquery;
 			var id = $(event.target).data('id');
-			$.ajax({
+			//添加一个数据请求的loading的功能
+ 			$.ajax({
 				url: '/sys_fkcy/main_menu/sortUp',
 				type: 'post',
 				contentType: "application/x-www-form-urlencoded; charset=UTF-8",

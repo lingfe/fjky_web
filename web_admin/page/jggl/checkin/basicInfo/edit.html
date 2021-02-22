@@ -210,7 +210,8 @@
 					<input type="text" name="id" style="display: none" />
 					<input id="img2" type="text" name="img" style="display: none" />
 					<input style="display: none" name="step" value='1' />
-					<input style="display: none" name="url" value='/sys_fkcy/essential_information/updateWhereId.action' />
+					<input style="display: none" name="url"
+						value='/sys_fkcy/essential_information/updateWhereId.action' />
 
 					<!-- 操作 -->
 					<div class="layui-form-item">
@@ -489,19 +490,21 @@
 					<div class="layui-form-item">
 						<label class="layui-form-label">护理级别</label>
 						<div class="layui-input-block">
-							<select id="nt_level" name="nt_level" lay-verify="required" lay-reqtext="请选择护理级别">
+							<!-- <select id="nt_level" name="nt_level" lay-verify="required" lay-reqtext="请选择护理级别">
 								<option value="普通护理">普通护理</option>
 								<option value="中级护理">中级护理</option>
-							</select>
+							</select> -->
+							<input class="layui-input" id='ging_name' type="text" onclick="open_chice()"
+								placeholder="请选择护理级别">
 						</div>
 					</div>
 
 					<!-- 单独一行(带说明) -->
 					<div class="layui-form-item">
-						<label class="layui-form-label">护理级别</label>
+						<label class="layui-form-label">护理费用</label>
 						<div class="layui-input-inline">
 							<input class="layui-input" type="text" name="nt_level_cost"
-								oninput="value=value.replace(/[^\d]/g,'')" placeholder="请输入护理费用">
+								oninput="value=value.replace(/[^\d]/g,'')" placeholder="请输入护理费用" disabled>
 						</div>
 						<div class="layui-form-mid layui-word-aux">元/月</div>
 					</div>
@@ -537,14 +540,18 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">餐饮套餐</label>
 							<div class="layui-input-block">
+								<input class="layui-input" id='sm_name' onclick="open_c()" placeholder="请选择餐饮套餐" />
+							</div>
+						</div>
+						<!-- <div class="layui-input-block">
 								<select id="bed_catering_package" name="bed_catering_package" lay-verify="required"
 									lay-reqtext="请选择套餐">
 									<option value="两菜一汤">两菜一汤</option>
 									<option value="一荤一素">一荤一素</option>
 									<option value="其他">其他</option>
 								</select>
-							</div>
-						</div>
+							</div> -->
+						<!-- </div> -->
 						<div class="layui-inline">
 							<label class="layui-form-label">套餐费用</label>
 							<div class="layui-input-inline">
@@ -634,11 +641,13 @@
 							<div class="layui-btn layui-btn-primary pre"><i class="layui-icon layui-icon-left"></i>上一步
 							</div>
 							<div class="layui-btn" lay-submit lay-filter="*"><i
-									class="layui-icon layui-icon-add-circle-fine"></i>保存</div>
+									class="layui-icon layui-icon-add-circle-fine"></i>保存
+							</div>
 							<div class="layui-btn layui-btn-primary close">关闭<i
 									class="layui-icon layui-icon-close-fill"></i></div>
 							<div class="layui-btn layui-btn-primary next" value='5'>下一步<i
-									class="layui-icon layui-icon-right"></i></div>
+									class="layui-icon layui-icon-right"></i>
+							</div>
 						</div>
 					</div>
 				</form>
@@ -720,7 +729,8 @@
 							<div class="layui-btn" lay-submit lay-filter="*"><i
 									class="layui-icon layui-icon-add-circle-fine"></i>保存</div>
 							<div class="layui-btn layui-btn-primary close">关闭<i
-									class="layui-icon layui-icon-close-fill"></i></div>
+									class="layui-icon layui-icon-close-fill"></i>
+							</div>
 						</div>
 					</div>
 				</form>
@@ -738,8 +748,44 @@
 	<script src="../../../../lib/jq-module/zyupload/zyupload-1.0.0.min.js" charset="utf-8"></script>
 	<script src="../../../bcxt/login/login.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" charset="utf-8">
+		//打开护理等级选择框
+		function open_chice() {
+			console.log('chice')
+			//打开护理等级的选择页面
+			var index = layer.open({
+				title: '选择护理级别',
+				type: 2,
+				shade: 0.2,
+				maxmin: true,
+				shadeClose: true,
+				area: ['600px', '450px'],
+				content: '../../service_management/nursing_ma/nursingLevel.html?idn=editNursing',
+				success: function (layero, index) {//弹出层打开后的回调函数 
+					// layer.full(index);
+					var iframe = window['layui-layer-iframe' + index];
+				}
+			});
+		}
+		//打开套餐选择框
+		function open_c() {
+			console.log('chice')
+			//打开护理等级的选择页面
+			var index = layer.open({
+				title: '选择套餐',
+				type: 2, 
+				shade: 0.2,
+				maxmin: true,
+				shadeClose: true,
+				area: ['800px', '450px'],
+				content: './chice/chiceCatering.html',
+				success: function (layero, index) {//弹出层打开后的回调函数 
+					// layer.full(index);
+					var iframe = window['layui-layer-iframe' + index];
+				}
+			});
+		}
 		// 加载组件资源
-		layui.use(['form', "tree", 'laydate','steps', 'table', 'layer', 'upload', 'layarea'], function () {
+		layui.use(['form', "tree", 'laydate', 'steps', 'table', 'layer', 'upload', 'layarea'], function () {
 			//定义layui指定组件
 			var $ = layui.$;
 			var form = layui.form,
@@ -751,7 +797,6 @@
 			var layarea = layui.layarea;
 			//全局变量
 			var data = {};
-
 			//请求通行证
 			var token = Storage.get("token");
 			//父级id(基本信息id)
@@ -795,7 +840,7 @@
 			var $step = $("#step_demo").step();
 			var state_id = $("#state_id").val();
 			//到指定步,
-			if(state_id > 0){
+			if (state_id > 0) {
 				$step.goStep(state_id);
 			}
 			//上一步
@@ -912,12 +957,10 @@
 				});
 				return false;
 			}
-
 			//日期-生日
 			laydate.render({
 				elem: '#birthday'
 			});
-
 			//监听床位信息
 			form.on('submit(bedbutton)', function (data) {
 				var index = layer.open({
@@ -935,7 +978,6 @@
 				});
 				return false;
 			});
-
 			//家属信息数据表
 			table.render({
 				elem: '#currentTableId',
@@ -967,7 +1009,6 @@
 				page: false,
 				skin: 'rows'
 			});
-
 			//监听提交
 			form.on('submit(*)', function (sb) {
 				//定义参数
@@ -1084,16 +1125,25 @@
 		function child(data) {
 			var $ = layui.$;
 			$("#ess_id").val(data.id);
-			$("#comm_img").attr("src",data.img);
+			$("#comm_img").attr("src", data.img);
 			$("#state_id").val(data.state);
 		}
-
 		//床位选择->床位文本框对应的->子页面调用设置值。
 		function getDataFromSon(data) {
 			var $ = layui.$;
 			$("#bed").val(data.floor_tung_name + '-' + data.floor_layer + '-' + data.room_number + '-' + data.bed_number);
 			$("#bed_id").val(data.id);
 			$("#bed_cost").val(data.mapBedType.bt_cost_month);
+		}
+		function getDataFromSon_1(data) {
+			var $ = layui.$;
+			// console.log(data);
+			$("#ging_name").val(data.ging_name);
+		}
+		function getDataFromSon_2(data) {
+			// console.log(data);
+			var $ = layui.$;
+			$('#sm_name').val(data.sm_name);
 		}
 	</script>
 </body>
