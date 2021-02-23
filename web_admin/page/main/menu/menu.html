@@ -31,6 +31,7 @@
 		<a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del"><i class="layui-icon layui-icon-delete"></i>删除</a>
 		<a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="add"><i class="layui-icon layui-icon"></i>添加</a>
 	</script>
+	
 	<!-- 排序列 -->
 	<script id='sortTemp' type='text/html'>
 		{{# if(d){  }}
@@ -39,6 +40,7 @@
 		<i class="layui-icon layui-icon-return" style='color: red;display: inline-block;transform: rotate(-90deg);' data-id='{{d.id}}' onclick='downSort()'></i>
 		{{# }else }}
 	</script>
+	
 	<!-- 验证状态 -->
 	<script type="text/html" id="id_state">
 		{{#if (d.state == 0) { }}
@@ -47,6 +49,7 @@
 			<input type="checkbox"  id="{{d.id}}" value="1" name="state,{{d.id}}"  lay-skin="switch" lay-text="正常|不可分配" lay-filter="saveBtn"/>
 		{{# } }}
 	</script>
+	
 	<!-- 图标 -->
 	<script type="text/html" id="iconPicker">
 		{{# if (d.icon == 'fa ') { }}
@@ -55,6 +58,7 @@
 			<i class="{{d.icon}}"></i>
 		{{# } }}
 	</script>
+	
 	<!-- 引入js资源 -->
 	<script src="../../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
 	<script src="../../../js/lay-config.js?v=1.0.4" charset="utf-8"></script>
@@ -120,6 +124,7 @@
 			var treetable = layui.treetable;
 			//请求通行证
 			var token = Storage.get("token");
+			
 			// 监听状态操作
 			form.on('switch(saveBtn)', function (obj) {
 				var da = treetable.data;
