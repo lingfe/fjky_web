@@ -33,7 +33,7 @@
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodPressure'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .4rem;'>正常</text>
+					<text style='color:black;font-size: .8rem;'>正常</text>
 					<view class='b'>
 						<view style='background-color: #FF9A21;'></view>
 						<view style='background-color: #00D193;'></view>
@@ -51,7 +51,7 @@
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodOxygen'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .4rem;'>正常</text>
+					<text style='color:black;font-size: .8rem;'>正常</text>
 					<view class='a'>
 						<text>脉率</text>
 						<view>
@@ -79,7 +79,7 @@
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'uricAcid'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .4rem;'>正常</text>
+					<text style='color:black;font-size: .8rem;'>正常</text>
 					<view class='a'>
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
@@ -104,7 +104,7 @@
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodFat'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .4rem;'>正常</text>
+					<text style='color:black;font-size: .8rem;'>正常</text>
 					<view class='a'>
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
@@ -129,7 +129,7 @@
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodSugar'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .4rem;'>正常</text>
+					<text style='color:black;font-size: .8rem;'>正常</text>
 					<view class='a'>
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
@@ -154,7 +154,7 @@
 			</view>
 			<view class='w100' v-if="showTabBottm == 'tiwen'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .4rem;'>正常</text>
+					<text style='color:black;font-size: .8rem;'>正常</text>
 					<view class='b'>
 						<view style='background-color: #72A7FE;'></view>
 						<view style='background-color: #00D193;'></view>
@@ -348,7 +348,7 @@
 		position: absolute;
 		left: 0;
 		bottom: 2.5rem;
-		font-size: .5rem;
+		font-size: .7rem;
 		justify-content: space-between;
 		width:80% !important;
 		margin-left: 5%;
