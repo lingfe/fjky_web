@@ -15,19 +15,178 @@
 		<!-- 健康数据 -->
 		<view class='healthyData'>
 			<view class='tab-lan'>
-				<text :class="[c_this == 'stepNumber'?'tabActive':'tabNoActive']"  @click="getThisTab('stepNumber',10)">步数</text>
-				<text :class="[c_this == 'bloodPressure'?'tabActive':'tabNoActive']"  @click="getThisTab('bloodPressure',20)">血压</text>
-				<text :class="[c_this == 'heartRate'?'tabActive':'tabNoActive']"  @click="getThisTab('heartRate',30)">心率</text>
-				<text :class="[c_this == 'bloodOxygen'?'tabActive':'tabNoActive']"  @click="getThisTab('bloodOxygen',40)">血氧</text>
-				<text :class="[c_this == 'uricAcid'?'tabActive':'tabNoActive']"  @click="getThisTab('uricAcid',50)">尿酸</text>
-				<text :class="[c_this == 'bloodFat'?'tabActive':'tabNoActive']"  @click="getThisTab('bloodFat',60)">血脂</text>
-				<text :class="[c_this == 'bloodSugar'?'tabActive':'tabNoActive']"  @click="getThisTab('bloodSugar',70)">血糖</text>
-				<text :class="[c_this == 'tiwen'?'tabActive':'tabNoActive']"  @click="getThisTab('tiwen',70)">体温</text>
-				<text :class="[c_this == 'shuimian'?'tabActive':'tabNoActive']"  @click="getThisTab('shuimian',70)">睡眠</text>
+				<text :class="[cTab == 'stepNumber'?'tabActive':'tabNoActive']" @click="getThisTab('stepNumber')">步数</text>
+				<text :class="[cTab == 'bloodPressure'?'tabActive':'tabNoActive']" @click="getThisTab('bloodPressure')">血压</text>
+				<text :class="[cTab == 'heartRate'?'tabActive':'tabNoActive']" @click="getThisTab('heartRate')">心率</text>
+				<text :class="[cTab == 'bloodOxygen'?'tabActive':'tabNoActive']" @click="getThisTab('bloodOxygen')">血氧</text>
+				<text :class="[cTab == 'uricAcid'?'tabActive':'tabNoActive']" @click="getThisTab('uricAcid')">尿酸</text>
+				<text :class="[cTab == 'bloodFat'?'tabActive':'tabNoActive']" @click="getThisTab('bloodFat')">血脂</text>
+				<text :class="[cTab == 'bloodSugar'?'tabActive':'tabNoActive']" @click="getThisTab('bloodSugar')">血糖</text>
+				<text :class="[cTab == 'tiwen'?'tabActive':'tabNoActive']" @click="getThisTab('tiwen')">体温</text>
+				<text :class="[cTab == 'shuimian'?'tabActive':'tabNoActive']" @click="getThisTab('shuimian')">睡眠</text>
 			</view>
 			<view id='chartBox' class='box-css'></view>
-			<view style='border-top:1px solid #eeeeee;width: 111%;text-align: center;padding-top:.8rem;'>
-				<text>查看更多</text>
+			<view class='w100' v-if="showTabBottm == 'stepNumber'">
+				<view class='more_type' @click='stepNumberDetail()'>
+					<text>查看更多</text>
+				</view>
+			</view>
+			<view class='w100' v-else-if="showTabBottm == 'bloodPressure'">
+				<view class='showAnother bloodPressure'>
+					<text style='color:black;font-size: .4rem;'>正常</text>
+					<view class='b'>
+						<view style='background-color: #FF9A21;'></view>
+						<view style='background-color: #00D193;'></view>
+						<view style='background-color: #F72600;'></view>
+					</view>
+				</view>
+				<view class='more_type' @click='bloodPressureDetail()'>
+					<text>查看更多</text>
+				</view>
+			</view>
+			<view class='w100' v-else-if="showTabBottm == 'heartRate'">
+				<view class='more_type' @click='heartRateDetail()'>
+					<text>查看更多</text>
+				</view>
+			</view>
+			<view class='w100' v-else-if="showTabBottm == 'bloodOxygen'">
+				<view class='showAnother bloodPressure'>
+					<text style='color:black;font-size: .4rem;'>正常</text>
+					<view class='a'>
+						<text>脉率</text>
+						<view>
+							<view style='background-color: #F72600;width: 1.5rem;'></view>
+						</view>
+						<view>
+							<view style='background-color: #FF9A21;width: 1.8rem;'></view>
+						</view>
+						<view>
+							<view style='background-color: #00D193;'></view>
+						</view>
+						<view>
+							<view style='background-color: #FF9A21;width: 1.8rem;'></view>
+						</view>
+						<view>
+							<view style='background-color: #F72600;width: 1.5rem;'></view>
+						</view>
+						<text>98次/分</text>
+					</view>
+				</view>
+
+				<view class='more_type' @click='bloodOxygenDetail()'>
+					<text>查看更多</text>
+				</view>
+			</view>
+			<view class='w100' v-else-if="showTabBottm == 'uricAcid'">
+				<view class='showAnother bloodPressure'>
+					<text style='color:black;font-size: .4rem;'>正常</text>
+					<view class='a'>
+						<view>
+							<view style='background-color: #F72600;width: 1.5rem;'></view>
+						</view>
+						<view>
+							<view style='background-color: #FF9A21;width: 1.8rem;'></view>
+						</view>
+						<view>
+							<view style='background-color: #00D193;'></view>
+						</view>
+						<view>
+							<view style='background-color: #FF9A21;width: 1.8rem;'></view>
+						</view>
+						<view>
+							<view style='background-color: #F72600;width: 1.5rem;'></view>
+						</view>
+					</view>
+				</view>
+				<view class='more_type' @click='uricAcidDetail()'>
+					<text>查看更多</text>
+				</view>
+			</view>
+			<view class='w100' v-else-if="showTabBottm == 'bloodFat'">
+				<view class='showAnother bloodPressure'>
+					<text style='color:black;font-size: .4rem;'>正常</text>
+					<view class='a'>
+						<view>
+							<view style='background-color: #F72600;width: 1.5rem;'></view>
+						</view>
+						<view>
+							<view style='background-color: #FF9A21;width: 1.8rem;'></view>
+						</view>
+						<view>
+							<view style='background-color: #00D193;'></view>
+						</view>
+						<view>
+							<view style='background-color: #FF9A21;width: 1.8rem;'></view>
+						</view>
+						<view>
+							<view style='background-color: #F72600;width: 1.5rem;'></view>
+						</view>
+					</view>
+				</view>
+				<view class='more_type' @click='bloodFatDetail()'>
+					<text>查看更多</text>
+				</view>
+			</view>
+			<view class='w100' v-else-if="showTabBottm == 'bloodSugar'">
+				<view class='showAnother bloodPressure'>
+					<text style='color:black;font-size: .4rem;'>正常</text>
+					<view class='a'>
+						<view>
+							<view style='background-color: #F72600;width: 1.5rem;'></view>
+						</view>
+						<view>
+							<view style='background-color: #FF9A21;width: 1.8rem;'></view>
+						</view>
+						<view>
+							<view style='background-color: #00D193;'></view>
+						</view>
+						<view>
+							<view style='background-color: #FF9A21;width: 1.8rem;'></view>
+						</view>
+						<view>
+							<view style='background-color: #F72600;width: 1.5rem;'></view>
+						</view>
+					</view>
+				</view>
+				<view class='more_type' @click='bloodSugarDetail()'>
+					<text>查看更多</text>
+				</view>
+			</view>
+			<view class='w100' v-if="showTabBottm == 'tiwen'">
+				<view class='showAnother bloodPressure'>
+					<text style='color:black;font-size: .4rem;'>正常</text>
+					<view class='b'>
+						<view style='background-color: #72A7FE;'></view>
+						<view style='background-color: #00D193;'></view>
+						<view style='background-color: #F72600;'></view>
+					</view>
+				</view>
+				<view class='more_type' @click='tiwenDetail()'>
+					<text>查看更多</text>
+				</view>
+			</view>
+			<view class='w100' v-else-if="showTabBottm == 'shuimian'">
+				<view class='showAnother shuimian'>
+					<view>
+						<text style='color:black;font-weight: bolder;'>
+							3.0h
+						</text>
+						<text style='color: gray;'>
+							深睡
+						</text>
+					</view>
+					<view>
+						<text style='color:black;font-weight: bolder;'>
+							4.5h
+						</text>
+						<text style='color: gray;'>
+							浅睡
+						</text>
+					</view>
+				</view>
+				<view class='more_type' @click='shuimianDetail()'>
+					<text>查看更多</text>
+				</view>
 			</view>
 		</view>
 		<!-- 其他模块tab -->
@@ -83,779 +242,92 @@
 		</view>
 	</view>
 </template>
-
 <script>
 	import echarts from 'echarts';
+	import config from '../../util/echartConfig/echartConfig.js';
 	export default {
 		data() {
 			return {
-				c_this:'stepNumber',
+				cTab: 'stepNumber',
+				showTabBottm: 'stepNumber',
 			}
 		},
 		methods: {
-			getThisTab(n,m){
-				var root = getComputedStyle(document.documentElement);
-				document.documentElement.style.setProperty('--beforeW', m);
-				var color = root.getPropertyValue('--beforeW').trim();
-				// console.log(color);  // '100px'
-				this.c_this = n;
+			//各个模块的查看详情
+			stepNumberDetail(){
+				console.log('查看详情-步数');
+			},
+			bloodPressureDetail(){
+				console.log('查看详情-血压');
+			},
+			heartRateDetail(){
+				console.log('查看详情-心率');
+			},
+			bloodOxygenDetail(){
+				console.log('查看详情-血氧');
+			},
+			uricAcidDetail(){
+				console.log('查看详情-尿酸');
+			},
+			bloodFatDetail(){
+				console.log('查看详情-血脂');
+			},
+			bloodSugarDetail(){
+				console.log('查看详情-血糖');
+			},
+			tiwenDetail(){
+				console.log('查看详情-体温');
+			},
+			shuimianDetail(){
+				console.log('查看详情-睡眠');
+			},
+			getThisTab(n){ 
+				this.cTab = n;
 				//请求相关的健康数据，渲染新的报表
 				console.log(n);
 				//不同类型的数据将渲染不同的报表格式
-				//步数       血压          心率       血氧         尿酸     血脂      血糖      体温 睡眠
-				//stepNumber bloodPressure heartRate bloodOxygen uricAcid bloodFat bloodSugar
-				//步数
-				var option_stepNumber = {
-					series: [{
-						type: 'gauge',
-						startAngle: 90,
-						endAngle: -270,
-						pointer: {
-							show: false
-						},
-						progress: {
-							show: true,
-							overlap: false,
-							roundCap: true,
-							clip: false,
-							itemStyle: {
-								borderWidth: 1,
-								// borderColor: '#464646',
-								color: '#00D193',
-							}
-						},
-						axisLine: {
-							lineStyle: {
-								width: 10
-							}
-						},
-						splitLine: {
-							show: false,
-							distance: 0,
-							length: 20
-						},
-						axisTick: {
-							show: false
-						},
-						axisLabel: {
-							show: false,
-							distance: 50
-						},
-						data: [{
-							value: 30,
-							name: '步',
-							title: {
-								offsetCenter: ['0%', '20%']
-							},
-							detail: {
-								offsetCenter: ['0%', '-20%']
-							}
-						}, ],
-						title: {
-							fontSize: 15
-						},
-						detail: {
-							width: 50,
-							height: 14,
-							fontSize: 20,
-							color: 'auto',
-							borderColor: 'auto',
-							borderRadius: 20,
-							// borderWidth: 1,
-							formatter: '{value}'
-						}
-					}]
-				};
-				//血压
-				var option_bloodPressure = {
-				    series: [{
-				        type: 'gauge',
-				        startAngle: 180,
-				        endAngle: 0,
-				        min: 0,
-				        max: 1,
-				        splitNumber: 8,
-						progress: { 
-							show: false,
-						},
-				        axisLine: {
-				            lineStyle: {
-				                width: 6,
-				                color: [
-				                    [0.25, '#FF6E76'],
-				                    [0.5, '#FDDD60'],
-				                    [0.75, '#58D9F9'],
-				                    [1, '#7CFFB2']
-				                ]
-				            }
-				        },
-				        pointer: {
-				            icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
-				            length: '12%',
-				            width: 20,
-				            offsetCenter: [0, '-40%'],
-				            itemStyle: {
-				                color: 'red'
-				            }
-				        },
-				        axisTick: {
-				            length: 12,
-				            lineStyle: {
-				                color: 'auto',
-				                width: 2
-				            }
-				        },
-				        splitLine: {
-				            length: 20,
-				            lineStyle: {
-				                color: 'auto',
-				                width: 5
-				            }
-				        },
-				        axisLabel: {
-				            color: '#464646',
-				            fontSize: 20,
-				            distance: -60,
-				            formatter: function (value) {
-				                if (value === 0.875) {
-				                    return '优';
-				                }
-				                else if (value === 0.625) {
-				                    return '中';
-				                }
-				                else if (value === 0.375) {
-				                    return '良';
-				                }
-				                else if (value === 0.125) {
-				                    return '差';
-				                }
-				            }
-				        },
-				        title: {
-				            offsetCenter: [0, '-20%'],
-				            fontSize: 20
-				        },
-				        detail: {
-				            fontSize: 18,
-				            offsetCenter: [0, '0%'],
-				            valueAnimation: true,
-				            formatter: function (value) {
-				                return Math.round(value * 100) + '分';
-				            },
-				            color: 'auto'
-				        },
-				        data: [{
-				            value: 0.10,
-				            name: '成绩评定'
-				        }]
-				    }]
-				};
-				//心率
-				var option_heartRate = {
-					series: [{
-						type: 'gauge',
-						startAngle: 90,
-						endAngle: -270,
-						pointer: {
-							show: false
-						},
-						progress: {
-							show: true,
-							overlap: false,
-							roundCap: true,
-							clip: false,
-							itemStyle: {
-								borderWidth: 1,
-								// borderColor: '#464646',
-								color: '#00D193',
-							}
-						},
-						axisLine: {
-							lineStyle: {
-								width: 10
-							}
-						},
-						splitLine: {
-							show: false,
-							distance: 0,
-							length: 20
-						},
-						axisTick: {
-							show: false
-						},
-						axisLabel: {
-							show: false,
-							distance: 50
-						},
-						data: [{
-							value: 30,
-							name: '步',
-							title: {
-								offsetCenter: ['0%', '20%']
-							},
-							detail: {
-								offsetCenter: ['0%', '-20%']
-							}
-						}, ],
-						title: {
-							fontSize: 15
-						},
-						detail: {
-							width: 50,
-							height: 14,
-							fontSize: 20,
-							color: 'auto',
-							borderColor: 'auto',
-							borderRadius: 20,
-							// borderWidth: 1,
-							formatter: '{value}'
-						}
-					}]
-				};
-				//血氧
-				var option_bloodOxygen = {
-				    series: [{
-				        type: 'gauge',
-				        startAngle: 180,
-				        endAngle: 0,
-				        min: 0,
-				        max: 1,
-				        splitNumber: 8,
-						progress: { 
-							show: false,
-						},
-				        axisLine: {
-				            lineStyle: {
-				                width: 6,
-				                color: [
-				                    [0.25, '#FF6E76'],
-				                    [0.5, '#FDDD60'],
-				                    [0.75, '#58D9F9'],
-				                    [1, '#7CFFB2']
-				                ]
-				            }
-				        },
-				        pointer: {
-				            icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
-				            length: '12%',
-				            width: 20,
-				            offsetCenter: [0, '-40%'],
-				            itemStyle: {
-				                color: 'red'
-				            }
-				        },
-				        axisTick: {
-				            length: 12,
-				            lineStyle: {
-				                color: 'auto',
-				                width: 2
-				            }
-				        },
-				        splitLine: {
-				            length: 20,
-				            lineStyle: {
-				                color: 'auto',
-				                width: 5
-				            }
-				        },
-				        axisLabel: {
-				            color: '#464646',
-				            fontSize: 20,
-				            distance: -60,
-				            formatter: function (value) {
-				                if (value === 0.875) {
-				                    return '优';
-				                }
-				                else if (value === 0.625) {
-				                    return '中';
-				                }
-				                else if (value === 0.375) {
-				                    return '良';
-				                }
-				                else if (value === 0.125) {
-				                    return '差';
-				                }
-				            }
-				        },
-				        title: {
-				            offsetCenter: [0, '-20%'],
-				            fontSize: 20
-				        },
-				        detail: {
-				            fontSize: 18,
-				            offsetCenter: [0, '0%'],
-				            valueAnimation: true,
-				            formatter: function (value) {
-				                return Math.round(value * 100) + '分';
-				            },
-				            color: 'auto'
-				        },
-				        data: [{
-				            value: 0.10,
-				            name: '成绩评定'
-				        }]
-				    }]
-				};
-				//尿酸
-				var option_uricAcid = {
-				    series: [{
-				        type: 'gauge',
-				        startAngle: 180,
-				        endAngle: 0,
-				        min: 0,
-				        max: 1,
-				        splitNumber: 8,
-						progress: { 
-							show: false,
-						},
-				        axisLine: {
-				            lineStyle: {
-				                width: 6,
-				                color: [
-				                    [0.25, '#FF6E76'],
-				                    [0.5, '#FDDD60'],
-				                    [0.75, '#58D9F9'],
-				                    [1, '#7CFFB2']
-				                ]
-				            }
-				        },
-				        pointer: {
-				            icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
-				            length: '12%',
-				            width: 20,
-				            offsetCenter: [0, '-40%'],
-				            itemStyle: {
-				                color: 'red'
-				            }
-				        },
-				        axisTick: {
-				            length: 12,
-				            lineStyle: {
-				                color: 'auto',
-				                width: 2
-				            }
-				        },
-				        splitLine: {
-				            length: 20,
-				            lineStyle: {
-				                color: 'auto',
-				                width: 5
-				            }
-				        },
-				        axisLabel: {
-				            color: '#464646',
-				            fontSize: 20,
-				            distance: -60,
-				            formatter: function (value) {
-				                if (value === 0.875) {
-				                    return '优';
-				                }
-				                else if (value === 0.625) {
-				                    return '中';
-				                }
-				                else if (value === 0.375) {
-				                    return '良';
-				                }
-				                else if (value === 0.125) {
-				                    return '差';
-				                }
-				            }
-				        },
-				        title: {
-				            offsetCenter: [0, '-20%'],
-				            fontSize: 20
-				        },
-				        detail: {
-				            fontSize: 18,
-				            offsetCenter: [0, '0%'],
-				            valueAnimation: true,
-				            formatter: function (value) {
-				                return Math.round(value * 100) + '分';
-				            },
-				            color: 'auto'
-				        },
-				        data: [{
-				            value: 0.10,
-				            name: '成绩评定'
-				        }]
-				    }]
-				};
-				//血脂
-				var option_bloodFat = {
-				    series: [{
-				        type: 'gauge',
-				        startAngle: 180,
-				        endAngle: 0,
-				        min: 0,
-				        max: 1,
-				        splitNumber: 8,
-						progress: { 
-							show: false,
-						},
-				        axisLine: {
-				            lineStyle: {
-				                width: 6,
-				                color: [
-				                    [0.25, '#FF6E76'],
-				                    [0.5, '#FDDD60'],
-				                    [0.75, '#58D9F9'],
-				                    [1, '#7CFFB2']
-				                ]
-				            }
-				        },
-				        pointer: {
-				            icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
-				            length: '12%',
-				            width: 20,
-				            offsetCenter: [0, '-40%'],
-				            itemStyle: {
-				                color: 'red'
-				            }
-				        },
-				        axisTick: {
-				            length: 12,
-				            lineStyle: {
-				                color: 'auto',
-				                width: 2
-				            }
-				        },
-				        splitLine: {
-				            length: 20,
-				            lineStyle: {
-				                color: 'auto',
-				                width: 5
-				            }
-				        },
-				        axisLabel: {
-				            color: '#464646',
-				            fontSize: 20,
-				            distance: -60,
-				            formatter: function (value) {
-				                if (value === 0.875) {
-				                    return '优';
-				                }
-				                else if (value === 0.625) {
-				                    return '中';
-				                }
-				                else if (value === 0.375) {
-				                    return '良';
-				                }
-				                else if (value === 0.125) {
-				                    return '差';
-				                }
-				            }
-				        },
-				        title: {
-				            offsetCenter: [0, '-20%'],
-				            fontSize: 20
-				        },
-				        detail: {
-				            fontSize: 18,
-				            offsetCenter: [0, '0%'],
-				            valueAnimation: true,
-				            formatter: function (value) {
-				                return Math.round(value * 100) + '分';
-				            },
-				            color: 'auto'
-				        },
-				        data: [{
-				            value: 0.10,
-				            name: '成绩评定'
-				        }]
-				    }]
-				};
-				//血糖
-				var option_bloodSugar = {
-				    series: [{
-				        type: 'gauge',
-				        startAngle: 180,
-				        endAngle: 0,
-				        min: 0,
-				        max: 1,
-				        splitNumber: 8,
-						progress: { 
-							show: false,
-						},
-				        axisLine: {
-				            lineStyle: {
-				                width: 6,
-				                color: [
-				                    [0.25, '#FF6E76'],
-				                    [0.5, '#FDDD60'],
-				                    [0.75, '#58D9F9'],
-				                    [1, '#7CFFB2']
-				                ]
-				            }
-				        },
-				        pointer: {
-				            icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
-				            length: '12%',
-				            width: 20,
-				            offsetCenter: [0, '-40%'],
-				            itemStyle: {
-				                color: 'red'
-				            }
-				        },
-				        axisTick: {
-				            length: 12,
-				            lineStyle: {
-				                color: 'auto',
-				                width: 2
-				            }
-				        },
-				        splitLine: {
-				            length: 20,
-				            lineStyle: {
-				                color: 'auto',
-				                width: 5
-				            }
-				        },
-				        axisLabel: {
-				            color: '#464646',
-				            fontSize: 20,
-				            distance: -60,
-				            formatter: function (value) {
-				                if (value === 0.875) {
-				                    return '优';
-				                }
-				                else if (value === 0.625) {
-				                    return '中';
-				                }
-				                else if (value === 0.375) {
-				                    return '良';
-				                }
-				                else if (value === 0.125) {
-				                    return '差';
-				                }
-				            }
-				        },
-				        title: {
-				            offsetCenter: [0, '-20%'],
-				            fontSize: 20
-				        },
-				        detail: {
-				            fontSize: 18,
-				            offsetCenter: [0, '0%'],
-				            valueAnimation: true,
-				            formatter: function (value) {
-				                return Math.round(value * 100) + '分';
-				            },
-				            color: 'auto'
-				        },
-				        data: [{
-				            value: 0.10,
-				            name: '成绩评定'
-				        }]
-				    }]
-				};
-				//体温
-				var option_tiwen = {
-				    series: [{
-				        type: 'gauge',
-				        startAngle: 180,
-				        endAngle: 0,
-				        min: 0,
-				        max: 1,
-				        splitNumber: 8,
-						progress: { 
-							show: false,
-						},
-				        axisLine: {
-				            lineStyle: {
-				                width: 6,
-				                color: [
-				                    [0.25, '#FF6E76'],
-				                    [0.5, '#FDDD60'],
-				                    [0.75, '#58D9F9'],
-				                    [1, '#7CFFB2']
-				                ]
-				            }
-				        },
-				        pointer: {
-				            icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
-				            length: '12%',
-				            width: 20,
-				            offsetCenter: [0, '-40%'],
-				            itemStyle: {
-				                color: 'red'
-				            }
-				        },
-				        axisTick: {
-				            length: 12,
-				            lineStyle: {
-				                color: 'auto',
-				                width: 2
-				            }
-				        },
-				        splitLine: {
-				            length: 20,
-				            lineStyle: {
-				                color: 'auto',
-				                width: 5
-				            }
-				        },
-				        axisLabel: {
-				            color: '#464646',
-				            fontSize: 20,
-				            distance: -60,
-				            formatter: function (value) {
-				                if (value === 0.875) {
-				                    return '优';
-				                }
-				                else if (value === 0.625) {
-				                    return '中';
-				                }
-				                else if (value === 0.375) {
-				                    return '良';
-				                }
-				                else if (value === 0.125) {
-				                    return '差';
-				                }
-				            }
-				        },
-				        title: {
-				            offsetCenter: [0, '-20%'],
-				            fontSize: 20
-				        },
-				        detail: {
-				            fontSize: 18,
-				            offsetCenter: [0, '0%'],
-				            valueAnimation: true,
-				            formatter: function (value) {
-				                return Math.round(value * 100) + '分';
-				            },
-				            color: 'auto'
-				        },
-				        data: [{
-				            value: 0.10,
-				            name: '成绩评定'
-				        }]
-				    }]
-				};
-				//睡眠
-				var option_shuimian = {
-				    series: [{
-				        type: 'gauge',
-				        startAngle: 180,
-				        endAngle: 0,
-				        min: 0,
-				        max: 1,
-				        splitNumber: 8,
-						progress: { 
-							show: false,
-						},
-				        axisLine: {
-				            lineStyle: {
-				                width: 6,
-				                color: [
-				                    [0.25, '#FF6E76'],
-				                    [0.5, '#FDDD60'],
-				                    [0.75, '#58D9F9'],
-				                    [1, '#7CFFB2']
-				                ]
-				            }
-				        },
-				        pointer: {
-				            icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
-				            length: '12%',
-				            width: 20,
-				            offsetCenter: [0, '-40%'],
-				            itemStyle: {
-				                color: 'red'
-				            }
-				        },
-				        axisTick: {
-				            length: 12,
-				            lineStyle: {
-				                color: 'auto',
-				                width: 2
-				            }
-				        },
-				        splitLine: {
-				            length: 20,
-				            lineStyle: {
-				                color: 'auto',
-				                width: 5
-				            }
-				        },
-				        axisLabel: {
-				            color: '#464646',
-				            fontSize: 20,
-				            distance: -60,
-				            formatter: function (value) {
-				                if (value === 0.875) {
-				                    return '优';
-				                }
-				                else if (value === 0.625) {
-				                    return '中';
-				                }
-				                else if (value === 0.375) {
-				                    return '良';
-				                }
-				                else if (value === 0.125) {
-				                    return '差';
-				                }
-				            }
-				        },
-				        title: {
-				            offsetCenter: [0, '-20%'],
-				            fontSize: 20
-				        },
-				        detail: {
-				            fontSize: 18,
-				            offsetCenter: [0, '0%'],
-				            valueAnimation: true,
-				            formatter: function (value) {
-				                return Math.round(value * 100) + '分';
-				            },
-				            color: 'auto'
-				        },
-				        data: [{
-				            value: 0.10,
-				            name: '成绩评定'
-				        }]
-				    }]
-				};
-				
-				if(n == 'stepNumber'){
+				//步数       血压          心率       血氧         尿酸     血脂      血糖        体温   睡眠
+				//stepNumber bloodPressure heartRate bloodOxygen uricAcid bloodFat bloodSugar  tiwen  shuimian
+				if (n == 'stepNumber') {
 					//渲染步数的数据和报表 得分环
-					this.chartLine.setOption(option_stepNumber);
-				}
-				else if(n == 'bloodPressure'){
+					// this.chartLine = echarts.init(document.getElementById('chartBox'));
+					this.chartLine.setOption(config.stepNumber, true);
+					this.showTabBottm = n;
+				} else if (n == 'bloodPressure') {
 					//渲染血压的数据和报表  仪表盘
-					this.chartLine.setOption(option_bloodPressure);
-				}
-				else if(n == 'heartRate'){
+					this.chartLine.setOption(config.bloodPressure, true);
+					this.showTabBottm = n;
+				} else if (n == 'heartRate') {
 					//渲染心率的数据和报表 得分环
-					this.chartLine.setOption(option_heartRate);
-				}
-				else if(n=='bloodOxygen'){
+					this.chartLine.setOption(config.heartRate, true);
+					this.showTabBottm = n;
+				} else if (n == 'bloodOxygen') {
 					//渲染血氧的数据和报表  仪表盘
-					this.chartLine.setOption(option_bloodOxygen);
-				}
-				else if(n== 'uricAcid'){
+					this.chartLine.setOption(config.bloodOxygen, true);
+					this.showTabBottm = n;
+				} else if (n == 'uricAcid') {
 					//渲染尿酸的数据和报表 仪表盘
-					this.chartLine.setOption(option_uricAcid);
-				}
-				else if(n =='bloodFat'){
+					this.chartLine.setOption(config.uricAcid, true);
+					this.showTabBottm = n;
+				} else if (n == 'bloodFat') {
 					//渲染血脂的数据和报表 仪表盘
-					this.chartLine.setOption(option_bloodFat);
-				}
-				else if( n == 'bloodSugar'){
+					this.chartLine.setOption(config.bloodFat, true);
+					this.showTabBottm = n;
+				} else if (n == 'bloodSugar') {
+					console.log('123');
 					//渲染血糖的数据和报表 仪表盘
-					this.chartLine.setOption(option_bloodSugar);
-				}
-				else if( n == 'tiwen'){
+					this.chartLine.setOption(config.bloodSugar, true);
+					this.showTabBottm = n;
+				} else if (n == 'tiwen') {
 					//渲染血糖的数据和报表 仪表盘
-					this.chartLine.setOption(option_tiwen);
-				}
-				else if( n == 'shuimian'){
+					this.chartLine.setOption(config.tiwen, true);
+					this.showTabBottm = n;
+				} else if (n == 'shuimian') {
 					//渲染血糖的数据和报表 仪表盘
-					this.chartLine.setOption(option_shuimian);
+					this.chartLine.setOption(config.shuimian, true);
+					this.showTabBottm = n;
 				}
-				
-				
-			}, 
+			},
 			appToast(){
 				//安卓对象
 				appNative.toast();
@@ -864,182 +336,126 @@
 		mounted(){
 			let echarts = require('echarts');
 			this.chartLine = echarts.init(document.getElementById('chartBox'));
-			var option_stepNumber = {
-				series: [{
-					type: 'gauge',
-					startAngle: 90,
-					endAngle: -270,
-					pointer: {
-						show: false
-					},
-					progress: {
-						show: true,
-						overlap: false,
-						roundCap: true,
-						clip: false,
-						itemStyle: {
-							borderWidth: 1,
-							// borderColor: '#464646',
-							color: '#00D193',
-						}
-					},
-					axisLine: {
-						lineStyle: {
-							width: 10
-						}
-					},
-					splitLine: {
-						show: false,
-						distance: 0,
-						length: 20
-					},
-					axisTick: {
-						show: false
-					},
-					axisLabel: {
-						show: false,
-						distance: 50
-					},
-					data: [{
-						value: 30,
-						name: '步',
-						title: {
-							offsetCenter: ['0%', '20%']
-						},
-						detail: {
-							offsetCenter: ['0%', '-20%']
-						}
-					}, ],
-					title: {
-						fontSize: 15
-					},
-					detail: {
-						width: 50,
-						height: 14,
-						fontSize: 20,
-						color: 'auto',
-						borderColor: 'auto',
-						borderRadius: 20,
-						// borderWidth: 1,
-						formatter: '{value}'
-					}
-				}]
-			};
-			var option_bloodPressure = {
-			    series: [{
-			        type: 'gauge',
-			        startAngle: 180,
-			        endAngle: 0,
-			        min: 0,
-			        max: 1,
-			        splitNumber: 8,
-			        axisLine: {
-			            lineStyle: {
-			                width: 6,
-			                color: [
-			                    [0.25, '#FF6E76'],
-			                    [0.5, '#FDDD60'],
-			                    [0.75, '#58D9F9'],
-			                    [1, '#7CFFB2']
-			                ]
-			            }
-			        },
-			        pointer: {
-			            icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
-			            length: '12%',
-			            width: 20,
-			            offsetCenter: [0, '-60%'],
-			            itemStyle: {
-			                color: 'auto'
-			            }
-			        },
-			        axisTick: {
-			            length: 12,
-			            lineStyle: {
-			                color: 'auto',
-			                width: 2
-			            }
-			        },
-			        splitLine: {
-			            length: 20,
-			            lineStyle: {
-			                color: 'auto',
-			                width: 5
-			            }
-			        },
-			        axisLabel: {
-			            color: '#464646',
-			            fontSize: 20,
-			            distance: -60,
-			            formatter: function (value) {
-			                if (value === 0.875) {
-			                    return '优';
-			                }
-			                else if (value === 0.625) {
-			                    return '中';
-			                }
-			                else if (value === 0.375) {
-			                    return '良';
-			                }
-			                else if (value === 0.125) {
-			                    return '差';
-			                }
-			            }
-			        },
-			        title: {
-			            offsetCenter: [0, '-20%'],
-			            fontSize: 30
-			        },
-			        detail: {
-			            fontSize: 50,
-			            offsetCenter: [0, '0%'],
-			            valueAnimation: true,
-			            formatter: function (value) {
-			                return Math.round(value * 100) + '分';
-			            },
-			            color: 'auto'
-			        },
-			        data: [{
-			            value: 0.70,
-			            name: '成绩评定'
-			        }]
-			    }]
-			};
-			this.chartLine.setOption(option_stepNumber);
+			this.chartLine.setOption(config.stepNumber);
 		},
 	}
 </script>
 <style>
-	.otherTabFunction{
+	.shuimian {
+		/* border: 1px solid red; */
+		display: flex;
+		flex-direction: row;
+		position: absolute;
+		left: 0;
+		bottom: 2.5rem;
+		font-size: .5rem;
+		justify-content: space-between;
+		width:80% !important;
+		margin-left: 5%;
+	}
+
+	.shuimian>view {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.b>view {
+		height: .4rem;
+		/* border: 1px solid red; */
+		width: 3.5rem;
+	}
+
+	.b {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+		/* border: 1px solid blue; */
+	}
+
+	.a>view>view {
+		width: 3.5rem;
+		height: .4rem;
+		/* margin-top: .5rem; */
+		margin-bottom: .1rem;
+	}
+
+	.a>text {
+		display: inline-block;
+		width: 5rem;
+	}
+
+	.a {
+		display: flex;
+		flex-direction: row;
+		width: 100%;
+		justify-content: center;
+		align-items: center;
+		/* border: 1px solid blue; */
+	}
+
+	.bloodPressure {
+		position: absolute;
+		bottom: 4.5rem;
+		left: 0rem;
+		/* border: 1px solid blue; */
+		text-align: center;
+	}
+
+	.w100 {
+		width: 100%;
+	}
+
+	/* 另一块 */
+	.showAnother {
+		position: absolute;
+		left: 0;
+		width: 90%;
+		padding: 5%;
+	}
+
+	.more_type {
+		border-top: 1px solid #eeeeee;
+		width: 111%;
+		text-align: center;
+		padding-top: .8rem;
 		position: relative;
-		top:-2rem;
+		left: -1rem;
+	}
+
+	.otherTabFunction {
+		position: relative;
+		top: -2rem;
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr 1fr;
 		grid-gap: 10px;
 	}
-	.otherTabFunction img{
+
+	.otherTabFunction img {
 		width: 3rem;
 	}
-	.otherTabFunction view{
+
+	.otherTabFunction view {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
 	}
-	:root{
-		--beforeW:0;
+
+	:root {
+		--beforeW: 0;
 	}
+
 	.tabActive {
 		color: #222222;
 		/* color:red; */
 		/* text-decoration: underline; */
 		/* border: 1px solid red; */
 	}
-	.tabNoActive{
-		
-	}
-	.tabActive:before{
-		color:red;
+
+	.tabActive:before {
+		color: red;
 		content: "";
 		display: block;
 		position: absolute;
@@ -1047,11 +463,11 @@
 		left: --beforeW;
 		/* left:10px; */
 		width: 9%;
- 		height: 4px;
+		height: 4px;
 		border-radius: 20%;
 		background: #00D193;
 	}
-	
+
 	.tab-lan {
 		/* border: 1px solid blue; */
 		width: 100%;
@@ -1145,10 +561,11 @@
 		font-size: 36rpx;
 		color: #8f8f94;
 	}
-	.otherTabFunction{
+
+	.otherTabFunction {
 		/* border: 1px solid red; */
 		width: 90%;
-		
-		
+
+
 	}
 </style>
