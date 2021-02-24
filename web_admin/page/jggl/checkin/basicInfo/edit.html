@@ -490,11 +490,7 @@
 					<div class="layui-form-item">
 						<label class="layui-form-label">护理级别</label>
 						<div class="layui-input-block">
-							<!-- <select id="nt_level" name="nt_level" lay-verify="required" lay-reqtext="请选择护理级别">
-								<option value="普通护理">普通护理</option>
-								<option value="中级护理">中级护理</option>
-							</select> -->
-							<input class="layui-input" id='ging_name' type="text" onclick="open_chice()"
+							<input class="layui-input" id='nt_level' name="nt_level" lay-verify="required" lay-reqtext="请选择护理级别" type="text" onclick="open_chice()"
 								placeholder="请选择护理级别">
 						</div>
 					</div>
@@ -503,7 +499,7 @@
 					<div class="layui-form-item">
 						<label class="layui-form-label">护理费用</label>
 						<div class="layui-input-inline">
-							<input class="layui-input" type="text" disabled id='ging_cost'>
+							<input class="layui-input" value="未选择" type="text" disabled  id='nt_level_cost' name="nt_level_cost" />
 						</div>
 						<div class="layui-form-mid layui-word-aux">元/月</div> 
 					</div>
@@ -539,22 +535,14 @@
 						<div class="layui-inline">
 							<label class="layui-form-label">餐饮套餐</label>
 							<div class="layui-input-block">
-								<input class="layui-input" id='sm_name' onclick="open_c()" placeholder="请选择餐饮套餐" />
+								<input class="layui-input" id="bed_catering_package" name="bed_catering_package" lay-verify="required"
+									lay-reqtext="请选择套餐" onclick="open_c()" placeholder="请选择餐饮套餐" />
 							</div>
 						</div>
-						<!-- <div class="layui-input-block">
-								<select id="bed_catering_package" name="bed_catering_package" lay-verify="required"
-									lay-reqtext="请选择套餐">
-									<option value="两菜一汤">两菜一汤</option>
-									<option value="一荤一素">一荤一素</option>
-									<option value="其他">其他</option>
-								</select>
-							</div> -->
-						<!-- </div> -->
 						<div class="layui-inline">
 							<label class="layui-form-label">套餐费用</label>
 							<div class="layui-input-inline">
-								<input class="layui-input" id='sm_price' placeholder="请输入费用" />
+								<input class="layui-input" id='bed_cost_meal_package' name="bed_cost_meal_package" placeholder="未选择" />
 							</div>
 							<div class="layui-form-mid layui-word-aux">元/月</div>
 						</div>
@@ -738,6 +726,11 @@
 		<!-- 表单-end -->
 	</div>
 	<!-- 分步表单-end -->
+	
+	<!-- 家庭信息表格操作 -->
+	<script type="text/html" id="currentTableBar">
+		<a class="layui-btn layui-btn-danger layui-btn-xs data-count-delete" lay-event="delete"><i class="layui-icon layui-icon-delete"></i>删除</a>
+	</script>
 
 	<!-- 引入js资源 -->
 	<script src="../../../../lib/layui-v2.5.5/layui.js" type="text/javascript"></script>
@@ -746,42 +739,6 @@
 	<script src="../../../../lib/jq-module/zyupload/zyupload-1.0.0.min.js" charset="utf-8"></script>
 	<script src="../../../bcxt/login/login.js" type="text/javascript" charset="utf-8"></script>
 	<script type="text/javascript" charset="utf-8">
-		//打开护理等级选择框
-		function open_chice() {
-			console.log('chice')
-			//打开护理等级的选择页面
-			var index = layer.open({
-				title: '选择护理级别',
-				type: 2,
-				shade: 0.2,
-				maxmin: true,
-				shadeClose: true,
-				area: ['600px', '450px'],
-				content: '../../service_management/nursing_ma/nursingLevel.html?idn=editNursing',
-				success: function (layero, index) {//弹出层打开后的回调函数 
-					// layer.full(index);
-					var iframe = window['layui-layer-iframe' + index];
-				}
-			});
-		}
-		//打开套餐选择框
-		function open_c() {
-			console.log('chice')
-			//打开护理等级的选择页面
-			var index = layer.open({
-				title: '选择套餐',
-				type: 2, 
-				shade: 0.2,
-				maxmin: true,
-				shadeClose: true,
-				area: ['800px', '450px'],
-				content: './chice/chiceCatering.html',
-				success: function (layero, index) {//弹出层打开后的回调函数 
-					// layer.full(index);
-					var iframe = window['layui-layer-iframe' + index];
-				}
-			});
-		}
 		// 加载组件资源
 		layui.use(['form', "tree", 'laydate', 'steps', 'table', 'layer', 'upload', 'layarea'], function () {
 			//定义layui指定组件
@@ -793,12 +750,22 @@
 				tree = layui.tree;		//树组件
 			var upload = layui.upload;
 			var layarea = layui.layarea;
+			
 			//全局变量
 			var data = {};
+			
 			//请求通行证
 			var token = Storage.get("token");
+			
 			//父级id(基本信息id)
 			let ess_id = $("#ess_id").val();
+			if(ess_id==undefined || ess_id == null || ess_id == ''){
+				layer.msg("id获取失败!请重试!", { icon: 5, time: 2000 },function(){
+					//只是关闭
+					var index = parent.layer.getFrameIndex(window.name); //获取当前窗口的name
+					parent.layer.close(index);		//关闭窗口
+				});
+			}
 
 			//入院缴费-押金输入框的值改变时触发
 			$("#ap_deposit").on("input", function (e) {
@@ -841,10 +808,12 @@
 			if (state_id > 0) {
 				$step.goStep(state_id);
 			}
+			
 			//上一步
 			$(".pre").click(function (event) {
 				$step.preStep();
 			});
+			
 			//下一步
 			$(".next").click(function (event) {
 				var step = event.currentTarget.attributes.value;
@@ -959,23 +928,7 @@
 			laydate.render({
 				elem: '#birthday'
 			});
-			//监听床位信息
-			form.on('submit(bedbutton)', function (data) {
-				var index = layer.open({
-					title: '床位信息',
-					type: 2,
-					shade: 0.2,
-					maxmin: true,
-					shadeClose: true,
-					area: ['400px', '350px'],
-					content: '../bedselection/bedInfo.html',
-					success: function (layero, index) {//弹出层打开后的回调函数
-						// layer.full(index);
-						var iframe = window['layui-layer-iframe' + index];
-					}
-				});
-				return false;
-			});
+			
 			//家属信息数据表
 			table.render({
 				elem: '#currentTableId',
@@ -985,9 +938,10 @@
 					yw_id: ess_id
 				},
 				cols: [[
-					{ field: 'full_name', width: 150, title: '姓名', align: "center" },
+					{ field: 'full_name', width: 200, title: '姓名', align: "center" },
 					{ field: 'phone', width: 200, title: '联系电话', align: "center" },
-					{ field: 'and_relation', width: 150, title: '关系', align: "center" }
+					{ field: 'and_relation',width: 200, title: '关系', align: "center" },
+					{ title: '操作',width: 200, toolbar: '#currentTableBar', align: "center", fixed: "right" }
 				]],
 				response: {
 					statusName: 'code', //规定返回的状态码字段为code
@@ -1005,8 +959,26 @@
 				limit: 15,
 				size: 'lg',
 				page: false,
-				skin: 'rows'
+				skin: 'line'
 			});
+			
+			//监听床位信息选择
+			form.on('submit(bedbutton)', function (data) {
+				var index = layer.open({
+					title: '床位信息',
+					type: 2,
+					shade: 0.2,
+					maxmin: true,
+					shadeClose: true,
+					area: ['400px', '350px'],
+					content: '../bedselection/bedInfo.html',
+					success: function (layero, index) { //弹出层打开后的回调函数
+						// layer.full(index);
+						var iframe = window['layui-layer-iframe' + index];
+					}
+				});
+			});
+			
 			//监听提交
 			form.on('submit(*)', function (sb) {
 				//定义参数
@@ -1115,37 +1087,72 @@
 						}
 					}
 				});
-
 			});
 		});
+		
+		//打开护理等级选择页
+		function open_chice() {
+			var index = layer.open({
+				title: '选择护理级别',
+				type: 2,
+				shade: 0.2,
+				maxmin: true,
+				shadeClose: true,
+				area: ['600px', '450px'],
+				content: '../../service_management/nursing_ma/nursingLevel.html?idn=editNursing',
+				success: function (layero, index) {//弹出层打开后的回调函数 
+					// layer.full(index);
+					var iframe = window['layui-layer-iframe' + index];
+				}
+			});
+		}
+		
+		//打开套餐选择页
+		function open_c() {
+			console.log('chice')
+			var index = layer.open({
+				title: '选择套餐',
+				type: 2, 
+				shade: 0.2,
+				maxmin: true,
+				shadeClose: true,
+				area: ['800px', '450px'],
+				content: './chice/chiceCatering.html',
+				success: function (layero, index) {//弹出层打开后的回调函数 
+					// layer.full(index);
+					var iframe = window['layui-layer-iframe' + index];
+				}
+			});
+		}
 
-		//父窗体调用传值
+		//父窗体调用传值-初始化加载
 		function child(data) {
 			var $ = layui.$;
 			$("#ess_id").val(data.id);
 			$("#comm_img").attr("src", data.img);
 			$("#state_id").val(data.state);
 		}
-		//床位选择->床位文本框对应的->子页面调用设置值。
+		
+		//子页面调用设置值-床位选择。
 		function getDataFromSon(data) {
 			var $ = layui.$;
 			$("#bed").val(data.floor_tung_name + '-' + data.floor_layer + '-' + data.room_number + '-' + data.bed_number);
 			$("#bed_id").val(data.id);
 			$("#bed_cost").val(data.mapBedType.bt_cost_month);
 		}
+		
+		//子窗体传值-护理级别
 		function getDataFromSon_1(data) {
 			var $ = layui.$;
-			// console.log(data);
-			$("#ging_name").val(data.ging_name);
-            $("#ging_cost").val(data.ging_cost);
-
+			$("#nt_level").val(data.ging_name);
+            $("#nt_level_cost").val(data.ging_cost);
 		}
+		
+		//子窗体传值-餐饮套餐
 		function getDataFromSon_2(data) {
-			// console.log(data);
 			var $ = layui.$;
-			$('#sm_name').val(data.sm_name);
-            $('#sm_price').val(data.sm_price);
-
+			$('#bed_catering_package').val(data.sm_name);
+            $('#bed_cost_meal_package').val(data.sm_price_baoyue);
 		}
 	</script>
 </body>
