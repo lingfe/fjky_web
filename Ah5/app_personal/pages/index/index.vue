@@ -102,8 +102,9 @@
 				//请求相关的健康数据，渲染新的报表
 				console.log(n);
 				//不同类型的数据将渲染不同的报表格式
-				//步数 血压 心率 血氧 尿酸 血脂 血糖
+				//步数       血压          心率       血氧         尿酸     血脂      血糖      体温 睡眠
 				//stepNumber bloodPressure heartRate bloodOxygen uricAcid bloodFat bloodSugar
+				//步数
 				var option_stepNumber = {
 					series: [{
 						type: 'gauge',
@@ -165,6 +166,7 @@
 						}
 					}]
 				};
+				//血压
 				var option_bloodPressure = {
 				    series: [{
 				        type: 'gauge',
@@ -248,6 +250,573 @@
 				        }]
 				    }]
 				};
+				//心率
+				var option_heartRate = {
+					series: [{
+						type: 'gauge',
+						startAngle: 90,
+						endAngle: -270,
+						pointer: {
+							show: false
+						},
+						progress: {
+							show: true,
+							overlap: false,
+							roundCap: true,
+							clip: false,
+							itemStyle: {
+								borderWidth: 1,
+								// borderColor: '#464646',
+								color: '#00D193',
+							}
+						},
+						axisLine: {
+							lineStyle: {
+								width: 10
+							}
+						},
+						splitLine: {
+							show: false,
+							distance: 0,
+							length: 20
+						},
+						axisTick: {
+							show: false
+						},
+						axisLabel: {
+							show: false,
+							distance: 50
+						},
+						data: [{
+							value: 30,
+							name: '步',
+							title: {
+								offsetCenter: ['0%', '20%']
+							},
+							detail: {
+								offsetCenter: ['0%', '-20%']
+							}
+						}, ],
+						title: {
+							fontSize: 15
+						},
+						detail: {
+							width: 50,
+							height: 14,
+							fontSize: 20,
+							color: 'auto',
+							borderColor: 'auto',
+							borderRadius: 20,
+							// borderWidth: 1,
+							formatter: '{value}'
+						}
+					}]
+				};
+				//血氧
+				var option_bloodOxygen = {
+				    series: [{
+				        type: 'gauge',
+				        startAngle: 180,
+				        endAngle: 0,
+				        min: 0,
+				        max: 1,
+				        splitNumber: 8,
+						progress: { 
+							show: false,
+						},
+				        axisLine: {
+				            lineStyle: {
+				                width: 6,
+				                color: [
+				                    [0.25, '#FF6E76'],
+				                    [0.5, '#FDDD60'],
+				                    [0.75, '#58D9F9'],
+				                    [1, '#7CFFB2']
+				                ]
+				            }
+				        },
+				        pointer: {
+				            icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+				            length: '12%',
+				            width: 20,
+				            offsetCenter: [0, '-40%'],
+				            itemStyle: {
+				                color: 'red'
+				            }
+				        },
+				        axisTick: {
+				            length: 12,
+				            lineStyle: {
+				                color: 'auto',
+				                width: 2
+				            }
+				        },
+				        splitLine: {
+				            length: 20,
+				            lineStyle: {
+				                color: 'auto',
+				                width: 5
+				            }
+				        },
+				        axisLabel: {
+				            color: '#464646',
+				            fontSize: 20,
+				            distance: -60,
+				            formatter: function (value) {
+				                if (value === 0.875) {
+				                    return '优';
+				                }
+				                else if (value === 0.625) {
+				                    return '中';
+				                }
+				                else if (value === 0.375) {
+				                    return '良';
+				                }
+				                else if (value === 0.125) {
+				                    return '差';
+				                }
+				            }
+				        },
+				        title: {
+				            offsetCenter: [0, '-20%'],
+				            fontSize: 20
+				        },
+				        detail: {
+				            fontSize: 18,
+				            offsetCenter: [0, '0%'],
+				            valueAnimation: true,
+				            formatter: function (value) {
+				                return Math.round(value * 100) + '分';
+				            },
+				            color: 'auto'
+				        },
+				        data: [{
+				            value: 0.10,
+				            name: '成绩评定'
+				        }]
+				    }]
+				};
+				//尿酸
+				var option_uricAcid = {
+				    series: [{
+				        type: 'gauge',
+				        startAngle: 180,
+				        endAngle: 0,
+				        min: 0,
+				        max: 1,
+				        splitNumber: 8,
+						progress: { 
+							show: false,
+						},
+				        axisLine: {
+				            lineStyle: {
+				                width: 6,
+				                color: [
+				                    [0.25, '#FF6E76'],
+				                    [0.5, '#FDDD60'],
+				                    [0.75, '#58D9F9'],
+				                    [1, '#7CFFB2']
+				                ]
+				            }
+				        },
+				        pointer: {
+				            icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+				            length: '12%',
+				            width: 20,
+				            offsetCenter: [0, '-40%'],
+				            itemStyle: {
+				                color: 'red'
+				            }
+				        },
+				        axisTick: {
+				            length: 12,
+				            lineStyle: {
+				                color: 'auto',
+				                width: 2
+				            }
+				        },
+				        splitLine: {
+				            length: 20,
+				            lineStyle: {
+				                color: 'auto',
+				                width: 5
+				            }
+				        },
+				        axisLabel: {
+				            color: '#464646',
+				            fontSize: 20,
+				            distance: -60,
+				            formatter: function (value) {
+				                if (value === 0.875) {
+				                    return '优';
+				                }
+				                else if (value === 0.625) {
+				                    return '中';
+				                }
+				                else if (value === 0.375) {
+				                    return '良';
+				                }
+				                else if (value === 0.125) {
+				                    return '差';
+				                }
+				            }
+				        },
+				        title: {
+				            offsetCenter: [0, '-20%'],
+				            fontSize: 20
+				        },
+				        detail: {
+				            fontSize: 18,
+				            offsetCenter: [0, '0%'],
+				            valueAnimation: true,
+				            formatter: function (value) {
+				                return Math.round(value * 100) + '分';
+				            },
+				            color: 'auto'
+				        },
+				        data: [{
+				            value: 0.10,
+				            name: '成绩评定'
+				        }]
+				    }]
+				};
+				//血脂
+				var option_bloodFat = {
+				    series: [{
+				        type: 'gauge',
+				        startAngle: 180,
+				        endAngle: 0,
+				        min: 0,
+				        max: 1,
+				        splitNumber: 8,
+						progress: { 
+							show: false,
+						},
+				        axisLine: {
+				            lineStyle: {
+				                width: 6,
+				                color: [
+				                    [0.25, '#FF6E76'],
+				                    [0.5, '#FDDD60'],
+				                    [0.75, '#58D9F9'],
+				                    [1, '#7CFFB2']
+				                ]
+				            }
+				        },
+				        pointer: {
+				            icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+				            length: '12%',
+				            width: 20,
+				            offsetCenter: [0, '-40%'],
+				            itemStyle: {
+				                color: 'red'
+				            }
+				        },
+				        axisTick: {
+				            length: 12,
+				            lineStyle: {
+				                color: 'auto',
+				                width: 2
+				            }
+				        },
+				        splitLine: {
+				            length: 20,
+				            lineStyle: {
+				                color: 'auto',
+				                width: 5
+				            }
+				        },
+				        axisLabel: {
+				            color: '#464646',
+				            fontSize: 20,
+				            distance: -60,
+				            formatter: function (value) {
+				                if (value === 0.875) {
+				                    return '优';
+				                }
+				                else if (value === 0.625) {
+				                    return '中';
+				                }
+				                else if (value === 0.375) {
+				                    return '良';
+				                }
+				                else if (value === 0.125) {
+				                    return '差';
+				                }
+				            }
+				        },
+				        title: {
+				            offsetCenter: [0, '-20%'],
+				            fontSize: 20
+				        },
+				        detail: {
+				            fontSize: 18,
+				            offsetCenter: [0, '0%'],
+				            valueAnimation: true,
+				            formatter: function (value) {
+				                return Math.round(value * 100) + '分';
+				            },
+				            color: 'auto'
+				        },
+				        data: [{
+				            value: 0.10,
+				            name: '成绩评定'
+				        }]
+				    }]
+				};
+				//血糖
+				var option_bloodSugar = {
+				    series: [{
+				        type: 'gauge',
+				        startAngle: 180,
+				        endAngle: 0,
+				        min: 0,
+				        max: 1,
+				        splitNumber: 8,
+						progress: { 
+							show: false,
+						},
+				        axisLine: {
+				            lineStyle: {
+				                width: 6,
+				                color: [
+				                    [0.25, '#FF6E76'],
+				                    [0.5, '#FDDD60'],
+				                    [0.75, '#58D9F9'],
+				                    [1, '#7CFFB2']
+				                ]
+				            }
+				        },
+				        pointer: {
+				            icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+				            length: '12%',
+				            width: 20,
+				            offsetCenter: [0, '-40%'],
+				            itemStyle: {
+				                color: 'red'
+				            }
+				        },
+				        axisTick: {
+				            length: 12,
+				            lineStyle: {
+				                color: 'auto',
+				                width: 2
+				            }
+				        },
+				        splitLine: {
+				            length: 20,
+				            lineStyle: {
+				                color: 'auto',
+				                width: 5
+				            }
+				        },
+				        axisLabel: {
+				            color: '#464646',
+				            fontSize: 20,
+				            distance: -60,
+				            formatter: function (value) {
+				                if (value === 0.875) {
+				                    return '优';
+				                }
+				                else if (value === 0.625) {
+				                    return '中';
+				                }
+				                else if (value === 0.375) {
+				                    return '良';
+				                }
+				                else if (value === 0.125) {
+				                    return '差';
+				                }
+				            }
+				        },
+				        title: {
+				            offsetCenter: [0, '-20%'],
+				            fontSize: 20
+				        },
+				        detail: {
+				            fontSize: 18,
+				            offsetCenter: [0, '0%'],
+				            valueAnimation: true,
+				            formatter: function (value) {
+				                return Math.round(value * 100) + '分';
+				            },
+				            color: 'auto'
+				        },
+				        data: [{
+				            value: 0.10,
+				            name: '成绩评定'
+				        }]
+				    }]
+				};
+				//体温
+				var option_tiwen = {
+				    series: [{
+				        type: 'gauge',
+				        startAngle: 180,
+				        endAngle: 0,
+				        min: 0,
+				        max: 1,
+				        splitNumber: 8,
+						progress: { 
+							show: false,
+						},
+				        axisLine: {
+				            lineStyle: {
+				                width: 6,
+				                color: [
+				                    [0.25, '#FF6E76'],
+				                    [0.5, '#FDDD60'],
+				                    [0.75, '#58D9F9'],
+				                    [1, '#7CFFB2']
+				                ]
+				            }
+				        },
+				        pointer: {
+				            icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+				            length: '12%',
+				            width: 20,
+				            offsetCenter: [0, '-40%'],
+				            itemStyle: {
+				                color: 'red'
+				            }
+				        },
+				        axisTick: {
+				            length: 12,
+				            lineStyle: {
+				                color: 'auto',
+				                width: 2
+				            }
+				        },
+				        splitLine: {
+				            length: 20,
+				            lineStyle: {
+				                color: 'auto',
+				                width: 5
+				            }
+				        },
+				        axisLabel: {
+				            color: '#464646',
+				            fontSize: 20,
+				            distance: -60,
+				            formatter: function (value) {
+				                if (value === 0.875) {
+				                    return '优';
+				                }
+				                else if (value === 0.625) {
+				                    return '中';
+				                }
+				                else if (value === 0.375) {
+				                    return '良';
+				                }
+				                else if (value === 0.125) {
+				                    return '差';
+				                }
+				            }
+				        },
+				        title: {
+				            offsetCenter: [0, '-20%'],
+				            fontSize: 20
+				        },
+				        detail: {
+				            fontSize: 18,
+				            offsetCenter: [0, '0%'],
+				            valueAnimation: true,
+				            formatter: function (value) {
+				                return Math.round(value * 100) + '分';
+				            },
+				            color: 'auto'
+				        },
+				        data: [{
+				            value: 0.10,
+				            name: '成绩评定'
+				        }]
+				    }]
+				};
+				//睡眠
+				var option_shuimian = {
+				    series: [{
+				        type: 'gauge',
+				        startAngle: 180,
+				        endAngle: 0,
+				        min: 0,
+				        max: 1,
+				        splitNumber: 8,
+						progress: { 
+							show: false,
+						},
+				        axisLine: {
+				            lineStyle: {
+				                width: 6,
+				                color: [
+				                    [0.25, '#FF6E76'],
+				                    [0.5, '#FDDD60'],
+				                    [0.75, '#58D9F9'],
+				                    [1, '#7CFFB2']
+				                ]
+				            }
+				        },
+				        pointer: {
+				            icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+				            length: '12%',
+				            width: 20,
+				            offsetCenter: [0, '-40%'],
+				            itemStyle: {
+				                color: 'red'
+				            }
+				        },
+				        axisTick: {
+				            length: 12,
+				            lineStyle: {
+				                color: 'auto',
+				                width: 2
+				            }
+				        },
+				        splitLine: {
+				            length: 20,
+				            lineStyle: {
+				                color: 'auto',
+				                width: 5
+				            }
+				        },
+				        axisLabel: {
+				            color: '#464646',
+				            fontSize: 20,
+				            distance: -60,
+				            formatter: function (value) {
+				                if (value === 0.875) {
+				                    return '优';
+				                }
+				                else if (value === 0.625) {
+				                    return '中';
+				                }
+				                else if (value === 0.375) {
+				                    return '良';
+				                }
+				                else if (value === 0.125) {
+				                    return '差';
+				                }
+				            }
+				        },
+				        title: {
+				            offsetCenter: [0, '-20%'],
+				            fontSize: 20
+				        },
+				        detail: {
+				            fontSize: 18,
+				            offsetCenter: [0, '0%'],
+				            valueAnimation: true,
+				            formatter: function (value) {
+				                return Math.round(value * 100) + '分';
+				            },
+				            color: 'auto'
+				        },
+				        data: [{
+				            value: 0.10,
+				            name: '成绩评定'
+				        }]
+				    }]
+				};
+				
 				if(n == 'stepNumber'){
 					//渲染步数的数据和报表 得分环
 					this.chartLine.setOption(option_stepNumber);
@@ -258,31 +827,31 @@
 				}
 				else if(n == 'heartRate'){
 					//渲染心率的数据和报表 得分环
-					
+					this.chartLine.setOption(option_heartRate);
 				}
 				else if(n=='bloodOxygen'){
 					//渲染血氧的数据和报表  仪表盘
-					
+					this.chartLine.setOption(option_bloodOxygen);
 				}
 				else if(n== 'uricAcid'){
 					//渲染尿酸的数据和报表 仪表盘
-					
+					this.chartLine.setOption(option_uricAcid);
 				}
 				else if(n =='bloodFat'){
 					//渲染血脂的数据和报表 仪表盘
-					
+					this.chartLine.setOption(option_bloodFat);
 				}
-				else if( n == 'bloodSugar'){ 
+				else if( n == 'bloodSugar'){
 					//渲染血糖的数据和报表 仪表盘
-					
+					this.chartLine.setOption(option_bloodSugar);
 				}
 				else if( n == 'tiwen'){
 					//渲染血糖的数据和报表 仪表盘
-					
+					this.chartLine.setOption(option_tiwen);
 				}
 				else if( n == 'shuimian'){
 					//渲染血糖的数据和报表 仪表盘
-					
+					this.chartLine.setOption(option_shuimian);
 				}
 				
 				
