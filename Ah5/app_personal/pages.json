@@ -1,13 +1,49 @@
 {
-	"pages": [ //pages数组中第一项表示应用启动页，参考：https://uniapp.dcloud.io/collocation/pages
+	"pages": [
+		//健康中心-首页
 		{
-			"path": "pages/index/index",
+			"path": "pages/index/index", 
 			"style": {
 				"navigationBarTitleText": "健康中心"
 			}
+		},
+		//健康报告-首页
+		{
+			"path": "pages/healthRecords/index",
+			"style": {
+				"navigationBarTitleText": "健康报告"
+			}
+		},
+		//基础档案
+		{
+			"path": "pages/basicArchives/index",
+			"style": {
+				"navigationBarTitleText": "基础档案"
+			}
+		},
+		//基础档案-身体参数信息录入保存页面
+		{
+			"path": "pages/bodyParametersInput/index",
+			"style": {
+				"navigationBarTitleText": "基础档案"
+			}
+		},
+		//基础档案-器官功能录入保存页面
+		{
+			"path": "pages/organFunction/index",
+			"style": {
+				"navigationBarTitleText": "基础档案"
+			}
+		},
+		// 基础档案-生活情况录入功能
+		{
+			"path": "pages/livingConditions/index",
+			"style": {
+				"navigationBarTitleText": "基础档案"
+			}
 		}
 	],
-	"globalStyle": {
+	"globalStyle":{
 		"navigationBarTextStyle": "black",
 		"navigationBarTitleText": "uni-app",
 		"navigationBarBackgroundColor": "#F8F8F8",

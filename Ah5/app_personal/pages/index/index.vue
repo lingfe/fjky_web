@@ -1,3 +1,4 @@
+<!-- 健康数据首页面 -->
 <template>
 	<view class="content">
 		<!-- 用户信息 -->
@@ -8,7 +9,7 @@
 					用户姓名
 				</view>
 				<view style='font-size: .8rem;'>
-					健康数据无任何异常情况
+					健康数据无任何异常情况 
 				</view>
 			</view>
 		</view>
@@ -191,49 +192,49 @@
 		</view>
 		<!-- 其他模块tab -->
 		<view class='otherTabFunction'>
-			<view>
+			<view @click="goto('../healthRecords/index')">
 				<img src="../../static/indexImg/icon_jiankang@2x.png" alt="">
 				<text>
 					健康档案
 				</text>
 			</view>
-			<view>
+			<view @click="goto()">
 				<img src="../../static/indexImg/icon_baogao@2x.png" alt="">
 				<text>
 					健康报告
 				</text>
 			</view>
-			<view>
+			<view @click="goto()">
 				<img src="../../static/indexImg/icon_yujing@3x.png" alt="">
 				<text>
 					预警设置
 				</text>
 			</view>
-			<view>
+			<view @click="goto()">
 				<img src="../../static/indexImg/icon_naozhong@3x.png" alt="">
 				<text>
 					吃药提醒
 				</text>
 			</view>
-			<view>
+			<view @click="goto()">
 				<img src="../../static/indexImg/icon_anquan@3x.png" alt="">
 				<text>
 					安全中心
 				</text>
 			</view>
-			<view>
+			<view @click="noTodo()">
 				<img src="../../static/indexImg/icon_pinggu@3x.png" alt="">
 				<text>
 					评估中心
 				</text>
 			</view>
-			<view>
+			<view @click="noTodo()">
 				<img src="../../static/indexImg/icon_yiyuan@2x.png" alt="">
 				<text>
 					合作医院
 				</text>
 			</view>
-			<view>
+			<view @click="noTodo()">
 				<img src="../../static/indexImg/icon_yisheng@3x.png" alt="">
 				<text>
 					合作医生
@@ -252,8 +253,8 @@
 				showTabBottm: 'stepNumber',
 			}
 		},
-		methods: {
-			//各个模块的查看详情
+		methods:{
+			//首页各个tab栏的查看详情
 			stepNumberDetail(){
 				console.log('查看详情-步数');
 			},
@@ -281,13 +282,19 @@
 			shuimianDetail(){
 				console.log('查看详情-睡眠');
 			},
-			getThisTab(n){ 
+			//暂时不做的功能
+			noTodo(){
+				
+				uni.showToast({
+				    title: '功能开发中，敬请期待！',
+				    duration: 2000,
+					icon:'none',
+				});
+			},
+			//首页tab栏切换，表格数据切换
+			getThisTab(n){
 				this.cTab = n;
-				//请求相关的健康数据，渲染新的报表
 				console.log(n);
-				//不同类型的数据将渲染不同的报表格式
-				//步数       血压          心率       血氧         尿酸     血脂      血糖        体温   睡眠
-				//stepNumber bloodPressure heartRate bloodOxygen uricAcid bloodFat bloodSugar  tiwen  shuimian
 				if (n == 'stepNumber') {
 					//渲染步数的数据和报表 得分环
 					// this.chartLine = echarts.init(document.getElementById('chartBox'));
@@ -328,6 +335,15 @@
 					this.showTabBottm = n;
 				}
 			},
+			//链接跳转
+			goto(n){
+				console.log('123');
+				console.log(n);
+				uni.navigateTo({
+					url:n,
+				})
+			},
+			//测试调用安卓对象
 			appToast(){
 				//安卓对象
 				appNative.toast();
@@ -341,6 +357,13 @@
 	}
 </script>
 <style>
+	.tab-lan{
+		font-size: 1rem;
+	}
+	:root {
+		--beforeW: 0;
+		--bgHeadColor:#00D193;
+	}
 	.shuimian {
 		/* border: 1px solid red; */
 		display: flex;
@@ -441,12 +464,8 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-	}
-
-	:root {
-		--beforeW: 0;
-	}
-
+	} 
+ 
 	.tabActive {
 		color: #222222;
 		/* color:red; */
@@ -462,7 +481,7 @@
 		bottom: -1px;
 		left: --beforeW;
 		/* left:10px; */
-		width: 9%;
+		width: 10%;
 		height: 4px;
 		border-radius: 20%;
 		background: #00D193;
@@ -511,13 +530,13 @@
 	}
 
 	.content {
-		font-size: .9rem;
+		font-size: .8rem;
 	}
-
 	.userInfo {
 		width: 100%;
 		display: flex;
 		background-color: #00D193;
+		/* background-color: var(--bgHeadColor); */
 		color: white;
 		align-items: center;
 		padding-bottom: 3rem;
@@ -527,7 +546,7 @@
 		width: 4rem;
 		height: 4rem;
 		border-radius: 50%;
-		margin: 1rem;
+		margin: .8rem;
 	}
 
 	.box-css {
