@@ -1,19 +1,5 @@
-<!-- 健康数据首页面 -->
 <template>
 	<view class="content">
-		<!-- 用户信息 -->
-		<view class='userInfo'>
-			<img src="../../static/touxiang.png" alt="">
-			<view>
-				<view style='font-family: PingFang-SC-Bold;color: #FFFFFF 100%;margin-bottom:.5rem;font-size: 1rem;'>
-					用户姓名
-				</view>
-				<view style='font-size: .8rem;'>
-					健康数据无任何异常情况 
-				</view>
-			</view>
-		</view>
-		<!-- 健康数据 -->
 		<view class='healthyData'>
 			<view class='tab-lan'>
 				<text :class="[cTab == 'stepNumber'?'tabActive':'tabNoActive']" @click="getThisTab('stepNumber')">步数</text>
@@ -27,9 +13,15 @@
 				<text :class="[cTab == 'shuimian'?'tabActive':'tabNoActive']" @click="getThisTab('shuimian')">睡眠</text>
 			</view>
 			<view id='chartBox' class='box-css'></view>
+			<view class='more_type' @click='stepNumberDetail()'>
+				<text style="border-top-left-radius: .8rem;border-bottom-left-radius: .8rem;border-right: none;">今天</text>
+				<text class='active_option' style='border-right: none;'>7天</text>
+				<text>15天</text>
+				<text style="border-top-right-radius: .8rem;border-bottom-right-radius: .8rem;border-left: none;">30天</text>
+			</view>
+			<view id='chartBox2' class='box-css'></view>
 			<view class='w100' v-if="showTabBottm == 'stepNumber'">
-				<view class='more_type' @click='stepNumberDetail()'>
-					<text>查看更多</text>
+				<view class='w100' v-if="showTabBottm == 'stepNumber'">
 				</view>
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodPressure'">
@@ -41,13 +33,15 @@
 						<view style='background-color: #F72600;'></view>
 					</view>
 				</view>
-				<view class='more_type' @click='bloodPressureDetail()'>
-					<text>查看更多</text>
-				</view>
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'heartRate'">
 				<view class='more_type' @click='heartRateDetail()'>
-					<text>查看更多</text>
+					<view class='more_type' @click='stepNumberDetail()'>
+						<text style="border-top-left-radius: .8rem;border-bottom-left-radius: .8rem;border-right: none;">今天</text>
+						<text style='border-right: none;'>7天</text>
+						<text>15天</text>
+						<text style="border-top-right-radius: .8rem;border-bottom-right-radius: .8rem;border-left: none;">30天</text>
+					</view>
 				</view>
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodOxygen'">
@@ -73,10 +67,6 @@
 						<text>98次/分</text>
 					</view>
 				</view>
-
-				<view class='more_type' @click='bloodOxygenDetail()'>
-					<text>查看更多</text>
-				</view>
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'uricAcid'">
 				<view class='showAnother bloodPressure'>
@@ -98,9 +88,6 @@
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
 						</view>
 					</view>
-				</view>
-				<view class='more_type' @click='uricAcidDetail()'>
-					<text>查看更多</text>
 				</view>
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodFat'">
@@ -124,9 +111,6 @@
 						</view>
 					</view>
 				</view>
-				<view class='more_type' @click='bloodFatDetail()'>
-					<text>查看更多</text>
-				</view>
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodSugar'">
 				<view class='showAnother bloodPressure'>
@@ -149,9 +133,6 @@
 						</view>
 					</view>
 				</view>
-				<view class='more_type' @click='bloodSugarDetail()'>
-					<text>查看更多</text>
-				</view>
 			</view>
 			<view class='w100' v-if="showTabBottm == 'tiwen'">
 				<view class='showAnother bloodPressure'>
@@ -161,9 +142,6 @@
 						<view style='background-color: #00D193;'></view>
 						<view style='background-color: #F72600;'></view>
 					</view>
-				</view>
-				<view class='more_type' @click='tiwenDetail()'>
-					<text>查看更多</text>
 				</view>
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'shuimian'">
@@ -185,60 +163,6 @@
 						</text>
 					</view>
 				</view>
-				<view class='more_type' @click='shuimianDetail()'>
-					<text>查看更多</text>
-				</view>
-			</view>
-		</view>
-		<!-- 其他模块tab -->
-		<view class='otherTabFunction'>
-			<view @click="goto('../healthRecords/index')">
-				<img src="../../static/indexImg/icon_jiankang@2x.png" alt="">
-				<text>
-					健康档案
-				</text>
-			</view>
-			<view @click="goto('../healthReport/index')">
-				<img src="../../static/indexImg/icon_baogao@2x.png" alt="">
-				<text>
-					健康报告
-				</text>
-			</view>
-			<view @click="goto()">
-				<img src="../../static/indexImg/icon_yujing@3x.png" alt="">
-				<text>
-					预警设置
-				</text>
-			</view>
-			<view @click="goto()">
-				<img src="../../static/indexImg/icon_naozhong@3x.png" alt="">
-				<text>
-					吃药提醒
-				</text>
-			</view>
-			<view @click="goto()">
-				<img src="../../static/indexImg/icon_anquan@3x.png" alt="">
-				<text>
-					安全中心
-				</text>
-			</view>
-			<view @click="noTodo()">
-				<img src="../../static/indexImg/icon_pinggu@3x.png" alt="">
-				<text>
-					评估中心
-				</text>
-			</view>
-			<view @click="noTodo()">
-				<img src="../../static/indexImg/icon_yiyuan@2x.png" alt="">
-				<text>
-					合作医院
-				</text>
-			</view>
-			<view @click="noTodo()">
-				<img src="../../static/indexImg/icon_yisheng@3x.png" alt="">
-				<text>
-					合作医生
-				</text>
 			</view>
 		</view>
 	</view>
@@ -254,43 +178,6 @@
 			}
 		},
 		methods:{
-			//首页各个tab栏的查看详情
-			stepNumberDetail(){
-				console.log('查看详情-步数');
-			},
-			bloodPressureDetail(){
-				console.log('查看详情-血压');
-			},
-			heartRateDetail(){
-				console.log('查看详情-心率');
-			},
-			bloodOxygenDetail(){
-				console.log('查看详情-血氧');
-			},
-			uricAcidDetail(){
-				console.log('查看详情-尿酸');
-			},
-			bloodFatDetail(){
-				console.log('查看详情-血脂');
-			},
-			bloodSugarDetail(){
-				console.log('查看详情-血糖');
-			},
-			tiwenDetail(){
-				console.log('查看详情-体温');
-			},
-			shuimianDetail(){
-				console.log('查看详情-睡眠');
-			},
-			//暂时不做的功能
-			noTodo(){
-				
-				uni.showToast({
-				    title: '功能开发中，敬请期待！',
-				    duration: 2000,
-					icon:'none',
-				});
-			},
 			//首页tab栏切换，表格数据切换
 			getThisTab(n){
 				this.cTab = n;
@@ -352,13 +239,20 @@
 		mounted(){
 			let echarts = require('echarts');
 			this.chartLine = echarts.init(document.getElementById('chartBox'));
-			this.chartLine.setOption(config.stepNumber);
+			this.lineChart = echarts.init(document.getElementById('chartBox2'));
+			this.chartLine.setOption(config.stepNumber,true);
+			this.lineChart.setOption(config.stepNumber_lineChart,true);
 		},
 	}
 </script>
 <style>
+	.active_option{
+		background-color: #00D193;
+		color: white !important;
+	}
 	.tab-lan{
 		font-size: 1rem;
+		padding: 0 1.5rem;
 	}
 	:root {
 		--beforeW: 0;
@@ -439,12 +333,23 @@
 	}
 
 	.more_type {
-		border-top: 1px solid #eeeeee;
-		width: 111%;
+		/* border: 1px solid rgba(0,209,147,1); */
+		width: 100%;
+		margin-left: 5%;
 		text-align: center;
-		padding-top: .8rem;
 		position: relative;
 		left: -1rem;
+		display: flex;
+		flex-direction: row;
+		border-radius: .8rem;
+		
+	}
+	.more_type text{
+		padding: 1.5% 5%;
+		width: 5rem;
+		border: 1px solid rgba(0,209,147,1);
+		color: rgba(0,209,147,1);
+		font-size: 1rem;
 	}
 
 	.otherTabFunction {
@@ -516,22 +421,19 @@
 	}
 
 	.healthyData {
-		width: 80%;
+		width: 90%;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-		border-radius: .5rem;
 		background: #FFFFFF;
-		box-shadow: 0px 2px 10px 0px rgba(83, 85, 112, 0.36);
 		padding: 1rem;
 		position: relative;
-		top: -3rem;
+		top: -0rem;
 	}
 
 	.content {
 		font-size: .8rem;
-		border-top: 1px solid #eeeeee;
 	}
 	.userInfo {
 		width: 100%;
@@ -551,11 +453,19 @@
 	}
 
 	.box-css {
-		/* border: 1px solid red; */
-		width: 80%;
+		width: 111%;
 		height: 450upx;
+		margin-top: .3rem;
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		box-shadow: 0 .2rem .2rem #eeeeee inset;
+		border: 1px solid red;
 	}
-
+	#chartBox2{
+		margin-top: 0 !important;
+	}
 	.content {
 		display: flex;
 		flex-direction: column;
@@ -572,7 +482,7 @@
 		margin-bottom: 50rpx;
 	}
 
-	.text-area {
+	.text-area { 
 		display: flex;
 		justify-content: center;
 	}
