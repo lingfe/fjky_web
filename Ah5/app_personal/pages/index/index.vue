@@ -12,7 +12,7 @@
 					健康数据无任何异常情况 
 				</view>
 			</view>
-		</view>
+		</view> 
 		<!-- 健康数据 -->
 		<view class='healthyData'>
 			<view class='tab-lan'>
@@ -246,11 +246,22 @@
 <script>
 	import echarts from 'echarts';
 	import config from '../../util/echartConfig/echartConfig.js';
+	import http from '../../util/tool/http.js';
 	export default {
 		data() {
 			return {
 				cTab: 'stepNumber',
 				showTabBottm: 'stepNumber',
+				steps_value:0,
+				sleep_value:0,
+				tiwen_value:0,
+				xinlu_value:0,
+				xuetang_value:0,
+				xueya_value:0,
+				xueyang_value:0,
+				niaosuan_value:0,
+				shuimian_value:0,
+				xuezhi_value:0,
 			}
 		},
 		methods:{
@@ -276,7 +287,7 @@
 			bloodSugarDetail(){
 				console.log('查看详情-血糖');
 			},
-			tiwenDetail(){
+			tiwenDetail(){ 
 				console.log('查看详情-体温');
 			},
 			shuimianDetail(){
@@ -284,7 +295,6 @@
 			},
 			//暂时不做的功能
 			noTodo(){
-				
 				uni.showToast({
 				    title: '功能开发中，敬请期待！',
 				    duration: 2000,
@@ -298,47 +308,46 @@
 				if (n == 'stepNumber') {
 					//渲染步数的数据和报表 得分环
 					// this.chartLine = echarts.init(document.getElementById('chartBox'));
-					this.chartLine.setOption(config.stepNumber, true);
+					this.chartLine.setOption(config.stepNumber(this.steps_value), true);
 					this.showTabBottm = n;
 				} else if (n == 'bloodPressure') {
 					//渲染血压的数据和报表  仪表盘
-					this.chartLine.setOption(config.bloodPressure, true);
+					this.chartLine.setOption(config.bloodPressure(this.xueya_value), true);
 					this.showTabBottm = n;
 				} else if (n == 'heartRate') {
 					//渲染心率的数据和报表 得分环
-					this.chartLine.setOption(config.heartRate, true);
+					this.chartLine.setOption(config.heartRate(this.xinlu_value), true);
 					this.showTabBottm = n;
 				} else if (n == 'bloodOxygen') {
 					//渲染血氧的数据和报表  仪表盘
-					this.chartLine.setOption(config.bloodOxygen, true);
+					this.chartLine.setOption(config.bloodOxygen(this.xueyang_value), true);
 					this.showTabBottm = n;
 				} else if (n == 'uricAcid') {
 					//渲染尿酸的数据和报表 仪表盘
-					this.chartLine.setOption(config.uricAcid, true);
+					this.chartLine.setOption(config.uricAcid(this.niaosuan_value), true);
 					this.showTabBottm = n;
 				} else if (n == 'bloodFat') {
 					//渲染血脂的数据和报表 仪表盘
-					this.chartLine.setOption(config.bloodFat, true);
+					this.chartLine.setOption(config.bloodFat(this.xuezhi_value), true);
 					this.showTabBottm = n;
 				} else if (n == 'bloodSugar') {
 					console.log('123');
 					//渲染血糖的数据和报表 仪表盘
-					this.chartLine.setOption(config.bloodSugar, true);
+					this.chartLine.setOption(config.bloodSugar(this.xuetang_value), true);
 					this.showTabBottm = n;
 				} else if (n == 'tiwen') {
-					//渲染血糖的数据和报表 仪表盘
-					this.chartLine.setOption(config.tiwen, true);
+					//渲染体温的数据和报表 仪表盘
+					this.chartLine.setOption(config.tiwen(this.tiwen_value), true);
 					this.showTabBottm = n;
 				} else if (n == 'shuimian') {
-					//渲染血糖的数据和报表 仪表盘
-					this.chartLine.setOption(config.shuimian, true);
+					//渲染睡眠的数据和报表 仪表盘
+					this.chartLine.setOption(config.shuimian(this.sleep_value), true);
 					this.showTabBottm = n;
 				}
 			},
 			//链接跳转
 			goto(n){
-				console.log('123');
-				console.log(n);
+				// console.log(n);
 				uni.navigateTo({
 					url:n,
 				})
@@ -347,12 +356,28 @@
 			appToast(){
 				//安卓对象
 				appNative.toast();
+			},
+			refresh(){
+				location.reload();
 			}
-		},
+		}, 
 		mounted(){
+			// this.refresh()
+			let that = this;
 			let echarts = require('echarts');
 			this.chartLine = echarts.init(document.getElementById('chartBox'));
-			this.chartLine.setOption(config.stepNumber);
+			//获取app用户健康信息
+			http.Get('/sys_fkcy/auhd/getHealthyData', {}, function(res){
+				console.log(res);
+				that.steps_value = res.data.steps.value;
+				that.sleep_value =res.data.sleep.value; 
+				that.tiwen_value = res.data.tiwen.value;
+				that.xinlu_value = res.data.xinlu.value;  
+				that.xuetang_value = res.data.xuetang.value; 
+				that.xueya_value = res.data.xueya.value;
+				that.xueyang_value = res.data.xueyang.value;
+				that.chartLine.setOption(config.stepNumber(that.steps_value),true);
+			});
 		},
 	}
 </script>

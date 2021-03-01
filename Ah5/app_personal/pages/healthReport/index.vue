@@ -19,6 +19,9 @@
 				<text>15天</text>
 				<text style="border-top-right-radius: .8rem;border-bottom-right-radius: .8rem;border-left: none;">30天</text>
 			</view>
+			<view v-if='showEdit' class='insert_img' @click="editPng_c()">
+				<img :src='editPng' alt="" />
+			</view>
 			<view id='chartBox2' class='box-css'></view>
 			<view class='w100' v-if="showTabBottm == 'stepNumber'">
 				<view class='w100' v-if="showTabBottm == 'stepNumber'">
@@ -36,12 +39,7 @@
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'heartRate'">
 				<view class='more_type' @click='heartRateDetail()'>
-					<view class='more_type' @click='stepNumberDetail()'>
-						<text style="border-top-left-radius: .8rem;border-bottom-left-radius: .8rem;border-right: none;">今天</text>
-						<text style='border-right: none;'>7天</text>
-						<text>15天</text>
-						<text style="border-top-right-radius: .8rem;border-bottom-right-radius: .8rem;border-left: none;">30天</text>
-					</view>
+				
 				</view>
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodOxygen'">
@@ -170,14 +168,27 @@
 <script>
 	import echarts from 'echarts';
 	import config from '../../util/echartConfig/echartConfig.js';
+	import http from '../../util/tool/http.js';
 	export default {
 		data() {
 			return {
+				editPng:require('../../static/edit-2.png'),
 				cTab: 'stepNumber',
 				showTabBottm: 'stepNumber',
+				steps_value:0,
+				sleep_value:0,
+				tiwen_value:0,
+				xinlu_value:0,
+				xuetang_value:0,
+				xueya_value:0,
+				xueyang_value:0,
+				niaosuan_value:0,
+				sleep_value:0,
+				xuezhi_value:0,
+				showEdit:false,
 			}
 		},
-		methods:{
+		methods:{ 
 			//首页tab栏切换，表格数据切换
 			getThisTab(n){
 				this.cTab = n;
@@ -185,47 +196,56 @@
 				if (n == 'stepNumber') {
 					//渲染步数的数据和报表 得分环
 					// this.chartLine = echarts.init(document.getElementById('chartBox'));
-					this.chartLine.setOption(config.stepNumber, true);
+					this.chartLine.setOption(config.stepNumber(this.steps_value), true);
+					this.lineChart.setOption(config.stepNumber_lineChart(this.steps_value),true);
 					this.showTabBottm = n;
+					this.showEdit = false;
 				} else if (n == 'bloodPressure') {
 					//渲染血压的数据和报表  仪表盘
-					this.chartLine.setOption(config.bloodPressure, true);
+					this.chartLine.setOption(config.bloodPressure(this.xueya_value), true);
+					this.lineChart.setOption(config.bloodPressure_lineChart(this.xueya_value),true);
 					this.showTabBottm = n;
-				} else if (n == 'heartRate') {
+					this.showEdit = true;
+				} else if (n == 'heartRate'){
 					//渲染心率的数据和报表 得分环
-					this.chartLine.setOption(config.heartRate, true);
+					this.chartLine.setOption(config.heartRate(this.xinlu_value), true);
 					this.showTabBottm = n;
+					this.showEdit = true;
 				} else if (n == 'bloodOxygen') {
 					//渲染血氧的数据和报表  仪表盘
-					this.chartLine.setOption(config.bloodOxygen, true);
+					this.chartLine.setOption(config.bloodOxygen(this.xueyang_value), true);
 					this.showTabBottm = n;
+					this.showEdit = true;
 				} else if (n == 'uricAcid') {
 					//渲染尿酸的数据和报表 仪表盘
-					this.chartLine.setOption(config.uricAcid, true);
+					this.chartLine.setOption(config.uricAcid(this.niaosuan_value), true);
 					this.showTabBottm = n;
+					this.showEdit = true;
 				} else if (n == 'bloodFat') {
 					//渲染血脂的数据和报表 仪表盘
-					this.chartLine.setOption(config.bloodFat, true);
+					this.chartLine.setOption(config.bloodFat(this.xuezhi_value), true);
 					this.showTabBottm = n;
-				} else if (n == 'bloodSugar') {
-					console.log('123');
+					this.showEdit = true;
+				} else if (n == 'bloodSugar'){
+					// console.log('123');
 					//渲染血糖的数据和报表 仪表盘
-					this.chartLine.setOption(config.bloodSugar, true);
+					this.chartLine.setOption(config.bloodSugar(this.xuetang_value), true);
 					this.showTabBottm = n;
+					this.showEdit = true;
 				} else if (n == 'tiwen') {
 					//渲染血糖的数据和报表 仪表盘
-					this.chartLine.setOption(config.tiwen, true);
+					this.chartLine.setOption(config.tiwen(this.tiwen_value), true);
 					this.showTabBottm = n;
+					this.showEdit = false;
 				} else if (n == 'shuimian') {
 					//渲染血糖的数据和报表 仪表盘
-					this.chartLine.setOption(config.shuimian, true);
+					this.chartLine.setOption(config.shuimian(this.sleep_value), true);
 					this.showTabBottm = n;
+					this.showEdit = false;
 				}
 			},
 			//链接跳转
 			goto(n){
-				console.log('123');
-				console.log(n);
 				uni.navigateTo({
 					url:n,
 				})
@@ -234,18 +254,53 @@
 			appToast(){
 				//安卓对象
 				appNative.toast();
+			},
+			//功能还在开发中
+			editPng_c(){
+				uni.showToast({
+					title:'功能开发中',
+					icon:'none',
+					duration:2000,
+				})
 			}
 		},
 		mounted(){
+			console.log(getApp().globalData.api);
 			let echarts = require('echarts');
 			this.chartLine = echarts.init(document.getElementById('chartBox'));
 			this.lineChart = echarts.init(document.getElementById('chartBox2'));
-			this.chartLine.setOption(config.stepNumber,true);
-			this.lineChart.setOption(config.stepNumber_lineChart,true);
+			this.lineChart.setOption(config.stepNumber_lineChart(),true);
+			let that = this;
+			//暂时返回0
+			that.chartLine.setOption(config.stepNumber(0),true);
+			//获取app用户健康信息
+			// http.Get('/sys_fkcy/auhd/getHealthyData', {}, function(res){
+			// 	console.log(res);
+			// 	that.steps_value = res.data.steps.value;
+			// 	that.sleep_value =res.data.sleep.value; 
+			// 	that.tiwen_value = res.data.tiwen.value;
+			// 	that.xinlu_value = res.data.xinlu.value; 
+			// 	that.xuetang_value = res.data.xuetang.value; 
+			// 	that.xueya_value = res.data.xueya.value;
+			// 	that.xueyang_value = res.data.xueyang.value;
+			// 	that.chartLine.setOption(config.stepNumber(that.steps_value),true);
+			// });
 		},
 	}
 </script>
 <style>
+	.insert_img img{
+		width: 1.2rem;
+	}
+	.insert_img{
+		display: inline-block;
+		/* border: 1px solid red; */
+		position: absolute;
+		top:13%; 
+		right: 8%;
+		z-index: 1000000;
+	}
+	
 	.active_option{
 		background-color: #00D193;
 		color: white !important;
@@ -269,6 +324,7 @@
 		justify-content: space-between;
 		width:80% !important;
 		margin-left: 5%;
+		top: 12rem !important;
 	}
 
 	.shuimian>view {
@@ -330,6 +386,8 @@
 		left: 0;
 		width: 90%;
 		padding: 5%;
+		    position: absolute;
+		    top: 10rem;
 	}
 
 	.more_type {
@@ -461,10 +519,12 @@
 		justify-content: center;
 		align-items: center;
 		box-shadow: 0 .2rem .2rem #eeeeee inset;
-		border: 1px solid red;
+		/* border: 1px solid red; */
 	}
 	#chartBox2{
-		margin-top: 0 !important;
+		margin-top: 1.5 !important;
+		box-shadow:none !important;
+		/* border: 1px solid red; */
 	}
 	.content {
 		display: flex;
