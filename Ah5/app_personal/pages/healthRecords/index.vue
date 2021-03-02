@@ -10,7 +10,7 @@
 				<text>用户姓名</text>
 				<text class='age_'>64岁</text>
 			</view>
-			<view class='basicArchives' @click="goto('../basicArchives/index')">
+			<view class='basicArchives' @click="goto('../basicArchivesPage/basicArchives/index')">
 				<text>基础档案</text>
 				<text>
 					<img style='width: 2rem;padding-top:.3rem;' src="../../static/arrow-right-white.png" alt="">
@@ -90,37 +90,37 @@
 					{
 						imgUrl:'../../static/indexImg/首页/icon_tijianjilu@3x.png',
 						textString:'体检记录',
-						pageUrl:'../physicalExaminationRecord/index'
+						pageUrl:'../healthRecords-records/physicalExaminationRecord/index'
 					},
 					{
 						imgUrl:'../../static/indexImg/首页/icon_jiuzhnegjilu@3x.png',
 						textString:'就诊记录',
-						pageUrl:'../medicalRecords/index'
+						pageUrl:'../healthRecords-records/medicalRecords/index'
 					},
 					{
 						imgUrl:'../../static/indexImg/首页/icon_changqiyongyao@3x.png',
 						textString:'长期用药',
-						pageUrl:'../longTermMedication/index'
+						pageUrl:'../healthRecords-records/longTermMedication/index'
 					},
 					{
 						imgUrl:'../../static/indexImg/首页/icon_guomingshi@3x.png',
 						textString:'过敏史',
-						pageUrl:'../allergicHistory/index' 
+						pageUrl:'../healthRecords-records/allergicHistory/index' 
 					},
 					{
 						imgUrl:'../../static/indexImg/首页/icon_jibingshi@3x.png',
 						textString:'疾病史',
-						pageUrl:'../historyOfDisease/index'
+						pageUrl:'../healthRecords-records/historyOfDisease/index'
 					},
 					{
 						imgUrl:'../../static/indexImg/首页/icon_shoushushi@3x.png',
 						textString:'手术史',
-						pageUrl:'../historyOfSurgery/index'
+						pageUrl:'../healthRecords-records/historyOfSurgery/index'
 					},
 					{
 						imgUrl:'../../static/indexImg/首页/icon_yichuantu@3x.png',
 						textString:'家族史',
-						pageUrl:'../familyHistory/index'
+						pageUrl:'../healthRecords-records/familyHistory/index'
 					},
 				]
 			}
