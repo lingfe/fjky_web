@@ -203,6 +203,20 @@
 			"style": { 
 				"navigationBarTitleText": "健康报告"
 			}
+		},
+		//预警设置
+		{
+			"path":"pages/warnningSetting/index",
+			"style":{
+				"navigationBarTitleText":"预警设置"
+			}
+		},
+		//吃药提醒
+		{
+			"path":"pages/medicationReminder/index",
+			"style":{
+				"navigationBarTitleText":"吃药提醒"
+			}
 		}
 		
 	],

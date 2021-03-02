@@ -1,6 +1,6 @@
 var config = {};
 export default config = {
-	//仪表盘图系列
+	//仪表盘图系列-单数据渲染
 	//步数
 	stepNumber: function(n) {
 		if (n == '未测量') {
@@ -748,8 +748,8 @@ export default config = {
 			}]
 		};
 	},
-	//折线图系列
-	//步数折线图
+	//折线图系列-多条数据渲染
+	//步数
 	stepNumber_lineChart: function() {
 		return {
 			xAxis: {
@@ -784,7 +784,7 @@ export default config = {
 			}]
 		};
 	},
-	//血压折线图
+	//血压
 	bloodPressure_lineChart: function() {
 		return {
 			color: ['#329BFE', '#FF9A21'],
@@ -842,8 +842,10 @@ export default config = {
 					length: 15,
 					splitNumber: 10,
 				},
-				name:'单位：次/分',
-				nameTextStyle:{ padding:[0,0,10,35] }, 
+				name: '单位：次/分',
+				nameTextStyle: {
+					padding: [0, 0, 10, 35]
+				},
 			},
 			series: [{
 				symbol: "none",
@@ -863,6 +865,409 @@ export default config = {
 				}
 			}]
 		};
-	}
+	},
+	//心率
+	heartRate_lineChart: function() {
+		return {
+			color: ['#329BFE', '#FF9A21'],
+			legend: [{
+				show: true,
+				top: "5%",
+				right: "10%",
+				textStyle: {
+					// 图例文字样式
+					color: "black",
+					fontSize: 12,
+					fontFamily: "微软雅黑"
+				},
+				itemWidth: 12, // 图例图形的宽度
+				itemHeight: 12, // 图例图形的高度
+				data: [{
+					name: "最小心率", // 图例文字内容
+					icon: 'rect', // 图例图形的形状，有多个可选值：'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'，
+				}]
+			}, {
+				top: "5%",
+				right: "30%",
+				textStyle: {
+					// 图例文字样式
+					color: "black",
+					fontSize: 12,
+					fontFamily: "微软雅黑"
+				},
+				itemWidth: 12, // 图例图形的宽度
+				itemHeight: 12, // 图例图形的高度
+				data: [{
+					name: "最大心率", // 图例文字内容
+					icon: 'rect', // 图例图形的形状，有多个可选值：'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'，
+				}]
+			}],
+			xAxis: {
+				type: 'category',
+				data: ['12.1', '12.2', '12.3', '12.4', '12.5', '12.6', '12:7'],
+				axisTick: {
+					show: false,
+				},
+				axisLine: {
+					lineStyle: {
+						color: 'grey',
+					}
+				}
+			},
+			yAxis: {
+				scale: true,
+				max: 150,
+				min: 50,
+				splitNumber: 5,
+				boundaryGap: [5, 5],
+				axisTick: {
+					show: false,
+					length: 15,
+					splitNumber: 10,
+				},
+				name: '单位：次/分',
+				nameTextStyle: {
+					padding: [0, 0, 10, 35]
+				},
+			},
+			series: [{
+				symbol: "none",
+				name: '最大心率',
+				data: [80, 100, 90, 110, 120, 140],
+				type: 'line',
+				lineStyle: {
+					color: '#329BFE',
+				}
+			}, {
+				name: '最小心率',
+				symbol: "none",
+				data: [50, 60, 70, 75, 85, 95],
+				type: 'line',
+				lineStyle: {
+					color: '#ffA438'
+				}
+			}]
+		};
+	},
+	//血氧
+	bloodOxygen_lineChart: function() {
+		return {
+			color: ['#329BFE', '#FF9A21'],
+			legend: [{
+				show: true,
+				top: "5%",
+				right: "10%",
+				textStyle: {
+					// 图例文字样式
+					color: "black",
+					fontSize: 12,
+					fontFamily: "微软雅黑"
+				},
+				itemWidth: 12, // 图例图形的宽度
+				itemHeight: 12, // 图例图形的高度
+				data: [{
+					name: "脉率", // 图例文字内容
+					icon: 'rect', // 图例图形的形状，有多个可选值：'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'，
+				}]
+			}, {
+				top: "5%",
+				right: "30%",
+				textStyle: {
+					// 图例文字样式
+					color: "black",
+					fontSize: 12,
+					fontFamily: "微软雅黑"
+				},
+				itemWidth: 12, // 图例图形的宽度
+				itemHeight: 12, // 图例图形的高度
+				data: [{
+					name: "饱和度", // 图例文字内容
+					icon: 'rect', // 图例图形的形状，有多个可选值：'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'，
+				}]
+			}],
+			xAxis: {
+				type: 'category',
+				data: ['12.1', '12.2', '12.3', '12.4', '12.5', '12.6', '12:7'],
+				axisTick: {
+					show: false,
+				},
+				axisLine: {
+					lineStyle: {
+						color: 'grey',
+					}
+				}
+			},
+			yAxis: [{
+					type: 'value',
+					min: 0,
+					max: 150,
+					interval: 50,
+					name: '饱和度',
+					data: [70, 100, 90, 130, 120, 180, 100],
+				},
+				{
+					type: 'value',
+					min: 0,
+					max: 150,
+					interval: 50,
+					axisLabel: {
+						formatter: '{value} %',
+					},
+					symbol: "none",
+					data: [80, 40, 60, 95, 105, 95, 65],
+				}
+			],
+			// {
+			// 	scale: true,
+			// 	max: 150,
+			// 	min: 50,
+			// 	splitNumber: 5,
+			// 	boundaryGap: [5, 5],
+			// 	axisTick: {
+			// 		show: false,
+			// 		length: 15,
+			// 		splitNumber: 10,
+			// 	},
+			// 	name: '单位：次/分',
+			// 	nameTextStyle: {
+			// 		padding: [0, 0, 10, 35]
+			// 	}, 
+			// },
+			series: [{
+				symbol: "none",
+				name: '饱和度',
+				data: [80, 100, 90, 110, 120, 140],
+				type: 'line',
+				lineStyle: {
+					color: '#329BFE',
+				}
+			}, {
+				name: '脉率',
+				symbol: "none",
+				data: [50, 60, 70, 75, 85, 95],
+				type: 'line',
+				lineStyle: {
+					color: '#ffA438'
+				}
+			}]
+		};
+	},
+	//尿酸
+	uricAcid_lineChart: function() {
+		return {
+			color: ['#329BFE', '#FF9A21'],
+			xAxis: {
+				type: 'category',
+				data: ['12.1', '12.2', '12.3', '12.4', '12.5', '12.6', '12:7'],
+				axisTick: {
+					show: false,
+				},
+				axisLine: {
+					lineStyle: {
+						color: 'grey',
+					}
+				}
+			},
+			yAxis: [{
+				type: 'value',
+				min: 0,
+				max: 150,
+				interval: 50,
+				name: '单位mmol/L',
+			}, ],
+			series: [{
+				symbol: "none",
+				data: [50, 100, 90, 50, 120, 150],
+				type: 'line',
+				lineStyle: {
+					color: '#329BFE',
+				}
+			}]
+		};
+	},
+	//血脂
+	bloodFat_lineChart: function() {
+		return {
+			legend: [{
+				bottom: "10%",
+				right: "5%",
+				textStyle: {
+					// 图例文字样式
+					color: "black",
+					fontSize: 12,
+					fontFamily: "微软雅黑"
+				},
+				itemWidth: 12, // 图例图形的宽度
+				itemHeight: 12, // 图例图形的高度
+				data: [{
+					name: "总胆固醇", // 图例文字内容
+					icon: 'rect', // 图例图形的形状，有多个可选值：'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'，
+				}, {
+					name: "甘油三脂", // 图例文字内容
+					icon: 'rect', // 图例图形的形状，有多个可选值：'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'，
+				}, {
+					name: "高密度脂蛋白", // 图例文字内容
+					icon: 'rect', // 图例图形的形状，有多个可选值：'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'，
+				}, {
+					name: "低密度脂蛋白", // 图例文字内容
+					icon: 'rect', // 图例图形的形状，有多个可选值：'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'，
+				}]
+			}],
+			color: ['#329BFE', '#FF9A21', '#F72600', '#21FFF8'],
+			xAxis: {
+				type: 'category',
+				data: ['12.1', '12.2', '12.3', '12.4', '12.5', '12.6', '12:7'],
+				axisTick: {
+					show: false,
+				},
+				axisLine: {
+					lineStyle: {
+						color: 'grey',
+					}
+				}
+			},
+			yAxis: [{
+				type: 'value',
+				min: 0,
+				max: 6,
+				interval: 1,
+				name: '单位mmol/L',
+			}, ],
+			series: [{
+					symbol: "none",
+					data: [3.1, 1.4, 1.3, 1.5, 3.9, 3.5],
+					type: 'line',
+					name: '总胆固醇',
+					lineStyle: {
+						color: '#329BFE',
+					}
+				},
+				{
+					symbol: "none",
+					data: [2.3, 2, 2.4, 2.1, 2.8, 2.1],
+					type: 'line',
+					name: '甘油三脂',
+					lineStyle: {
+						color: '#FF9A21',
+					}
+				}, {
+					symbol: "none",
+					data: [3.4, 3.1, 3.3, 3.1, 3.2, 3.6],
+					type: 'line',
+					name: '高密度脂蛋白',
+					lineStyle: {
+						color: '#F72600',
+					}
+				}, {
+					symbol: "none",
+					data: [5.1, 5.6, 5.2, 5.3, 5.2, 5.8],
+					type: 'line',
+					name: '低密度脂蛋白',
+					lineStyle: {
+						color: '#21FFF8',
+					}
+				}
+			]
+		};
+	},
+	//血糖
+	bloodSugar_lineChart: function() {
+		return {
+			color: ['#329BFE', '#FF9A21'],
+			xAxis: {
+				type: 'category',
+				data: ['12.1', '12.2', '12.3', '12.4', '12.5', '12.6', '12:7'],
+				axisTick: {
+					show: false,
+				},
+				axisLine: {
+					lineStyle: {
+						color: 'grey',
+					}
+				}
+			},
+			yAxis: [{
+				type: 'value',
+				min: 0,
+				max: 150,
+				interval: 50,
+				name: '单位mmol/L',
+			}, ],
+			series: [{
+				symbol: "none",
+				data: [50, 10, 90, 50, 120, 150],
+				type: 'line',
+				lineStyle: {
+					color: '#329BFE',
+				}
+			}]
+		};
+	},
+	//体温
+	tiwen_lineChart: function() {
+		return {
+			color: ['#329BFE', '#FF9A21'],
+			xAxis: {
+				type: 'category',
+				data: ['12.1', '12.2', '12.3', '12.4', '12.5', '12.6', '12:7'],
+				axisTick: {
+					show: false,
+				},
+				axisLine: {
+					lineStyle: {
+						color: 'grey',
+					}
+				}
+			},
+			yAxis: [{
+				type: 'value',
+				min: 0,
+				max: 150,
+				interval: 50,
+				name: '单位mmol/L',
+			}, ],
+			series: [{
+				symbol: "none",
+				data: [50, 100, 90, 50, 120, 150],
+				type: 'line',
+				lineStyle: {
+					color: '#329BFE',
+				}
+			}]
+		};
+	},
+	//睡眠
+	shuimian_lineChart: function() {
+		return {
+			color: ['#329BFE', '#FF9A21'],
+			xAxis: {
+				type: 'category',
+				data: ['12.1', '12.2', '12.3', '12.4', '12.5', '12.6', '12:7'],
+				axisTick: {
+					show: false,
+				},
+				axisLine: {
+					lineStyle: {
+						color: 'grey',
+					}
+				}
+			},
+			yAxis: [{
+				type: 'value',
+				min: 0,
+				max: 150,
+				interval: 50,
+				name: '单位mmol/L',
+			}, ],
+			series: [{
+				symbol: "none",
+				data: [50, 10, 90, 50, 10, 50],
+				type: 'line',
+				lineStyle: {
+					color: '#329BFE', 
+				}
+			}]
+		};
 
+	}
 }
