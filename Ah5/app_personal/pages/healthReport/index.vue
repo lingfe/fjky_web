@@ -13,7 +13,7 @@
 				<text :class="[cTab == 'shuimian'?'tabActive':'tabNoActive']" @click="getThisTab('shuimian')">睡眠</text>
 			</view>
 			<view id='chartBox' class='box-css'></view>
-			<view class='more_type' @click='stepNumberDetail()'>
+			<view class='more_type' @click='stepNumberDetail()' style='display: none;'>
 				<text style="border-top-left-radius: .8rem;border-bottom-left-radius: .8rem;border-right: none;">今天</text>
 				<text class='active_option' style='border-right: none;'>7天</text>
 				<text>15天</text>
@@ -39,7 +39,7 @@
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'heartRate'">
 				<view class='more_type' @click='heartRateDetail()'>
-				
+
 				</view>
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodOxygen'">
@@ -132,7 +132,7 @@
 					</view>
 				</view>
 			</view>
-			<view class='w100' v-if="showTabBottm == 'tiwen'">
+			<view class='w100' v-else-if="showTabBottm == 'tiwen'">
 				<view class='showAnother bloodPressure'>
 					<text style='color:black;font-size: .8rem;'>正常</text>
 					<view class='b'>
@@ -172,147 +172,184 @@
 	export default {
 		data() {
 			return {
-				editPng:require('../../static/edit-2.png'),
+				editPng: require('../../static/edit-2.png'),
 				cTab: 'stepNumber',
 				showTabBottm: 'stepNumber',
-				steps_value:0,
-				sleep_value:0,
-				tiwen_value:0,
-				xinlu_value:0,
-				xuetang_value:0,
-				xueya_value:0,
-				xueyang_value:0,
-				niaosuan_value:0,
-				sleep_value:0,
-				xuezhi_value:0,
-				showEdit:false,
+				steps_value: 0,
+				sleep_value: 0,
+				tiwen_value: 0,
+				xinlu_value: 0,
+				xuetang_value: 0,
+				xueya_value: 0,
+				xueyang_value: 0,
+				niaosuan_value: 0,
+				sleep_value: 0,
+				xuezhi_value: 0,
+				showEdit: false,
 			}
 		},
-		methods:{ 
+		methods: {
 			//首页tab栏切换，表格数据切换
-			getThisTab(n){
+			getThisTab(n) {
 				this.cTab = n;
-				console.log(n);
+				// console.log(n);
 				if (n == 'stepNumber') {
-					//渲染步数的数据和报表 得分环
+					//渲染步数
 					// this.chartLine = echarts.init(document.getElementById('chartBox'));
 					this.chartLine.setOption(config.stepNumber(this.steps_value), true);
-					this.lineChart.setOption(config.stepNumber_lineChart(this.steps_value),true);
+					this.lineChart.setOption(config.stepNumber_lineChart(this.steps_value), true);
 					this.showTabBottm = n;
 					this.showEdit = false;
 				} else if (n == 'bloodPressure') {
-					//渲染血压的数据和报表  仪表盘
+					//渲染血压
 					this.chartLine.setOption(config.bloodPressure(this.xueya_value), true);
-					this.lineChart.setOption(config.bloodPressure_lineChart(this.xueya_value),true);
+					this.lineChart.setOption(config.bloodPressure_lineChart(this.xueya_value), true);
 					this.showTabBottm = n;
 					this.showEdit = true;
-				} else if (n == 'heartRate'){
-					//渲染心率的数据和报表 得分环
+				} else if (n == 'heartRate') {
+					//渲染心率
 					this.chartLine.setOption(config.heartRate(this.xinlu_value), true);
+					this.lineChart.setOption(config.heartRate_lineChart(this.xueya_value), true);
 					this.showTabBottm = n;
 					this.showEdit = true;
 				} else if (n == 'bloodOxygen') {
-					//渲染血氧的数据和报表  仪表盘
+					//渲染血氧
 					this.chartLine.setOption(config.bloodOxygen(this.xueyang_value), true);
+					this.lineChart.setOption(config.bloodOxygen_lineChart(this.xueya_value), true);
 					this.showTabBottm = n;
 					this.showEdit = true;
 				} else if (n == 'uricAcid') {
-					//渲染尿酸的数据和报表 仪表盘
+					//渲染尿酸
 					this.chartLine.setOption(config.uricAcid(this.niaosuan_value), true);
+					this.lineChart.setOption(config.uricAcid_lineChart(this.xueya_value), true);
 					this.showTabBottm = n;
 					this.showEdit = true;
 				} else if (n == 'bloodFat') {
 					//渲染血脂的数据和报表 仪表盘
 					this.chartLine.setOption(config.bloodFat(this.xuezhi_value), true);
+					this.lineChart.setOption(config.bloodFat_lineChart(this.xueya_value), true);
 					this.showTabBottm = n;
 					this.showEdit = true;
-				} else if (n == 'bloodSugar'){
+				} else if (n == 'bloodSugar') {
 					// console.log('123');
 					//渲染血糖的数据和报表 仪表盘
 					this.chartLine.setOption(config.bloodSugar(this.xuetang_value), true);
+					this.lineChart.setOption(config.bloodSugar_lineChart(this.xueya_value), true);
 					this.showTabBottm = n;
 					this.showEdit = true;
 				} else if (n == 'tiwen') {
 					//渲染血糖的数据和报表 仪表盘
 					this.chartLine.setOption(config.tiwen(this.tiwen_value), true);
+					this.lineChart.setOption(config.tiwen_lineChart(this.xueya_value), true);
 					this.showTabBottm = n;
 					this.showEdit = false;
 				} else if (n == 'shuimian') {
 					//渲染血糖的数据和报表 仪表盘
 					this.chartLine.setOption(config.shuimian(this.sleep_value), true);
+					this.lineChart.setOption(config.shuimian_lineChart(this.xueya_value), true);
 					this.showTabBottm = n;
 					this.showEdit = false;
 				}
 			},
 			//链接跳转
-			goto(n){
+			goto(n) {
 				uni.navigateTo({
-					url:n,
+					url: n,
 				})
 			},
 			//测试调用安卓对象
-			appToast(){
+			appToast() {
 				//安卓对象
 				appNative.toast();
 			},
 			//功能还在开发中
-			editPng_c(){
+			editPng_c() {
 				uni.showToast({
-					title:'功能开发中',
-					icon:'none',
-					duration:2000,
+					title: '功能开发中',
+					icon: 'none',
+					duration: 2000,
 				})
 			}
 		},
-		mounted(){
-			console.log(getApp().globalData.api);
-			let echarts = require('echarts');
-			this.chartLine = echarts.init(document.getElementById('chartBox'));
-			this.lineChart = echarts.init(document.getElementById('chartBox2'));
-			this.lineChart.setOption(config.stepNumber_lineChart(),true);
-			let that = this;
-			//暂时返回0
-			that.chartLine.setOption(config.stepNumber(0),true);
-			//获取app用户健康信息
-			// http.Get('/sys_fkcy/auhd/getHealthyData', {}, function(res){
-			// 	console.log(res);
-			// 	that.steps_value = res.data.steps.value;
-			// 	that.sleep_value =res.data.sleep.value; 
-			// 	that.tiwen_value = res.data.tiwen.value;
-			// 	that.xinlu_value = res.data.xinlu.value; 
-			// 	that.xuetang_value = res.data.xuetang.value; 
-			// 	that.xueya_value = res.data.xueya.value;
-			// 	that.xueyang_value = res.data.xueyang.value;
-			// 	that.chartLine.setOption(config.stepNumber(that.steps_value),true);
-			// });
+		onLoad(option) {
+			console.log(option.tab);
+			this.cTab = option.tab;
+		},
+		mounted() {
+			console.log(this.cTab);
+			if (this.cTab == 'stepNumber' || this.cTab == undefined) {
+				let echarts = require('echarts');
+				this.chartLine = echarts.init(document.getElementById('chartBox'));
+				this.lineChart = echarts.init(document.getElementById('chartBox2'));
+				this.lineChart.setOption(config.stepNumber_lineChart(), true);
+				let that = this;
+				http.Get('/sys_fkcy/auhd/getHealthyData', {
+					'appUserId': '4c404454-0d30-475e-a4c5-57bfea958c96'
+				}, function(res) {
+					// console.log(res);
+					that.steps_value = res.data.steps.value;
+					that.sleep_value = res.data.sleep.value;
+					that.tiwen_value = res.data.tiwen.value;
+					that.xinlu_value = res.data.xinlu.value;
+					that.xuetang_value = res.data.xuetang.value;
+					that.xueya_value = res.data.xueya.value;
+					that.xueyang_value = res.data.xueyang.value;
+					that.getThisTab('stepNumber');
+					that.cTab = 'stepNumber';
+				});
+			} else if (this.cTab != 'stepNumber') {
+				document.querySelector(".tabActive").scrollIntoView();
+				let echarts = require('echarts');
+				this.chartLine = echarts.init(document.getElementById('chartBox'));
+				this.lineChart = echarts.init(document.getElementById('chartBox2'));
+				let that = this;
+				//获取app用户健康信息
+				http.Get('/sys_fkcy/auhd/getHealthyData', {
+					'appUserId': '4c404454-0d30-475e-a4c5-57bfea958c96'
+				}, function(res) {
+					// console.log(res);
+					that.steps_value = res.data.steps.value;
+					that.sleep_value = res.data.sleep.value;
+					that.tiwen_value = res.data.tiwen.value;
+					that.xinlu_value = res.data.xinlu.value;
+					that.xuetang_value = res.data.xuetang.value;
+					that.xueya_value = res.data.xueya.value;
+					that.xueyang_value = res.data.xueyang.value;
+					that.getThisTab(that.cTab);
+				});
+			}
 		},
 	}
 </script>
 <style>
-	.insert_img img{
+	.insert_img img {
 		width: 1.2rem;
 	}
-	.insert_img{
+
+	.insert_img {
 		display: inline-block;
 		/* border: 1px solid red; */
 		position: absolute;
-		top:13%; 
+		top: 13%;
 		right: 8%;
 		z-index: 1000000;
 	}
-	
-	.active_option{
+
+	.active_option {
 		background-color: #00D193;
 		color: white !important;
 	}
-	.tab-lan{
+
+	.tab-lan {
 		font-size: 1rem;
 		padding: 0 1.5rem;
 	}
+
 	:root {
 		--beforeW: 0;
-		--bgHeadColor:#00D193;
+		--bgHeadColor: #00D193;
 	}
+
 	.shuimian {
 		/* border: 1px solid red; */
 		display: flex;
@@ -322,7 +359,7 @@
 		bottom: 2.5rem;
 		font-size: .7rem;
 		justify-content: space-between;
-		width:80% !important;
+		width: 80% !important;
 		margin-left: 5%;
 		top: 12rem !important;
 	}
@@ -386,8 +423,8 @@
 		left: 0;
 		width: 90%;
 		padding: 5%;
-		    position: absolute;
-		    top: 10rem;
+		position: absolute;
+		top: 10rem;
 	}
 
 	.more_type {
@@ -400,13 +437,14 @@
 		display: flex;
 		flex-direction: row;
 		border-radius: .8rem;
-		
+
 	}
-	.more_type text{
+
+	.more_type text {
 		padding: 1.5% 5%;
 		width: 5rem;
-		border: 1px solid rgba(0,209,147,1);
-		color: rgba(0,209,147,1);
+		border: 1px solid rgba(0, 209, 147, 1);
+		color: rgba(0, 209, 147, 1);
 		font-size: 1rem;
 	}
 
@@ -427,8 +465,8 @@
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-	} 
- 
+	}
+
 	.tabActive {
 		color: #222222;
 		/* color:red; */
@@ -493,6 +531,7 @@
 	.content {
 		font-size: .8rem;
 	}
+
 	.userInfo {
 		width: 100%;
 		display: flex;
@@ -520,12 +559,15 @@
 		align-items: center;
 		box-shadow: 0 .2rem .2rem #eeeeee inset;
 		/* border: 1px solid red; */
+		border-bottom: 1px solid #eeeeee;
 	}
-	#chartBox2{
+
+	#chartBox2 {
 		margin-top: 1.5 !important;
-		box-shadow:none !important;
+		box-shadow: none !important;
 		/* border: 1px solid red; */
 	}
+
 	.content {
 		display: flex;
 		flex-direction: column;
@@ -542,7 +584,7 @@
 		margin-bottom: 50rpx;
 	}
 
-	.text-area { 
+	.text-area {
 		display: flex;
 		justify-content: center;
 	}

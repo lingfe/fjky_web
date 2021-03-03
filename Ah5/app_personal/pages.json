@@ -16,168 +16,168 @@
 		},
 		//基础档案
 		{
-			"path": "pages/basicArchives/index",
+			"path": "pages/basicArchivesPage/basicArchives/index",
 			"style": {
 				"navigationBarTitleText": "基础档案"
 			}
 		},
 		//基础档案-身体参数信息录入保存页面
 		{
-			"path": "pages/bodyParametersInput/index",
+			"path": "pages/basicArchivesPage/bodyParametersInput/index",
 			"style": {
 				"navigationBarTitleText": "基础档案"
 			}
 		},
 		//基础档案-器官功能录入保存页面
 		{
-			"path": "pages/organFunction/index",
+			"path": "pages/basicArchivesPage/organFunction/index",
 			"style": {
 				"navigationBarTitleText": "基础档案"
 			}
 		},
 		// 基础档案-生活情况录入功能
 		{
-			"path": "pages/livingConditions/index",
+			"path": "pages/basicArchivesPage/livingConditions/index",
 			"style": {
 				"navigationBarTitleText": "基础档案"
 			}
 		},
 		// 基础档案-生活方式录入功能
 		{
-			"path": "pages/lifeStyle/index",
+			"path": "pages/basicArchivesPage/lifeStyle/index",
 			"style": {
 				"navigationBarTitleText": "基础档案"
 			}
 		},
 		//基础档案-体检记录
 		{
-			"path": "pages/physicalExaminationRecord/index",
+			"path": "pages/healthRecords-records/physicalExaminationRecord/index",
 			"style": {
 				"navigationBarTitleText": "体检记录"
 			}
 		},
 		//基础档案-就诊记录
 		{
-			"path": "pages/medicalRecords/index",
+			"path": "pages/healthRecords-records/medicalRecords/index",
 			"style": {
 				"navigationBarTitleText": "就诊记录"
 			}
 		},
 		//基础档案-长期用药
 		{
-			"path": "pages/longTermMedication/index",
+			"path": "pages/healthRecords-records/longTermMedication/index",
 			"style": {
 				"navigationBarTitleText": "长期用药"
 			}
 		},
 		//基础档案-过敏史
 		{
-			"path": "pages/allergicHistory/index",
+			"path": "pages/healthRecords-records/allergicHistory/index",
 			"style": {
 				"navigationBarTitleText": "过敏史"
 			}
 		},
 		//基础档案-疾病史
 		{
-			"path": "pages/historyOfDisease/index",
+			"path": "pages/healthRecords-records/historyOfDisease/index",
 			"style": {
 				"navigationBarTitleText": "疾病史"
 			}
 		},
 		//基础档案-手术史
 		{
-			"path": "pages/historyOfSurgery/index",
+			"path": "pages/healthRecords-records/historyOfSurgery/index",
 			"style": {
 				"navigationBarTitleText": "手术史"
 			}
 		},
 		//基础档案-家族史
 		{
-			"path": "pages/familyHistory/index",
+			"path": "pages/healthRecords-records/familyHistory/index",
 			"style": {
 				"navigationBarTitleText": "家族史"
 			}
 		},
 		//基础档案-体检记录添加页
 		{
-			"path": "pages/addPhysicalExaminationRecord/index",
+			"path": "pages/addPage/addPhysicalExaminationRecord/index",
 			"style": {
 				"navigationBarTitleText": "添加"
-			}
+			} 
 		},
 		//基础档案-体检记录查看详情页
 		{
-			"path": "pages/detailPhysicalExaminationRecord/index",
+			"path": "pages/detailPage/detailPhysicalExaminationRecord/index",
 			"style": {
 				"navigationBarTitleText": "体检记录"
 			}
 		},
 		//基础档案-就诊记录添加页
 		{
-			"path": "pages/addmedicalRecords/index",
+			"path": "pages/addPage/addmedicalRecords/index",
 			"style": {
 				"navigationBarTitleText": "添加"
 			}
 		},
 		//基础档案-就诊记录查看详情页
 		{
-			"path": "pages/detailmedicalRecords/index",
+			"path": "pages/detailPage/detailmedicalRecords/index",
 			"style": {
 				"navigationBarTitleText": "就诊记录"
 			}
 		},
 		//基础档案-长期用药添加页
 		{
-			"path": "pages/addLongTermMedication/index",
+			"path": "pages/addPage/addLongTermMedication/index",
 			"style": {
 				"navigationBarTitleText": "添加"
 			}
 		},
 		//基础档案-长期用药详情页
 		{
-			"path": "pages/detailLongTermMedication/index",
+			"path": "pages/detailPage/detailLongTermMedication/index",
 			"style": {
 				"navigationBarTitleText": "长期用药"
 			}
 		},
 		//基础档案-过敏史添加页
 		{
-			"path": "pages/addAllergicHistory/index",
+			"path": "pages/addPage/addAllergicHistory/index",
 			"style": {
 				"navigationBarTitleText": "添加"
 			}
-		},
+		}, 
 		//基础档案-过敏史详情页A
 		{
-			"path": "pages/detailAllergicHistory/index",
+			"path": "pages/detailPage/detailAllergicHistory/index",
 			"style": {
 				"navigationBarTitleText": "过敏史"
 			}
 		},
 		//基础档案-疾病史添加页
 		{
-			"path": "pages/addHistoryOfDisease/index",
+			"path": "pages/addPage/addHistoryOfDisease/index",
 			"style": {
 				"navigationBarTitleText": "添加"
 			}
 		},
 		//基础档案-疾病史详情页A
 		{
-			"path": "pages/detailHistoryOfDisease/index", 
+			"path": "pages/detailPage/detailHistoryOfDisease/index", 
 			"style": {
 				"navigationBarTitleText": "过敏史" 
 			}
 		},
 		//基础档案-疾病史添加页
 		{ 
-			"path": "pages/addHistoryOfSurgery/index",
+			"path": "pages/addPage/addHistoryOfSurgery/index",
 			"style": {
 				"navigationBarTitleText": "添加"
 			}
 		},
 		//基础档案-疾病史详情页A
 		{
-			"path": "pages/detailHistoryOfSurgery/index",
+			"path": "pages/detailPage/detailHistoryOfSurgery/index",
 			"style": {
 				"navigationBarTitleText": "过敏史"
 			}
@@ -185,14 +185,14 @@
 		//familyHistory
 		//基础档案-家族史添加页
 		{ 
-			"path": "pages/addFamilyHistory/index",
+			"path": "pages/addPage/addFamilyHistory/index",
 			"style": {
 				"navigationBarTitleText": "添加"
-			} 
+			}
 		},
 		//基础档案-家族史详情页
 		{ 
-			"path": "pages/detailFamilyHistory/index",
+			"path": "pages/detailPage/detailFamilyHistory/index",
 			"style": { 
 				"navigationBarTitleText": "家族史"
 			}
@@ -202,6 +202,20 @@
 			"path": "pages/healthReport/index",
 			"style": { 
 				"navigationBarTitleText": "健康报告"
+			}
+		},
+		//预警设置
+		{
+			"path":"pages/warnningSetting/index",
+			"style":{
+				"navigationBarTitleText":"预警设置"
+			}
+		},
+		//吃药提醒
+		{
+			"path":"pages/medicationReminder/index",
+			"style":{
+				"navigationBarTitleText":"吃药提醒"
 			}
 		}
 		

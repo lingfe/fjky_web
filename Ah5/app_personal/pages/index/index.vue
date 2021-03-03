@@ -204,13 +204,13 @@
 					健康报告
 				</text>
 			</view>
-			<view @click="goto()">
+			<view @click="goto('../warnningSetting/index')">
 				<img src="../../static/indexImg/icon_yujing@3x.png" alt="">
 				<text>
 					预警设置
 				</text>
 			</view>
-			<view @click="goto()">
+			<view @click="goto('../medicationReminder/index')">
 				<img src="../../static/indexImg/icon_naozhong@3x.png" alt="">
 				<text>
 					吃药提醒
@@ -247,6 +247,7 @@
 	import echarts from 'echarts';
 	import config from '../../util/echartConfig/echartConfig.js';
 	import http from '../../util/tool/http.js';
+	import goto from '../../util/tool/tool.js';
 	export default {
 		data() {
 			return {
@@ -268,30 +269,39 @@
 			//首页各个tab栏的查看详情
 			stepNumberDetail(){
 				console.log('查看详情-步数');
+				goto.goto('../healthReport/index?tab=stepNumber');
 			},
 			bloodPressureDetail(){
 				console.log('查看详情-血压');
+				goto.goto('../healthReport/index?tab=bloodPressure');
 			},
 			heartRateDetail(){
 				console.log('查看详情-心率');
+				goto.goto('../healthReport/index?tab=heartRate');
 			},
 			bloodOxygenDetail(){
 				console.log('查看详情-血氧');
+				goto.goto('../healthReport/index?tab=bloodOxygen');
 			},
 			uricAcidDetail(){
 				console.log('查看详情-尿酸');
+				goto.goto('../healthReport/index?tab=uricAcid');
 			},
 			bloodFatDetail(){
 				console.log('查看详情-血脂');
+				goto.goto('../healthReport/index?tab=bloodFat');
 			},
 			bloodSugarDetail(){
 				console.log('查看详情-血糖');
+				goto.goto('../healthReport/index?tab=bloodSugar');
 			},
 			tiwenDetail(){ 
 				console.log('查看详情-体温');
+				goto.goto('../healthReport/index?tab=tiwen');
 			},
 			shuimianDetail(){
 				console.log('查看详情-睡眠');
+				goto.goto('../healthReport/index?tab=shuimian');
 			},
 			//暂时不做的功能
 			noTodo(){
@@ -367,12 +377,12 @@
 			let echarts = require('echarts');
 			this.chartLine = echarts.init(document.getElementById('chartBox'));
 			//获取app用户健康信息
-			http.Get('/sys_fkcy/auhd/getHealthyData', {}, function(res){
+			http.Get('/sys_fkcy/auhd/getHealthyData', {'appUserId':'4c404454-0d30-475e-a4c5-57bfea958c96'}, function(res){
 				console.log(res);
 				that.steps_value = res.data.steps.value;
 				that.sleep_value =res.data.sleep.value; 
 				that.tiwen_value = res.data.tiwen.value;
-				that.xinlu_value = res.data.xinlu.value;  
+				that.xinlu_value = res.data.xinlu.value;   
 				that.xuetang_value = res.data.xuetang.value; 
 				that.xueya_value = res.data.xueya.value;
 				that.xueyang_value = res.data.xueyang.value;
