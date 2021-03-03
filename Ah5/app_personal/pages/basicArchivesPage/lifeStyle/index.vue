@@ -1,6 +1,6 @@
 <!-- 录入生活方式信息 -->
 <template>
-	<view>
+	<view style='border-top:1px solid #eeeeee;'>
 		<view class='title'>
 			<text>生活方式</text>
 		</view>

@@ -1,6 +1,6 @@
 <!-- 录入器官功能信息 --> 
 <template> 
-	<view>
+	<view style='border-top:1px solid #eeeeee;'>
 		<view class='title'> 
 			<text>器官功能</text>
 			<text class='outOne'>保存</text>

@@ -182,7 +182,6 @@
 				"navigationBarTitleText": "过敏史"
 			}
 		},
-		//familyHistory
 		//基础档案-家族史添加页
 		{ 
 			"path": "pages/addPage/addFamilyHistory/index",
@@ -216,6 +215,27 @@
 			"path":"pages/medicationReminder/index",
 			"style":{
 				"navigationBarTitleText":"吃药提醒"
+			}
+		},
+		//吃药提醒-新增
+		{
+			"path":"pages/addPage/addMedicationReminder/index",
+			"style":{
+				"navigationBarTitleText":"新增"
+			}
+		} ,
+		//吃药提醒-编辑
+		{
+			"path":"pages/addPage/editMedicationReminder/index",
+			"style":{ 
+				"navigationBarTitleText":"编辑"
+			}
+		},
+		//安全中心
+		{
+			"path":"pages/securityCenter/index",
+			"style":{
+				"navigationBarTitleText":"安全中心"
 			}
 		}
 		

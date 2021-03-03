@@ -1,6 +1,6 @@
 <!-- 录入生活情况信息 -->
 <template>
-	<view>
+	<view style='border-top:1px solid #eeeeee;'>
 		<view class='title'>
 			<text>生活情况</text>
 			<text class='outOne'>保存</text>

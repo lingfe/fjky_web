@@ -10,7 +10,7 @@
 				<text :class="[cTab == 'bloodFat'?'tabActive':'tabNoActive']" @click="getThisTab('bloodFat')">血脂</text>
 				<text :class="[cTab == 'bloodSugar'?'tabActive':'tabNoActive']" @click="getThisTab('bloodSugar')">血糖</text>
 				<text :class="[cTab == 'tiwen'?'tabActive':'tabNoActive']" @click="getThisTab('tiwen')">体温</text>
-				<text :class="[cTab == 'shuimian'?'tabActive':'tabNoActive']" @click="getThisTab('shuimian')">睡眠</text>
+				<!-- <text :class="[cTab == 'shuimian'?'tabActive':'tabNoActive']" @click="getThisTab('shuimian')">睡眠</text> -->
 			</view>
 		</view>
 		<view class='conten_setting'>
@@ -45,27 +45,15 @@
 			</view>
 			<view v-if= "showTabBottm == 'heartRate' ">
 				<view class='bloodPressure_setting'>
-						<text>最低心率</text>
 						<view class='flexBoxC'>
 							<text>最高值</text>
 							<input type="text">
-							<text>mmHg</text>
+							<text>次/分</text>
 						</view>
 						<view class='flexBoxC'>
 							<text>最低值</text>
 							<input type="text">
-							<text>mmHg</text>
-						</view>
-						<text>最高心率</text>
-						<view class='flexBoxC'>
-							<text>最高值</text>
-							<input type="text">
-							<text>mmHg</text>
-						</view>
-						<view class='flexBoxC'>
-							<text>最低值</text>
-							<input type="text">
-							<text>mmHg</text>
+							<text>次/分</text>
 						</view>
 						<view class='saveBtn'>
 							<text>保存</text>
@@ -75,77 +63,99 @@
 			</view>
 			<view v-if= "showTabBottm == 'bloodOxygen' ">
 				<view class='bloodPressure_setting'>
-						<view class='flexBoxC'>
-							<text>最高值</text>
-							<input type="text">
-							<text>mmHg</text>
-						</view>
-						<view class='flexBoxC'>
-							<text>最低值</text>
-							<input type="text">
-							<text>mmHg</text>
-						</view>
-						<view class='saveBtn'>
-							<text>保存</text>
-						</view>
+					<text>饱和度</text>
+					<view class='flexBoxC'>
+						<text>最高值</text>
+						<input type="text">
+						<text>%</text>
+					</view>
+					<view class='flexBoxC'>
+						<text>最低值</text>
+						<input type="text">
+						<text>%</text>
+					</view>
+					<text>脉率</text>
+					<view class='flexBoxC'>
+						<text>最高值</text>
+						<input type="text">
+						<text>分/次</text>
+					</view>
+					<view class='flexBoxC'>
+						<text>最低值</text>
+						<input type="text">
+						<text>分/次</text>
+					</view>
+					<view class='saveBtn'>
+						<text>保存</text>
+					</view>
 					</view>
 				
 			</view>
 			<view v-if= "showTabBottm == 'uricAcid' ">
 				<view class='bloodPressure_setting'>
-						<text>高压（收缩压）</text>
-						<view class='flexBoxC'>
-							<text>最高值</text>
-							<input type="text">
-							<text>mmHg</text>
-						</view>
-						<view class='flexBoxC'>
-							<text>最低值</text>
-							<input type="text">
-							<text>mmHg</text>
-						</view>
-						<text>高压（舒张压）</text>
-						<view class='flexBoxC'>
-							<text>最高值</text>
-							<input type="text">
-							<text>mmHg</text>
-						</view>
-						<view class='flexBoxC'>
-							<text>最低值</text>
-							<input type="text">
-							<text>mmHg</text>
-						</view>
-						<view class='saveBtn'>
-							<text>保存</text>
-						</view>
+					<view class='flexBoxC'>
+						<text>最高值</text>
+						<input type="text">
+						<text>mmol/L</text>
+					</view>
+					<view class='flexBoxC'>
+						<text>最低值</text>
+						<input type="text">
+						<text>mmol/L</text>
+					</view>
+					<view class='saveBtn'>
+						<text>保存</text>
+					</view>
 					</view>
 				
 			</view>
 			<view v-if= "showTabBottm == 'bloodFat' ">
 				<view class='bloodPressure_setting'>
-						<text>高压（收缩压）</text>
+						<text>总胆固醇</text>
 						<view class='flexBoxC'>
 							<text>最高值</text>
 							<input type="text">
-							<text>mmHg</text>
+							<text>mmol/L</text>
 						</view>
 						<view class='flexBoxC'>
 							<text>最低值</text>
 							<input type="text">
-							<text>mmHg</text>
+							<text>mmol/L</text>
 						</view>
-						<text>高压（舒张压）</text>
+						<text>甘油三脂</text>
 						<view class='flexBoxC'>
 							<text>最高值</text>
 							<input type="text">
-							<text>mmHg</text>
+							<text>mmol/L</text>
 						</view>
 						<view class='flexBoxC'>
 							<text>最低值</text>
 							<input type="text">
-							<text>mmHg</text>
+							<text>mmol/L</text>
 						</view>
-						<view class='saveBtn'>
+						<text>高密度脂蛋白</text>
+						<view class='flexBoxC'>
+							<text>最高值</text>
+							<input type="text">
+							<text>mmol/L</text>
+						</view>
+						<view class='flexBoxC'>
+							<text>最低值</text>
+							<input type="text">
+							<text>mmol/L</text>
+						</view>
+						<text>低密度脂蛋白</text>
+						<view class='flexBoxC'>
+							<text>最高值</text>
+							<input type="text">
+							<text>mmol/L</text>
+						</view>
+						<view class='flexBoxC'>
+							<text>最低值</text>
+							<input type="text">
+							<text>mmol/L</text>
+						</view>
+						<view style='margin-bottom: 5rem;' class='saveBtn'>
 							<text>保存</text>
 						</view>
 					</view>
@@ -153,57 +163,79 @@
 			</view>
 			<view v-if= "showTabBottm == 'bloodSugar' ">
 				<view class='bloodPressure_setting'>
-						<text>高压（收缩压）</text>
-						<view class='flexBoxC'>
-							<text>最高值</text>
-							<input type="text">
-							<text>mmHg</text>
-						</view>
-						<view class='flexBoxC'>
-							<text>最低值</text>
-							<input type="text">
-							<text>mmHg</text>
-						</view>
-						<text>高压（舒张压）</text>
-						<view class='flexBoxC'>
-							<text>最高值</text>
-							<input type="text">
-							<text>mmHg</text>
-						</view>
-						<view class='flexBoxC'>
-							<text>最低值</text>
-							<input type="text">
-							<text>mmHg</text>
-						</view>
-						<view class='saveBtn'>
-							<text>保存</text>
-						</view>
+					<text>空腹</text>
+					<view class='flexBoxC'>
+						<text>最高值</text>
+						<input type="text">
+						<text>mmol/L</text>
+					</view>
+					<view class='flexBoxC'>
+						<text>最低值</text>
+						<input type="text">
+						<text>mmol/L</text>
+					</view>
+					<text>餐前</text>
+					<view class='flexBoxC'>
+						<text>最高值</text>
+						<input type="text">
+						<text>mmol/L</text>
+					</view>
+					<view class='flexBoxC'>
+						<text>最低值</text>
+						<input type="text">
+						<text>mmol/L</text>
+					</view>
+					<text>餐后</text>
+					<view class='flexBoxC'>
+						<text>最高值</text>
+						<input type="text">
+						<text>mmol/L</text>
+					</view>
+					<view class='flexBoxC'>
+						<text>最低值</text>
+						<input type="text">
+						<text>mmol/L</text>
+					</view>
+					<text>睡前</text>
+					<view class='flexBoxC'>
+						<text>最高值</text>
+						<input type="text">
+						<text>mmol/L</text>
+					</view>
+					<view class='flexBoxC'>
+						<text>最低值</text>
+						<input type="text">
+						<text>mmol/L</text>
+					</view>
+					<text>凌晨</text>
+					<view class='flexBoxC'>
+						<text>最高值</text>
+						<input type="text">
+						<text>mmol/L</text>
+					</view>
+					<view class='flexBoxC'>
+						<text>最低值</text>
+						<input type="text">
+						<text>mmol/L</text>
+					</view>
+					<view style='margin-bottom: 5rem;' class='saveBtn'>
+						<text>保存</text>
+					</view>
 					</view>
 				
 			</view>
 			<view v-if= "showTabBottm == 'tiwen' ">
 				<view class='bloodPressure_setting'>
-						<text>高压（收缩压）</text>
+						<text>空腹</text>
 						<view class='flexBoxC'>
 							<text>最高值</text>
 							<input type="text">
-							<text>mmHg</text>
+							<text>°C</text>
 						</view>
 						<view class='flexBoxC'>
 							<text>最低值</text>
 							<input type="text">
-							<text>mmHg</text>
-						</view>
-						<text>高压（舒张压）</text>
-						<view class='flexBoxC'>
-							<text>最高值</text>
-							<input type="text">
-							<text>mmHg</text>
-						</view>
-						<view class='flexBoxC'>
-							<text>最低值</text>
-							<input type="text">
-							<text>mmHg</text>
+							<text>°C</text>
 						</view>
 						<view class='saveBtn'>
 							<text>保存</text>
@@ -239,7 +271,6 @@
 							<text>保存</text>
 						</view>
 					</view>
-				
 			</view>
 		</view>
 	</view>
@@ -310,21 +341,28 @@
 </script>
 <style>
 	.saveBtn{
-		padding: .5rem .8rem; 
-		width: 50%;
+		width: 100%;
+		display:flex;
+		align-items: center;
+		justify-content: center;
+		}
+	.saveBtn text{
+		padding: .5rem .8rem;
 		font-size: 1rem;
+		width: 50%;
 		color:white;
 		background-color: #00D193;
-		margin-left: 25%;
 		margin-top: 10%;
 		border-radius: 1.5rem;
 	}
 	.flexBoxC{
-		/* border: 1px solid red ; */
 		display: flex;
 		flex-direction: row;
-		justify-content: center;
+		justify-content: flex-start;
 		align-items: center;
+		width: 95%;
+		margin-left: 5%;
+		
 	}
 	.flexBoxC text{
 		padding: 1.3rem 1.3rem;
@@ -334,7 +372,6 @@
 	.flexBoxC input{
 		background-color: #f5f5f5;
 		height: 2rem;
-		width: 50%;
 	}
 	.conten_setting{
 		position: relative;

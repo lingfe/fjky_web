@@ -216,7 +216,7 @@
 					吃药提醒
 				</text>
 			</view>
-			<view @click="goto()">
+			<view @click="goto('../securityCenter/index')">
 				<img src="../../static/indexImg/icon_anquan@3x.png" alt="">
 				<text>
 					安全中心
@@ -488,10 +488,13 @@
 		display: grid;
 		grid-template-columns: 1fr 1fr 1fr 1fr;
 		grid-gap: 10px;
+		padding-top: .5rem;
 	}
 
 	.otherTabFunction img {
-		width: 3rem;
+		padding-top: .4rem;
+		width: 2.7rem;
+		padding-bottom:.3rem;
 	}
 
 	.otherTabFunction view {

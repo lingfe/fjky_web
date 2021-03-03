@@ -1,6 +1,6 @@
 <!-- 录入身体参数信息 --> 
 <template>
-	<view>
+	<view style='border-top:1px solid #eeeeee;'>
 		<view class='title'>
 			<text>身体基本参数</text>
 			<text class='outOne'>保存</text>
