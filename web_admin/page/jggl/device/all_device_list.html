@@ -52,15 +52,26 @@
         </div>
     </script>
     <!-- table头部操作 end-->
+	
     <!-- 列表操作 start(编辑， 删除) -->
     <script type="text/html" id="currentTableBar">
-        {{# if(d.user_id != ''&& d.user_id !=undefined && d.user_id!='null') { }}
-        <a class="redColor" lay-event="unbind">解绑</a>
-        {{#  }  }}
-        <a class="dengjiTest" lay-event="edit">编辑</a>
-        <a class="redColor" lay-event="delete">删除</a>
+        <a class="layui-btn layui-btn-normal layui-btn-xs" lay-event="edit">编辑</a>
+        <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="delete">删除</a>
+		<a class="layui-btn layui-btn-xs" href="/sys_fkcy/device/generateDeviceCode?dev_id={{d.id}}" target="_blank">二维码</a>
     </script>
     <!-- 列表操作 end -->
+	
+	<!-- 关联用户 start -->
+    <script type="text/html" id="glUser">
+        {{# if(d.user_id != ''&& d.user_id !=undefined && d.user_id!='null') { }}
+			<span>{{d.user_name}}</span>
+			<a class="redColor" lay-event="unbind">解绑</a>
+        {{#  } else {  }}
+			<span>未关联</span>
+		{{#  }  }}
+    </script>
+    <!-- 关联用户 end -->
+	
     <!-- 设备佩戴状态模板 -->
     <script type='text/html' id='temWear'>
         {{# if(d.wear === undefined || ''){ }}
@@ -71,6 +82,7 @@
         <span style='color:gray;'>闲置中</span>
         {{#  } }}
     </script>
+	
     <!-- 设备在线离线状态 -->
     <script type='text/html' id='temState'>
         {{# if(d.state == 0){ }}
@@ -78,8 +90,8 @@
         {{#  }else{  }}
         <span style='color:#1594FF'>在线</span> 
         {{# } }}
-
     </script>
+	
     <!-- 引入js资源 -->
     <script src="../../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
     <script src="../../bcxt/login/login.js"></script>
@@ -93,6 +105,7 @@
             var table = layui.table;
             var form = layui.form;
             var token = Storage.get("token");
+			
             // 监听搜索操作
             form.on('submit(data-search-btn)', function (data) {
                 var result = data.field;
@@ -107,6 +120,7 @@
                 });
                 return false;
             });
+			
             if (dtype_name != '') {
                 table.render({
                     elem: '#currentTableId',
@@ -164,6 +178,12 @@
                             title:'设备状态',
                             align:'center',
                             templet:'#temState',
+                        },
+						{
+                            field:'user_name',
+                            title:'关联用户',
+                            align:'center',
+                            templet:'#glUser',
                         },
                         {
                             title: '操作',
@@ -253,7 +273,14 @@
                             title:'设备状态',
                             align:'center',
                             templet:'#temState',
-                        }, {
+                        },
+						{
+                            field:'user_name',
+                            title:'关联用户',
+                            align:'center',
+                            templet:'#glUser',
+                        },
+						{
                             title: '操作',
                             minWidth: 200,
                             toolbar: '#currentTableBar',
@@ -283,6 +310,7 @@
                     skin: 'line'
                 });
             }
+			
             //toolbar监听事件(头部添加操作)
             table.on('toolbar(currentTableFilter)', function (obj) {
                 if (obj.event === 'add') { // 监听添加操作
@@ -301,6 +329,7 @@
                     });
                 }
             });
+			
             //监听操作事件(列表编辑，列表删除)
             table.on('tool(currentTableFilter)', function (obj) {
                 var data = obj.data;
@@ -396,9 +425,9 @@
                     });
                 }
             });
-
-
         });
+		
+		//父级调用传值
         function child(d) {
             dtype_name = d;
         }
