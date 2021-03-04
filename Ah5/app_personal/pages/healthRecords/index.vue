@@ -70,10 +70,10 @@
 		<!-- 功能list --> 
 		<view>
 			<view class='listItem' v-for='(item,index) in list' :v-key="index" @click="goto(item.pageUrl)">
-				<img :src=item.imgUrl alt="">
+				<img style='width: 1.5rem;height: 1.5rem;' :src=item.imgUrl alt="">
 				<text style='padding-left:.5rem;font-size:.9rem;width: 25%;color:gray;'>{{item.textString}}</text>
 				<text class='text_type'>
-					<img style='width: 2rem;padding-top:.3rem;' src="../../static/arrow-right-gray.png" alt="">
+					<img style='width: 2rem;padding-top:.2rem;' src="../../static/arrow-right-gray.png" alt="">
 				</text>
 			</view>
 		</view>
@@ -175,8 +175,8 @@
 		align-items: center;
 		padding-left: 1rem;
 		padding-right: 1rem;
-		padding-top: .5rem;
-		padding-bottom: .5rem;
+		padding-top: .2rem;
+		padding-bottom: .2rem;
 		border-bottom: 1px solid #eeeeee;
 	}
 
@@ -195,7 +195,7 @@
 	.subTitle {
 		padding: 1rem;
 		font-weight: 600;
-		font-size: .9rem;
+		font-size: .95rem;
 	}
 
 	.situation {
