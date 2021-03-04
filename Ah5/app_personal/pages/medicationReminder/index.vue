@@ -24,7 +24,7 @@
 	export default {
 		data(){
 			return{
-				items:[1],
+				items:[1], 
 				goto:goto,
 			}
 		}

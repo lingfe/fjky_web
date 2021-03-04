@@ -844,7 +844,7 @@ export default config = {
 				},
 				name: '单位：次/分',
 				nameTextStyle: {
-					padding: [0, 0, 10, 35]
+					padding: [0, 0, 10, 20]
 				},
 			},
 			series: [{
@@ -918,7 +918,7 @@ export default config = {
 				scale: true,
 				max: 150,
 				min: 50,
-				splitNumber: 5,
+				interval: 20,
 				boundaryGap: [5, 5],
 				axisTick: {
 					show: false,
@@ -927,7 +927,7 @@ export default config = {
 				},
 				name: '单位：次/分',
 				nameTextStyle: {
-					padding: [0, 0, 10, 35]
+					padding: [0, 0, 10, 20]
 				},
 			},
 			series: [{
@@ -952,6 +952,9 @@ export default config = {
 	//血氧
 	bloodOxygen_lineChart: function() {
 		return {
+			grid:{
+				x2:60
+			}, 
 			color: ['#329BFE', '#FF9A21'],
 			legend: [{
 				show: true,
@@ -971,7 +974,7 @@ export default config = {
 				}]
 			}, {
 				top: "5%",
-				right: "30%",
+				right: "25%",
 				textStyle: {
 					// 图例文字样式
 					color: "black",
@@ -1004,6 +1007,9 @@ export default config = {
 					interval: 50,
 					name: '饱和度',
 					data: [70, 100, 90, 130, 120, 180, 100],
+					nameTextStyle: {
+						padding: [10, 10, 10, -20]
+					},
 				},
 				{
 					type: 'value',
@@ -1017,22 +1023,6 @@ export default config = {
 					data: [80, 40, 60, 95, 105, 95, 65],
 				}
 			],
-			// {
-			// 	scale: true,
-			// 	max: 150,
-			// 	min: 50,
-			// 	splitNumber: 5,
-			// 	boundaryGap: [5, 5],
-			// 	axisTick: {
-			// 		show: false,
-			// 		length: 15,
-			// 		splitNumber: 10,
-			// 	},
-			// 	name: '单位：次/分',
-			// 	nameTextStyle: {
-			// 		padding: [0, 0, 10, 35]
-			// 	}, 
-			// },
 			series: [{
 				symbol: "none",
 				name: '饱和度',
@@ -1074,6 +1064,9 @@ export default config = {
 				max: 150,
 				interval: 50,
 				name: '单位mmol/L',
+				nameTextStyle: {
+					padding: [0, 0, 10, 20]
+				},
 			}, ],
 			series: [{
 				symbol: "none",
@@ -1089,8 +1082,8 @@ export default config = {
 	bloodFat_lineChart: function() {
 		return {
 			legend: [{
-				bottom: "10%",
-				right: "5%",
+				bottom: "5%",
+				right: "2%",
 				textStyle: {
 					// 图例文字样式
 					color: "black",
@@ -1132,6 +1125,9 @@ export default config = {
 				max: 6,
 				interval: 1,
 				name: '单位mmol/L',
+				nameTextStyle: {
+					padding: [0, 0, 10, 20]
+				},
 			}, ],
 			series: [{
 					symbol: "none",
@@ -1192,6 +1188,9 @@ export default config = {
 				max: 150,
 				interval: 50,
 				name: '单位mmol/L',
+				nameTextStyle: {
+					padding: [0, 0, 10, 20]
+				},
 			}, ],
 			series: [{
 				symbol: "none",
@@ -1225,6 +1224,9 @@ export default config = {
 				max: 150,
 				interval: 50,
 				name: '单位mmol/L',
+				nameTextStyle: {
+					padding: [0, 0, 10, 20]
+				},
 			}, ],
 			series: [{
 				symbol: "none",
@@ -1258,6 +1260,9 @@ export default config = {
 				max: 150,
 				interval: 50,
 				name: '单位mmol/L',
+				nameTextStyle: {
+					padding: [0, 0, 10, 320]
+				},
 			}, ],
 			series: [{
 				symbol: "none",

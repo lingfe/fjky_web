@@ -408,9 +408,9 @@
 		position: absolute;
 		bottom: -1px;
 		left: --beforeW;
-		width: 6%;
+		width: 1rem;
 		height: 3rem;
-		margin-left: 2.5%;
+		margin-left: .5rem;
 		height: 5px;
 		border-radius: 2.5px;
 		background: #00D193;

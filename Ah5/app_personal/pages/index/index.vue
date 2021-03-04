@@ -34,7 +34,7 @@
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodPressure'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .8rem;'>正常</text>
+					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
 					<view class='b'>
 						<view style='background-color: #FF9A21;'></view>
 						<view style='background-color: #00D193;'></view>
@@ -52,7 +52,7 @@
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodOxygen'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .8rem;'>正常</text>
+					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
 					<view class='a'>
 						<text>脉率</text>
 						<view>
@@ -80,7 +80,7 @@
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'uricAcid'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .8rem;'>正常</text>
+					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
 					<view class='a'>
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
@@ -105,7 +105,7 @@
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodFat'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .8rem;'>正常</text>
+					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
 					<view class='a'>
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
@@ -130,7 +130,7 @@
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodSugar'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .8rem;'>正常</text>
+					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
 					<view class='a'>
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
@@ -155,7 +155,7 @@
 			</view>
 			<view class='w100' v-if="showTabBottm == 'tiwen'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .8rem;'>正常</text>
+					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
 					<view class='b'>
 						<view style='background-color: #72A7FE;'></view>
 						<view style='background-color: #00D193;'></view>
@@ -423,7 +423,7 @@
 	}
 
 	.b>view {
-		height: .4rem;
+		height: .5rem;
 		/* border: 1px solid red; */
 		width: 3.5rem;
 	}
@@ -439,7 +439,7 @@
 
 	.a>view>view {
 		width: 3.5rem;
-		height: .4rem;
+		height: .5rem;
 		/* margin-top: .5rem; */
 		margin-bottom: .1rem;
 	}
@@ -476,6 +476,8 @@
 		left: 0;
 		width: 90%;
 		padding: 5%;
+		top:55%;
+		/* border: 1px solid red; */
 	}
 
 	.more_type {
@@ -523,9 +525,9 @@
 		position: absolute;
 		bottom: -1px;
 		left: --beforeW;
-		width: 7%;
+		width: 1rem;
 		height: 3rem;
-		margin-left: 2%;
+		margin-left: .5rem;
 		height: 5px;
 		border-radius: 2.5px;
 		background: #00D193;
@@ -542,6 +544,7 @@
 		left: 0;
 		overflow: scroll;
 		white-space: nowrap;
+		height: 1.7rem;
 	}
 
 	.tab-lan text {
@@ -550,6 +553,7 @@
 		/* border: 1px solid red; */
 		/* text-align: center; */
 		padding-bottom: .2rem;
+		/* border: 1px solid red; */
 	}
 
 	.text:after {

@@ -2,7 +2,7 @@
 	<view class='content'>
 		<picker mode="time" :value="time" start="09:01" end="21:01" @change="bindTimeChange">
 			<view class="input_">
-				<text style='border-top: 1px solid #dddddd;border-bottom: 1px solid #dddddd; padding:.8rem 0;width: 90%;display: inline-block;'>
+				<text style='border-top: 1px solid #eeeeee;border-bottom: 1px solid #eeeeee; padding:.8rem 0;width: 90%;display: inline-block;'>
 					<text style='padding-right: 3rem;'>{{time_hour}}</text> : <text style='padding-left:3rem;'>{{time_second}}</text>
 				</text>
 			</view>
