@@ -216,16 +216,16 @@
 					吃药提醒
 				</text>
 			</view>
-			<view @click="goto('../securityCenter/index')">
-				<img src="../../static/indexImg/icon_anquan@3x.png" alt="">
-				<text>
-					安全中心
-				</text>
-			</view>
-			<view @click="noTodo()">
+			<view @click="goto('../evaluationCenter/index')">
 				<img src="../../static/indexImg/icon_pinggu@3x.png" alt="">
 				<text>
 					评估中心
+				</text>
+			</view>
+			<view @click="noTodo()">
+				<img src="../../static/indexImg/icon_anquan@3x.png" alt="">
+				<text>
+					安全中心
 				</text>
 			</view>
 			<view @click="noTodo()">
@@ -392,8 +392,13 @@
 	}
 </script>
 <style>
+	@import url("../../util/tool/common.css");
+	.content{
+	}
 	.tab-lan{
 		font-size: 1rem;
+		/* border: 1px solid red; */
+		height: 1.6rem;
 	}
 	:root {
 		--beforeW: 0;
@@ -518,10 +523,11 @@
 		position: absolute;
 		bottom: -1px;
 		left: --beforeW;
-		/* left:10px; */
-		width: 10%;
-		height: 4px;
-		border-radius: 20%;
+		width: 7%;
+		height: 3rem;
+		margin-left: 2%;
+		height: 5px;
+		border-radius: 2.5px;
 		background: #00D193;
 	}
 

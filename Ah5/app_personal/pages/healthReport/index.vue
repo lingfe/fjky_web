@@ -322,6 +322,7 @@
 	}
 </script>
 <style>
+	@import url("../../util/tool/common.css");
 	.insert_img img {
 		width: 1.2rem;
 	}
@@ -343,6 +344,7 @@
 	.tab-lan {
 		font-size: 1rem;
 		padding: 0 1.5rem;
+		height: 1.6rem;
 	}
 
 	:root {
@@ -481,15 +483,15 @@
 		position: absolute;
 		bottom: -1px;
 		left: --beforeW;
-		/* left:10px; */
-		width: 10%;
-		height: 4px;
-		border-radius: 20%;
+		width: 6%;
+		height: 3rem;
+		margin-left: 2%;
+		height: 5px;
+		border-radius: 2.5px;
 		background: #00D193;
 	}
 
 	.tab-lan {
-		/* border: 1px solid blue; */
 		width: 100%;
 		/* margin: .5rem; */
 		color: #666666;
@@ -499,6 +501,7 @@
 		left: 0;
 		overflow: scroll;
 		white-space: nowrap;
+		height: 1.7rem;
 	}
 
 	.tab-lan text {

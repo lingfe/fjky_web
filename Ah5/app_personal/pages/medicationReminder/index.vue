@@ -1,5 +1,5 @@
 <template>
-	<view style='position: relative;border-top: 1px solid #f5f5f5;'>
+	<view class='content' style='position: relative;border-top: 1px solid #f5f5f5;'>
 		<view class='lists'> 
 			<view v-for='(item,index) in items' class="list" :v-key='index'> 
 				<view>
@@ -7,24 +7,11 @@
 				</view>
 				<view class='list_content'>
 					<text style='color:black;font-weight: 600;font-size:.9rem;'>已设置-凌晨-吃药</text>
-					<text style='color:gray;padding-top:.3rem;font-size: .8rem;'>2020.11.22-2020.11.29</text>
+					<text style='color:gray;padding-top:.3rem;font-size: .8rem;width: 12rem;'>2020.11.22-2020.11.29</text>
 				</view>
 				<view @click="goto.goto('../addPage/editMedicationReminder/index')" class='edit_content'>
 					<text>编辑</text>
 				</view>
-			</view>
-			<view class="list">
-				<view>
-					<img src="../../static/indexImg/icon_chiyao@3x.png" alt="">
-				</view>
-				<view class='list_content'>
-					<text style='color:black;font-weight: 600;font-size:.9rem;'>已设置-中午-吃药</text>
-					<text style='color:gray;padding-top:.3rem;font-size: .8rem;'>2020.11.22-2020.11.29</text>
-				</view>
-				<view @click="goto.goto('../addPage/editMedicationReminder/index')" class='edit_content'>
-					<text>编辑</text>
-				</view>
-				<view style='display: none; '>"您今天在12点13分中午该吃药了啦!不要忘记了哦~"</view>
 			</view>
 		</view>
 		<view class='add_btn' @click="goto.goto('../addPage/addMedicationReminder/index')">
@@ -44,6 +31,7 @@
 	}
 </script>
 <style>
+	@import url("../../util/tool/common.css");
 	.add_btn{
 		position: absolute;
 		top:-2rem;

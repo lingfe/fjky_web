@@ -59,6 +59,7 @@
 	}
 </script>
 <style>
+	@import url("../../../util/tool/common.css");
 	.content{
 		border-top: 1px solid #eeeeee;
 	}

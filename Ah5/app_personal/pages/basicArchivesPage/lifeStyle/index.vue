@@ -1,6 +1,6 @@
 <!-- 录入生活方式信息 -->
 <template>
-	<view style='border-top:1px solid #eeeeee;'>
+	<view class='content' style='border-top:1px solid #eeeeee;'>
 		<view class='title'>
 			<text>生活方式</text>
 		</view>
@@ -45,6 +45,7 @@
 	</view>
 </template>
 <style>
+	@import url("../../../util/tool/common.css");
 	.stn{
 		margin: 20%;
 		padding-top: 2%;

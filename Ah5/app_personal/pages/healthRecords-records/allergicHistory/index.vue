@@ -61,6 +61,7 @@
 </script> 
 
 <style>
+	@import url("../../../util/tool/common.css");
 	.result_ {
 		color: #999999;
 		/* border: 1px solid red; */

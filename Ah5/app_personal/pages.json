@@ -237,12 +237,46 @@
 			"style":{
 				"navigationBarTitleText":"安全中心"
 			}
+		}, 
+		//评估中心 
+		{
+			"path":"pages/evaluationCenter/index",
+			"style":{
+				"navigationBarTitleText":"评估中心"
+			}
+		},
+		//慢性病评估
+		{
+			"path":"pages/evaluationCenter-evaluations/chronicDisease/index",
+			"style":{
+				"navigationBarTitleText":"慢性病服务体验"
+			}
+		},
+		//心理健康评估
+		{
+			"path":"pages/evaluationCenter-evaluations/mentalHealth/index",
+			"style":{
+				"navigationBarTitleText":"心理健康"
+			}
+		},
+		//自理能力评估
+		{
+			"path":"pages/evaluationCenter-evaluations/selfCareAbility/index",
+			"style":{
+				"navigationBarTitleText":"自理能力"
+			}
+		},
+		//认知能力 
+		{
+			"path":"pages/evaluationCenter-evaluations/cognitiveAbility/index",
+			"style":{
+				"navigationBarTitleText":"认知能力"
+			}
 		}
-		
 	],
 	"globalStyle": {
 		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app",
+		"navigationBarTitleText": "uni-app", 
 		"navigationBarBackgroundColor": "white",
 		"backgroundColor": "#F8F8F8"
 	}

@@ -1,6 +1,6 @@
 <!-- 录入器官功能信息 --> 
 <template> 
-	<view style='border-top:1px solid #eeeeee;'>
+	<view class="content" style='border-top:1px solid #eeeeee;'>
 		<view class='title'> 
 			<text>器官功能</text>
 			<text class='outOne'>保存</text>
@@ -31,6 +31,7 @@
 </view>
 </template>
 <style>
+	@import url("../../../util/tool/common.css");
 	.tab_item>text:nth-child(1) {
 		color: #222222;
 	}

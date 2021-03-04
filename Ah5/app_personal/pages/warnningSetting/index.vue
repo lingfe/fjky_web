@@ -340,6 +340,7 @@
 	}
 </script>
 <style>
+	@import url("../../util/tool/common.css");
 	.saveBtn{
 		width: 100%;
 		display:flex;
@@ -362,12 +363,16 @@
 		align-items: center;
 		width: 95%;
 		margin-left: 5%;
-		
+		margin-top: 1rem;
 	}
 	.flexBoxC text{
-		padding: 1.3rem 1.3rem;
 		font-size: .8rem;
 		color:#666666; 
+		width: 5rem;
+		height: 3rem;
+		display: flex;
+		justify-content: center;
+		align-items: center;
 	}
 	.flexBoxC input{
 		background-color: #f5f5f5;
@@ -388,24 +393,26 @@
 		font-weight: 600;
 		font-size: 1rem;
 		display: inline-block; 
+		margin-top: 1.5rem;
 	}
-s	.tabActive {
+	.tabActive {
 		color: #222222;
 		/* color:red; */
 		/* text-decoration: underline; */
 		/* border: 1px solid red; */
 	}
-	.tabActive:before {
+.tabActive:before {
 		color: red;
 		content: "";
 		display: block;
 		position: absolute;
 		bottom: -1px;
 		left: --beforeW;
-		/* left:10px; */
-		width: 10%;
-		height: 4px;
-		border-radius: 20%;
+		width: 6%;
+		height: 3rem;
+		margin-left: 2.5%;
+		height: 5px;
+		border-radius: 2.5px;
 		background: #00D193;
 	}
 	.tab-lan {
@@ -419,6 +426,7 @@ s	.tabActive {
 		left: 0;
 		overflow: scroll;
 		white-space: nowrap;
+		height: 1.7rem;
 	}
 
 	.tab-lan text {

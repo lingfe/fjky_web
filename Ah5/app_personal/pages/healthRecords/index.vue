@@ -71,7 +71,7 @@
 		<view>
 			<view class='listItem' v-for='(item,index) in list' :v-key="index" @click="goto(item.pageUrl)">
 				<img :src=item.imgUrl alt="">
-				<text style='padding-left:.5rem;font-size:.9rem;width: 20%;color:gray;'>{{item.textString}}</text>
+				<text style='padding-left:.5rem;font-size:.9rem;width: 25%;color:gray;'>{{item.textString}}</text>
 				<text class='text_type'>
 					<img style='width: 2rem;padding-top:.3rem;' src="../../static/arrow-right-gray.png" alt="">
 				</text>
@@ -144,6 +144,7 @@
 	}
 </script>
 <style>
+	@import url("../../util/tool/common.css");
 	.content{
 		border-top: 1px solid #eeeeee;
 	}

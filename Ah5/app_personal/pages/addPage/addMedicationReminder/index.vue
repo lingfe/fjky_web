@@ -1,5 +1,5 @@
 <template>
-	<view>
+	<view class='content'>
 		<picker mode="time" :value="time" start="09:01" end="21:01" @change="bindTimeChange">
 			<view class="input_">
 				<text style='border-top: 1px solid #dddddd;border-bottom: 1px solid #dddddd; padding:.8rem 0;width: 90%;display: inline-block;'>
@@ -123,6 +123,7 @@
 	}
 </script>
 <style>
+	@import url("../../../util/tool/common.css");
 	.saveBtn{
 		margin:10%;
 		text-align: center;

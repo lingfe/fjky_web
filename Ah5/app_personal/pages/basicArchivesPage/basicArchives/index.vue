@@ -1,6 +1,6 @@
 <!-- 基础档案 -->
 <template>
-	<view>
+	<view class="content">
 		<!-- 用户信息 -->
 		<view class='userInfo'>
 			<view>
@@ -127,6 +127,7 @@
 	</view>
 </template>
 <style>
+	@import url("../../../util/tool/common.css");
 	.age_{
 		font-size: .9rem !important;
 		padding-top: .5rem;
