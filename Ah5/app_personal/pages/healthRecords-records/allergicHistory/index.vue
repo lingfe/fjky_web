@@ -45,11 +45,6 @@
 			}
 		},
 		methods: {
-			//测试调用安卓对象 
-			appToast() {
-				//安卓对象
-				appNative.toast();
-			},
 			addallergicHistoryd(){
 				goto.goto('../../addPage/addAllergicHistory/index');
 			},
@@ -69,10 +64,9 @@
 		-webkit-box-orient: vertical;
 		overflow: hidden;
 		height: 2rem;
-		width: 15.5rem;
+		width: 90%;
 		padding: 0 .5rem .5rem .5rem;
 		line-height: 1.2rem;
-		
 	}
 
 	.name_ {

@@ -4,25 +4,25 @@
 		<!-- 用户信息 -->
 		<view class='userInfo'>
 			<view>
-				<img src="../../../static/touxiang.png" alt="">
+				<img :src="userImg" alt="">
 			</view>
 			<view class='userName'>
-				<text>用户姓名</text>
-				<text class='age_'>64岁</text>
+				<text>{{userName}}</text>
+				<text class='age_'>{{age}}岁</text>
 			</view>
 			<view class='telPhone'>
-				<text>18948574857</text>
-			</view>
+				<text>{{tele}}</text>
+			</view> 
 		</view>
 		<!-- 身份证信息 -->
 		<view class='idInfo'>
 			<view>
 				<text>身份证号</text>
-				<text>52342354457456356</text>
+				<text>{{idNumber}}</text>
 			</view>
 			<view>
 				<text>家庭住址</text>
-				<text>铜仁市碧江区百花路瑜龙世家13-2B5楼23号</text>
+				<text>{{addr}}</text>
 			</view>
 		</view>
 		<!-- 身体信息 -->
@@ -107,7 +107,7 @@
 			<!-- 生活方式 -->
 			<view>
 				<view class='title'>
-					<text>生活方式</text>
+					<text>生活方式</text> 
 					<img src="../../../static/edit-2.png" alt="" @click="a.goto('../lifeStyle/index')">
 				</view>
 				<view class='tab_item'>
@@ -129,7 +129,7 @@
 <style>
 	@import url("../../../util/tool/common.css");
 	.age_{
-		font-size: .9rem !important;
+		font-size: .7rem !important;
 		padding-top: .5rem;
 	}
 	.tab_item>text:nth-child(1) {
@@ -171,6 +171,7 @@
 	.bodyInfo { 
 		/* border: 1px solid red; */
 		padding: 1rem;
+		font-size: .8rem;
 	}
 
 	.bodyInfo>view {
@@ -215,6 +216,7 @@
 	.userInfo img {
 		width: 4rem;
 		height: 4rem;
+		border-radius: 50%;
 	}
 
 	.userName {
@@ -223,6 +225,7 @@
 		flex-direction: column;
 		padding-left: .5rem;
 		width: 40%;
+		font-size: .8rem;
 	}
 
 	.telPhone {
@@ -231,22 +234,39 @@
 	}
 </style>
 <script>
+	import appToast from '../../../util/tool/andoridFun.js';
+	import http from '../../../util/tool/http.js';
 	import goto from '../../../util/tool/tool.js';
 	export default {
 		data() {
 			return {
+				tele:'',
+				age:'',
 				a: goto,
+				userName:'',
+				userImg:'../../static/tx2.png',
+				addr:'',
+				idNumber:'',
 			}
 		},
 		methods: {
-			//测试调用安卓对象
-			appToast() {
-				//安卓对象
-				appNative.toast();
-			}
 		},
 		mounted() {
-			// console.log(goto.goto);
+			//根据token获取用户个人信息
+			let userId = appToast.appUserId();
+			let data = {
+				'user_id': userId,
+			};
+			let that = this;
+			http.Post('/sys_fkcy/appUser/getUserInfo', data, function(res) {
+				console.log(res);
+				that.userName = res.data.ess_info.full_name;
+				that.userImg = res.data.ess_info.img;
+				that.age = res.data.ess_info.age;
+				that.tele = res.data.ess_info.phone;
+				that.addr = res.data.ess_info.permanent_address;
+				that.idNumber = res.data.ess_info.id_card;
+			});
 		},
 	}
 </script>

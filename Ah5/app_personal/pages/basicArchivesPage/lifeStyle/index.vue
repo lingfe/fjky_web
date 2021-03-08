@@ -120,11 +120,6 @@
 			}
 		},
 		methods: {
-			//测试调用安卓对象
-			appToast() {
-				//安卓对象
-				appNative.toast();
-			},
 			//切换选项样式
 			changeOption(str){
 				if(str =='A0'){

@@ -5,76 +5,142 @@ export default config = {
 	stepNumber: function(n) {
 		if (n == '未测量') {
 			n = 0;
-		}
-		return {
-			series: [{
-				type: 'gauge',
-				startAngle: 90,
-				endAngle: -270,
-				pointer: {
-					show: false,
-				},
-				max: 10000,
-				min: 0,
-				progress: {
-					show: true,
-					overlap: false,
-					roundCap: true,
-					clip: false,
-					itemStyle: {
-						color: '#00D193',
+			return {
+				series: [{
+					type: 'gauge',
+					startAngle: 90,
+					endAngle: -270,
+					pointer: {
+						show: false,
 					},
+					max: 10000,
+					min: 0,
+					progress: {
+						show: true,
+						overlap: false,
+						roundCap: true,
+						clip: false,
+						itemStyle: {
+							color: '#00D193',
+						},
 
-				},
-				itemStyle: {
-					shadowColor: 'red',
-				},
-				axisLine: {
-					lineStyle: {
-						width: 10,
-					}
-				},
-				splitLine: {
-					show: false,
-					distance: 0,
-					length: 20
-				},
-				axisTick: {
-					show: false
-				},
-				axisLabel: {
-					show: false,
-					distance: 50
-				},
-				data: [{
-					value: n,
-					name: '步',
+					},
+					itemStyle: {
+						shadowColor: 'red',
+					},
+					axisLine: {
+						lineStyle: {
+							width: 10,
+						}
+					},
+					splitLine: {
+						show: false,
+						distance: 0,
+						length: 20
+					},
+					axisTick: {
+						show: false
+					},
+					axisLabel: {
+						show: false,
+						distance: 50
+					},
+					data: [{
+						value: n,
+						name: '步',
+						title: {
+							offsetCenter: ['0%', '35%']
+						},
+						detail: {
+							offsetCenter: ['0%', '-10%']
+						}
+					}, ],
 					title: {
-						offsetCenter: ['0%', '35%']
+						fontSize: 13,
+						color: 'grey',
 					},
 					detail: {
-						offsetCenter: ['0%', '-10%']
+						width: 50,
+						height: 14,
+						fontSize: 25,
+						color: 'black',
+						borderRadius: 20,
+						formatter: '未测量'
 					}
-				}, ],
-				title: {
-					fontSize: 13,
-					color: 'grey',
-				},
-				detail: {
-					width: 50,
-					height: 14,
-					fontSize: 25,
-					color: 'black',
-					borderRadius: 20,
-					formatter: '{value}'
-				}
-			}]
-		};
+				}]
+			};
+		} else {
+			return {
+				series: [{
+					type: 'gauge',
+					startAngle: 90,
+					endAngle: -270,
+					pointer: {
+						show: false,
+					},
+					max: 10000,
+					min: 0,
+					progress: {
+						show: true,
+						overlap: false,
+						roundCap: true,
+						clip: false,
+						itemStyle: {
+							color: '#00D193',
+						},
+
+					},
+					itemStyle: {
+						shadowColor: 'red',
+					},
+					axisLine: {
+						lineStyle: {
+							width: 10,
+						}
+					},
+					splitLine: {
+						show: false,
+						distance: 0,
+						length: 20
+					},
+					axisTick: {
+						show: false
+					},
+					axisLabel: {
+						show: false,
+						distance: 50
+					},
+					data: [{
+						value: n,
+						name: '步',
+						title: {
+							offsetCenter: ['0%', '35%']
+						},
+						detail: {
+							offsetCenter: ['0%', '-10%']
+						}
+					}, ],
+					title: {
+						fontSize: 13,
+						color: 'grey',
+					},
+					detail: {
+						width: 50,
+						height: 14,
+						fontSize: 25,
+						color: 'black',
+						borderRadius: 20,
+						formatter: '{value}'
+					}
+				}]
+			};
+
+		}
 	},
 	//血压
 	bloodPressure: function(n) {
 		if (n == '未测量') {
-			n = 0;
+			n = 0; 
 		}
 		return {
 			series: [{
@@ -165,588 +231,1152 @@ export default config = {
 	//心率
 	heartRate: function(n) {
 		if (n == '未测量') {
-			n = 0;
-		}
-		return {
-			series: [{
-				type: 'gauge',
-				startAngle: 90,
-				endAngle: -270,
-				pointer: {
-					show: false
-				},
-				min: 0,
-				max: 100,
-				progress: {
-					show: true,
-					overlap: false,
-					roundCap: true,
-					clip: false,
-					itemStyle: {
-						borderWidth: 1,
-						color: '#FF2B62',
-					}
-				},
-				axisLine: {
-					lineStyle: {
-						width: 10,
-					}
-				},
-				splitLine: {
-					show: false,
-					distance: 0,
-					length: 20
-				},
-				axisTick: {
-					show: false
-				},
-				axisLabel: {
-					show: false,
-					distance: 50
-				},
-				data: [{
-					value: n,
-					name: '次/分',
+			return {
+				series: [{
+					type: 'gauge',
+					startAngle: 90,
+					endAngle: -270,
+					pointer: {
+						show: false
+					},
+					min: 0,
+					max: 100,
+					progress: {
+						show: true,
+						overlap: false,
+						roundCap: true,
+						clip: false,
+						itemStyle: {
+							borderWidth: 1,
+							color: '#FF2B62',
+						}
+					},
+					axisLine: {
+						lineStyle: {
+							width: 10,
+						}
+					},
+					splitLine: {
+						show: false,
+						distance: 0,
+						length: 20
+					},
+					axisTick: {
+						show: false
+					},
+					axisLabel: {
+						show: false,
+						distance: 50
+					},
+					data: [{
+						value: n,
+						name: '次/分',
+						title: {
+							offsetCenter: ['0%', '20%']
+						},
+						detail: {
+							offsetCenter: ['0%', '-20%']
+						}
+					}, ],
 					title: {
-						offsetCenter: ['0%', '20%']
+						fontSize: 13,
+						color: 'grey',
 					},
 					detail: {
-						offsetCenter: ['0%', '-20%']
+						width: 50,
+						height: 14,
+						fontSize: 25,
+						color: 'black',
+						borderColor: 'auto',
+						borderRadius: 20,
+						// borderWidth: 1,
+						formatter: '未测量',
 					}
-				}, ],
-				title: {
-					fontSize: 13,
-					color: 'grey',
-				},
-				detail: {
-					width: 50,
-					height: 14,
-					fontSize: 25,
-					color: 'black',
-					borderColor: 'auto',
-					borderRadius: 20,
-					// borderWidth: 1,
-					formatter: '{value}bmp'
-				}
-			}]
-		};
+				}]
+			};
+		} else {
+			return {
+				series: [{
+					type: 'gauge',
+					startAngle: 90,
+					endAngle: -270,
+					pointer: {
+						show: false
+					},
+					min: 0,
+					max: 100,
+					progress: {
+						show: true,
+						overlap: false,
+						roundCap: true,
+						clip: false,
+						itemStyle: {
+							borderWidth: 1,
+							color: '#FF2B62',
+						}
+					},
+					axisLine: {
+						lineStyle: {
+							width: 10,
+						}
+					},
+					splitLine: {
+						show: false,
+						distance: 0,
+						length: 20
+					},
+					axisTick: {
+						show: false
+					},
+					axisLabel: {
+						show: false,
+						distance: 50
+					},
+					data: [{
+						value: n,
+						name: '次/分',
+						title: {
+							offsetCenter: ['0%', '20%']
+						},
+						detail: {
+							offsetCenter: ['0%', '-20%']
+						}
+					}, ],
+					title: {
+						fontSize: 13,
+						color: 'grey',
+					},
+					detail: {
+						width: 50,
+						height: 14,
+						fontSize: 25,
+						color: 'black',
+						borderColor: 'auto',
+						borderRadius: 20,
+						// borderWidth: 1,
+						formatter: '{value}bmp',
+					}
+				}]
+			};
+
+		}
 	},
 	//血氧
 	bloodOxygen: function(n) {
 		if (n == '未测量') {
 			n = 0;
-		}
-		return {
-			series: [{
-				type: 'gauge',
-				startAngle: 180,
-				endAngle: 0,
-				min: 0,
-				max: 120,
-				splitNumber: 8,
-				progress: {
-					show: false,
-				},
-				axisLine: {
-					lineStyle: {
-						width: 13,
-						color: [
-							[0.33, '#F72600'],
-							[0.66, '#FF9A21'],
-							[1, '#00D193'],
-						]
-					}
-				},
-				pointer: {
-					icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
-					length: '12%',
-					width: 20,
-					offsetCenter: [0, '-80%'],
-					itemStyle: {
-						color: 'white'
-					}
-				},
-				axisTick: {
-					show: false,
-					length: 12,
-					lineStyle: {
-						color: 'auto',
-						width: 2
-					}
-				},
-				splitLine: {
-					show: false,
-					length: 20,
-					lineStyle: {
-						color: 'auto',
-						width: 5
-					}
-				},
-				axisLabel: {
-					show: false,
-					color: '#464646',
-					fontSize: 20,
-					distance: -60,
-					formatter: function(value) {
-						if (value === 0.875) {
-							return '优';
-						} else if (value === 0.625) {
-							return '中';
-						} else if (value === 0.375) {
-							return '良';
-						} else if (value === 0.125) {
-							return '差';
-						}
-					}
-				},
-				title: {
-					offsetCenter: [0, '10%'],
-					fontSize: 13,
-					color: 'grey',
-				},
-				detail: {
-					fontSize: 25,
-					offsetCenter: [0, '-30%'],
-					valueAnimation: true,
-					formatter: function(value) {
-						// return Math.round(value * 100) + '分';
-						return value + '%';
+			return {
+				grid:{
+					y:5,
+				}, 
+				series: [{
+					type: 'gauge',
+					startAngle: 180,
+					endAngle: 0,
+					min: 0,
+					max: 120,
+					splitNumber: 8,
+					progress: {
+						show: false,
 					},
-					color: 'black',
-				},
-				data: [{
-					value: n,
-					name: '饱和度'
+					axisLine: {
+						lineStyle: {
+							width: 13,
+							color: [
+								[0.33, '#F72600'],
+								[0.66, '#FF9A21'],
+								[1, '#00D193'],
+							]
+						}
+					},
+					pointer: {
+						icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+						length: '12%',
+						width: 20,
+						offsetCenter: [0, '-80%'],
+						itemStyle: {
+							color: 'white'
+						}
+					},
+					axisTick: {
+						show: false,
+						length: 12,
+						lineStyle: {
+							color: 'auto',
+							width: 2
+						}
+					},
+					splitLine: {
+						show: false,
+						length: 20,
+						lineStyle: {
+							color: 'auto',
+							width: 5
+						}
+					},
+					axisLabel: {
+						show: false,
+						color: '#464646',
+						fontSize: 20,
+						distance: -60,
+						formatter: function(value) {
+							if (value === 0.875) {
+								return '优';
+							} else if (value === 0.625) {
+								return '中';
+							} else if (value === 0.375) {
+								return '良';
+							} else if (value === 0.125) {
+								return '差';
+							}
+						}
+					},
+					title: {
+						offsetCenter: [0, '0%'],
+						fontSize: 13,
+						color: 'grey',
+					},
+					detail: {
+						fontSize: 25,
+						offsetCenter: [0, '-30%'],
+						valueAnimation: true,
+						formatter: function(value) {
+							// return Math.round(value * 100) + '分';
+							return '未测量';
+						},
+						color: 'black',
+					},
+					data: [{
+						value: n,
+						name: '饱和度'
+					}]
 				}]
-			}]
-		};
+			};
+		} else {
+			return {
+				series: [{
+					type: 'gauge',
+					startAngle: 180,
+					endAngle: 0,
+					min: 0,
+					max: 120,
+					splitNumber: 8,
+					progress: {
+						show: false,
+					},
+					axisLine: {
+						lineStyle: {
+							width: 13,
+							color: [
+								[0.33, '#F72600'],
+								[0.66, '#FF9A21'],
+								[1, '#00D193'],
+							]
+						}
+					},
+					pointer: {
+						icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+						length: '12%',
+						width: 20,
+						offsetCenter: [0, '-80%'],
+						itemStyle: {
+							color: 'white'
+						}
+					},
+					axisTick: {
+						show: false,
+						length: 12,
+						lineStyle: {
+							color: 'auto',
+							width: 2
+						}
+					},
+					splitLine: {
+						show: false,
+						length: 20,
+						lineStyle: {
+							color: 'auto',
+							width: 5
+						}
+					},
+					axisLabel: {
+						show: false,
+						color: '#464646',
+						fontSize: 20,
+						distance: -60,
+						formatter: function(value) {
+							if (value === 0.875) {
+								return '优';
+							} else if (value === 0.625) {
+								return '中';
+							} else if (value === 0.375) {
+								return '良';
+							} else if (value === 0.125) {
+								return '差';
+							}
+						}
+					},
+					title: {
+						offsetCenter: [0, '10%'],
+						fontSize: 13,
+						color: 'grey',
+					},
+					detail: {
+						fontSize: 25,
+						offsetCenter: [0, '-30%'],
+						valueAnimation: true,
+						formatter: function(value) {
+							// return Math.round(value * 100) + '分';
+							return value + '%';
+						},
+						color: 'black',
+					},
+					data: [{
+						value: n,
+						name: '饱和度'
+					}]
+				}]
+			};
+
+		}
 	},
 	//尿酸
 	uricAcid: function(n) {
 		if (n == '未测量') {
 			n = 0;
-		}
-		return {
-			series: [{
-				type: 'gauge',
-				startAngle: 180,
-				endAngle: 0,
-				min: 0,
-				max: 200,
-				splitNumber: 8,
-				progress: {
-					show: false,
-				},
-				axisLine: {
-					lineStyle: {
-						width: 13,
-						color: [
-							[0.33, '#FF9A21'],
-							[0.66, '#00D193'],
-							[1, '#F72600'],
-						]
-					}
-				},
-				pointer: {
-					icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
-					length: '15%',
-					width: 15,
-					offsetCenter: [0, '-80%'],
-					itemStyle: {
-						color: 'white'
-					}
-				},
-				axisTick: {
-					show: false,
-					length: 12,
-					lineStyle: {
-						color: 'auto',
-						width: 2
-					}
-				},
-				splitLine: {
-					show: false,
-					length: 20,
-					lineStyle: {
-						color: 'auto',
-						width: 5
-					}
-				},
-				axisLabel: {
-					show: false,
-					color: '#464646',
-					fontSize: 20,
-					distance: -60,
-					formatter: function(value) {
-						if (value === 0.875) {
-							return '优';
-						} else if (value === 0.625) {
-							return '中';
-						} else if (value === 0.375) {
-							return '良';
-						} else if (value === 0.125) {
-							return '差';
-						}
-					}
-				},
-				title: {
-					offsetCenter: [0, '-10%'],
-					fontSize: 15,
-					color: 'grey',
-				},
-				detail: {
-					fontSize: 25,
-					offsetCenter: [0, '-33%'],
-					valueAnimation: true,
-					formatter: function(value) {
-						// return Math.round(value * 100) + '分';
-						return value;
+			return {
+				series: [{
+					type: 'gauge',
+					startAngle: 180,
+					endAngle: 0,
+					min: 0,
+					max: 200,
+					splitNumber: 8,
+					progress: {
+						show: false,
 					},
-					color: 'black',
-				},
-				data: [{
-					value: n,
-					name: 'mmol/L',
+					axisLine: {
+						lineStyle: {
+							width: 13,
+							color: [
+								[0.33, '#FF9A21'],
+								[0.66, '#00D193'],
+								[1, '#F72600'],
+							]
+						}
+					},
+					pointer: {
+						icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+						length: '15%',
+						width: 15,
+						offsetCenter: [0, '-80%'],
+						itemStyle: {
+							color: 'white'
+						}
+					},
+					axisTick: {
+						show: false,
+						length: 12,
+						lineStyle: {
+							color: 'auto',
+							width: 2
+						}
+					},
+					splitLine: {
+						show: false,
+						length: 20,
+						lineStyle: {
+							color: 'auto',
+							width: 5
+						}
+					},
+					axisLabel: {
+						show: false,
+						color: '#464646',
+						fontSize: 20,
+						distance: -60,
+						formatter: function(value) {
+							if (value === 0.875) {
+								return '优';
+							} else if (value === 0.625) {
+								return '中';
+							} else if (value === 0.375) {
+								return '良';
+							} else if (value === 0.125) {
+								return '差';
+							}
+						}
+					},
+					title: {
+						offsetCenter: [0, '-10%'],
+						fontSize: 15,
+						color: 'grey',
+					},
+					detail: {
+						fontSize: 25,
+						offsetCenter: [0, '-33%'],
+						valueAnimation: true,
+						formatter: function(value) {
+							// return Math.round(value * 100) + '分';
+							return '未测量';
+						},
+						color: 'black',
+					},
+					data: [{
+						value: n,
+						name: 'mmol/L',
+					}]
 				}]
-			}]
-		};
+			};
+
+		} else {
+			return {
+				series: [{
+					type: 'gauge',
+					startAngle: 180,
+					endAngle: 0,
+					min: 0,
+					max: 200,
+					splitNumber: 8,
+					progress: {
+						show: false,
+					},
+					axisLine: {
+						lineStyle: {
+							width: 13,
+							color: [
+								[0.33, '#FF9A21'],
+								[0.66, '#00D193'],
+								[1, '#F72600'],
+							]
+						}
+					},
+					pointer: {
+						icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+						length: '15%',
+						width: 15,
+						offsetCenter: [0, '-80%'],
+						itemStyle: {
+							color: 'white'
+						}
+					},
+					axisTick: {
+						show: false,
+						length: 12,
+						lineStyle: {
+							color: 'auto',
+							width: 2
+						}
+					},
+					splitLine: {
+						show: false,
+						length: 20,
+						lineStyle: {
+							color: 'auto',
+							width: 5
+						}
+					},
+					axisLabel: {
+						show: false,
+						color: '#464646',
+						fontSize: 20,
+						distance: -60,
+						formatter: function(value) {
+							if (value === 0.875) {
+								return '优';
+							} else if (value === 0.625) {
+								return '中';
+							} else if (value === 0.375) {
+								return '良';
+							} else if (value === 0.125) {
+								return '差';
+							}
+						}
+					},
+					title: {
+						offsetCenter: [0, '-10%'],
+						fontSize: 15,
+						color: 'grey',
+					},
+					detail: {
+						fontSize: 25,
+						offsetCenter: [0, '-33%'],
+						valueAnimation: true,
+						formatter: function(value) {
+							// return Math.round(value * 100) + '分';
+							return value;
+						},
+						color: 'black',
+					},
+					data: [{
+						value: n,
+						name: 'mmol/L',
+					}]
+				}]
+			};
+
+		}
 	},
 	//血脂
 	bloodFat: function(n) {
-		if (n == '未测量') {
+		console.log(n);
+		if (n == '未测量' || n == 0) {
+			console.log('123123123');
+			console.log(n);
 			n = 0;
-		}
-		return {
-			series: [{
-				type: 'gauge',
-				startAngle: 180,
-				endAngle: 0,
-				min: 0,
-				max: 10,
-				splitNumber: 8,
-				progress: {
-					show: false,
-				},
-				axisLine: {
-					show: true,
-					lineStyle: {
-						width: 13,
-						color: [
-							[0.33, '#FF9A21'],
-							[0.66, '#00D193'],
-							[1, '#F72600'],
-						]
-					}
-				},
-				pointer: {
-					icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
-					length: '12%',
-					width: 20,
-					offsetCenter: [0, '-80%'],
-					itemStyle: {
-						color: 'white'
-					}
-				},
-				axisTick: {
-					show: false,
-					length: 12,
-					lineStyle: {
-						color: 'auto',
-						width: 2
-					}
-				},
-				splitLine: {
-					show: false,
-					length: 20,
-					lineStyle: {
-						color: 'auto',
-						width: 5
-					}
-				},
-				axisLabel: {
-					show: false,
-					color: '#464646',
-					fontSize: 20,
-					distance: -60,
-					formatter: function(value) {
-						if (value === 0.875) {
-							return '优';
-						} else if (value === 0.625) {
-							return '中';
-						} else if (value === 0.375) {
-							return '良';
-						} else if (value === 0.125) {
-							return '差';
-						}
-					}
-				},
-				title: {
-					offsetCenter: ['30%', '-30%'],
-					fontSize: 13,
-					color: 'grey',
-				},
-				detail: {
-					fontSize: 25,
-					offsetCenter: ['-30%', '-30%'],
-					valueAnimation: true,
-					formatter: function(value) {
-						return value;
+			return {
+				series: [{
+					type: 'gauge',
+					startAngle: 180,
+					endAngle: 0,
+					min: 0,
+					max: 10,
+					splitNumber: 8,
+					progress: {
+						show: false,
 					},
-					color: 'black'
-				},
-				data: [{
-					value: n,
-					name: 'mmol/L'
+					axisLine: {
+						show: true,
+						lineStyle: {
+							width: 13,
+							color: [
+								[0.33, '#FF9A21'],
+								[0.66, '#00D193'],
+								[1, '#F72600'],
+							]
+						}
+					},
+					pointer: {
+						icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+						length: '12%',
+						width: 20,
+						offsetCenter: [0, '-80%'],
+						itemStyle: {
+							color: 'white'
+						}
+					},
+					axisTick: {
+						show: false,
+						length: 12,
+						lineStyle: {
+							color: 'auto',
+							width: 2
+						}
+					},
+					splitLine: {
+						show: false,
+						length: 20,
+						lineStyle: {
+							color: 'auto',
+							width: 5
+						}
+					},
+					axisLabel: {
+						show: false,
+						color: '#464646',
+						fontSize: 20,
+						distance: -60,
+						formatter: function(value) {
+							if (value === 0.875) {
+								return '优';
+							} else if (value === 0.625) {
+								return '中';
+							} else if (value === 0.375) {
+								return '良';
+							} else if (value === 0.125) {
+								return '差';
+							}
+						}
+					},
+					title: {
+						offsetCenter: ['30%', '-30%'],
+						fontSize: 13,
+						color: 'grey',
+					},
+					detail: {
+						show: true,
+						fontSize: 25,
+						offsetCenter: ['0%', '-30%'],
+						valueAnimation: true,
+						formatter: function(value) {
+							return '未测量';
+						},
+						color: 'black'
+					},
+					data: [{
+						value: '0',
+						// name: 'mmol/L'
+					}]
 				}]
-			}]
-		};
+			};
+		} else {
+			return {
+				series: [{
+					type: 'gauge',
+					startAngle: 180,
+					endAngle: 0,
+					min: 0,
+					max: 10,
+					splitNumber: 8,
+					progress: {
+						show: false,
+					},
+					axisLine: {
+						show: true,
+						lineStyle: {
+							width: 13,
+							color: [
+								[0.33, '#FF9A21'],
+								[0.66, '#00D193'],
+								[1, '#F72600'],
+							]
+						}
+					},
+					pointer: {
+						icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+						length: '12%',
+						width: 20,
+						offsetCenter: [0, '-80%'],
+						itemStyle: {
+							color: 'white'
+						}
+					},
+					axisTick: {
+						show: false,
+						length: 12,
+						lineStyle: {
+							color: 'auto',
+							width: 2
+						}
+					},
+					splitLine: {
+						show: false,
+						length: 20,
+						lineStyle: {
+							color: 'auto',
+							width: 5
+						}
+					},
+					axisLabel: {
+						show: false,
+						color: '#464646',
+						fontSize: 20,
+						distance: -60,
+						formatter: function(value) {
+							if (value === 0.875) {
+								return '优';
+							} else if (value === 0.625) {
+								return '中';
+							} else if (value === 0.375) {
+								return '良';
+							} else if (value === 0.125) {
+								return '差';
+							}
+						}
+					},
+					title: {
+						offsetCenter: ['30%', '-30%'],
+						fontSize: 13,
+						color: 'grey',
+					},
+					detail: {
+						fontSize: 25,
+						offsetCenter: ['-30%', '-30%'],
+						valueAnimation: true,
+						formatter: function(value) {
+							return value;
+						},
+						color: 'black'
+					},
+					data: [{
+						value: n,
+						name: 'mmol/L'
+					}]
+				}]
+			};
+
+		}
 	},
 	//血糖
 	bloodSugar: function(n) {
 		if (n == '未测量') {
 			n = 0;
-		}
-		return {
-			series: [{
-				type: 'gauge',
-				startAngle: 180,
-				endAngle: 0,
-				min: 0,
-				max: 10,
-				splitNumber: 8,
-				progress: {
-					show: false,
-				},
-				axisLine: {
-					show: true,
-					lineStyle: {
-						width: 13,
-						color: [
-							[0.33, '#FF9A21'],
-							[0.66, '#00D193'],
-							[1, '#F72600'],
-						]
-					}
-				},
-				pointer: {
-					icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
-					length: '12%',
-					width: 20,
-					offsetCenter: [0, '-80%'],
-					itemStyle: {
-						color: 'white'
-					}
-				},
-				axisTick: {
-					show: false,
-					length: 12,
-					lineStyle: {
-						color: 'auto',
-						width: 2
-					}
-				},
-				splitLine: {
-					show: false,
-					length: 20,
-					lineStyle: {
-						color: 'auto',
-						width: 5
-					}
-				},
-				axisLabel: {
-					show: false,
-					color: '#464646',
-					fontSize: 20,
-					distance: -60,
-					formatter: function(value) {
-						if (value === 0.875) {
-							return '优';
-						} else if (value === 0.625) {
-							return '中';
-						} else if (value === 0.375) {
-							return '良';
-						} else if (value === 0.125) {
-							return '差';
-						}
-					}
-				},
-				title: {
-					offsetCenter: [0, '10%'],
-					fontSize: 13,
-					color: 'grey',
-				},
-				detail: {
-					fontSize: 25,
-					offsetCenter: [0, '-20%'],
-					valueAnimation: true,
-					formatter: function(value) {
-						// return Math.round(value * 100) + '分';
-						return value + `mmol/L`;
+			return {
+				series: [{
+					type: 'gauge',
+					startAngle: 180,
+					endAngle: 0,
+					min: 0,
+					max: 10,
+					splitNumber: 8,
+					progress: {
+						show: false,
 					},
-					color: 'black',
-				},
-				data: [{
-					value: n,
-					name: '总胆固醇',
+					axisLine: {
+						show: true,
+						lineStyle: {
+							width: 13,
+							color: [
+								[0.33, '#FF9A21'],
+								[0.66, '#00D193'],
+								[1, '#F72600'],
+							]
+						}
+					},
+					pointer: {
+						icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+						length: '12%',
+						width: 20,
+						offsetCenter: [0, '-80%'],
+						itemStyle: {
+							color: 'white'
+						}
+					},
+					axisTick: {
+						show: false,
+						length: 12,
+						lineStyle: {
+							color: 'auto',
+							width: 2
+						}
+					},
+					splitLine: {
+						show: false,
+						length: 20,
+						lineStyle: {
+							color: 'auto',
+							width: 5
+						}
+					},
+					axisLabel: {
+						show: false,
+						color: '#464646',
+						fontSize: 20,
+						distance: -60,
+						formatter: function(value) {
+							if (value === 0.875) {
+								return '优';
+							} else if (value === 0.625) {
+								return '中';
+							} else if (value === 0.375) {
+								return '良';
+							} else if (value === 0.125) {
+								return '差';
+							}
+						}
+					},
+					title: {
+						offsetCenter: [0, '10%'],
+						fontSize: 13,
+						color: 'grey',
+					},
+					detail: {
+						fontSize: 25,
+						offsetCenter: [0, '-20%'],
+						valueAnimation: true,
+						formatter: function(value) {
+							// return Math.round(value * 100) + '分';
+							return '未测量';
+						},
+						color: 'black',
+					},
+					data: [{
+						value: n,
+						name: '总胆固醇',
+					}]
 				}]
-			}]
-		};
+			};
+		} else {
+			return {
+				series: [{
+					type: 'gauge',
+					startAngle: 180,
+					endAngle: 0,
+					min: 0,
+					max: 10,
+					splitNumber: 8,
+					progress: {
+						show: false,
+					},
+					axisLine: {
+						show: true,
+						lineStyle: {
+							width: 13,
+							color: [
+								[0.33, '#FF9A21'],
+								[0.66, '#00D193'],
+								[1, '#F72600'],
+							]
+						}
+					},
+					pointer: {
+						icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+						length: '12%',
+						width: 20,
+						offsetCenter: [0, '-80%'],
+						itemStyle: {
+							color: 'white'
+						}
+					},
+					axisTick: {
+						show: false,
+						length: 12,
+						lineStyle: {
+							color: 'auto',
+							width: 2
+						}
+					},
+					splitLine: {
+						show: false,
+						length: 20,
+						lineStyle: {
+							color: 'auto',
+							width: 5
+						}
+					},
+					axisLabel: {
+						show: false,
+						color: '#464646',
+						fontSize: 20,
+						distance: -60,
+						formatter: function(value) {
+							if (value === 0.875) {
+								return '优';
+							} else if (value === 0.625) {
+								return '中';
+							} else if (value === 0.375) {
+								return '良';
+							} else if (value === 0.125) {
+								return '差';
+							}
+						}
+					},
+					title: {
+						offsetCenter: [0, '10%'],
+						fontSize: 13,
+						color: 'grey',
+					},
+					detail: {
+						fontSize: 25,
+						offsetCenter: [0, '-20%'],
+						valueAnimation: true,
+						formatter: function(value) {
+							// return Math.round(value * 100) + '分';
+							return value + `mmol/L`;
+						},
+						color: 'black',
+					},
+					data: [{
+						value: n,
+						name: '总胆固醇',
+					}]
+				}]
+			};
+		}
 	},
 	//体温
 	tiwen: function(n) {
 		if (n == '未测量') {
 			n = 0;
-		}
-		return {
-			series: [{
-				type: 'gauge',
-				startAngle: 180,
-				endAngle: 0,
-				min: 0,
-				max: 100,
-				splitNumber: 8,
-				progress: {
-					show: false,
-				},
-				axisLine: {
-					lineStyle: {
-						width: 13,
-						color: [
-							[0.33, '#72A7FE'],
-							[0.66, '#00D193'],
-							[1, '#F72600'],
-						]
-					}
-				},
-				pointer: {
-					icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
-					length: '10%',
-					width: 20,
-					offsetCenter: ['0', '-80%'],
-					itemStyle: {
-						color: 'white'
-					}
-				},
-				axisTick: {
-					show: false,
-					length: 12,
-					lineStyle: {
-						color: 'auto',
-						width: 2
-					}
-				},
-				splitLine: {
-					show: false,
-					length: 20,
-					lineStyle: {
-						color: 'auto',
-						width: 5
-					}
-				},
-				axisLabel: {
-					show: false,
-					color: '#464646',
-					fontSize: 20,
-					distance: -60,
-					formatter: function(value) {
-						if (value === 0.875) {
-							return '优';
-						} else if (value === 0.625) {
-							return '中';
-						} else if (value === 0.375) {
-							return '良';
-						} else if (value === 0.125) {
-							return '差';
-						}
-					}
-				},
-				title: {
-					offsetCenter: ['25%', '-20%'],
-					fontSize: 13,
-					color: 'grey',
-				},
-				detail: {
-					fontSize: 25,
-					offsetCenter: ['-5%', '-20%'],
-					valueAnimation: true,
-					formatter: function(value) {
-						// return Math.round(value * 100) + '分';
-						return value;
+			return {
+				series: [{
+					type: 'gauge',
+					startAngle: 180,
+					endAngle: 0,
+					min: 0,
+					max: 100,
+					splitNumber: 8,
+					progress: {
+						show: false,
 					},
-					color: 'black',
-				},
-				data: [{
-					value: n,
-					name: '°C'
+					axisLine: {
+						lineStyle: {
+							width: 13,
+							color: [
+								[0.33, '#72A7FE'],
+								[0.66, '#00D193'],
+								[1, '#F72600'],
+							]
+						}
+					},
+					pointer: {
+						icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+						length: '10%',
+						width: 20,
+						offsetCenter: ['0', '-80%'],
+						itemStyle: {
+							color: 'white'
+						}
+					},
+					axisTick: {
+						show: false,
+						length: 12,
+						lineStyle: {
+							color: 'auto',
+							width: 2
+						}
+					},
+					splitLine: {
+						show: false,
+						length: 20,
+						lineStyle: {
+							color: 'auto',
+							width: 5
+						}
+					},
+					axisLabel: {
+						show: false,
+						color: '#464646',
+						fontSize: 20,
+						distance: -60,
+						formatter: function(value) {
+							if (value === 0.875) {
+								return '优';
+							} else if (value === 0.625) {
+								return '中';
+							} else if (value === 0.375) {
+								return '良';
+							} else if (value === 0.125) {
+								return '差';
+							}
+						}
+					},
+					title: {
+						offsetCenter: ['25%', '-20%'],
+						fontSize: 13,
+						color: 'grey',
+					},
+					detail: {
+						fontSize: 25,
+						offsetCenter: ['-5%', '-20%'],
+						valueAnimation: true,
+						formatter: function(value) {
+							// return Math.round(value * 100) + '分';
+							return '未测量';
+						},
+						color: 'black',
+					},
+					data: [{
+						value: n,
+						name: '°C'
+					}]
 				}]
-			}]
-		};
+			};
+		} else {
+
+			return {
+				series: [{
+					type: 'gauge',
+					startAngle: 180,
+					endAngle: 0,
+					min: 0,
+					max: 100,
+					splitNumber: 8,
+					progress: {
+						show: false,
+					},
+					axisLine: {
+						lineStyle: {
+							width: 13,
+							color: [
+								[0.33, '#72A7FE'],
+								[0.66, '#00D193'],
+								[1, '#F72600'],
+							]
+						}
+					},
+					pointer: {
+						icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+						length: '10%',
+						width: 20,
+						offsetCenter: ['0', '-80%'],
+						itemStyle: {
+							color: 'white'
+						}
+					},
+					axisTick: {
+						show: false,
+						length: 12,
+						lineStyle: {
+							color: 'auto',
+							width: 2
+						}
+					},
+					splitLine: {
+						show: false,
+						length: 20,
+						lineStyle: {
+							color: 'auto',
+							width: 5
+						}
+					},
+					axisLabel: {
+						show: false,
+						color: '#464646',
+						fontSize: 20,
+						distance: -60,
+						formatter: function(value) {
+							if (value === 0.875) {
+								return '优';
+							} else if (value === 0.625) {
+								return '中';
+							} else if (value === 0.375) {
+								return '良';
+							} else if (value === 0.125) {
+								return '差';
+							}
+						}
+					},
+					title: {
+						offsetCenter: ['25%', '-20%'],
+						fontSize: 13,
+						color: 'grey',
+					},
+					detail: {
+						fontSize: 25,
+						offsetCenter: ['-5%', '-20%'],
+						valueAnimation: true,
+						formatter: function(value) {
+							// return Math.round(value * 100) + '分';
+							return value;
+						},
+						color: 'black',
+					},
+					data: [{
+						value: n,
+						name: '°C'
+					}]
+				}]
+			};
+		}
 	},
 	//睡眠
 	shuimian: function(n) {
 		if (n == '未测量') {
 			n = 0;
-		}
-		return {
-			series: [{
-				type: 'gauge',
-				startAngle: 90,
-				endAngle: -270,
-				pointer: {
-					show: false,
-				},
-				max: 9,
-				min: 0,
-				progress: {
-					show: true,
-					overlap: false,
-					roundCap: true,
-					clip: false,
-					itemStyle: {
-						color: '#BC3FFF',
+			return {
+				series: [{
+					type: 'gauge',
+					startAngle: 90,
+					endAngle: -270,
+					pointer: {
+						show: false,
 					},
-				},
-				axisLine: {
-					lineStyle: {
-						width: 10,
-					}
-				},
-				splitLine: {
-					show: false,
-					distance: 0,
-					length: 20
-				},
-				axisTick: {
-					show: false
-				},
-				axisLabel: {
-					show: false,
-					distance: 160
-				},
-				data: [{
-					value: n,
-					name: 'h',
+					max: 9,
+					min: 0,
+					progress: {
+						show: true,
+						overlap: false,
+						roundCap: true,
+						clip: false,
+						itemStyle: {
+							color: '#BC3FFF',
+						},
+					},
+					axisLine: {
+						lineStyle: {
+							width: 10,
+						}
+					},
+					splitLine: {
+						show: false,
+						distance: 0,
+						length: 20
+					},
+					axisTick: {
+						show: false
+					},
+					axisLabel: {
+						show: false,
+						distance: 160
+					},
+					data: [{
+						value: n,
+						name: 'h',
+						title: {
+							offsetCenter: ['40%', '0%']
+						},
+						detail: {
+							offsetCenter: ['-5%', '-5%']
+						}
+					}, ],
 					title: {
-						offsetCenter: ['40%', '0%']
+						fontSize: 13,
+						color: 'grey',
 					},
 					detail: {
-						offsetCenter: ['-5%', '-5%']
+						width: 50,
+						height: 14,
+						fontSize: 25,
+						color: 'black',
+						borderRadius: 20,
+						formatter: '未测量'
 					}
-				}, ],
-				title: {
-					fontSize: 13,
-					color: 'grey',
-				},
-				detail: {
-					width: 50,
-					height: 14,
-					fontSize: 25,
-					color: 'black',
-					borderRadius: 20,
-					formatter: '{value}'
-				}
-			}]
-		};
+				}]
+			};
+		} else {
+			return {
+				series: [{
+					type: 'gauge',
+					startAngle: 90,
+					endAngle: -270,
+					pointer: {
+						show: false,
+					},
+					max: 9,
+					min: 0,
+					progress: {
+						show: true,
+						overlap: false,
+						roundCap: true,
+						clip: false,
+						itemStyle: {
+							color: '#BC3FFF',
+						},
+					},
+					axisLine: {
+						lineStyle: {
+							width: 10,
+						}
+					},
+					splitLine: {
+						show: false,
+						distance: 0,
+						length: 20
+					},
+					axisTick: {
+						show: false
+					},
+					axisLabel: {
+						show: false,
+						distance: 160
+					},
+					data: [{
+						value: n,
+						name: 'h',
+						title: {
+							offsetCenter: ['40%', '0%']
+						},
+						detail: {
+							offsetCenter: ['-5%', '-5%']
+						}
+					}, ],
+					title: {
+						fontSize: 13,
+						color: 'grey',
+					},
+					detail: {
+						width: 50,
+						height: 14,
+						fontSize: 25,
+						color: 'black',
+						borderRadius: 20,
+						formatter: '{value}'
+					}
+				}]
+			};
+
+		}
 	},
 	//折线图系列-多条数据渲染
 	//步数
@@ -787,6 +1417,8 @@ export default config = {
 	//血压
 	bloodPressure_lineChart: function() {
 		return {
+			grid:{
+			}, 
 			color: ['#329BFE', '#FF9A21'],
 			legend: [{
 				top: "5%",
@@ -952,9 +1584,9 @@ export default config = {
 	//血氧
 	bloodOxygen_lineChart: function() {
 		return {
-			grid:{
-				x2:60
-			}, 
+			grid: {
+				x2: 60
+			},
 			color: ['#329BFE', '#FF9A21'],
 			legend: [{
 				show: true,
@@ -1008,7 +1640,7 @@ export default config = {
 					name: '饱和度',
 					data: [70, 100, 90, 130, 120, 180, 100],
 					nameTextStyle: {
-						padding: [10, 10, 10, -20]
+						padding: [10, 10, 10, -5]
 					},
 				},
 				{
@@ -1082,8 +1714,8 @@ export default config = {
 	bloodFat_lineChart: function() {
 		return {
 			legend: [{
-				bottom: "5%",
-				right: "2%",
+				bottom: "2%",
+				right: "15%",
 				textStyle: {
 					// 图例文字样式
 					color: "black",
@@ -1261,7 +1893,7 @@ export default config = {
 				interval: 50,
 				name: '单位mmol/L',
 				nameTextStyle: {
-					padding: [0, 0, 10, 320]
+					padding: [0, 0, 10, 20]
 				},
 			}, ],
 			series: [{
@@ -1269,10 +1901,69 @@ export default config = {
 				data: [50, 10, 90, 50, 10, 50],
 				type: 'line',
 				lineStyle: {
-					color: '#329BFE', 
+					color: '#329BFE',
 				}
 			}]
 		};
-
-	}
+	},
+	//慢性病的进度表展示
+	chronicAssessmentSchedule: function(n) {
+		return {
+			series: [{
+				type: 'gauge',
+				startAngle: 90,
+				endAngle: -270,
+				pointer: {
+					show: false
+				},
+				progress: {
+					show: true,
+					overlap: false,
+					roundCap: true,
+					clip: false,
+					itemStyle: {
+						color: '#00D193',
+					}
+				},
+				axisLine: {
+					lineStyle: {
+						width: 10,
+					}
+				},
+				splitLine: {
+					show: false,
+					distance: 0,
+					length: 10
+				},
+				axisTick: {
+					show: false
+				},
+				axisLabel: {
+					show: false,
+					distance: 50
+				},
+				data: [{
+					value: n,
+					name: '系统评估中……',
+					title: {
+						offsetCenter: ['0%', '0%']
+					},
+					detail: {
+						offsetCenter: ['0%', '40%']
+					}
+				}],
+				title: {
+					fontSize: 20
+				},
+				detail: {
+					show: true,
+					width: 50,
+					height: 14,
+					fontSize: 20,
+					color: '#00D193',
+					formatter: '{value}%'
+				}
+			}]
+		};
+	},
 }

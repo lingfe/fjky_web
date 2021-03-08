@@ -2,16 +2,15 @@
 	<view class="content">
 		<view class='healthyData'>
 			<view class='tab-lan'>
-				<text :class="[cTab == 'stepNumber'?'tabActive':'tabNoActive']" @click="getThisTab('stepNumber')">步数</text>
 				<text :class="[cTab == 'bloodPressure'?'tabActive':'tabNoActive']" @click="getThisTab('bloodPressure')">血压</text>
-				<text :class="[cTab == 'heartRate'?'tabActive':'tabNoActive']" @click="getThisTab('heartRate')">心率</text>
 				<text :class="[cTab == 'bloodOxygen'?'tabActive':'tabNoActive']" @click="getThisTab('bloodOxygen')">血氧</text>
-				<text :class="[cTab == 'uricAcid'?'tabActive':'tabNoActive']" @click="getThisTab('uricAcid')">尿酸</text>
+				<text :class="[cTab == 'heartRate'?'tabActive':'tabNoActive']" @click="getThisTab('heartRate')">心率</text>
 				<text :class="[cTab == 'bloodFat'?'tabActive':'tabNoActive']" @click="getThisTab('bloodFat')">血脂</text>
 				<text :class="[cTab == 'bloodSugar'?'tabActive':'tabNoActive']" @click="getThisTab('bloodSugar')">血糖</text>
 				<text :class="[cTab == 'tiwen'?'tabActive':'tabNoActive']" @click="getThisTab('tiwen')">体温</text>
-				<text :class="[cTab == 'shuimian'?'tabActive':'tabNoActive']" @click="getThisTab('shuimian')">睡眠</text>
-			</view>
+				<text :class="[cTab == 'stepNumber'?'tabActive':'tabNoActive']" @click="getThisTab('stepNumber')">步数</text>
+				<!-- <text :class="[cTab == 'uricAcid'?'tabActive':'tabNoActive']" @click="getThisTab('uricAcid')">尿酸</text> -->
+				<text :class="[cTab == 'shuimian'?'tabActive':'tabNoActive']" @click="getThisTab('shuimian')">睡眠</text> </view>
 			<view id='chartBox' class='box-css'></view>
 			<view class='more_type' @click='stepNumberDetail()' style='display: none;'>
 				<text style="border-top-left-radius: .8rem;border-bottom-left-radius: .8rem;border-right: none;">今天</text>
@@ -28,23 +27,45 @@
 				</view>
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodPressure'">
+				<!-- 血压的指标范围 -->
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
+					<text style='color:black;font-size: .7rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
 					<view class='b'>
 						<view style='background-color: #FF9A21;'></view>
 						<view style='background-color: #00D193;'></view>
 						<view style='background-color: #F72600;'></view>
 					</view>
+					<!-- 血压的检测数据指标 -->
+					<view class='plu'>
+							<view style='margin-top: .5rem;height: .2rem;'></view>
+							<view class='data-show'>
+								<view>
+									<text>低压</text>
+									<text>10%</text>
+								</view>
+								<view>
+									<text>正常</text>
+									<text>10%</text>
+								</view>
+								<view>
+									<text>临界高压</text>
+									<text>10%</text>
+								</view>
+								<view>
+									<text>高压</text>
+									<text>10%</text>
+								</view>
+							</view>
+						</view>
 				</view>
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'heartRate'">
 				<view class='more_type' @click='heartRateDetail()'>
-
 				</view>
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodOxygen'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
+					<text style='color:black;font-size: .7rem;display: inline-block;padding-bottom: .2rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
 					<view class='a'>
 						<text>脉率</text>
 						<view>
@@ -68,7 +89,7 @@
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'uricAcid'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
+					<text style='color:black;font-size: .7rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
 					<view class='a'>
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
@@ -90,7 +111,7 @@
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodFat'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
+					<text style='color:black;font-size: .7rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
 					<view class='a'>
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
@@ -112,7 +133,7 @@
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodSugar'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
+					<text style='color:black;font-size: .7rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
 					<view class='a'>
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
@@ -173,8 +194,8 @@
 		data() {
 			return {
 				editPng: require('../../static/edit-2.png'),
-				cTab: 'stepNumber',
-				showTabBottm: 'stepNumber',
+				cTab: 'bloodPressure',
+				showTabBottm: 'bloodPressure',
 				steps_value: 0,
 				sleep_value: 0,
 				tiwen_value: 0,
@@ -257,11 +278,7 @@
 					url: n,
 				})
 			},
-			//测试调用安卓对象
-			appToast() {
-				//安卓对象
-				appNative.toast();
-			},
+
 			//功能还在开发中
 			editPng_c() {
 				uni.showToast({
@@ -277,11 +294,11 @@
 		},
 		mounted() {
 			console.log(this.cTab);
-			if (this.cTab == 'stepNumber' || this.cTab == undefined) {
+			if (this.cTab == 'bloodPressure' || this.cTab == undefined) {
 				let echarts = require('echarts');
 				this.chartLine = echarts.init(document.getElementById('chartBox'));
 				this.lineChart = echarts.init(document.getElementById('chartBox2'));
-				this.lineChart.setOption(config.stepNumber_lineChart(), true);
+				this.lineChart.setOption(config.bloodPressure_lineChart(), true);
 				let that = this;
 				http.Get('/sys_fkcy/auhd/getHealthyData', {
 					'appUserId': '4c404454-0d30-475e-a4c5-57bfea958c96'
@@ -294,10 +311,10 @@
 					that.xuetang_value = res.data.xuetang.value;
 					that.xueya_value = res.data.xueya.value;
 					that.xueyang_value = res.data.xueyang.value;
-					that.getThisTab('stepNumber');
-					that.cTab = 'stepNumber';
+					that.getThisTab('bloodPressure');
+					that.cTab = 'bloodPressure';
 				});
-			} else if (this.cTab != 'stepNumber') {
+			} else if (this.cTab != 'bloodPressure') {
 				document.querySelector(".tabActive").scrollIntoView();
 				let echarts = require('echarts');
 				this.chartLine = echarts.init(document.getElementById('chartBox'));
@@ -323,15 +340,43 @@
 </script>
 <style>
 	@import url("../../util/tool/common.css");
+	.data-show {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-around;
+		align-items: center;
+	}
+
+	.data-show>view {
+		display: flex;
+		flex-direction: column;
+	}
+
+	.data-show>view>text {
+		padding: .2rem;
+	}
+
+	.plu {
+		position: relative;
+		text-align: center;
+		width: 80%;
+		top: 2vh;
+		height: 10vh;
+		left: 10%;
+		color: #00D193;
+		border: 1px solid #00D193;
+		border-radius: .8rem;
+		font-size: .7rem;
+	}
+
 	.insert_img img {
 		width: 1.2rem;
 	}
 
 	.insert_img {
 		display: inline-block;
-		/* border: 1px solid red; */
 		position: absolute;
-		top: 13%;
+		top: 5rem;
 		right: 8%;
 		z-index: 1000000;
 	}
@@ -342,9 +387,12 @@
 	}
 
 	.tab-lan {
-		font-size: 1rem;
+		font-size: .8rem;
 		padding: 0 1.5rem;
 		height: 1.6rem;
+		/* border: 1px solid red; */
+		position: relative;
+		top: 0;
 	}
 
 	:root {
@@ -357,12 +405,10 @@
 		display: flex;
 		flex-direction: row;
 		position: absolute;
-		left: 0;
 		bottom: 2.5rem;
-		font-size: .7rem;
 		justify-content: space-between;
 		width: 80% !important;
-		margin-left: 5%;
+		margin-left: 10%;
 		top: 12rem !important;
 	}
 
@@ -415,22 +461,15 @@
 		text-align: center;
 	}
 
-	.w100 {
-		width: 100%;
-	}
-
 	/* 另一块 */
 	.showAnother {
 		position: absolute;
 		left: 0;
-		width: 90%;
-		padding: 5%;
-		position: absolute;
-		top: 28%;
+		top: 23vh;
+		width: 100%;
 	}
 
 	.more_type {
-		/* border: 1px solid rgba(0,209,147,1); */
 		width: 100%;
 		margin-left: 5%;
 		text-align: center;
@@ -481,7 +520,7 @@
 		content: "";
 		display: block;
 		position: absolute;
-		bottom: -1px; 
+		bottom: -1px;
 		left: --beforeW;
 		width: 1rem;
 		height: 3rem;
@@ -507,8 +546,6 @@
 	.tab-lan text {
 		width: 5rem;
 		display: inline-block;
-		/* border: 1px solid red; */
-		/* text-align: center; */
 		padding-bottom: .2rem;
 	}
 
@@ -521,14 +558,14 @@
 
 	.healthyData {
 		width: 90%;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
 		background: #FFFFFF;
 		padding: 1rem;
 		position: relative;
-		top: -0rem;
+		top: 0rem;
+		padding-top: 0rem;
+		/* border: 1px solid blue; */
+		width: 100%;
+		height: 90vh;
 	}
 
 	.content {
@@ -564,11 +601,20 @@
 	}
 
 	#chartBox2 {
-		margin-top: 1.5 !important;
 		box-shadow: none !important;
-		height: 20rem;
-		width: 110%;
-		border-top: 1px solid #eeeeee;
+		position: relative;
+		/* border: 1px solid red; */
+		top: 2vh;
+		height: 50vh;
+		width: 90%;
+		left:5%;
+		letter-spacing: 0rem !important;
+	}
+
+	#chartBox {
+		/* border: 1px solid red; */
+		width: 100%;
+		height: 30vh;
 	}
 
 	.content {
@@ -600,7 +646,5 @@
 	.otherTabFunction {
 		/* border: 1px solid red; */
 		width: 90%;
-
-
 	}
 </style>

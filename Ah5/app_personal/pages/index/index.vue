@@ -3,27 +3,27 @@
 	<view class="content">
 		<!-- 用户信息 -->
 		<view class='userInfo'>
-			<img src="../../static/touxiang.png" alt="">
+			<img :src="userImg" alt="" />
 			<view>
-				<view style='font-family: PingFang-SC-Bold;color: #FFFFFF 100%;margin-bottom:.5rem;font-size: 1rem;'>
-					用户姓名
+				<view style='font-family: PingFang-SC-Bold;color: #FFFFFF 100%;margin-bottom:.5rem;font-size: .9rem;'>
+					{{userName}}
 				</view>
-				<view style='font-size: .8rem;'>
-					健康数据无任何异常情况 
+				<view style='font-size: .75rem;'>
+					健康数据无任何异常情况
 				</view>
 			</view>
-		</view> 
+		</view>
 		<!-- 健康数据 -->
 		<view class='healthyData'>
 			<view class='tab-lan'>
-				<text :class="[cTab == 'stepNumber'?'tabActive':'tabNoActive']" @click="getThisTab('stepNumber')">步数</text>
 				<text :class="[cTab == 'bloodPressure'?'tabActive':'tabNoActive']" @click="getThisTab('bloodPressure')">血压</text>
-				<text :class="[cTab == 'heartRate'?'tabActive':'tabNoActive']" @click="getThisTab('heartRate')">心率</text>
 				<text :class="[cTab == 'bloodOxygen'?'tabActive':'tabNoActive']" @click="getThisTab('bloodOxygen')">血氧</text>
-				<text :class="[cTab == 'uricAcid'?'tabActive':'tabNoActive']" @click="getThisTab('uricAcid')">尿酸</text>
+				<text :class="[cTab == 'heartRate'?'tabActive':'tabNoActive']" @click="getThisTab('heartRate')">心率</text>
 				<text :class="[cTab == 'bloodFat'?'tabActive':'tabNoActive']" @click="getThisTab('bloodFat')">血脂</text>
 				<text :class="[cTab == 'bloodSugar'?'tabActive':'tabNoActive']" @click="getThisTab('bloodSugar')">血糖</text>
 				<text :class="[cTab == 'tiwen'?'tabActive':'tabNoActive']" @click="getThisTab('tiwen')">体温</text>
+				<text :class="[cTab == 'stepNumber'?'tabActive':'tabNoActive']" @click="getThisTab('stepNumber')">步数</text>
+				<!-- <text :class="[cTab == 'uricAcid'?'tabActive':'tabNoActive']" @click="getThisTab('uricAcid')">尿酸</text> -->
 				<text :class="[cTab == 'shuimian'?'tabActive':'tabNoActive']" @click="getThisTab('shuimian')">睡眠</text>
 			</view>
 			<view id='chartBox' class='box-css'></view>
@@ -204,7 +204,7 @@
 					健康报告
 				</text>
 			</view>
-			<view @click="goto('../warnningSetting/index')">
+			<view @click="noTodo()">
 				<img src="../../static/indexImg/icon_yujing@3x.png" alt="">
 				<text>
 					预警设置
@@ -248,71 +248,74 @@
 	import config from '../../util/echartConfig/echartConfig.js';
 	import http from '../../util/tool/http.js';
 	import goto from '../../util/tool/tool.js';
+	import appToast from '../../util/tool/andoridFun.js';
 	export default {
 		data() {
 			return {
-				cTab: 'stepNumber',
-				showTabBottm: 'stepNumber',
-				steps_value:0,
-				sleep_value:0,
-				tiwen_value:0,
-				xinlu_value:0,
-				xuetang_value:0,
-				xueya_value:0,
-				xueyang_value:0,
-				niaosuan_value:0,
-				shuimian_value:0,
-				xuezhi_value:0,
+				userName:'用户姓名',
+				userImg:'../../static/tx1.png',
+				cTab: 'bloodPressure',
+				showTabBottm: 'bloodPressure',
+				steps_value: 0,
+				sleep_value: 0,
+				tiwen_value: 0,
+				xinlu_value: 0,
+				xuetang_value: 0,
+				xueya_value: 0,
+				xueyang_value: 0,
+				niaosuan_value: 0,
+				shuimian_value: 0,
+				xuezhi_value: 0,
 			}
 		},
-		methods:{
+		methods: {
 			//首页各个tab栏的查看详情
-			stepNumberDetail(){
+			stepNumberDetail() {
 				console.log('查看详情-步数');
 				goto.goto('../healthReport/index?tab=stepNumber');
 			},
-			bloodPressureDetail(){
+			bloodPressureDetail() {
 				console.log('查看详情-血压');
 				goto.goto('../healthReport/index?tab=bloodPressure');
 			},
-			heartRateDetail(){
+			heartRateDetail() {
 				console.log('查看详情-心率');
 				goto.goto('../healthReport/index?tab=heartRate');
 			},
-			bloodOxygenDetail(){
+			bloodOxygenDetail() {
 				console.log('查看详情-血氧');
 				goto.goto('../healthReport/index?tab=bloodOxygen');
 			},
-			uricAcidDetail(){
+			uricAcidDetail() {
 				console.log('查看详情-尿酸');
 				goto.goto('../healthReport/index?tab=uricAcid');
 			},
-			bloodFatDetail(){
+			bloodFatDetail() {
 				console.log('查看详情-血脂');
 				goto.goto('../healthReport/index?tab=bloodFat');
 			},
-			bloodSugarDetail(){
+			bloodSugarDetail() {
 				console.log('查看详情-血糖');
 				goto.goto('../healthReport/index?tab=bloodSugar');
 			},
-			tiwenDetail(){ 
+			tiwenDetail() {
 				console.log('查看详情-体温');
 				goto.goto('../healthReport/index?tab=tiwen');
 			},
-			shuimianDetail(){
+			shuimianDetail() {
 				console.log('查看详情-睡眠');
 				goto.goto('../healthReport/index?tab=shuimian');
 			},
 			//暂时不做的功能
 			noTodo(){
 				uni.showToast({
-				    title: '功能开发中，敬请期待！',
-				    duration: 2000,
-					icon:'none',
+					title: '功能开发中，敬请期待！',
+					duration: 2000,
+					icon: 'none',
 				});
 			},
 			//首页tab栏切换，表格数据切换
-			getThisTab(n){
+			getThisTab(n) {
 				this.cTab = n;
 				console.log(n);
 				if (n == 'stepNumber') {
@@ -356,53 +359,68 @@
 				}
 			},
 			//链接跳转
-			goto(n){
+			goto(n) {
 				// console.log(n);
 				uni.navigateTo({
-					url:n,
+					url: n,
 				})
 			},
-			//测试调用安卓对象
+			//调用安卓对象
 			appToast(){
-				//安卓对象
-				appNative.toast();
+				let userId_ = '';
+				//从安卓对象哪里获取token数据 ，根据token数据获取用户姓名、用户头像、健康描述
+				// userId_ = appNative.getUserId();
+				//暂时的测试数据 
+				userId_ = '4c404454-0d30-475e-a4c5-57bfea958c96';
+				return userId_;
 			},
-			refresh(){
+			refresh() {
 				location.reload();
 			}
-		}, 
-		mounted(){
-			// this.refresh()
-			let that = this;
-			let echarts = require('echarts');
-			this.chartLine = echarts.init(document.getElementById('chartBox'));
-			//获取app用户健康信息
-			http.Get('/sys_fkcy/auhd/getHealthyData', {'appUserId':'4c404454-0d30-475e-a4c5-57bfea958c96'}, function(res){
-				console.log(res);
-				that.steps_value = res.data.steps.value;
-				that.sleep_value =res.data.sleep.value; 
-				that.tiwen_value = res.data.tiwen.value;
-				that.xinlu_value = res.data.xinlu.value;   
-				that.xuetang_value = res.data.xuetang.value; 
-				that.xueya_value = res.data.xueya.value;
-				that.xueyang_value = res.data.xueyang.value;
-				that.chartLine.setOption(config.stepNumber(that.steps_value),true);
-			});
-		},
+	},
+	mounted() {
+		// this.refresh()
+		let that = this;
+		let echarts = require('echarts');
+		this.chartLine = echarts.init(document.getElementById('chartBox'));
+		//获取app用户健康信息
+		http.Get('/sys_fkcy/auhd/getHealthyData', {
+			'appUserId': '4c404454-0d30-475e-a4c5-57bfea958c96'
+		}, function(res) {
+			console.log(res);
+			that.steps_value = res.data.steps.value;
+			that.sleep_value = res.data.sleep.value;
+			that.tiwen_value = res.data.tiwen.value;
+			that.xinlu_value = res.data.xinlu.value;
+			that.xuetang_value = res.data.xuetang.value;
+			that.xueya_value = res.data.xueya.value;
+			that.xueyang_value = res.data.xueyang.value;
+			that.chartLine.setOption(config.bloodPressure(that.xueya_value), true);
+		});
+		//根据token获取用户个人信息
+		let userId = appToast.appUserId();
+		let data = {
+			'user_id': userId,
+		};
+		http.Post('/sys_fkcy/appUser/getUserInfo', data, function(res) {
+			// console.log(res);
+			that.userName = res.data.ess_info.full_name;
+			that.userImg = res.data.ess_info.img;
+		});
+	},
 	}
 </script>
 <style>
 	@import url("../../util/tool/common.css");
-	.content{
-	}
-	.tab-lan{
-		font-size: 1rem;
+	.content {}
+	.tab-lan {
+		font-size: .9rem;
 		/* border: 1px solid red; */
 		height: 1.6rem;
 	}
 	:root {
 		--beforeW: 0;
-		--bgHeadColor:#00D193;
+		--bgHeadColor: #00D193;
 	}
 	.shuimian {
 		/* border: 1px solid red; */
@@ -413,10 +431,9 @@
 		bottom: 2.5rem;
 		font-size: .7rem;
 		justify-content: space-between;
-		width:80% !important;
+		width: 80% !important;
 		margin-left: 5%;
 	}
-
 	.shuimian>view {
 		display: flex;
 		flex-direction: column;
@@ -476,7 +493,7 @@
 		left: 0;
 		width: 90%;
 		padding: 5%;
-		top:55%;
+		top: 55%;
 		/* border: 1px solid red; */
 	}
 
@@ -501,16 +518,17 @@
 	.otherTabFunction img {
 		padding-top: .4rem;
 		width: 2.7rem;
-		padding-bottom:.3rem;
+		padding-bottom: .3rem;
 	}
-
+ 
 	.otherTabFunction view {
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
 		align-items: center;
-	} 
- 
+		font-size: .7rem !important;
+	}
+
 	.tabActive {
 		color: #222222;
 		/* color:red; */
@@ -581,6 +599,7 @@
 		font-size: .8rem;
 		border-top: 1px solid #eeeeee;
 	}
+
 	.userInfo {
 		width: 100%;
 		display: flex;
@@ -596,6 +615,7 @@
 		height: 4rem;
 		border-radius: 50%;
 		margin: .8rem;
+		/* border: 1px solid red; */
 	}
 
 	.box-css {

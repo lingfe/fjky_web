@@ -45,11 +45,7 @@
 			}
 		},
 		methods: {
-			//测试调用安卓对象
-			appToast() {
-				//安卓对象
-				appNative.toast();
-			},
+		
 			addfamilyHistory(){
 				goto.goto('../../addPage/addFamilyHistory/index');
 			},
@@ -70,8 +66,8 @@
 		-webkit-line-clamp: 3;
 		overflow: hidden;
 		height: 1rem;
-		width: 15.5rem;
 		padding: 0 .5rem .5rem .5rem;
+		width: 90%;
 	}
 
 	.name_ {

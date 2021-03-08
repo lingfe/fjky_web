@@ -53,11 +53,6 @@
 			}
 		},
 		methods: {
-			//测试调用安卓对象
-			appToast() {
-				//安卓对象
-				appNative.toast();
-			},
 			addPhysicalExaminationRecord(){
 				goto.goto('../addPhysicalExaminationRecord/index');
 			}

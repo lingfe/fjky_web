@@ -6,8 +6,8 @@
 					<img src="../../static/indexImg/icon_chiyao@3x.png" alt="">
 				</view>
 				<view class='list_content'>
-					<text style='color:black;font-weight: 600;font-size:.9rem;'>已设置-凌晨-吃药</text>
-					<text style='color:gray;padding-top:.3rem;font-size: .8rem;width: 12rem;'>2020.11.22-2020.11.29</text>
+					<text style='color:black;font-weight: 600;font-size:.8rem;'>已设置-凌晨-吃药</text>
+					<text style='color:gray;padding-top:.3rem;font-size: .7rem;width: 12rem;'>2020.11.22-2020.11.29</text>
 				</view>
 				<view @click="goto.goto('../addPage/editMedicationReminder/index')" class='edit_content'>
 					<text>编辑</text>
@@ -34,10 +34,10 @@
 	@import url("../../util/tool/common.css");
 	.add_btn{
 		position: absolute;
-		top:-2rem;
+		top:-1.7rem;
 		right: 1rem ;
 		color: gray;
-		font-size: .95rem; 
+		font-size: .8rem;
 		z-index: 1000; 
 		font-weight: bold;
 	}
@@ -51,7 +51,7 @@
 		box-shadow: 0 0 .8rem #eeeeee;
 	}
 	.list img{
-		width: 3rem;
+		width: 2rem;
 		padding-left: .2rem;
 	} 
 	.list_content{
@@ -59,8 +59,8 @@
 		flex-direction: column;
 		justify-content: flex-start;
 		align-items: flex-start;
-		font-size: .9rem;
-		margin-left: -2.5rem;
+		font-size: .8rem;
+		margin-left: -20%;
 		width: 50%;
 	}
 	.edit_content{
@@ -72,7 +72,7 @@
 		width: 10%;
 		text-align: left;
 		height: 3.5rem;
-		font-size: .8rem;
+		font-size: .7rem;
 		color: gray;
 	}
 </style>

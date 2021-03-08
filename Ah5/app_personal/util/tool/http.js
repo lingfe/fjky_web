@@ -1,4 +1,5 @@
 let http = {};
+import app from './andoridFun.js';
 export default http = {
 	//get请求方法
 	Get: function(url, data, getData) {
@@ -12,7 +13,7 @@ export default http = {
 			data: data,
 			header: {
 				//自定义请求头信息
-				'token': ''
+				'token': app.appToken()
 			},
 			timeout:1000, 
 			success: (res) => {
@@ -50,20 +51,22 @@ export default http = {
 		uni.request({
 			url: url,
 			method: 'POST',
-			data: data,
-			timeout:1000,
+			data: data,  //json数据
+ 			timeout:1000,
 			header: {
 				//自定义请求头信息
-				'token': ''
+				'content-type':'application/x-www-form-urlencoded',
+				'token': app.appToken(),
 			},
 			success: (res) => {
 				uni.hideLoading();
-				if (res.data.code == 0) {
+				if (res.data.code == 0){
 					getData(res.data);
 				} else {
 					uni.showToast({
 						title: res.msg,
-						duration: 1000
+						duration: 1000,
+						icon:'none',
 					});
 				}
 			},

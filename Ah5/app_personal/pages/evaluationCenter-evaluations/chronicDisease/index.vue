@@ -19,14 +19,28 @@
 				<text @click="getD(item)" v-for="(item,index) in items" :class="[bTab == item?'tabActive':'tabNoActive']">{{item}}</text>
 			</view>
 			<view v-if='showInput' class='showInput'>
-				<input type="text" placeholder="请输入慢性病名称">
+				<input type="text" v-model="value_input" placeholder="请输入慢性病名称">
 			</view>
 		</view>
 		<!-- 不知道得病的选项结果页 -->
 		<view v-if="show=='notConfirm'">
-			<view class='notConfirm_box'>
-				<text>评估中……</text>
+			<view class='data_list' id='chartBox'>
 			</view>
+			<view class='notConfirm_box'>
+				<text v-if="show_1 == true">请稍等</text>
+			</view>
+		</view>
+		<!-- 评估得出结果的界面 -->
+		<view v-if="show=='getResult'" class='wh100'>
+			<text>
+				<text class='type0'>
+					根据评估结果，您可能患有xxx
+				
+				</text>
+				<text class='type1'>
+					本结果仅根据APP上您的健康数据分析得出，如有误差，建议您尽快去医院进行复查
+				</text>
+			</text>
 		</view>
 		<!-- 步骤切换 -->
 		<view v-if="show == 'getChice'" class="stepSwitch">
@@ -35,21 +49,25 @@
 			</view>
 		</view>
 		<view v-if="show == 'confirmIs'" class="stepSwitch" @click='saveData()'>
-			<view @click="firstStep()" class='nextBtn'>
+			<view class='nextBtn'>
 				<text>保存</text>
 			</view>
 		</view>
 	</view>
 </template>
 <script>
+	import echarts from 'echarts';
+	import config from '../../../util/echartConfig/echartConfig.js';
 	export default {
 		data() {
 			return {
+				show_1:'true',
 				aTab: 'confirmIs',
 				bTab: '',
 				show: 'getChice',
 				items: ['糖尿病', '高血压', '高脂血症', '冠心病', '脑梗死', '脑出血', '慢性支气管炎', '风湿性心脏病', '风湿性关节炎', '肿瘤', '其他'],
 				showInput: false,
+				value_input:'高血压',
 			}
 		},
 		methods: {
@@ -58,9 +76,36 @@
 				this.aTab = n;
 			},
 			//第一步的选择
-			firstStep() {
+			firstStep(){
 				console.log(this.aTab);
 				this.show = this.aTab;
+				if(this.aTab == 'notConfirm'){
+					console.log('sucess');
+					let that = this;
+					let time = 0;
+					let time_ = setInterval(function(){
+						console.log(time_);
+						time++;
+						if(time == 10){
+							clearInterval(time_);
+							//系统评估结束
+							that.show = 'getResult';
+						}
+						if(time == 0){
+							this.show_1 = false;
+							let echarts = require('echarts');
+							this.chartLine = echarts.init(document.getElementById('chartBox'));
+							console.log(echarts);
+							this.chartLine.setOption(config.chronicAssessmentSchedule(90),true);
+						}
+						else{
+							let echarts = require('echarts');
+							this.chartLine = echarts.init(document.getElementById('chartBox'));
+							console.log(echarts);
+							this.chartLine.setOption(config.chronicAssessmentSchedule(10*time),true);
+						}
+					},1000);
+				}
 			},
 			getD(n){
 				this.bTab = n;
@@ -72,17 +117,98 @@
 			},
 			//保存慢性病数据
 			saveData(){
-				console.log(this.bTab);
+				// console.log(this.bTab);
 				let data = this.bTab;
-				//写到这儿了
-			}
+				if(this.bTab == '其他'){
+					// console.log(this.bTab);
+					//继续嵌套一个判断input框是否已经有内容
+					if(this.value_input!== ''){
+						uni.showToast({
+							title:'您的数据已经保存',
+							icon:'none',
+						})
+						let time_ = setInterval(function(){
+							uni.navigateTo({
+								url:'../../evaluationCenter/index',
+							})
+							clearInterval(time_);
+						},1000);
+					}
+					else{
+						uni.showToast({
+							title:'数据不能为空',
+							icon:'none',
+						})
+					}
+				}
+				else{
+					uni.showToast({
+						title:'您的数据已经保存',
+						icon:'none',
+					})
+					let time_ = setInterval(function(){
+						// console.log('123123');
+						uni.navigateTo({
+							url:'../../evaluationCenter/index',
+						})
+						clearInterval(time_);
+					},1000);
+				}
+			},
 		},
 		mounted(){
-		}
+		
+		},
 	}
 </script>
 <style>
 	@import url("../../../util/tool/common.css");
+	.stepSwitch{
+		position: absolute;
+		width: 100%;
+		bottom: 10vh;
+	}
+	input{
+		font-size: .7rem;
+	}
+	.wh100 .type0{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		justify-content: center;
+		width: 80%;
+		color:black !important;
+		font-weight: 600;
+		margin-left: 10%;
+		padding-bottom: .5rem;
+	}
+	.wh100 .type1{
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		justify-content: center;
+		width: 80%;
+		color:gray !important;
+		font-weight: 100;
+		font-size: .9rem;
+		margin-left: 10%;
+	}
+	.wh100{
+		position: relative;
+		width: 100%;
+		height: 85vh;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+	}
+	.data_list{
+		/* border: 1px solid blue; */
+		position: absolute;
+		width: 100%;
+		height: 40vh;
+		top:20vh;
+	}
 	.showInput {
 		background-color: #eeeeee;
 		width: 75%;
@@ -102,8 +228,7 @@
 	}
 	.notConfirm_box {
 		position: relative;
-		width: 90%;
-		height: 100vh;
+		height: 80vh;
 		display: flex;
 		flex-direction: row;
 		justify-content: center;
@@ -123,6 +248,7 @@
 		display: inline-block;
 		color: gray;
 		border-radius: .5rem;
+		font-size: .7rem;
 	}
 	.contenSwitch,
 	.contenSwitch1 {
@@ -130,11 +256,6 @@
 		width: 100%;
 		height: 80vh;
 		border: 1px solid white;
-	}
-	.stepSwitch {
-		position: relative;
-		width: 100%;
-		height: 10vh;
 	}
 	.contenSwitch>view {
 		border: 1px solid #dddddd;
@@ -154,6 +275,8 @@
 		display: flex;
 		text-align: center;
 		justify-content: center;
+		/* border: 1px solid red ; */
+		position: absolute; width:100%; 
 	}
 	.nextBtn text{
 		background-color: #00D193;

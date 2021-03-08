@@ -4,16 +4,16 @@
 		<!-- 用户信息头像 --> 
 		<view class='userInfo'>
 			<view>
-				<img src="../../static/touxiang.png" alt="" />
+				<img :src="userImg" alt="" />
 			</view>
 			<view class='userName'>
-				<text>用户姓名</text>
-				<text class='age_'>64岁</text>
+				<text>{{userName}}</text>
+				<text class='age_'>{{age}}</text>
 			</view>
 			<view class='basicArchives' @click="goto('../basicArchivesPage/basicArchives/index')">
 				<text>基础档案</text>
 				<text>
-					<img style='width: 2rem;padding-top:.3rem;' src="../../static/arrow-right-white.png" alt="">
+					<img style='width: 1.8rem;padding-top:.3rem;' src="../../static/arrow-right-white.png" alt="">
 				</text>
 			</view>
 		</view>
@@ -71,18 +71,24 @@
 		<view>
 			<view class='listItem' v-for='(item,index) in list' :v-key="index" @click="goto(item.pageUrl)">
 				<img style='width: 1.5rem;height: 1.5rem;' :src=item.imgUrl alt="">
-				<text style='padding-left:.5rem;font-size:.9rem;width: 25%;color:gray;'>{{item.textString}}</text>
-				<text class='text_type'>
-					<img style='width: 2rem;padding-top:.2rem;' src="../../static/arrow-right-gray.png" alt="">
+				<text style='padding-left:.5rem;font-size:.8rem;width: 25%;color:gray;'>{{item.textString}}</text>
+				<text style='width: 80%;text-align: right;position: relative;'>
+					<img :src="imgUrl" alt=""  style='position: relative;left: 5%;'>
 				</text>
 			</view>
 		</view>
 	</view>
 </template>
 <script>
+	import http from '../../util/tool/http.js';
+	import appToast from '../../util/tool/andoridFun.js';
 	export default {
 		data() {
 			return {
+				imgUrl:'../../static/arrow-right-gray.png',
+				userName:'',
+				userImg:'../../static/tx2.png',
+				age:'',
 				cTab: 'stepNumber',
 				showTabBottm: 'stepNumber',
 				//渲染功能列表list
@@ -97,11 +103,11 @@
 						textString:'就诊记录',
 						pageUrl:'../healthRecords-records/medicalRecords/index'
 					},
-					{
-						imgUrl:'../../static/indexImg/首页/icon_changqiyongyao@3x.png',
-						textString:'长期用药',
-						pageUrl:'../healthRecords-records/longTermMedication/index'
-					},
+					// {
+					// 	imgUrl:'../../static/indexImg/首页/icon_changqiyongyao@3x.png',
+					// 	textString:'长期用药',
+					// 	pageUrl:'../healthRecords-records/longTermMedication/index'
+					// },
 					{
 						imgUrl:'../../static/indexImg/首页/icon_guomingshi@3x.png',
 						textString:'过敏史',
@@ -132,14 +138,20 @@
 					url: n,
 				})
 			},
-			
-			//测试调用安卓对象
-			appToast() {
-				//安卓对象
-				appNative.toast();
-			}
 		},
 		mounted() {
+			//根据token获取用户个人信息
+			let userId = appToast.appUserId();
+			let data = {
+				'user_id': userId,
+			};
+			let that = this;
+			http.Post('/sys_fkcy/appUser/getUserInfo', data, function(res) {
+				// console.log(res);
+				that.userName = res.data.ess_info.full_name;
+				that.userImg = res.data.ess_info.img;
+				that.age = res.data.ess_info.age +'岁';
+			});
 		},
 	}
 </script>
@@ -149,25 +161,17 @@
 		border-top: 1px solid #eeeeee;
 	}
 	.age_{
-		font-size: .9rem !important;
+		font-size: .75rem !important;
 		padding-top: .5rem;
 	}
 	.basicArchives{
 		display: flex;
 		align-items: center;
+		font-size: .8rem;
 	}
 	.liveType{
 		padding-bottom: .8rem;
 	}
-	.text_type {
-		font-weight: 600;
-		color: gray;
-		width: 5rem;  
-		/* border: 1px solid red; */
-		width: 80%;
-		text-align: right;
-	}
-
 	.listItem {
 		position: relative;
 		display: flex;
@@ -177,7 +181,8 @@
 		padding-right: 1rem;
 		padding-top: .2rem;
 		padding-bottom: .2rem;
-		border-bottom: 1px solid #eeeeee;
+		border-bottom: 1px solid #eeeeee; 
+		/* border: 1px solid blue; */
 	}
 
 	.listItem img {
@@ -195,7 +200,7 @@
 	.subTitle {
 		padding: 1rem;
 		font-weight: 600;
-		font-size: .95rem;
+		font-size: .8rem;
 	}
 
 	.situation {
@@ -226,7 +231,8 @@
 	}
 
 	.text_v {
-		font-size: .8rem;
+		font-size: .65rem;
+		letter-spacing: .1rem !important;
 	}
 
 	.userInfo {
@@ -244,12 +250,14 @@
 	.userInfo img{
 		width: 4rem;
 		height: auto;
+		border-radius: 50%;
 	}
 
 	.userName {
 		display: flex;
 		flex-direction: column;
 		flex: 1.5;
-		padding-left: .5rem;
+		padding-left: .8rem;
+		font-size: .8rem;
 	}
 </style>

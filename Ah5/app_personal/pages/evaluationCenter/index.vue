@@ -62,11 +62,11 @@
 	@import url("../../util/tool/common.css");
 	.title_type_2{
 		color:gray;
-		font-size: .8rem;
+		font-size: .7rem;
 	}
 	.item{
 		border: 1px solid white;
-		font-size: .95rem;
+		font-size: .8rem;
 		display: flex;
 		flex-direction: row;
 		align-items: center;
@@ -77,7 +77,7 @@
 		border-radius: .5rem;
 	}
 	.title_img{
-		width: 2.5rem;
+		width: 2rem;
 		padding: .8rem;
 		padding-top: 1rem;
 		padding-bottom: 1rem;
@@ -94,6 +94,6 @@
 		color: black;
 		font-weight: 600;
 		padding-bottom: .5rem;
-		font-size: 1rem;
+		font-size: .8rem;
 	}
 </style>

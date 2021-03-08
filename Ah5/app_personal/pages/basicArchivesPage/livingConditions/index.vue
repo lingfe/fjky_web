@@ -86,11 +86,7 @@
 			}
 		},
 		methods: {
-			//测试调用安卓对象
-			appToast() {
-				//安卓对象
-				appNative.toast();
-			},
+		
 			bindPickerChange: function(e) {
 				console.log('picker发送选择改变，携带值为', e.target.value)
 				this.index = e.target.value

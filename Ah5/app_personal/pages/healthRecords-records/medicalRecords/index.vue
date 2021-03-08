@@ -45,11 +45,7 @@
 			}
 		},
 		methods: {
-			//测试调用安卓对象
-			appToast() {
-				//安卓对象
-				appNative.toast();
-			},
+		
 			addmedicalRecords(){
 				goto.goto('../../addPage/addmedicalRecords/index');
 			},
@@ -70,9 +66,9 @@
 		-webkit-line-clamp: 2;
 		overflow: hidden;
 		height: 2rem;
-		width: 15.5rem;
 		padding: 0 .5rem .5rem .5rem;
 		line-height: 1.2rem;
+		width: 90%;
 	}
 
 	.name_ {

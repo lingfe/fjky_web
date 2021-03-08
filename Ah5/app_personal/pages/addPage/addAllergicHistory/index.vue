@@ -41,11 +41,6 @@
 			}
 		},
 		methods: {
-			//测试调用安卓对象
-			appToast() {
-				//安卓对象
-				appNative.toast();
-			},
 			addPhysicalExaminationRecord(){
 				goto.goto('../addPhysicalExaminationRecord/index');
 			}
@@ -81,7 +76,7 @@
 	}
 	.title{
 		/* border: 1px solid red; */
-		font-size: 1rem;
+		font-size: .9rem;
 		padding: 1.3rem;
 		margin-left: .2rem;
 		font-size: .9rem;
