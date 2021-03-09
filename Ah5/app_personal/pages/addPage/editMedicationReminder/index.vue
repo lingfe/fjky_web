@@ -53,10 +53,10 @@
 				<text>删除</text>
 			</view>
 		</view>
-		
 	</view>
 </template>
 <script>
+	import http from '../../../util/tool/http.js'
 	export default {
 		data() {
 			const currentDate = this.getDate({
@@ -69,6 +69,8 @@
 				img_url: require('../../../static/arrow-right-gray.png'),
 				date: currentDate,
 				date1:'',
+				cId:'',
+				obj:{},
 			}
 		},
 		computed: {
@@ -99,7 +101,7 @@
 				console.log(this.date1);
 			},
 			//吃药时刻
-			bindTimeChange(e) {
+			bindTimeChange(e){
 				this.time = e.target.value;
 				console.log(this.time);
 				var arry = this.time.split(':');
@@ -121,13 +123,20 @@
 				day = day > 9 ? day : '0' + day;
 				return `${year}.${month}.${day}`;
 			},
+			//获取所要编辑的数据
+			getData(id){
+				http.Post('/sys_fkcy/mr/getWhereId',{id:id},(res) => {
+					console.log(res);
+					this.obj = res.data;
+				})
+			},
 		},
 		mounted() {
-			
 		},
 		onLoad(option) {
 			console.log(option.id);
-			
+			//获取到id,根据id获取要编辑的内容
+			this.getData(option.id);
 		}
 	}
 </script>
