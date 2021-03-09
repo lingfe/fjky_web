@@ -13,7 +13,8 @@ export default http = {
 			data: data,
 			header: {
 				//自定义请求头信息
-				'token': app.appToken()
+				'content-type':'application/x-www-form-urlencoded;charset=UTF-8',
+				'token': app.appToken(),
 			},
 			timeout:1000, 
 			success: (res) => {
@@ -55,7 +56,7 @@ export default http = {
  			timeout:1000,
 			header: {
 				//自定义请求头信息
-				'content-type':'application/x-www-form-urlencoded',
+				'content-type':'application/x-www-form-urlencoded;charset=UTF-8',
 				'token': app.appToken(),
 			},
 			success: (res) => {
