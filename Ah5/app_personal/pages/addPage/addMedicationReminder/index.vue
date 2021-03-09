@@ -177,7 +177,25 @@
 				} 
 				//2发送数据后台系统
 				http.Post('/sys_fkcy/mr/save.app', data, res => {
-					console.log(res);
+					// console.log(res);
+					if(res.data){
+						uni.showToast({
+							title:res.msg,
+							icon:'none',
+						})
+						let t = setInterval(function(){
+							uni.navigateBack({
+								delta:1,
+							})
+							clearInterval(t);
+						},2000)
+					}
+					else{
+						uni.showToast({
+							title:res.msg,
+							icon:'none',
+						})
+					}
 				})
 			}
 		},

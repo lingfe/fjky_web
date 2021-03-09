@@ -98,7 +98,6 @@
 				document.querySelector('.timeE').innerHTML  = this.date1;
 				console.log(this.date1);
 			},
-			
 			//吃药时刻
 			bindTimeChange(e) {
 				this.time = e.target.value;
@@ -124,7 +123,11 @@
 			},
 		},
 		mounted() {
-
+			
+		},
+		onLoad(option) {
+			console.log(option.id);
+			
 		}
 	}
 </script>
