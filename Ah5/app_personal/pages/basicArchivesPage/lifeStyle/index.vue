@@ -39,7 +39,7 @@
 				</view>
 			</view>
 		</view>
-		<view class='stn'> 
+		<view class='stn' @click="saveData()"> 
 			<text>保存</text>
 		</view>
 	</view>
@@ -62,6 +62,7 @@
 		flex-direction: row;
 		text-align: center;
 		justify-content: space-between;
+		margin-bottom: .5rem;
 	}
 
 	.option_tab>text {
@@ -70,7 +71,7 @@
 		border-radius: .5rem;
 		margin: .4rem;
 		color: #666666;
-		font-size: .8rem;
+		font-size: .7rem;
 		width: 40%;
 	}
 
@@ -80,17 +81,16 @@
 	}
 
 	.content>view {
-		padding-bottom: 1.5rem;
 	}
 
 	.subTitle {
 		color: black;
 		font-weight: 600;
-		font-size: 1rem;
+		font-size: .7rem;
 		padding-bottom: .8rem;
 	}
 	.content {
-		padding: 1rem;
+		padding: .8rem;
 	}
 	.title {
 		color: black;
@@ -100,8 +100,9 @@
 		align-items: center;
 		justify-content: center;
 		position: relative;
-		padding-top: .8rem;
-		padding-bottom: .8rem;
+		padding: 0rem;
+		height: 0rem;
+		padding-top: .5rem;
 	}
 	.outOne {
 		position: absolute;
@@ -110,6 +111,8 @@
 </style>
 <script>
 	import goto from '../../../util/tool/tool.js';
+	import http from '../../../util/tool/http.js';
+	import app from '../../../util/tool/andoridFun.js';
 	export default {
 		data() {
 			return {
@@ -117,6 +120,9 @@
 				A:'A0',
 				B:'B0',
 				C:'C0',
+				exercise_state:'0',
+				drinking_state:'0',
+				smoke_state:'0',
 			}
 		},
 		methods: {
@@ -124,36 +130,65 @@
 			changeOption(str){
 				if(str =='A0'){
 					this.A = str;
+					this.exercise_state = '0';
 				}
 				else if(str =='A1'){
 					this.A = str;
+					this.exercise_state = '1';
 				}
 				else if(str =='A2'){
 					this.A = str;
+					this.exercise_state = '2';
 				}
 				else if(str =='B0'){
 					this.B = str;
+					thi.drinking_state = '0';
 				}
 				else if(str =='B1'){
 					this.B = str;
+					thi.drinking_state = '1';
 				}
 				else if(str =='B2'){
 					this.B = str;
+					thi.drinking_state = '2';
 				}
 				else if(str =='C0'){
 					this.C = str;
+					this.smoke_state = '0';
 				}
 				else if(str =='C1'){
 					this.C = str;
+					this.smoke_state = '1';
 				}
 				else if(str =='C2'){
 					this.C = str;
+					this.smoke_state = '2';
 				}
+			},
+			//设置lifeStyle
+			saveData(){
+				let data = {
+					exercise_state:this.exercise_state,
+					drinking_state: this.drinking_state, 
+					smoke_state :this.smoke_state,
+					user_id:app.appUserId(),
+				};
+				http.Post('sys_fkcy/appUser/editLifeStyle', data, (res) => {
+					// console.log(res);
+					uni.showToast({
+						title:res.msg,
+						icon:'none',
+						success() {
+							let t = setInterval(()=>{
+								clearInterval(t); 
+								uni.navigateBack();
+							},1000); 
+						}
+					})
+				})
 			}
 		},
 		mounted() {
-			// console.log(goto.goto);
-			
 		},
 	}
 </script>

@@ -6,7 +6,7 @@
 				<text>遗传疾病名称</text>
 			</view>
 			<view class='insertInfo'>
-				<input type="text">
+				<input type="text" v-model="name_">
 			</view>
 		</view>
 		<!-- 就诊医院 -->
@@ -15,7 +15,7 @@
 				<text>患病亲属关系</text>
 			</view>
 			<view class='insertInfo'>
-				<input type="text">
+				<input type="text" v-model='relation_'>
 			</view>
 		</view>
 		<!-- 就诊原因 -->
@@ -24,25 +24,60 @@
 				<text>是否遗传</text>
 			</view>
 			<view class='insertInfo'>
-				<input type="text">
+				<input type="text" v-model='ron_'>
 			</view>
 		</view>
-		<view class='saveBtn'>
+		<view class='saveBtn' @click="saveData()">
 			<text>保存</text>
 		</view>
 	</view>
 </template>
 <script>
 	import goto from '../../../util/tool/tool.js';
+	import http from '../../../util/tool/http.js';
+	import app from '../../../util/tool/andoridFun.js';
 	export default {
 		data() {
 			return { 
-				items:[1,2],
+				ron_:'',
+				name_:'',
+				relation_:'',
 			}
 		},
 		methods: {
 			addPhysicalExaminationRecord(){
 				goto.goto('../addPhysicalExaminationRecord/index');
+			},
+			saveData(){
+				if(this.relation_ !='' && this.name_!='' &&this.relation_!='' ){
+					let data ={
+						ess_id:app.appUserId(),
+						dh_type:3,
+						dh_type_state:3,	
+						dh_hd_name:this.name_,
+						dh_hd_relation:this.relation_,
+						dh_hd_is:this.ron_,
+					}
+					http.Post('sys_fkcy/app_dishis/save.app',data,(res)=> {
+						console.log(res);
+						uni.showToast({
+							title:res.msg,
+							icon:'none',
+							success() {
+								let t = setInterval(()=>{
+									clearInterval(t);
+									uni.navigateBack();
+								})
+							}
+						})
+					})
+				}
+				else{
+					uni.showToast({
+						title:'数据不能为空',
+						icon:'none',
+					})
+				}
 			}
 		},
 		mounted(){

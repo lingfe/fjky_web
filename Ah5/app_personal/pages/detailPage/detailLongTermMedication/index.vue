@@ -92,6 +92,7 @@
 		padding: .5rem .5rem;
 		border-radius: .5rem;
 		color: #666666; 
+		font-size: .8rem;
 	}
 	textarea{
 		height: 5rem !important;

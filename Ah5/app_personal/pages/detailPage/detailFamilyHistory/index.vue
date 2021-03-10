@@ -6,7 +6,7 @@
 				<text>遗传疾病名称</text>
 			</view>
 			<view class='insertInfo'>
-				<input disabled="true" value='xxxxx' type="text">
+				<input disabled="true" :value='obj.dh_hd_name' type="text">
 			</view>
 		</view>
 		<!-- 就诊医院 -->
@@ -15,7 +15,7 @@
 				<text>患病亲属关系</text>
 			</view>
 			<view class='insertInfo'>
-				<input disabled="true" value='xxxxx' type="text">
+				<input disabled="true" :value='obj.dh_hd_relation' type="text">
 			</view>
 		</view>
 		<!-- 就诊原因 -->
@@ -24,26 +24,39 @@
 				<text>是否遗传</text>
 			</view>
 			<view class='insertInfo'>
-				<input disabled="true" value='xxxxx' type="text">
+				<input disabled="true" :value='obj.dh_hd_is' type="text">
 			</view>
 		</view>
 	</view>
 </template>
 <script>
 	import goto from '../../../util/tool/tool.js';
+	import http from '../../../util/tool/http.js';
 	export default {
 		data() {
-			return { 
-				items:[1,2],
+			return {
+				cId:'',
+				obj:{}
 			}
 		},
 		methods: {
 			addPhysicalExaminationRecord(){
 				goto.goto('../addPhysicalExaminationRecord/index');
+			},
+			getData(){
+				let that = this;
+				http.Post('sys_fkcy/app_dishis/getWhereId',{id:that.cId},(res)=>{
+					// console.log(res);
+					that.obj = res.data;
+				}) 
 			}
 		},
 		mounted(){
+			this.getData(this.cId);
 		},
+		onLoad(option) {
+			this.cId = option.id;
+		}
 	}
 </script>
 <style>
@@ -67,6 +80,7 @@
 		padding: .5rem .5rem;
 		border-radius: .5rem;
 		color:#666666;
+		font-size: .8rem;
 	}
 	textarea{
 		height: 5rem !important;

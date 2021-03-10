@@ -6,16 +6,16 @@
 				<text>患病时间</text>
 			</view>
 			<view class='insertInfo'>
-				<input type="text">
+				<input type="text" v-model='time_'>
 			</view>
 		</view>
 		<!-- 就诊医院 -->
 		<view>
-			<view class='title'>
+			<view class='title'> 
 				<text>疾病名称</text>
 			</view>
 			<view class='insertInfo'>
-				<input type="text">
+				<input type="text" v-model='name_'>
 			</view>
 		</view>
 		<!-- 就诊原因 -->
@@ -24,29 +24,65 @@
 				<text>治愈情况</text>
 			</view>
 			<view class='insertInfo'>
-				<textarea row='10' type="text" />
+				<textarea row='10' type="text" v-model="result_" />
 			</view>
 		</view>
-		<view class='saveBtn'>
+		<view class='saveBtn' @click="saveData()">
 			<text>保存</text>
 		</view>
 	</view>
 </template>
 <script>
 	import goto from '../../../util/tool/tool.js';
+	import http from '../../../util/tool/http.js';
+	import app from '../../../util/tool/andoridFun.js';
 	export default {
 		data() {
 			return { 
 				items:[1,2],
+				result_:'',
+				name_:'',
+				time_:'', 
 			}
 		},
 		methods: {
 			addPhysicalExaminationRecord(){
 				goto.goto('../addPhysicalExaminationRecord/index');
+			},
+			saveData(){
+				//数据判空 提交数据至系统
+				if(this.time_ !='' && this.name_ != '' && this.result_ !=''){
+					let data = {
+						dh_type_state:1,
+						dh_type:1,
+						ess_id:app.appUserId(),
+						dh_name:this.name_,
+						dh_cure_situation:this.result_,
+						dh_datetime:this.time_, 
+					};
+					http.Post('sys_fkcy/app_dishis/save.app',data, (res) => {
+						// console.log(res);
+						uni.showToast({
+							title:res.msg,
+							icon:'none',
+							success() {
+								let clock =	setInterval(()=>{
+									uni.navigateBack();
+									clearInterval(clock);
+								},1000)
+							}
+						})
+					})
+				}
+				else{
+					uni.showToast({
+						title:'数据不能为空',
+						icon:'none',
+					})
+				}
 			}
 		},
 		mounted(){
-			
 		},
 	}
 </script>

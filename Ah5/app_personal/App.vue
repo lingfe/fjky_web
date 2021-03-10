@@ -21,7 +21,6 @@
 	page{
 		font-size: .8rem;
 	}
-	
 	.uni-picker-container .uni-picker-action.uni-picker-action-confirm{
 		color:#00D193 !important;
 	}

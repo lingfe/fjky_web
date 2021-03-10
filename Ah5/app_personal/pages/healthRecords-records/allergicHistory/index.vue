@@ -1,60 +1,112 @@
-<!-- 体检记录 -->
 <template>
-	<view class='content'> 
+	<view class='content'>
 		<!-- 添加按钮 -->
 		<text class='addBtn' @click='addallergicHistoryd()'>添加</text>
 		<!-- 搜索框内容 -->
 		<view class='searchiBox'>
-			<input type="text" placeholder="搜索">
+			<input type="text" placeholder="搜索" @keypress='getlist(0)' v-model="searchKey">
 			<icon type="search" size="15" />
 		</view>
 		<!-- 列表页列表内容 -->
 		<view>
-			<view class='item' v-for='(item,index) in items' :v-key='index'> 
+			<view class='item' v-for='(item,index) in items' :v-key='index'>
 				<view>
 					<img src="../../../static/indexImg/icon_jilutu@3x.png" alt="">
 				</view>
 				<view>
 					<!-- 时间 -->
 					<view>
-						<text class='time_'>2020.01.14</text>
-					</view> 
+						<text class='time_'>{{item.dh_datetime}}</text>
+					</view>
 					<!-- 医院名称 -->
 					<view>
 						<text class='name_'>
-							过敏药物名称
+							{{item.dh_allergy_drugs}}
 						</text>
 					</view>
 					<!-- 结果分析 -->
 					<view class='result_'>
-						过敏症状:方式和积极向上的心态将能减轻疾病的症状和提高药效.
+						{{item.dh_allergy_symptom}} 
 					</view>
-					<text class='showDetail' @click="detailallergicHistoryd()">查看详情</text>
+					<text class='showDetail' @click="detailallergicHistoryd(item.id)">查看详情</text>
 				</view>
 			</view>
 		</view>
+		<uniLoadMore :status="status" :contentText='textObj' @clickLoadMore='getMore'></uniLoadMore>
 	</view>
 </template>
-
 <script>
 	import goto from '../../../util/tool/tool.js';
+	import http from '../../../util/tool/http.js';
+	import app from '../../../util/tool/andoridFun.js';
+	import uniLoadMore from '../../../components/uni-load-more/uni-load-more.vue'
 	export default {
-		data() {
-			return { 
-				items:[1,2],
+		components: {
+			uniLoadMore,
+		},
+		data(){
+			return {
+				items: [1, 2],
+				searchKey: '',
+				//根据请求数据的状态更改该值
+				status: 'moMore', //more/loading/moMore
+				textObj: {
+					contentdown: "上拉显示更多",
+					contentrefresh: "正在加载...",
+					contentnomore: "没有更多数据了"
+				},
+				n_time: 1, //刷新次数
 			}
 		},
 		methods: {
-			addallergicHistoryd(){
+			addallergicHistoryd() {
 				goto.goto('../../addPage/addAllergicHistory/index');
 			},
-			detailallergicHistoryd(){
-				goto.goto('../../detailPage/detailAllergicHistory/index');
-			}
+			detailallergicHistoryd(id){
+				goto.goto('../../detailPage/detailAllergicHistory/index?id='+id);
+			}, 
+			//获取数据列表数据
+			getlist(n){
+				let data = {
+					pageIndex: 1 + parseInt(n), //当前页	 
+					pageNum: 6, //页容量
+					searchKey: this.searchKey,
+					//关键字搜索
+					user_id: app.appUserId(), 
+					dh_type:0,  
+					dh_type_state: 0,
+				};
+				let that = this;
+				http.Post('sys_fkcy/app_dishis/getPage.app', data, (res) => {
+					if (n > 0) {
+						that.items = that.items.concat(res.data.data);
+					} else {
+						that.items = res.data.data;
+					}
+					//停止上拉刷新的数据请求
+					console.log(res.data.pageCount - that.items.length);
+					//判断条件 如果总条数-展示的条数 > 0 
+					if (res.data.numCount - that.items.length > 0) {
+						//还有数据可以请求
+						this.status = 'more';
+					} else if (res.data.numCount - that.items.length == 0) {
+						this.status = 'moMore';
+					}
+					uni.stopPullDownRefresh();
+				})
+			},
+		},
+		onShow() {
+			this.getlist(0);
+		},
+		onPullDownRefresh: function(){
+			// console.log(this.n_time);
+			//下拉刷新的时候请求一次数据
+			this.getlist(this.n_time);
+			this.n_time = this.n_time + 1;
 		},
 	}
-</script> 
-
+</script>
 <style>
 	@import url("../../../util/tool/common.css");
 	.result_ {
@@ -88,7 +140,7 @@
 	.item>view>view {
 		padding-bottom: .3rem;
 		padding-left: .8rem;
-	} 
+	}
 
 	.showDetail {
 		position: absolute;

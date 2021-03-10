@@ -1,4 +1,3 @@
-<!-- 体检记录 -->
 <template>
 	<view class='content'> 
 		<!-- 添加按钮 -->
