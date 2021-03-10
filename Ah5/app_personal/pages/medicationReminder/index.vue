@@ -32,7 +32,7 @@
 			return {
 				items: [1], 
 				goto: goto, 
-				status: 'more', //more/loading/moMore
+				status: 'moMore', //more/loading/moMore
 				textObj: {
 					contentdown: "上拉显示更多",
 					contentrefresh: "正在加载...",
@@ -45,6 +45,9 @@
 		},
 		onLoad() { 
 			console.log('刷新了');
+			// this.getList();
+		},
+		onShow(){
 			this.getList();
 		},
 		methods: {

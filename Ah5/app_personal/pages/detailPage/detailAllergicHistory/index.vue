@@ -6,7 +6,7 @@
 				<text>发现时间</text>
 			</view>
 			<view class='insertInfo'>
-				<input disabled="true" value='xxxxxx' type="text">
+				<input disabled="true" v-model='obj.dh_datetime' >
 			</view>
 		</view>
 		<!-- 就诊医院 -->
@@ -15,7 +15,7 @@
 				<text>过敏食物/药品</text>
 			</view>
 			<view class='insertInfo'>
-				<input disabled="true" value='xxxxxx' type="text">
+				<input disabled="true" v-model="obj.dh_allergy_drugs" type="text">
 			</view>
 		</view>
 		<!-- 就诊原因 -->
@@ -24,27 +24,38 @@
 				<text>过敏症状</text>
 			</view>
 			<view class='insertInfo'>
-				<textarea disabled="true" value='xxxxxx' row='10' type="text" />
+				<textarea disabled="true" v-model="obj.dh_allergy_symptom" row='10' type="text" />
 			</view>
 		</view>
 	</view>
 </template>
 <script>
 	import goto from '../../../util/tool/tool.js';
+	import http from '../../../util/tool/http.js';
 	export default {
 		data() {
 			return { 
-				items:[1,2],
+				obj:{},
 			}
 		},
 		methods: {
 			addPhysicalExaminationRecord(){
 				goto.goto('../addPhysicalExaminationRecord/index');
+			},
+			getData(){
+				let that = this;
+				http.Post('sys_fkcy/app_dishis/getWhereId',{id:this.cId}, (res) => {
+					console.log(res);
+					that.obj = res.data;
+				})
 			}
 		},
 		mounted(){
-			
+			this.getData();
 		},
+		onLoad(option) {
+			this.cId = option.id;
+		}
 	}
 </script>
 <style>
@@ -68,6 +79,7 @@
 		padding: .5rem .5rem;
 		border-radius: .5rem;
 		color:#666666;
+		font-size: .8rem;
 	} 
 	textarea{
 		height: 5rem !important;

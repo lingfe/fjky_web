@@ -1,11 +1,10 @@
-<!-- 体检记录 -->
 <template>
 	<view class='content'> 
 		<!-- 添加按钮 -->
 		<text class='addBtn' @click='addlHistoryOfSurgery()'>添加</text>
 		<!-- 搜索框内容 -->
 		<view class='searchiBox'>
-			<input type="text" placeholder="搜索">
+			<input type="text" placeholder="搜索" v-model="searchKey" @keypress='getlist(0)'>
 			<icon type="search" size="15" />
 		</view>
 		<!-- 列表页列表内容 -->
@@ -17,31 +16,47 @@
 				<view>
 					<!-- 时间 -->
 					<view>
-						<text class='time_'>2020.01.14</text>
+						<text class='time_'>{{item.dh_datetime}}</text>
 					</view>
 					<!-- 医院名称 -->
 					<view>
 						<text class='name_'> 
-							碧江区人民医院
+							{{item.dh_operation_hospital}}
 						</text>
 					</view>
 					<!-- 结果分析 -->
 					<view class='result_'>
-						手术结果:个人生活习惯问题导致的一些肺病肝病,注意下生活习惯,保持健康生活方式和积极向上的心态将能减轻疾病的症状和提高药效.
+						{{item.dh_operation_result}}
 					</view>
-					<text class='showDetail' @click="detaillHistoryOfSurgery()">查看详情</text>
+					<text class='showDetail' @click="detaillHistoryOfSurgery(item.id)">查看详情</text>
 				</view>
 			</view>
 		</view>
+	<uniLoadMore :status="status" :contentText='textObj' @clickLoadMore='getMore'></uniLoadMore>
 	</view>
 </template>
 
 <script>
 	import goto from '../../../util/tool/tool.js';
+	import uniLoadMore from '../../../components/uni-load-more/uni-load-more.vue';
+	import app from '../../../util/tool/andoridFun.js';
+	import http from '../../../util/tool/http.js';
 	export default {
+		components: {
+			uniLoadMore,
+		},
 		data() {
 			return { 
 				items:[1,2],
+				searchKey: '',
+				//根据请求数据的状态更改该值
+				status: 'moMore', //more/loading/moMore
+				textObj: {
+					contentdown: "上拉显示更多",
+					contentrefresh: "正在加载...",
+					contentnomore: "没有更多数据了"
+				},
+				n_time: 1, //刷新次数
 			}
 		},
 		methods: {
@@ -49,10 +64,49 @@
 			addlHistoryOfSurgery(){
 				goto.goto('../../addPage/addHistoryOfSurgery/index');
 			},
-			detaillHistoryOfSurgery(){
-				goto.goto('../../detailPage/detailHistoryOfSurgery/index');
-			}
+			detaillHistoryOfSurgery(id){
+				goto.goto('../../detailPage/detailHistoryOfSurgery/index?id='+id);
+			},
+			//获取数据列表数据
+				getlist(n) {
+					let data = {
+						pageIndex: 1 + parseInt(n), //当前页	 
+						pageNum: 6, //页容量
+						searchKey: this.searchKey,
+						//关键字搜索
+						user_id: app.appUserId(),
+						dh_type: 2,
+						dh_type_state: 2,
+					};
+					let that = this;
+					http.Post('sys_fkcy/app_dishis/getPage.app', data, (res) => {
+						if (n > 0) {
+							that.items = that.items.concat(res.data.data);
+						} else {
+							that.items = res.data.data;
+						}
+						//停止上拉刷新的数据请求
+						console.log(res.data.pageCount - that.items.length);
+						//判断条件 如果总条数-展示的条数 > 0 
+						if (res.data.numCount - that.items.length > 0) {
+							//还有数据可以请求
+							this.status = 'more';
+						} else if (res.data.numCount - that.items.length == 0) {
+							this.status = 'moMore';
+						}
+						uni.stopPullDownRefresh();
+					})
+				},
 		},
+		onPullDownRefresh: function(){
+			// console.log(this.n_time);
+			//下拉刷新的时候请求一次数据
+			this.getlist(this.n_time);
+			this.n_time = this.n_time + 1;
+		},
+		onShow() {
+			this.getlist(0);
+		}
 	}
 </script>
 <style>
@@ -68,6 +122,7 @@
 		padding: 0 .5rem .5rem .5rem;
 		line-height: 1.2rem;
 		width: 90%;
+		word-break: break-all;
 }
 	.name_ {
 		color: #666666;

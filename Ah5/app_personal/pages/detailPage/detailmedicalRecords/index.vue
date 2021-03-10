@@ -6,7 +6,7 @@
 				<text>就诊时间</text>
 			</view>
 			<view class='insertInfo'>
-				<input disabled="true" type="text" :value='obj.time_'>
+				<input disabled="true" type="text" :value='obj.mr_datetime'>
 			</view>
 		</view>
 		<!-- 体检医院 -->
@@ -15,7 +15,23 @@
 				<text>就诊医院/门诊</text>
 			</view>
 			<view class='insertInfo'>
-				<input disabled="true" type="text" :value='obj.name_'>
+				<input disabled="true" type="text" :value='obj.mr_hospital'>
+			</view>
+		</view>
+		<view>
+			<view class='title'>
+				<text>就诊科室</text>
+			</view>
+			<view class='insertInfo'>
+				<input disabled="true" type="text" :value='obj.mr_department'>
+			</view>
+		</view>
+		<view>
+			<view class='title'>
+				<text>就诊类别</text>
+			</view>
+			<view class='insertInfo'>
+				<input disabled="true" type="text" :value='obj.mr_type'>
 			</view>
 		</view>
 		<!-- 结果分析 -->
@@ -24,13 +40,14 @@
 				<text>就诊原因</text>
 			</view>
 			<view class='insertInfo'>
-				<textarea disabled='true' :value='obj.result_' row='10' type="text" />
+				<textarea disabled='true' :value='obj.mr_result' row='10' type="text" />
 			</view>
 		</view>
 	</view>
 </template>
 <script>
 	import goto from '../../../util/tool/tool.js';
+	import http from '../../../util/tool/http.js';
 	export default {
 		data() {
 			return { 
@@ -38,20 +55,33 @@
 				obj:{
 					time_:'2010.10.23',
 					name_:'贵州省铜仁市第一人民医院',
+					sectionRoom:'脑科',
+					section:'自费',
 					pro_:'心肺检查',
 					result_:'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-				}
+				},
+				cId:'',
 			}
 		},
 		methods: {
-		
 			addPhysicalExaminationRecord(){
 				goto.goto('../addPhysicalExaminationRecord/index');
+			}, 
+			getData(){
+				let that = this;
+				http.Post('sys_fkcy/app_melreds/getWhereId',{id:this.cId},(res) => {
+					// console.log(res);
+					that.obj = res.data;
+				})
 			}
 		},
 		mounted(){
-			
+			this.getData();
 		},
+		onLoad(option){
+			// console.log(option.id);
+			this.cId = option.id;
+		}
 	}
 </script>
 <style>
@@ -75,6 +105,7 @@
 		padding: .5rem .5rem;
 		border-radius: .5rem;
 		color:#666666;
+		font-size: .8rem;
 	}
 	textarea{ 
 		height: 5rem !important;

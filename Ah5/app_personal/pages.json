@@ -53,14 +53,16 @@
 		{
 			"path": "pages/healthRecords-records/physicalExaminationRecord/index",
 			"style": {
-				"navigationBarTitleText": "体检记录"
+				"navigationBarTitleText": "体检记录",
+				"enablePullDownRefresh": true
 			}
 		},
 		//基础档案-就诊记录
 		{
 			"path": "pages/healthRecords-records/medicalRecords/index",
 			"style": {
-				"navigationBarTitleText": "就诊记录"
+				"navigationBarTitleText": "就诊记录",
+				"enablePullDownRefresh": true
 			}
 		},
 		//基础档案-长期用药
@@ -74,28 +76,32 @@
 		{
 			"path": "pages/healthRecords-records/allergicHistory/index",
 			"style": {
-				"navigationBarTitleText": "过敏史"
+				"navigationBarTitleText": "过敏史", 
+				"enablePullDownRefresh": true
 			}
 		},
 		//基础档案-疾病史
 		{
 			"path": "pages/healthRecords-records/historyOfDisease/index",
 			"style": {
-				"navigationBarTitleText": "疾病史"
+				"navigationBarTitleText": "疾病史",
+				"enablePullDownRefresh": true
 			}
 		},
 		//基础档案-手术史
 		{
 			"path": "pages/healthRecords-records/historyOfSurgery/index",
 			"style": {
-				"navigationBarTitleText": "手术史"
+				"navigationBarTitleText": "手术史",
+				"enablePullDownRefresh": true
 			}
 		},
 		//基础档案-家族史
 		{
 			"path": "pages/healthRecords-records/familyHistory/index",
 			"style": {
-				"navigationBarTitleText": "家族史"
+				"navigationBarTitleText": "家族史",
+				"enablePullDownRefresh": true
 			}
 		},
 		//基础档案-体检记录添加页
@@ -179,7 +185,7 @@
 		{
 			"path": "pages/detailPage/detailHistoryOfSurgery/index",
 			"style": {
-				"navigationBarTitleText": "过敏史"
+				"navigationBarTitleText": "手术史"
 			}
 		},
 		//基础档案-家族史添加页

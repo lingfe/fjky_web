@@ -12,7 +12,7 @@
 			</view>
 			<view class='telPhone'>
 				<text>{{tele}}</text>
-			</view> 
+			</view>
 		</view>
 		<!-- 身份证信息 -->
 		<view class='idInfo'>
@@ -35,103 +35,77 @@
 				</view>
 				<view class='tab_item'>
 					<text>身高（cm）</text>
-					<text>158</text>
+					<text>{{sg}}</text>
 				</view>
 				<view class='tab_item'>
 					<text>体重（kg）</text>
-					<text>50</text>
+					<text>{{tz}}</text>
 				</view>
 				<view class='tab_item'>
 					<text>BMI</text>
-					<text>16.8</text>
+					<text>{{bmi}}</text>
 				</view>
 				<view class='tab_item'>
 					<text>腰围（cm）</text>
-					<text>58</text>
+					<text>{{yw}}</text>
 				</view>
 				<view class='tab_item'>
 					<text>臀围（cm）</text>
-					<text>31</text>
-				</view>
-			</view>
-			<!-- 器官功能 -->
-			<view>
-				<view class='title'>
-					<text>器官功能</text>
-					<img src="../../../static/edit-2.png" alt="" @click="a.goto('../organFunction/index')">
-				</view>
-				<view class='tab_item'>
-					<text>左耳听力（db）</text>
-					<text>未填写</text>
-				</view>
-				<view class='tab_item'>
-					<text>右耳听力（db）</text>
-					<text>48</text>
-				</view>
-				<view class='tab_item'>
-					<text>左眼视力</text>
-					<text>2.8</text>
-				</view>
-				<view class='tab_item'>
-					<text>右眼视力</text>
-					<text>1.2</text>
-				</view>
-				<view class='tab_item'>
-					<text>有无残疾</text>
-					<text>请输入残疾情况或无</text>
-				</view>
-			</view>
-			<!-- 生活情况 -->
-			<view>
-				<view class='title'>
-					<text>生活情况</text>
-					<img src="../../../static/edit-2.png" alt="" @click="a.goto('../livingConditions/index')">
-				</view>
-				<view class='tab_item'>
-					<text>情感状态</text>
-					<text>丧偶</text>
-				</view>
-				<view class='tab_item'>
-					<text>记忆功能</text>
-					<text>请输入用户记忆情况</text>
-				</view>
-				<view class='tab_item'>
-					<text>认知功能</text>
-					<text>去评估</text>
-				</view>
-				<view class='tab_item'>
-					<text>自理能力</text>
-					<text>轻度依赖</text>
+					<text>{{tw}}</text>
 				</view>
 			</view>
 			<!-- 生活方式 -->
 			<view>
 				<view class='title'>
-					<text>生活方式</text> 
+					<text>生活方式</text>
 					<img src="../../../static/edit-2.png" alt="" @click="a.goto('../lifeStyle/index')">
 				</view>
 				<view class='tab_item'>
 					<text>锻炼情况</text>
-					<text>经常锻炼</text>
+					<text>{{dl==0?'	从不锻炼':dl==1?'偶尔锻炼':'经常锻炼'}}</text>
 				</view>
 				<view class='tab_item'>
 					<text>饮酒情况</text>
-					<text>从不饮酒</text>
+					<text>{{yj==0?'从不饮酒':yj==1?'偶尔饮酒':'经常饮酒'}}</text>
 				</view>
 				<view class='tab_item'>
 					<text>吸烟情况</text>
-					<text>从不吸烟</text>
+					<text>{{xy==0?'从不吸烟':xy==1?'偶尔吸烟':'经常吸烟'}}</text>
 				</view>
-			</view> 
+			</view>
+			<view>
+				<view class='title'>
+					<text>评估结果</text>
+					<img src="../../../static/edit-2.png" alt="" @click="a.goto('../../evaluationCenter/index')">
+				</view>
+				<view class='tab_item'>
+					<text>慢性病状态</text>
+					<text>丧偶</text>
+				</view>
+				<view class='tab_item'>
+					<text>心理健康</text>
+					<text>请输入用户记忆情况</text>
+				</view>
+				<view class='tab_item'>
+					<text>自理能力</text>
+					<text>去评估</text>
+				</view>
+				<view class='tab_item'>
+					<text>认知能力</text>
+					<text>轻度依赖</text>
+				</view>
+			</view>
 		</view>
 	</view>
 </template>
 <style>
 	@import url("../../../util/tool/common.css");
-	.age_{
+
+	.age_ {
 		font-size: .7rem !important;
 		padding-top: .5rem;
 	}
+
 	.tab_item>text:nth-child(1) {
 		color: #222222;
 	}
@@ -168,7 +142,7 @@
 		font-weight: bolder;
 	}
 
-	.bodyInfo { 
+	.bodyInfo {
 		/* border: 1px solid red; */
 		padding: 1rem;
 		font-size: .8rem;
@@ -240,33 +214,65 @@
 	export default {
 		data() {
 			return {
-				tele:'',
-				age:'',
+				//个人信息
+				tele: '',
+				age: '',
 				a: goto,
-				userName:'',
-				userImg:'../../static/tx2.png',
-				addr:'',
-				idNumber:'',
+				userName: '',
+				userImg: '../../static/tx2.png',
+				addr: '',
+				idNumber: '',
+				//身体信息 
+				sg: '',
+				tz: '',
+				bmi: '',
+				yw: '',
+				tw: '',
+				//生活方式
+				dl: '',
+				yj: '',
+				xy: '',
 			}
 		},
 		methods: {
+			getData() {
+				//根据token获取用户个人信息
+				let userId = appToast.appUserId();
+				let data = {
+					'user_id': userId,
+				};
+				let that = this;
+				http.Post('/sys_fkcy/appUser/getRelevantData', data, function(res) {
+					console.log(res);
+					// 个人基本信息
+					that.userName = res.data.ess_info.full_name;
+					that.userImg = res.data.ess_info.img;
+					that.age = res.data.ess_info.age;
+					that.tele = res.data.ess_info.phone;
+					that.addr = res.data.ess_info.permanent_address;
+					that.idNumber = res.data.ess_info.id_card;
+					// 身体参数信息
+					that.sg = (res.data.ess_info.ess_stature == undefined ? '未知' : res.data.ess_info
+						.ess_stature);
+					that.tz = (res.data.ess_info.ess_weight == undefined ? '未知' : res.data.ess_info.ess_weight);
+					that.bmi = (res.data.ess_info.ess_bmi == undefined ? '未知' : res.data.ess_info.ess_bmi);
+					that.yw = (res.data.ess_info.ess_waistline == undefined ? '未知' : res.data.ess_info
+						.ess_waistline);
+					that.tw = (res.data.ess_info.ess_wh_than == undefined ? '未知' : res.data.ess_info
+						.ess_wh_than);
+					//生活方式信息
+					that.dl = (res.data.style_info.exercise_state == undefined ? '未知' : res.data.style_info
+						.exercise_state);
+					that.yj = (res.data.style_info.drinking_state == undefined ? '未知' : res.data.style_info
+						.drinking_state);
+					that.xy = (res.data.style_info.smoke_state == undefined ? '未知' : res.data.style_info
+						.smoke_state);
+				});
+			}
 		},
-		mounted() {
-			//根据token获取用户个人信息
-			let userId = appToast.appUserId();
-			let data = {
-				'user_id': userId,
-			};
-			let that = this;
-			http.Post('/sys_fkcy/appUser/getUserInfo', data, function(res) {
-				console.log(res);
-				that.userName = res.data.ess_info.full_name;
-				that.userImg = res.data.ess_info.img;
-				that.age = res.data.ess_info.age;
-				that.tele = res.data.ess_info.phone;
-				that.addr = res.data.ess_info.permanent_address;
-				that.idNumber = res.data.ess_info.id_card;
-			});
-		},
+		mounted() {},
+		onShow() {
+			this.getData();
+		}
 	}
 </script>

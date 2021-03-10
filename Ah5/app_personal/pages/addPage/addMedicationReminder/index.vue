@@ -184,10 +184,8 @@
 							icon:'none',
 						})
 						let t = setInterval(function(){
-							uni.navigateBack({
-								delta:1,
-							})
 							clearInterval(t);
+							uni.navigateBack();
 						},2000)
 					}
 					else{

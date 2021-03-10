@@ -146,7 +146,7 @@
 				'user_id': userId,
 			};
 			let that = this;
-			http.Post('/sys_fkcy/appUser/getUserInfo', data, function(res) {
+			http.Post('/sys_fkcy/appUser/getRelevantData', data, function(res) {
 				// console.log(res);
 				that.userName = res.data.ess_info.full_name;
 				that.userImg = res.data.ess_info.img;

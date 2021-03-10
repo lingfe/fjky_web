@@ -6,7 +6,7 @@
 				<text>患病时间</text>
 			</view>
 			<view class='insertInfo'>
-				<input disabled="true" value='xxxxx' type="text">
+				<input disabled="true" :value='obj.dh_datetime'>
 			</view>
 		</view>
 		<!-- 就诊医院 -->
@@ -15,7 +15,7 @@
 				<text>疾病名称</text>
 			</view>
 			<view class='insertInfo'>
-				<input disabled="true" value='xxxxx' type="text">
+				<input disabled="true" :value='obj.dh_name' type="text">
 			</view>
 		</view>
 		<!-- 就诊原因 -->
@@ -24,28 +24,42 @@
 				<text>治愈情况</text>
 			</view>
 			<view class='insertInfo'>
-				<textarea disabled="true" value='xxxxx' row='10' type="text" />
+				<textarea disabled="true" :value='obj.dh_cure_situation' row='10' type="text" />
 			</view>
 		</view>
 	</view>
 </template>
 <script>
 	import goto from '../../../util/tool/tool.js';
+	import http from '../../../util/tool/http.js'; 
+	import app from '../../../util/tool/andoridFun.js';
 	export default {
 		data() {
-			return { 
+			return {
 				items:[1,2],
+				cId:'',
+				obj:{},
 			}
 		},
 		methods: {
 		
 			addPhysicalExaminationRecord(){
 				goto.goto('../addPhysicalExaminationRecord/index');
+			},
+			getData(){
+				let that = this;
+				http.Post('sys_fkcy/app_dishis/getWhereId',{id:that.cId}, (res)=>{
+					console.log(res);
+					that.obj = res.data;
+				})
 			}
 		},
 		mounted(){
-			
+			this.getData();
 		},
+		onLoad(option) {
+			this.cId = option.id;
+		}
 	}
 </script>
 <style>
@@ -69,6 +83,7 @@
 		padding: .5rem .5rem;
 		border-radius: .5rem;
 		color:#666666;
+		font-size: .8rem;
 	} 
 	textarea{
 		height: 5rem !important;

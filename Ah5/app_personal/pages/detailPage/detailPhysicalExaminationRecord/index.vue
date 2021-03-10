@@ -6,7 +6,7 @@
 				<text>体检时间</text>
 			</view>
 			<view class='insertInfo'>
-				<input disabled="true" type="text" :value='obj.time_'>
+				<input disabled="true" type="text" :value='obj.pex_datetime'>
 			</view>
 		</view>
 		<!-- 体检医院 -->
@@ -15,7 +15,7 @@
 				<text>体检医院</text>
 			</view>
 			<view class='insertInfo'>
-				<input disabled="true" type="text" :value='obj.name_'>
+				<input disabled="true" type="text" :value='obj.pex_hospital'>
 			</view>
 		</view>
 		<!-- 体检项目 -->
@@ -24,7 +24,7 @@
 				<text>体检项目</text>
 			</view>
 			<view class='insertInfo'>
-				<input disabled="true" type="text" :value='obj.pro_'>
+				<input disabled="true" type="text" :value='obj.pex_project'>
 			</view>
 		</view>
 		<!-- 结果分析 -->
@@ -33,34 +33,41 @@
 				<text>结果分析</text>
 			</view>
 			<view class='insertInfo'>
-				<textarea disabled='true' :value='obj.result_' row='10' type="text" />
+				<textarea disabled='true' :value='obj.pex_result' row='10' type="text" />
 			</view>
 		</view>
 	</view>
 </template>
 <script>
 	import goto from '../../../util/tool/tool.js';
+	import http from '../../../util/tool/http.js';
 	export default {
 		data() {
 			return {
 				items:[1,2],
-				obj:{
-					time_:'2010.10.23',
-					name_:'贵州省铜仁市第一人民医院',
-					pro_:'心肺检查',
-					result_:'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
-				}
+				cId:'',
+				obj:{},
 			}
 		},
 		methods: {
 		
 			addPhysicalExaminationRecord(){
 				goto.goto('../addPhysicalExaminationRecord/index');
+			},
+			getDetail(){
+				let that = this;
+				http.Post('/sys_fkcy/app_phyexa/getWhereId.app',{id:this.cId}, (res) => {
+					that.obj = res.data;
+				})
 			}
 		},
 		mounted(){
-			
+			this.getDetail();
 		},
+		onLoad(option) {
+			// console.log(option.id);
+			this.cId = option.id;
+		}
 	}
 </script>
 <style>
@@ -84,6 +91,7 @@
 		padding: .5rem .5rem;
 		border-radius: .5rem;
 		color:#666666;
+		font-size: .8rem;
 	}
 	textarea{
 		height: 5rem !important;
