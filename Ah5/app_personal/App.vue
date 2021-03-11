@@ -16,12 +16,22 @@
 </script>
 
 <style>
-	/*每个页面公共css */
+	/*公共css */ 
 	@import './uni.scss';
 	page{
 		font-size: .8rem;
 	}
-	.uni-picker-container .uni-picker-action.uni-picker-action-confirm{
+	/* 修改uni内置组件的默认样式 */
+	.uni-picker-container .uni-picker-action.uni-picker-action-confirm,uni-modal .uni-modal__btn_primary{
 		color:#00D193 !important;
+	}
+	uni-modal .uni-modal,uni-modal .uni-modal__btn,uni-modal .uni-modal__title{
+		font-size: .8rem !important;
+	}
+	uni-modal .uni-modal__title{
+		/* color: red !important; */
+	}
+	.uni-modal__bd{
+		font-size: .8rem !important;
 	}
 </style>

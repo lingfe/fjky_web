@@ -15,7 +15,7 @@
 				<text>手术医院</text>
 			</view>
 			<view class='insertInfo'>
-				<input  disabled="true" :value='obj.dh_operation_hospital' type="text">
+				<input disabled="true" :value='obj.dh_operation_hospital' type="text">
 			</view>
 		</view>
 		<!-- 就诊原因 -->
@@ -24,7 +24,7 @@
 				<text>手术原因</text>
 			</view>
 			<view class='insertInfo'>
-				<input  disabled="true" :value='obj.dh_operation_cause' type="text">
+				<input disabled="true" :value='obj.dh_operation_cause' type="text">
 			</view>
 		</view>
 		<view>
@@ -32,8 +32,12 @@
 				<text>手术结果</text>
 			</view>
 			<view class='insertInfo'>
-				<textarea  disabled="true" :value='obj.dh_operation_result' row='10' type="text" />
+				<textarea disabled="true" :value='obj.dh_operation_result' row='10' type="text" />
 			</view>
+		</view>
+		<!-- 删除按钮 -->
+		<view class='deletBtn' @click="deleteRecord()">
+			<text>删除</text>
 		</view>
 	</view>
 </template>
@@ -42,24 +46,52 @@
 	import http from '../../../util/tool/http.js';
 	export default {
 		data() {
-			return { 
-				items:[1,2],
-				cId:'',
-				obj:{},
+			return {
+				items: [1, 2],
+				cId: '',
+				obj: {},
 			}
 		},
 		methods: {
-			addPhysicalExaminationRecord(){
+			addPhysicalExaminationRecord() {
 				goto.goto('../addPhysicalExaminationRecord/index');
 			},
-			getData(){
+			getData() {
 				let that = this;
-				http.Post('sys_fkcy/app_dishis/getWhereId',{id:this.cId},(res)=>{
+				http.Post('sys_fkcy/app_dishis/getWhereId', {
+					id: this.cId
+				}, (res) => {
 					that.obj = res.data;
 				})
+			},
+			deleteRecord() {
+				let that = this;
+				uni.showModal({
+					title: '确定删除记录内容？',
+					content: '备注：删除后不可修复',
+					success(res) {
+						if (res.confirm) {
+							http.Post('sys_fkcy/app_dishis/deleteWhereId.app', {
+								id: that.cId
+							}, (res) => {
+								// console.log(res);
+								uni.showToast({
+									title: res.msg,
+									icon: 'none',
+									success() {
+										let t = setInterval(() => {
+											clearInterval(t);
+											uni.navigateBack();
+										}, 1000);
+									}
+								})
+							})
+						}
+					}
+				});
 			}
 		},
-		mounted(){
+		mounted() {
 			this.getData();
 		},
 		onLoad(option) {
@@ -69,31 +101,52 @@
 </script>
 <style>
 	@import url("../../../util/tool/common.css");
-	.content{
+
+	.deletBtn {
+		position: absolute;
+		width: 100%;
+		text-align: center;
+		padding: 1rem 0rem;
+		bottom: 4rem;
+	}
+
+	.deletBtn>text {
+		border: 1px solid red;
+		padding: .5rem 5rem;
+		color: red;
+		border-radius: 2.5rem;
+	}
+
+	.content {
 		border-top: 1px solid #eeeeee;
 	}
-	.saveBtn{
-		margin:10%;
+
+	.saveBtn {
+		margin: 10%;
 		text-align: center;
 		padding: .5rem 0;
 		background-color: #00D193;
 		color: white;
 		border-radius: 1rem;
 	}
-	input,textarea{
+
+	input,
+	textarea {
 		background-color: #F5F5F5;
-		margin:-.5rem 1.5rem;
+		margin: -.5rem 1.5rem;
 		height: 1.5rem;
-		/* border: 1px solid red; */ 
+		/* border: 1px solid red; */
 		padding: .5rem .5rem;
 		border-radius: .5rem;
-		color:#666666;
+		color: #666666;
 		font-size: .8rem;
 	}
-	textarea{
+
+	textarea {
 		height: 5rem !important;
 	}
-	.title{
+
+	.title {
 		/* border: 1px solid red; */
 		font-size: 1rem;
 		padding: 1.3rem;
@@ -101,5 +154,4 @@
 		font-size: .9rem;
 		font-weight: bolder;
 	}
-	
 </style>

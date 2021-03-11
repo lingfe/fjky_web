@@ -5,11 +5,12 @@
 			<view class='title_question'>
 				<text>
 					{{item.title}}
-				</text> 
+				</text>
 			</view>
 			<!-- 问题选项 -->
 			<view v-for='(item,index) in item.subText' class='items_answer'>
-				<view :value='item.score' @click="getChice(index,item.score)" :class="[aTab == 'aTab'+index?'tabActive':'tabNoActive']">
+				<view :value='item.score' @click="getChice(index,item.score)"
+					:class="[aTab == 'aTab'+index?'tabActive':'tabNoActive']">
 					{{item.text}}
 				</view>
 			</view>
@@ -31,23 +32,24 @@
 		<view v-if='now' @click='next()' class='nextBtn'>
 			<text>下一步</text>
 		</view>
-		<view v-else = 'now' @click='gotoBack()' class='nextBtn'>
+		<view v-else='now' @click='gotoBack()' class='nextBtn'>
 			<text>完成</text>
 		</view>
 	</view>
 </template>
 <script>
+	import http from '../../../util/tool/http.js';
 	export default {
 		data() {
 			return {
-				abilityLevel:'',
-				zTotal:0,
-				cTotal:null,
-				now:true,
-				aTab:'',
+				abilityLevel: '',
+				zTotal: 0,
+				cTotal: null,
+				now: true,
+				aTab: '',
 				//组织出问卷的数据
 				items: [{
-						show: true, 
+						show: true,
 						title: '能否独立进食',
 						subText: [{
 								text: '可独立进食',
@@ -204,88 +206,106 @@
 		},
 		methods: {
 			//下一步的方法执行
-			next(){
-				for (var i = 0; i < this.items.length; i++){
-					if(i==this.items.length-1){
+			next() {
+				for (var i = 0; i < this.items.length; i++) {
+					if (i == this.items.length - 1) {
 						//切换成完成评估的界面
 						this.items[i].show = false;
 						this.now = false;
 						// console.log('总分数：'+this.zTotal);
-						if(this.zTotal<=40){
+						if (parseInt(this.zTotal) <= 40) {
 							this.abilityLevel = '重度依赖,全部需要他人照护';
-						}
-						else if (41<this.zTotal<60){
+						} else if (40 < parseInt(this.zTotal)<= 60) {
 							this.abilityLevel = '中度依赖,大部分需要他人照护';
-						}
-						else if(61<this.zTotal<99){
+						} else if (60 <parseInt(this.zTotal) <= 80) {
 							this.abilityLevel = '轻度依赖，少部分需要他人照护';
+						} else if (parseInt (this.zTotal) == 100) {
+ 							this.abilityLevel = '无需依赖，无需他人照护';
 						}
-						else if(this.zTotal == 100){
-							this.abilityLevel = '无需依赖，无需他人照护';
-						}
+						this.saveDataHttp(this.abilityLevel);
 						return false;
 					}
 					//切换下一个问题展示
-					if (this.items[i].show == true){
- 						if(this.cTotal != null){
+					if (this.items[i].show == true) {
+						if (this.cTotal != null) {
 							//记录分数
-							this.zTotal = this.zTotal + parseInt( this.cTotal); 
+							this.zTotal = this.zTotal + parseInt(this.cTotal);
 							this.items[i].show = false;
 							this.items[i + 1].show = true;
 							this.aTab = '';
 							this.cTotal = null;
-							return false; 
-						}
-						else{
+							return false;
+						} else {
 							uni.showToast({
-								title:'请选择内容',
-								icon:'none',
-								duration:1000,
+								title: '请选择内容',
+								icon: 'none',
+								duration: 1000,
 							})
 							return false;
 						}
-					
+
 					}
 				}
 			},
 			//获取每个选项的点击方法
-			getChice(n,m){
+			getChice(n, m) {
 				//这里记住每个选项 得分
 				// console.log(n,m);
-				this.aTab = 'aTab'+ n;
+				this.aTab = 'aTab' + n;
 				this.cTotal = m;
 				console.log(this.cTotal);
 			},
-			gotoBack(){
+			gotoBack() {
 				uni.navigateTo({
-					url:'../../evaluationCenter/index'
+					url: '../../evaluationCenter/index'
 				})
-			}
+			},
+			//提交保存用户的自理能力评估特征
+			saveDataHttp(n){
+				let data = {
+					user_id:'34f35165-b714-448c-8ede-cd8343a43b1a',
+					eva_zlnl_res :n , 
+				};
+				http.Post('sys_fkcy/eva_res/setUserEvaRes',data,(res)=>{
+					console.log(res);
+					uni.showToast({
+						title:'您的数据已经保存',
+						icon:'none',
+					})
+				})
+			}, 
 		},
-		mounted() {}
+		mounted(){},
+		onLoad(option) {
+			console.log(option.result);
+		}
 	}
 </script>
 <style>
 	@import url("../../../util/tool/common.css");
-	.wh100 .type{
+
+	.wh100 .type {
 		text-align: center;
 		font-size: .9rem;
 		padding-bottom: .5rem;
 		font-weight: 600;
 	}
-	.wh100 .type0{
-		color:black !important;
+
+	.wh100 .type0 {
+		color: black !important;
 		font-weight: 600;
 		padding-bottom: .5rem;
 		text-align: center;
 	}
-	.wh100 .type1{
-		color:gray !important;
+
+	.wh100 .type1 {
+		color: gray !important;
 		font-weight: 100;
 		font-size: .9rem;
 		text-align: center;
 	}
-	.wh100{
+
+	.wh100 {
 		position: relative;
 		width: 100%;
 		height: 60vh;
@@ -294,14 +314,17 @@
 		align-items: center;
 		justify-content: center;
 	}
+
 	.tabActive {
 		color: #00D193 !important;
 		border: 1px solid #00D193 !important;
 	}
+
 	.items_answer {
 		/* border: 1px solid red; */
 		text-align: center;
 	}
+
 	.items_answer>view {
 		padding: .5rem 1rem .5rem 1rem;
 		border: 1px solid #eeeeee;
@@ -309,6 +332,7 @@
 		margin-left: 5%;
 		margin-top: 5%;
 	}
+
 	.nextBtn {
 		/* border: 1px solid red; */
 		text-align: center;

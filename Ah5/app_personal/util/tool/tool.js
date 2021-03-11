@@ -7,5 +7,9 @@ export default {
 			url: n,
 		}) 
 	}, 
+	//随机生成一个范围0-100的数 
+	getNumber:function(){
+		return Math.ceil(Math.random()*10);  
+	}
 }
 

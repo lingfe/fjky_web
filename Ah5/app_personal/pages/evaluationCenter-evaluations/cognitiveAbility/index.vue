@@ -37,6 +37,7 @@
 	</view>
 </template>
 <script>
+	import http from '../../../util/tool/http.js';
 	export default {
 		data() {
 			return {
@@ -107,6 +108,7 @@
 						else if (this.zTotal>0){
 							this.abilityLevel = '正常';
 						}
+						this.saveDataHttp(this.abilityLevel);
 						return false;
 					}
 					//切换下一个问题展示
@@ -144,9 +146,26 @@
 				uni.navigateTo({
 					url:'../../evaluationCenter/index'
 				})
-			}
+			},
+			//提交保存用户的认知能力评估特征
+			saveDataHttp(n){
+				let data = {
+					user_id:'34f35165-b714-448c-8ede-cd8343a43b1a',
+					eva_rznl_res :n , 
+				};
+				http.Post('sys_fkcy/eva_res/setUserEvaRes',data,(res)=>{
+					console.log(res);
+					uni.showToast({
+						title:'您的数据已经保存',
+						icon:'none',
+					})
+				})
+			}, 
 		},
-		mounted() {}
+		mounted() {},
+		onLoad(option) {
+			console.log(option.result);
+		}
 	}
 </script>
 <style>
