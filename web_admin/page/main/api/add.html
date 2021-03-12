@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>添加接口</title>
+		<!-- 引入css资源 -->
+		<link rel="stylesheet" href="../../../lib/layui-v2.5.5/css/layui.css" media="all">
+	</head>
+
+	<body>
+		<!-- 表单 start -->
+		<form class="layui-form" style="width:96%;margin:0;margin-top:15px;">
+			<!-- 单独一行 -->
+			<div class="layui-form-item">
+				<label class="layui-form-label">接口名称</label>
+				<div class="layui-input-block">
+					<input id="api_name" name='api_name' type="text" autocomplete="on" 
+					lay-reqtext="接口名称不能为空" placeholder="请输入接口名称" lay-verify="required" class="layui-input" />
+				</div>
+			</div>
+
+			<!-- 并列一行 start -->
+			<div class="layui-form-item">
+				<label class="layui-form-label required">接口url</label>
+				<div class="layui-input-block">
+					<input id="api_url" name="api_url"  class="layui-input" 
+					lay-reqtext="接口url不能为空" placeholder="请输入接口url" lay-verify="required"/>
+				</div>
+			</div>
+			<!-- 并列一行 end -->
+
+			<!-- 单独一行 -->
+			<div class="layui-form-item">
+				<label class="layui-form-label">请求方式</label>
+				<div class="layui-input-block">
+					<select id='api_method' name="api_method" placeholder="请选择">
+						<option value="Get">Get请求</option>
+						<option value="Post">Post请求</option>
+					</select>  
+				</div>
+			</div>
+			
+			<!-- 单独一行 -->
+			<div class="layui-form-item">
+				<label class="layui-form-label">参数方式</label>
+				<div class="layui-input-block">
+					<select id='api_param_way' name="api_param_way" placeholder="请选择">
+						<option value="code">指令</option>
+						<option value="state">获取状态</option>
+					</select>  
+				</div>
+			</div>
+			
+			<!-- 单独一行 -->
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">保存</button>
+					<button class="layui-btn layui-btn-primary" id="close">关闭</button>
+				</div>
+			</div>
+		</form>
+		<!-- 表单 end -->
+
+		<!-- 引入js资源 -->
+		<script src="../../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+		<script src="../../bcxt/login/login.js" charset="utf-8"></script>
+		<script charset="utf-8">
+			//加载layui指定组件
+			layui.use(['form'], function() {
+				//定义组件变量
+				var form = layui.form,
+					layer = layui.layer,
+					$ = layui.$;
+
+				//是否操作过
+				var is_caozuo = false;
+				//关闭或刷新
+				$("#close").on("click", function() {
+					if (!is_caozuo) {
+						//只是关闭
+						var index = parent.layer.getFrameIndex(window.name); //获取当前窗口的name
+						parent.layer.close(index); //关闭窗口
+					} else {
+						//关闭并刷新
+						window.parent.location.reload();
+					}
+					return false;
+				});
+
+				//监听提交
+				form.on('submit(saveBtn)', function(data) {
+					$.ajax({
+						url: '/sys_fkcy/main_api/save',
+						type: "POST",
+						data: {
+							"api_name": $("#api_name").val(),
+							"api_url": $("#api_url").val(),
+							"api_method": $("#api_method").val(),
+							"api_param_way":$("#api_param_way").val()
+						},
+						xhrFields: {
+							withCredentials: true
+						},
+						success: function(data) {
+							if (data.state != 200) {
+								layer.msg(data.msg, {
+									icon: 5
+								}); //失败的表情
+							} else {
+								//提交过并且成功!
+								is_caozuo = true;
+								layer.msg(data.msg, {
+									icon: 6, //成功的表情
+									time: 1000 //1秒关闭（如果不配置，默认是3秒）
+								});
+							}
+						}
+					});
+					return false;
+				});
+			});
+		</script>
+	</body>
+</html>

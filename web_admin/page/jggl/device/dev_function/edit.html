@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>编辑设备功能</title>
+		<!-- 引入css资源 -->
+		<link rel="stylesheet" href="../../../../lib/layui-v2.5.5/css/layui.css" media="all">
+	</head>
+
+	<body>
+		<!-- 表单 start -->
+		<form class="layui-form" lay-filter="dev_function" style="width:96%;margin:0;margin-top:15px;">
+			<!-- 并列一行 start -->
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label required">设备名称</label>
+					<div class="layui-input-block">
+						<input id="device_id" name="device_id" hidden="true" />
+						<input id="device_name" name="device_name" readonly="readonly" class="layui-input" />
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label required">设备类型</label>
+					<div class="layui-input-block">
+						<input id="dtype_name" name="dtype_name" readonly="readonly"  class="layui-input">
+					</div>
+				</div>
+			</div>
+			<!-- 并列一行 end -->
+			
+			<!-- 单独一行 -->
+			<div class="layui-form-item">
+				<label class="layui-form-label">设备供应商</label>
+				<div class="layui-input-block">
+					<input id="supp_name" name="supp_name" readonly="readonly"  class="layui-input">
+				</div>
+			</div>
+			
+			<!-- 并列一行 start -->
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label required">选择功能</label>
+					<div class="layui-input-block">
+						<input id="fun_id" name="fun_id" hidden="true" />
+						<input id="fun_name" name="fun_name" readonly="readonly" placeholder="请选择" class="layui-input" />
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label required">默认值</label>
+					<div class="layui-input-block">
+						<input id="fun_value" name="fun_value" value="0" class="layui-input">
+					</div>
+				</div>
+			</div>
+			<!-- 并列一行 end -->
+			
+			<!-- 并列一行 start -->
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label">功能指令</label>
+					<div class="layui-input-block">
+						<input id="fun_code" name="fun_code" autocomplete="on" 
+						lay-reqtext="指令不能为空" placeholder="请输入指令" lay-verify="required" class="layui-input" />
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label required">值类型</label>
+					<div class="layui-input-block">
+						<select id='fun_value_type' name="fun_value_type" placeholder="请选择">
+							<option value="0">文本</option>
+							<option value="1">数值</option>
+							<option value="2">开关</option>
+							<option value="3">数值范围(-)</option>
+							<option value="4">日期范围(-)</option>
+							<option value="5">文本分隔(xx,xx)</option>
+							<option value="6">数值分隔(xx,xx)</option>
+							<option value="7">文本分隔(xx-xx)</option>
+							<option value="8">数值分隔(xx-xx)</option>
+							<option value="9">无值(无需传值)</option>
+						</select>
+					</div>
+				</div>
+			</div>
+			<!-- 并列一行 end -->
+			
+			<!-- 单独一行 -->
+			<div class="layui-form-item">
+				<label class="layui-form-label">功能说明</label>
+				<div class="layui-input-block">
+					<textarea id="fun_explain" name="fun_explain" placeholder="请输入功能说明" class="layui-textarea"></textarea>
+				</div>
+			</div>
+			
+			<!-- 并列一行 start -->
+			<div class="layui-form-item">
+				<div class="layui-inline">
+					<label class="layui-form-label required">选择接口</label>
+					<div class="layui-input-block">
+						<input id="api_id" name="api_id" hidden="true" />
+						<input id="api_name" name="api_name" readonly="readonly" placeholder="请选择" class="layui-input" />
+					</div>
+				</div>
+				<div class="layui-inline">
+					<label class="layui-form-label required">接口类型</label>
+					<div class="layui-input-block"> 
+						<input id="api_method" name="api_method" readonly="readonly" class="layui-input" />
+					</div>
+				</div>
+			</div>
+			<!-- 并列一行 end -->
+			
+			<!-- 单独一行 -->
+			<div class="layui-form-item">
+				<label class="layui-form-label">接口地址</label>
+				<div class="layui-input-block">
+					<input id="api_url" name="api_url" readonly="readonly"  class="layui-input" />
+				</div>
+			</div>
+			
+			<!-- 静态参数 -->
+			<input id="id" name="id" hidden="true" />
+			
+			<!-- 单独一行 -->
+			<div class="layui-form-item">
+				<div class="layui-input-block">
+					<button class="layui-btn layui-btn-normal" lay-submit lay-filter="saveBtn">保存</button>
+					<button class="layui-btn layui-btn-primary" id="close">关闭</button>
+				</div>
+			</div>
+		</form>
+		<!-- 表单 end -->
+
+		<!-- 引入js资源 -->
+		<script src="../../../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+		<script src="../../../bcxt/login/login.js" charset="utf-8"></script>
+		<script charset="utf-8">
+			//加载layui指定组件
+			layui.use(['form'], function() {
+				//定义组件变量
+				var form = layui.form,
+					layer = layui.layer,
+					$ = layui.$;
+
+				//是否操作过
+				var is_caozuo = false;
+				//关闭或刷新
+				$("#close").on("click", function() {
+					if (!is_caozuo) {
+						//只是关闭
+						var index = parent.layer.getFrameIndex(window.name); //获取当前窗口的name
+						parent.layer.close(index); //关闭窗口
+					} else {
+						//关闭并刷新
+						window.parent.location.reload();
+					}
+					return false;
+				});
+				
+				//选择功能
+				$("#fun_name").on('click', function(e) {
+					var index = layer.open({
+						title: '选择功能',	//弹窗标题
+						type: 2,			//基本层类型0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）。
+						shade: 0.2,			//遮罩层透明度0.1~1
+						maxmin: true,		//是否开启最大化
+						shadeClose: false,	//是否点击遮罩关闭
+						area: ['100%','100%'],		//指定窗口大小
+						content: './select_function.html'	//内容
+					});
+				})
+				
+				//选择接口
+				$("#api_name").on('click', function(e) {
+					var index = layer.open({
+						title: '选择',	//弹窗标题接口
+						type: 2,			//基本层类型0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）。
+						shade: 0.2,			//遮罩层透明度0.1~1
+						maxmin: true,		//是否开启最大化
+						shadeClose: false,	//是否点击遮罩关闭
+						area: ['100%','100%'],		//指定窗口大小
+						content: './select_api.html'	//内容
+					});
+				})
+
+				//监听提交
+				form.on('submit(saveBtn)', function(data) {
+					$.ajax({
+						url: '/sys_fkcy/device_function/updateWhereId',
+						type: "POST",
+						data:data.field,
+						xhrFields: {
+							withCredentials: true
+						},
+						success: function(data) {
+							if (data.state != 200) {
+								layer.msg(data.msg, {
+									icon: 5
+								}); //失败的表情
+							} else {
+								//提交过并且成功!
+								is_caozuo = true;
+								layer.msg(data.msg, {
+									icon: 6, //成功的表情
+									time: 1000 //1秒关闭（如果不配置，默认是3秒）
+								});
+							}
+						}
+					});
+					return false;
+				});
+			});
+			
+			//父窗体调用传值
+			function child(data) {
+				//加载layui指定组件
+				layui.use(['form'], function() {
+					//定义组件变量
+					var $ = layui.jquery;
+					var form = layui.form;
+					$("#id").val(data.id);
+					$("#device_id").val(data.device_id);
+					$("#device_name").val(data.device_name);
+					$("#dtype_name").val(data.dtype_name);
+					$("#supp_name").val(data.supp_name);
+					//功能
+					$("#fun_name").val(data.fun_name);
+					$("#fun_value").val(data.fun_value);
+					$("#fun_code").val(data.fun_code);
+					$("#fun_value_type").val(data.fun_value_type);
+					$("#fun_explain").val(data.fun_explain);
+					//接口
+					$("#api_id").val(data.api_id);
+					$("#api_name").val(data.api_name);
+					$("#api_url").val(data.api_url);
+					$("#api_method").val(data.api_method);
+					// 更新表单
+					layui.form.render("select");
+				});
+			}
+		</script>
+	</body>
+</html>
