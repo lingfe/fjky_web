@@ -9,7 +9,8 @@
 			</view>
 			<!-- 问题选项 -->
 			<view v-for='(item,index) in item.subText' class='items_answer'>
-				<view :value='item.score' @click="getChice(index,item.score)" :class="[aTab == 'aTab'+index?'tabActive':'tabNoActive']">
+				<view :value='item.score' @click="getChice(index,item.score)"
+					:class="[aTab == 'aTab'+index?'tabActive':'tabNoActive']">
 					{{item.text}}
 				</view>
 			</view>
@@ -37,6 +38,7 @@
 	</view>
 </template>
 <script>
+	import http from '../../../util/tool/http.js';
 	export default {
 		data() {
 			return {
@@ -408,18 +410,19 @@
 						this.items[i].show = false;
 						this.now = false;
 						// console.log('总分数：'+this.zTotal);
-						if (this.zTotal >29) {
+						if (this.zTotal > 29) {
 							this.abilityLevel = '严重焦虑';
-						} else if ( 29>this.zTotal >  21) {
+						} else if (29 > this.zTotal > 21) {
 							this.abilityLevel = '明显焦虑';
-						} else if ( 21>this.zTotal >14) {
+						} else if (21 > this.zTotal > 14) {
 							this.abilityLevel = '有焦虑';
-						} else if (14>this.zTotal >7) {
+						} else if (14 > this.zTotal > 7) {
 							this.abilityLevel = '可能有焦虑';
-						}
-						else if(this.abilityLevel <7){
+						} else if (this.abilityLevel < 7) {
 							this.abilityLevel = '无焦虑';
 						}
+						// console.log(this.abilityLevel);
+						this.saveDataHttp(this.abilityLevel);
 						return false;
 					}
 					//切换下一个问题展示
@@ -456,13 +459,31 @@
 				uni.navigateTo({
 					url: '../../evaluationCenter/index'
 				})
-			}
+			},
+			//提交保存用户的心理健康评估特征
+			saveDataHttp(n) {
+				let data = {
+					user_id: '34f35165-b714-448c-8ede-cd8343a43b1a',
+					eva_xljk_res: n,
+				};
+				http.Post('sys_fkcy/eva_res/setUserEvaRes', data, (res) => {
+					console.log(res);
+					uni.showToast({
+						title: '您的数据已经保存',
+						icon: 'none',
+					})
+				})
+			},
 		},
-		mounted() {}
+		mounted() {},
+		onLoad(option) {
+			console.log(option.result);
+		}
 	}
 </script>
 <style>
 	@import url("../../../util/tool/common.css");
+
 	.wh100 .type {
 		text-align: center;
 		font-size: .9rem;
@@ -539,7 +560,7 @@
 		display: flex;
 		flex-direction: rows;
 		justify-content: center;
-		text-align: center; 
+		text-align: center;
 		padding-top: .8rem;
 		padding-bottom: .8rem;
 		font-size: .9rem;

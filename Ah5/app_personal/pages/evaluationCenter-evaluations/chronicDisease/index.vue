@@ -34,11 +34,10 @@
 		<view v-if="show=='getResult'" class='wh100'>
 			<text>
 				<text class='type0'>
-					根据评估结果，您可能患有xxx
-				
+					根据评估结果，您的慢性病评估结果为正常
 				</text>
 				<text class='type1'>
-					本结果仅根据APP上您的健康数据分析得出，如有误差，建议您尽快去医院进行复查
+					本结果仅根据APP上您的健康数据分析得出，如有误差，建议您尽快去医院进行复查!
 				</text>
 			</text>
 		</view>
@@ -58,6 +57,8 @@
 <script>
 	import echarts from 'echarts';
 	import config from '../../../util/echartConfig/echartConfig.js';
+	import tool from '../../../util/tool/tool.js';
+	import http from '../../../util/tool/http.js';
 	export default {
 		data() {
 			return {
@@ -80,33 +81,54 @@
 				console.log(this.aTab);
 				this.show = this.aTab;
 				if(this.aTab == 'notConfirm'){
-					console.log('sucess');
+					// 系统评估实现过程-web端而已 1.0 版本无其他可靠性数据做支撑
+					// console.log('sucess');
 					let that = this;
-					let time = 0;
-					let time_ = setInterval(function(){
+					//这里随机赋予time值 0-10 ,
+					let time = tool.getNumber();
+					//开启一个定时器对象
+					let time_ = setInterval(function(){ 
 						console.log(time_);
 						time++;
 						if(time == 10){
+							//结束渲染图表
 							clearInterval(time_);
 							//系统评估结束
 							that.show = 'getResult';
+							that.saveDataHttp('正常');  //暂时 默认系统评估统一给与正常值
 						}
 						if(time == 0){
+							//渲染图表
 							this.show_1 = false;
 							let echarts = require('echarts');
 							this.chartLine = echarts.init(document.getElementById('chartBox'));
-							console.log(echarts);
+							// console.log(echarts);
 							this.chartLine.setOption(config.chronicAssessmentSchedule(90),true);
 						}
 						else{
+							//不同时刻渲染不同的数据 -> 导致渲染一个数据变化过程的动效
 							let echarts = require('echarts');
 							this.chartLine = echarts.init(document.getElementById('chartBox'));
-							console.log(echarts);
+							// console.log(echarts); 
 							this.chartLine.setOption(config.chronicAssessmentSchedule(10*time),true);
 						}
 					},1000);
 				}
-			},
+			}, 
+			//提交保存用户的慢性病评估特征
+			saveDataHttp(n){
+				let data = {
+					user_id:'34f35165-b714-448c-8ede-cd8343a43b1a',
+					eva_mxb_res :n , 
+				};
+				http.Post('sys_fkcy/eva_res/setUserEvaRes',data,(res)=>{
+					console.log(res);
+					uni.showToast({
+						title:'您的数据已经保存',
+						icon:'none',
+					})
+				})
+			}, 
 			getD(n){
 				this.bTab = n;
 				if (n == '其他'){
@@ -123,17 +145,15 @@
 					// console.log(this.bTab);
 					//继续嵌套一个判断input框是否已经有内容
 					if(this.value_input!== ''){
-						uni.showToast({
-							title:'您的数据已经保存',
-							icon:'none',
-						})
+						//调用接口保存数据
+						this.saveDataHttp(this.value_input);
 						let time_ = setInterval(function(){
 							uni.navigateTo({
 								url:'../../evaluationCenter/index',
 							})
 							clearInterval(time_);
 						},1000);
-					}
+					} 
 					else{
 						uni.showToast({
 							title:'数据不能为空',
@@ -142,10 +162,7 @@
 					}
 				}
 				else{
-					uni.showToast({
-						title:'您的数据已经保存',
-						icon:'none',
-					})
+					this.saveDataHttp(this.bTab);
 					let time_ = setInterval(function(){
 						// console.log('123123');
 						uni.navigateTo({
@@ -157,8 +174,10 @@
 			},
 		},
 		mounted(){
-		
 		},
+		onLoad(option) {
+			console.log(option.result);
+		}
 	}
 </script>
 <style>

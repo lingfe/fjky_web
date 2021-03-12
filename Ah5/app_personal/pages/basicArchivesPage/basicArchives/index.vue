@@ -7,7 +7,7 @@
 				<img :src="userImg" alt="">
 			</view>
 			<view class='userName'>
-				<text>{{userName}}</text>
+				<text>{{userName}}</text> 
 				<text class='age_'>{{age}}岁</text>
 			</view>
 			<view class='telPhone'>
@@ -80,19 +80,19 @@
 				</view>
 				<view class='tab_item'>
 					<text>慢性病状态</text>
-					<text>丧偶</text>
+					<text>{{mxb}}</text>
 				</view>
 				<view class='tab_item'>
 					<text>心理健康</text>
-					<text>请输入用户记忆情况</text>
+					<text>{{xl}}</text>
 				</view>
 				<view class='tab_item'>
 					<text>自理能力</text>
-					<text>去评估</text>
+					<text>{{zl}}</text>
 				</view>
 				<view class='tab_item'>
 					<text>认知能力</text>
-					<text>轻度依赖</text>
+					<text>{{rz}}</text>
 				</view>
 			</view>
 		</view>
@@ -100,13 +100,12 @@
 </template>
 <style>
 	@import url("../../../util/tool/common.css");
-
 	.age_ {
 		font-size: .7rem !important;
 		padding-top: .5rem;
 	}
 
-	.tab_item>text:nth-child(1) {
+	.tab_item>text:nth-child(1){
 		color: #222222;
 	}
 
@@ -223,16 +222,21 @@
 				addr: '',
 				idNumber: '',
 				//身体信息 
-				sg: '',
-				tz: '',
-				bmi: '',
-				yw: '',
-				tw: '',
+				sg: '',   //身高
+				tz: '',    //体重
+				bmi: '',  //bmi数值
+				yw: '',   //腰围
+				tw: '',   //臀围
 				//生活方式
-				dl: '',
-				yj: '',
-				xy: '',
-			}
+				dl: '',   //锻炼情况
+				yj: '',   //饮酒情况 
+				xy: '',   //吸烟情况
+				//评估结果
+				mxb:'', //慢性病情况 
+				xl:'',  //心理健康
+				zl:'', //自理能力
+				rz:'', // 认知能力
+			} 
 		},
 		methods: {
 			getData() {
@@ -268,6 +272,14 @@
 					that.xy = (res.data.style_info.smoke_state == undefined ? '未知' : res.data.style_info
 						.smoke_state);
 				});
+				//获取评估结果的数据
+				http.Post('sys_fkcy/eva_res/getUserEvaRes',{'user_id':'34f35165-b714-448c-8ede-cd8343a43b1a'},(res) => {
+					// console.log(res);
+					that.mxb = (res.data.eva_mxb_res == undefined ? '去评估' : res.data.eva_mxb_res );
+					that.xl = (res.data.eva_xljk_res == undefined ? '去评估' : res.data.eva_xljk_res );
+					that.rz = (res.data.eva_rznl_res  == undefined ? '去评估': res.data.eva_rznl_res); 
+					that.zl = (res.data.eva_zlnl_res  == undefined ? '去评估' : res.data.eva_zlnl_res); 
+				})
 			}
 		},
 		mounted() {},

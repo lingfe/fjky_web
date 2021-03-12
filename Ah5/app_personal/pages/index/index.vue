@@ -271,39 +271,39 @@
 		methods: {
 			//首页各个tab栏的查看详情
 			stepNumberDetail() {
-				console.log('查看详情-步数');
+				// console.log('查看详情-步数');
 				goto.goto('../healthReport/index?tab=stepNumber');
 			},
 			bloodPressureDetail() {
-				console.log('查看详情-血压');
+				// console.log('查看详情-血压');
 				goto.goto('../healthReport/index?tab=bloodPressure');
 			},
 			heartRateDetail() {
-				console.log('查看详情-心率');
+				// console.log('查看详情-心率');
 				goto.goto('../healthReport/index?tab=heartRate');
 			},
 			bloodOxygenDetail() {
-				console.log('查看详情-血氧');
+				// console.log('查看详情-血氧');
 				goto.goto('../healthReport/index?tab=bloodOxygen');
 			},
 			uricAcidDetail() {
-				console.log('查看详情-尿酸');
+				// console.log('查看详情-尿酸');
 				goto.goto('../healthReport/index?tab=uricAcid');
 			},
 			bloodFatDetail() {
-				console.log('查看详情-血脂');
+				// console.log('查看详情-血脂');
 				goto.goto('../healthReport/index?tab=bloodFat');
 			},
 			bloodSugarDetail() {
-				console.log('查看详情-血糖');
+				// console.log('查看详情-血糖');
 				goto.goto('../healthReport/index?tab=bloodSugar');
 			},
 			tiwenDetail() {
-				console.log('查看详情-体温');
+				// console.log('查看详情-体温');
 				goto.goto('../healthReport/index?tab=tiwen');
 			},
 			shuimianDetail() {
-				console.log('查看详情-睡眠');
+				// console.log('查看详情-睡眠');
 				goto.goto('../healthReport/index?tab=shuimian');
 			},
 			//暂时不做的功能
@@ -317,7 +317,7 @@
 			//首页tab栏切换，表格数据切换
 			getThisTab(n) {
 				this.cTab = n;
-				console.log(n);
+				// console.log(n);
 				if (n == 'stepNumber') {
 					//渲染步数的数据和报表 得分环
 					// this.chartLine = echarts.init(document.getElementById('chartBox'));
@@ -387,7 +387,7 @@
 		http.Get('/sys_fkcy/auhd/getHealthyData', {
 			'appUserId': '4c404454-0d30-475e-a4c5-57bfea958c96'
 		}, function(res) {
-			console.log(res);
+			// console.log(res);
 			that.steps_value = res.data.steps.value;
 			that.sleep_value = res.data.sleep.value;
 			that.tiwen_value = res.data.tiwen.value;

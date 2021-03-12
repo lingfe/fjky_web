@@ -27,6 +27,10 @@
 				<textarea disabled="true" :value='obj.dh_cure_situation' row='10' type="text" />
 			</view>
 		</view>
+		<!-- 删除按钮 -->
+		<view class='deletBtn' @click="deleteRecord()">
+			<text>删除</text>
+		</view>
 	</view>
 </template>
 <script>
@@ -52,7 +56,32 @@
 					console.log(res);
 					that.obj = res.data;
 				})
+			},
+			deleteRecord(){
+					let that = this;
+					uni.showModal({
+						title:'确定删除记录内容？',
+						content:'备注：删除后不可修复',
+						success(res) {
+							if(res.confirm){
+								http.Post('sys_fkcy/app_dishis/deleteWhereId.app',{id:that.cId}, (res) => {
+									// console.log(res);
+									uni.showToast({
+										title:res.msg,
+										icon:'none',
+										success() {
+											let t = setInterval(()=>{
+												clearInterval(t);
+												uni.navigateBack();
+											},1000); 
+										}
+									})
+								})
+							}
+						}
+					});
 			}
+			
 		},
 		mounted(){
 			this.getData();
@@ -64,6 +93,19 @@
 </script>
 <style>
 	@import url("../../../util/tool/common.css");
+	.deletBtn{
+		position: absolute;
+		width: 100%;
+		text-align: center;
+		padding: 1rem 0rem ;
+		bottom: 8rem;
+	}
+	.deletBtn>text{
+		border: 1px solid red;
+		padding: .5rem 5rem;
+		color: red;
+		border-radius: 2.5rem;
+	}
 	.content{
 		border-top: 1px solid #eeeeee;
 	}

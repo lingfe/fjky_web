@@ -39,6 +39,10 @@
 				<textarea disabled="true"  value='xxxxxx' row='10' type="text" />
 			</view>
 		</view>
+		<!-- 删除按钮 -->
+		<view class='deletBtn'>
+			<text>删除</text>
+		</view>
 	</view>
 </template>
 <script>
@@ -62,6 +66,19 @@
 </script>
 <style>
 	@import url("../../../util/tool/common.css");
+	.deletBtn{
+		position: absolute;
+		width: 100%;
+		text-align: center;
+		padding: 1rem 0rem ;
+		bottom: 8rem;
+	}
+	.deletBtn>text{
+		border: 1px solid red;
+		padding: .5rem 5rem;
+		color: red;
+		border-radius: 2.5rem;
+	}
 	.content{
 		border-top: 1px solid #eeeeee;
 	}
