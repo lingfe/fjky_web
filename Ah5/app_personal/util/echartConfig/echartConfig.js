@@ -1,6 +1,6 @@
 var config = {};
 export default config = {
-	//仪表盘图系列-单数据渲染
+	//仪表盘图系列-单数据渲染 start
 	//步数
 	stepNumber: function(n) {
 		if (n == '未测量') {
@@ -15,7 +15,7 @@ export default config = {
 					},
 					max: 10000,
 					min: 0,
-					progress: {
+					progress:{
 						show: true,
 						overlap: false,
 						roundCap: true,
@@ -1378,13 +1378,14 @@ export default config = {
 
 		}
 	},
+	//end
 	//折线图系列-多条数据渲染
 	//步数
-	stepNumber_lineChart: function() {
+	stepNumber_lineChart: function(arr,xarr) {
 		return {
 			xAxis: {
 				type: 'category',
-				data: ['6:00', '7:00', '8:00', '9:00', '10:00', '11:00', '12:00'],
+				data: xarr,
 				axisTick: {
 					show: false,
 				},
@@ -1409,16 +1410,15 @@ export default config = {
 			},
 			series: [{
 				symbol: "none",
-				data: [2, 4, 6, 10, 20, 4],
+				data: arr,
 				type: 'line',
 			}]
 		};
 	},
 	//血压
-	bloodPressure_lineChart: function() {
+	bloodPressure_lineChart: function(arr1,arr2,xarr){
 		return {
-			grid:{
-			}, 
+			grid:{},
 			color: ['#329BFE', '#FF9A21'],
 			legend: [{
 				top: "5%",
@@ -1453,7 +1453,7 @@ export default config = {
 			}],
 			xAxis: {
 				type: 'category',
-				data: ['12.1', '12.2', '12.3', '12.4', '12.5', '12.6', '12:7'],
+				data: xarr,
 				axisTick: {
 					show: false,
 				},
@@ -1465,10 +1465,10 @@ export default config = {
 			},
 			yAxis: {
 				scale: true,
-				max: 20,
-				min: 0,
-				splitNumber: 5,
-				boundaryGap: [5, 5],
+				// max: 20,
+				// min: 0,
+				// splitNumber: 5,
+				// boundaryGap: [5, 5],
 				axisTick: {
 					show: false,
 					length: 15,
@@ -1482,7 +1482,7 @@ export default config = {
 			series: [{
 				symbol: "none",
 				name: '舒张压',
-				data: [18, 4, 6, 10, 2, 4],
+				data: arr2,
 				type: 'line',
 				lineStyle: {
 					color: '#329BFE',
@@ -1490,7 +1490,7 @@ export default config = {
 			}, {
 				name: '收缩压',
 				symbol: "none",
-				data: [16, 20, 9, 14, 20, 8],
+				data: arr1,
 				type: 'line',
 				lineStyle: {
 					color: '#ffA438'
@@ -1499,7 +1499,7 @@ export default config = {
 		};
 	},
 	//心率
-	heartRate_lineChart: function() {
+	heartRate_lineChart: function(arr,xarr) {
 		return {
 			color: ['#329BFE', '#FF9A21'],
 			legend: [{
@@ -1518,25 +1518,27 @@ export default config = {
 					name: "最小心率", // 图例文字内容
 					icon: 'rect', // 图例图形的形状，有多个可选值：'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'，
 				}]
-			}, {
-				top: "5%",
-				right: "30%",
-				textStyle: {
-					// 图例文字样式
-					color: "black",
-					fontSize: 12,
-					fontFamily: "微软雅黑"
-				},
-				itemWidth: 12, // 图例图形的宽度
-				itemHeight: 12, // 图例图形的高度
-				data: [{
-					name: "最大心率", // 图例文字内容
-					icon: 'rect', // 图例图形的形状，有多个可选值：'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'，
-				}]
-			}],
+			}
+			// , {
+			// 	top: "5%",
+			// 	right: "30%",
+			// 	textStyle: {
+			// 		// 图例文字样式
+			// 		color: "black",
+			// 		fontSize: 12,
+			// 		fontFamily: "微软雅黑"
+			// 	},
+			// 	itemWidth: 12, // 图例图形的宽度
+			// 	itemHeight: 12, // 图例图形的高度
+			// 	data: [{
+			// 		name: "最大心率", // 图例文字内容
+			// 		icon: 'rect', // 图例图形的形状，有多个可选值：'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'，
+			// 	}]
+			// },
+			],
 			xAxis: {
 				type: 'category',
-				data: ['12.1', '12.2', '12.3', '12.4', '12.5', '12.6', '12:7'],
+				data: xarr,
 				axisTick: {
 					show: false,
 				},
@@ -1548,10 +1550,10 @@ export default config = {
 			},
 			yAxis: {
 				scale: true,
-				max: 150,
-				min: 50,
-				interval: 20,
-				boundaryGap: [5, 5],
+				// max: 150,
+				// min: 50,
+				// interval: 20,
+				// boundaryGap: [5, 5],
 				axisTick: {
 					show: false,
 					length: 15,
@@ -1565,48 +1567,53 @@ export default config = {
 			series: [{
 				symbol: "none",
 				name: '最大心率',
-				data: [80, 100, 90, 110, 120, 140],
+				data: arr,
 				type: 'line',
 				lineStyle: {
 					color: '#329BFE',
 				}
-			}, {
-				name: '最小心率',
-				symbol: "none",
-				data: [50, 60, 70, 75, 85, 95],
-				type: 'line',
-				lineStyle: {
-					color: '#ffA438'
-				}
-			}]
+			}, 
+			// {
+			// 	name: '最小心率',
+			// 	symbol: "none",
+			// 	data: [50, 60, 70, 75, 85, 95],
+			// 	type: 'line',
+			// 	lineStyle: {
+			// 		color: '#ffA438'
+			// 	}
+			// },
+			]
 		};
 	},
 	//血氧
-	bloodOxygen_lineChart: function() {
+	bloodOxygen_lineChart: function(arr1,xarr) {
 		return {
 			grid: {
-				x2: 60
+				// x2: 60
+				x2:0,
 			},
 			color: ['#329BFE', '#FF9A21'],
-			legend: [{
-				show: true,
+			legend: [
+			// 	{
+			// 	show: true,
+			// 	top: "5%",
+			// 	right: "10%",
+			// 	textStyle: {
+			// 		// 图例文字样式
+			// 		color: "black",
+			// 		fontSize: 12,
+			// 		fontFamily: "微软雅黑"
+			// 	},
+			// 	itemWidth: 12, // 图例图形的宽度
+			// 	itemHeight: 12, // 图例图形的高度
+			// 	data: [{
+			// 		name: "脉率", // 图例文字内容
+			// 		icon: 'rect', // 图例图形的形状，有多个可选值：'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'，
+			// 	}]
+			// },
+			{
 				top: "5%",
-				right: "10%",
-				textStyle: {
-					// 图例文字样式
-					color: "black",
-					fontSize: 12,
-					fontFamily: "微软雅黑"
-				},
-				itemWidth: 12, // 图例图形的宽度
-				itemHeight: 12, // 图例图形的高度
-				data: [{
-					name: "脉率", // 图例文字内容
-					icon: 'rect', // 图例图形的形状，有多个可选值：'circle', 'rect', 'roundRect', 'triangle', 'diamond', 'pin', 'arrow', 'none'，
-				}]
-			}, {
-				top: "5%",
-				right: "25%",
+				right: "5%",
 				textStyle: {
 					// 图例文字样式
 					color: "black",
@@ -1622,7 +1629,7 @@ export default config = {
 			}],
 			xAxis: {
 				type: 'category',
-				data: ['12.1', '12.2', '12.3', '12.4', '12.5', '12.6', '12:7'],
+				data: xarr,
 				axisTick: {
 					show: false,
 				},
@@ -1638,40 +1645,42 @@ export default config = {
 					max: 150,
 					interval: 50,
 					name: '饱和度',
-					data: [70, 100, 90, 130, 120, 180, 100],
+					data: arr1,
 					nameTextStyle: {
 						padding: [10, 10, 10, -5]
 					},
-				},
-				{
-					type: 'value',
-					min: 0,
-					max: 150,
-					interval: 50,
-					axisLabel: {
-						formatter: '{value} %',
-					},
-					symbol: "none",
-					data: [80, 40, 60, 95, 105, 95, 65],
 				}
+				// ,
+				// {
+				// 	type: 'value',
+				// 	min: 0,
+				// 	max: 150,
+				// 	interval: 50,
+				// 	axisLabel: {
+				// 		formatter: '{value} %',
+				// 	},
+				// 	symbol: "none",
+				// 	data: [80, 40, 60, 95, 105, 95, 65],
+				// }
 			],
 			series: [{
 				symbol: "none",
 				name: '饱和度',
-				data: [80, 100, 90, 110, 120, 140],
+				data: arr1,
 				type: 'line',
 				lineStyle: {
 					color: '#329BFE',
 				}
-			}, {
-				name: '脉率',
-				symbol: "none",
-				data: [50, 60, 70, 75, 85, 95],
-				type: 'line',
-				lineStyle: {
-					color: '#ffA438'
-				}
 			}]
+			// , {
+			// 	name: '脉率',
+			// 	symbol: "none",
+			// 	data: [50, 60, 70, 75, 85, 95],
+			// 	type: 'line',
+			// 	lineStyle: {
+			// 		color: '#ffA438'
+			// 	}
+			// }]
 		};
 	},
 	//尿酸
@@ -1711,7 +1720,7 @@ export default config = {
 		};
 	},
 	//血脂
-	bloodFat_lineChart: function() {
+	bloodFat_lineChart: function(arr1,xarr) {
 		return {
 			legend: [{
 				bottom: "2%",
@@ -1741,7 +1750,7 @@ export default config = {
 			color: ['#329BFE', '#FF9A21', '#F72600', '#21FFF8'],
 			xAxis: {
 				type: 'category',
-				data: ['12.1', '12.2', '12.3', '12.4', '12.5', '12.6', '12:7'],
+				data: xarr,
 				axisTick: {
 					show: false,
 				},
@@ -1763,7 +1772,7 @@ export default config = {
 			}, ],
 			series: [{
 					symbol: "none",
-					data: [3.1, 1.4, 1.3, 1.5, 3.9, 3.5],
+					data: arr1,
 					type: 'line',
 					name: '总胆固醇',
 					lineStyle: {
@@ -1772,7 +1781,7 @@ export default config = {
 				},
 				{
 					symbol: "none",
-					data: [2.3, 2, 2.4, 2.1, 2.8, 2.1],
+					data: [],
 					type: 'line',
 					name: '甘油三脂',
 					lineStyle: {
@@ -1780,7 +1789,7 @@ export default config = {
 					}
 				}, {
 					symbol: "none",
-					data: [3.4, 3.1, 3.3, 3.1, 3.2, 3.6],
+					data: [],
 					type: 'line',
 					name: '高密度脂蛋白',
 					lineStyle: {
@@ -1788,7 +1797,7 @@ export default config = {
 					}
 				}, {
 					symbol: "none",
-					data: [5.1, 5.6, 5.2, 5.3, 5.2, 5.8],
+					data: [],
 					type: 'line',
 					name: '低密度脂蛋白',
 					lineStyle: {
@@ -1799,12 +1808,12 @@ export default config = {
 		};
 	},
 	//血糖
-	bloodSugar_lineChart: function() {
+	bloodSugar_lineChart: function(arr,xarr) {
 		return {
 			color: ['#329BFE', '#FF9A21'],
 			xAxis: {
 				type: 'category',
-				data: ['12.1', '12.2', '12.3', '12.4', '12.5', '12.6', '12:7'],
+				data: xarr,
 				axisTick: {
 					show: false,
 				},
@@ -1826,7 +1835,7 @@ export default config = {
 			}, ],
 			series: [{
 				symbol: "none",
-				data: [50, 10, 90, 50, 120, 150],
+				data: arr,
 				type: 'line',
 				lineStyle: {
 					color: '#329BFE',
@@ -1835,12 +1844,12 @@ export default config = {
 		};
 	},
 	//体温
-	tiwen_lineChart: function() {
+	tiwen_lineChart: function(arr,xarr) {
 		return {
 			color: ['#329BFE', '#FF9A21'],
 			xAxis: {
 				type: 'category',
-				data: ['12.1', '12.2', '12.3', '12.4', '12.5', '12.6', '12:7'],
+				data: xarr,
 				axisTick: {
 					show: false,
 				},
@@ -1862,7 +1871,7 @@ export default config = {
 			}, ],
 			series: [{
 				symbol: "none",
-				data: [50, 100, 90, 50, 120, 150],
+				data: arr,
 				type: 'line',
 				lineStyle: {
 					color: '#329BFE',
@@ -1871,12 +1880,12 @@ export default config = {
 		};
 	},
 	//睡眠
-	shuimian_lineChart: function() {
+	shuimian_lineChart: function(arr,xarr) {
 		return {
 			color: ['#329BFE', '#FF9A21'],
 			xAxis: {
 				type: 'category',
-				data: ['12.1', '12.2', '12.3', '12.4', '12.5', '12.6', '12:7'],
+				data: xarr,
 				axisTick: {
 					show: false,
 				},
@@ -1898,7 +1907,7 @@ export default config = {
 			}, ],
 			series: [{
 				symbol: "none",
-				data: [50, 10, 90, 50, 10, 50],
+				data: arr,
 				type: 'line',
 				lineStyle: {
 					color: '#329BFE',

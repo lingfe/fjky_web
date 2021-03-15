@@ -204,10 +204,10 @@
 					健康报告
 				</text>
 			</view>
-			<view @click="noTodo()">
+			<view @click="goto('../warnningSetting/index')">
 				<img src="../../static/indexImg/icon_yujing@3x.png" alt="">
 				<text>
-					预警设置
+					预警通知
 				</text>
 			</view>
 			<view @click="goto('../medicationReminder/index')">
@@ -343,7 +343,7 @@
 					//渲染血脂的数据和报表 仪表盘
 					this.chartLine.setOption(config.bloodFat(this.xuezhi_value), true);
 					this.showTabBottm = n;
-				} else if (n == 'bloodSugar') {
+				} else if (n == 'bloodSugar'){
 					console.log('123');
 					//渲染血糖的数据和报表 仪表盘
 					this.chartLine.setOption(config.bloodSugar(this.xuetang_value), true);
@@ -352,7 +352,7 @@
 					//渲染体温的数据和报表 仪表盘
 					this.chartLine.setOption(config.tiwen(this.tiwen_value), true);
 					this.showTabBottm = n;
-				} else if (n == 'shuimian') {
+				} else if (n == 'shuimian'){
 					//渲染睡眠的数据和报表 仪表盘
 					this.chartLine.setOption(config.shuimian(this.sleep_value), true);
 					this.showTabBottm = n;

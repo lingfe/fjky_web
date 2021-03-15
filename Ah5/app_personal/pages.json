@@ -213,7 +213,7 @@
 		{
 			"path":"pages/warnningSetting/index",
 			"style":{
-				"navigationBarTitleText":"预警设置"
+				"navigationBarTitleText":"预警通知"
 			}
 		},
 		//吃药提醒

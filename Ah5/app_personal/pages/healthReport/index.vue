@@ -2,18 +2,25 @@
 	<view class="content">
 		<view class='healthyData'>
 			<view class='tab-lan'>
-				<text :class="[cTab == 'bloodPressure'?'tabActive':'tabNoActive']" @click="getThisTab('bloodPressure')">血压</text>
-				<text :class="[cTab == 'bloodOxygen'?'tabActive':'tabNoActive']" @click="getThisTab('bloodOxygen')">血氧</text>
-				<text :class="[cTab == 'heartRate'?'tabActive':'tabNoActive']" @click="getThisTab('heartRate')">心率</text>
+				<text :class="[cTab == 'bloodPressure'?'tabActive':'tabNoActive']"
+					@click="getThisTab('bloodPressure')">血压</text>
+				<text :class="[cTab == 'bloodOxygen'?'tabActive':'tabNoActive']"
+					@click="getThisTab('bloodOxygen')">血氧</text>
+				<text :class="[cTab == 'heartRate'?'tabActive':'tabNoActive']"
+					@click="getThisTab('heartRate')">心率</text>
 				<text :class="[cTab == 'bloodFat'?'tabActive':'tabNoActive']" @click="getThisTab('bloodFat')">血脂</text>
-				<text :class="[cTab == 'bloodSugar'?'tabActive':'tabNoActive']" @click="getThisTab('bloodSugar')">血糖</text>
+				<text :class="[cTab == 'bloodSugar'?'tabActive':'tabNoActive']"
+					@click="getThisTab('bloodSugar')">血糖</text>
 				<text :class="[cTab == 'tiwen'?'tabActive':'tabNoActive']" @click="getThisTab('tiwen')">体温</text>
-				<text :class="[cTab == 'stepNumber'?'tabActive':'tabNoActive']" @click="getThisTab('stepNumber')">步数</text>
+				<text :class="[cTab == 'stepNumber'?'tabActive':'tabNoActive']"
+					@click="getThisTab('stepNumber')">步数</text>
 				<!-- <text :class="[cTab == 'uricAcid'?'tabActive':'tabNoActive']" @click="getThisTab('uricAcid')">尿酸</text> -->
-				<text :class="[cTab == 'shuimian'?'tabActive':'tabNoActive']" @click="getThisTab('shuimian')">睡眠</text> </view>
+				<text :class="[cTab == 'shuimian'?'tabActive':'tabNoActive']" @click="getThisTab('shuimian')">睡眠</text>
+			</view>
 			<view id='chartBox' class='box-css'></view>
 			<view class='more_type' @click='stepNumberDetail()' style='display: none;'>
-				<text style="border-top-left-radius: .8rem;border-bottom-left-radius: .8rem;border-right: none;">今天</text>
+				<text
+					style="border-top-left-radius: .8rem;border-bottom-left-radius: .8rem;border-right: none;">今天</text>
 				<text class='active_option' style='border-right: none;'>7天</text>
 				<text>15天</text>
 				<text style="border-top-right-radius: .8rem;border-bottom-right-radius: .8rem;border-left: none;">30天</text>
@@ -21,7 +28,7 @@
 			<view v-if='showEdit' class='insert_img' @click="editPng_c()">
 				<img :src='editPng' alt="" />
 			</view>
-			<view id='chartBox2' class='box-css'></view>
+			<view id='chartBox2' class='box-css' :class="[nChange == 'xueyang'?'changeBox2':'']" ></view>
 			<view class='w100' v-if="showTabBottm == 'stepNumber'">
 				<view class='w100' v-if="showTabBottm == 'stepNumber'">
 				</view>
@@ -29,7 +36,7 @@
 			<view class='w100' v-else-if="showTabBottm == 'bloodPressure'">
 				<!-- 血压的指标范围 -->
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .7rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
+					<text style='color:black;font-size: .7rem;display: inline-block;padding-bottom: .2rem;'>{{xueya_zhengduan}}</text>
 					<view class='b'>
 						<view style='background-color: #FF9A21;'></view>
 						<view style='background-color: #00D193;'></view>
@@ -37,26 +44,26 @@
 					</view>
 					<!-- 血压的检测数据指标 -->
 					<view class='plu'>
-							<view style='margin-top: .5rem;height: .2rem;'></view>
-							<view class='data-show'>
-								<view>
-									<text>低压</text>
-									<text>10%</text>
-								</view>
-								<view>
-									<text>正常</text>
-									<text>10%</text>
-								</view>
-								<view>
-									<text>临界高压</text>
-									<text>10%</text>
-								</view>
-								<view>
-									<text>高压</text>
-									<text>10%</text>
-								</view>
+						<view style='margin-top: .1rem;height: .8rem;font-weight: 600;padding-bottom: .3rem;'>血压检测分析</view>
+						<view class='data-show'>
+							<view>
+								<text>低压</text>
+								<text>{{xy_di_bfb}}</text>
+							</view>
+							<view>
+								<text>正常</text>
+								<text>{{xy_zc_bfb}}</text>
+							</view>
+							<view>
+								<text>临界高压</text>
+								<text>{{xy_jjg_bfb}}</text>
+							</view>
+							<view>
+								<text>高压</text>
+								<text>{{xy_gao_bfb}}</text>
 							</view>
 						</view>
+					</view>
 				</view>
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'heartRate'">
@@ -64,8 +71,52 @@
 				</view>
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodOxygen'">
-				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .7rem;display: inline-block;padding-bottom: .2rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
+				<!-- 血氧的检测数据指标 -->
+					<view class='plu_bloodOxygen'>
+							<view style='margin-top: .1rem;height: 1.3rem;text-align: center;font-weight: 600;color:#00D193'>累计检查次数</view>
+							<view class='data-show' style='border: 1px solid white;height: 2.5rem;'>
+								<view style='height: .8rem;'>
+									<text>低压</text>
+									<text>{{xy_di2}}</text>
+								</view>
+								<view>
+									<text>正常</text>
+									<text>{{xy_zc2}}</text>
+								</view>
+								<view>
+									<text>临界高压</text>
+									<text>{{xy_piandi2}}</text>
+								</view>
+								<view>
+									<text>高压</text>
+									<text>{{xy_jjd2}}</text>
+								</view>
+							</view>
+						</view>
+						<view class='plu_bloodOxygen2'>
+								<view style='margin-top: .1rem;height: 1.3rem;text-align: center;font-weight: 600;color:#00D193'>异常占比</view>
+								<view class='data-show' style='border: 1px solid white;height: 2.5rem;'>
+									<view style='height: .8rem;'>
+										<text>低压</text>
+										<text>{{xy_di_bfb2}}</text>
+									</view>
+									<view>
+										<text>正常</text>
+										<text>{{xy_zc_bfb2}}</text>
+									</view>
+									<view>
+										<text>临界高压</text>
+										<text>{{xy_jjd_bfb2}}</text>
+									</view>
+									<view>
+										<text>高压</text>
+										<text>{{xy_piandi_bfb2}}</text>
+									</view>
+								</view>
+							</view>
+		<view class='showAnother bloodPressure'>
+					<text
+						style='color:black;font-size: .7rem;display: inline-block;padding-bottom: .2rem;display: inline-block;padding-bottom: .2rem;'>{{xueyang_zhengduan}}</text>
 					<view class='a'>
 						<text>脉率</text>
 						<view>
@@ -190,9 +241,11 @@
 	import echarts from 'echarts';
 	import config from '../../util/echartConfig/echartConfig.js';
 	import http from '../../util/tool/http.js';
+	import app from '../../util/tool/andoridFun.js';
 	export default {
 		data() {
 			return {
+				nChange:'',
 				editPng: require('../../static/edit-2.png'),
 				cTab: 'bloodPressure',
 				showTabBottm: 'bloodPressure',
@@ -207,70 +260,27 @@
 				sleep_value: 0,
 				xuezhi_value: 0,
 				showEdit: false,
+				xueya_zhengduan:'', //血压诊断
+				xy_di_bfb:'', 
+				xy_zc_bfb:'', 
+				xy_jjg_bfb:'', 
+				xy_gao_bfb:'',
+				xueyang_zhengduan:'', //血氧诊断
+				xy_di2:'', 
+				xy_di_bfb2:'',
+				xy_jjd2:'',
+				xy_jjd_bfb2:'',
+				xy_piandi2:'',
+				xy_piandi_bfb2:'',
+				xy_zc2:'',
+				xy_zc_bfb2:'',
 			}
 		},
 		methods: {
 			//首页tab栏切换，表格数据切换
 			getThisTab(n) {
 				this.cTab = n;
-				// console.log(n);
-				if (n == 'stepNumber') {
-					//渲染步数
-					// this.chartLine = echarts.init(document.getElementById('chartBox'));
-					this.chartLine.setOption(config.stepNumber(this.steps_value), true);
-					this.lineChart.setOption(config.stepNumber_lineChart(this.steps_value), true);
-					this.showTabBottm = n;
-					this.showEdit = false;
-				} else if (n == 'bloodPressure') {
-					//渲染血压
-					this.chartLine.setOption(config.bloodPressure(this.xueya_value), true);
-					this.lineChart.setOption(config.bloodPressure_lineChart(this.xueya_value), true);
-					this.showTabBottm = n;
-					this.showEdit = true;
-				} else if (n == 'heartRate') {
-					//渲染心率
-					this.chartLine.setOption(config.heartRate(this.xinlu_value), true);
-					this.lineChart.setOption(config.heartRate_lineChart(this.xueya_value), true);
-					this.showTabBottm = n;
-					this.showEdit = true;
-				} else if (n == 'bloodOxygen') {
-					//渲染血氧
-					this.chartLine.setOption(config.bloodOxygen(this.xueyang_value), true);
-					this.lineChart.setOption(config.bloodOxygen_lineChart(this.xueya_value), true);
-					this.showTabBottm = n;
-					this.showEdit = true;
-				} else if (n == 'uricAcid') {
-					//渲染尿酸
-					this.chartLine.setOption(config.uricAcid(this.niaosuan_value), true);
-					this.lineChart.setOption(config.uricAcid_lineChart(this.xueya_value), true);
-					this.showTabBottm = n;
-					this.showEdit = true;
-				} else if (n == 'bloodFat') {
-					//渲染血脂的数据和报表 仪表盘
-					this.chartLine.setOption(config.bloodFat(this.xuezhi_value), true);
-					this.lineChart.setOption(config.bloodFat_lineChart(this.xueya_value), true);
-					this.showTabBottm = n;
-					this.showEdit = true;
-				} else if (n == 'bloodSugar') {
-					// console.log('123');
-					//渲染血糖的数据和报表 仪表盘
-					this.chartLine.setOption(config.bloodSugar(this.xuetang_value), true);
-					this.lineChart.setOption(config.bloodSugar_lineChart(this.xueya_value), true);
-					this.showTabBottm = n;
-					this.showEdit = true;
-				} else if (n == 'tiwen') {
-					//渲染血糖的数据和报表 仪表盘
-					this.chartLine.setOption(config.tiwen(this.tiwen_value), true);
-					this.lineChart.setOption(config.tiwen_lineChart(this.xueya_value), true);
-					this.showTabBottm = n;
-					this.showEdit = false;
-				} else if (n == 'shuimian') {
-					//渲染血糖的数据和报表 仪表盘
-					this.chartLine.setOption(config.shuimian(this.sleep_value), true);
-					this.lineChart.setOption(config.shuimian_lineChart(this.xueya_value), true);
-					this.showTabBottm = n;
-					this.showEdit = false;
-				}
+				this.getData(n);
 			},
 			//链接跳转
 			goto(n) {
@@ -278,7 +288,6 @@
 					url: n,
 				})
 			},
-
 			//功能还在开发中
 			editPng_c() {
 				uni.showToast({
@@ -286,60 +295,219 @@
 					icon: 'none',
 					duration: 2000,
 				})
+			},
+			//http 获取对应tab的数据内容
+			getData(n) {
+				let data = {
+					appUserId: app.appUserId(),
+				}
+				let that = this;
+				// 不同的模块 get不同的接口数据
+				if (n == 'bloodPressure'){
+					that.nChange = '';
+					http.Post('sys_fkcy/auhd/getXueYaData', data, (res) => {
+						// console.log('血压的数据');
+						// console.log(res);
+						that.xueya_value = res.data.xueya.value;
+						that.xueya_zhengduan = res.data.xueya.zhengduan; 
+						that.xy_di_bfb = res.data.xy_di_bfb;
+						that.xy_zc_bfb = res.data.xy_zc_bfb;
+						that.xy_jjg_bfb = res.data.xy_jjg_bfb;
+						that.xy_gao_bfb = res.data.xy_gao_bfb;
+						that.showTabBottm = 'bloodPressure';
+						//渲染数据
+						that.renderTable(res.data.xueya.value, res.data.series,res.data.weekDays,n);
+					})
+				}
+				if (n == 'bloodOxygen'){
+					that.nChange = 'xueyang';
+					http.Post('sys_fkcy/auhd/getBloodOxygenData', data, (res) => {
+						console.log('血氧数据');
+						console.log(res);
+						that.xueyang_zhengduan = res.data.xueyang.zhengduan;
+						that.xy_di2 = res.data.xy_di;
+						that.xy_di_bfb2=res.data.xy_di_bfb;
+						that.xy_jjd2=res.data.xy_jjd;
+						that.xy_jjd_bfb2=res.data.xy_jjd_bfb;
+						that.xy_piandi2=res.data.xy_piandi;
+						that.xy_piandi_bfb2=res.data.xy_piandi_bfb;
+						that.xy_zc2=res.data.xy_zc;
+						that.xy_zc_bfb2=res.data.xy_zc_bfb;
+						that.renderTable(res.data.xueyang.value, res.data.series,res.data.weekDays,n);
+					})
+				}
+				if (n == 'heartRate') {
+					that.nChange = '';
+					http.Post('sys_fkcy/auhd/getHeartRateData', data, (res) => {
+						console.log('心率数据');
+						console.log(res);
+						that.renderTable(res.data.xinli.value,res.data.series,res.data.weekDays,n);
+					})
+				}
+				if (n == 'bloodFat') {
+					that.nChange = '';
+					http.Post('sys_fkcy/auhd/getBloodFatData', data, (res) => {
+						console.log('血脂数据');
+						console.log(res);
+						that.renderTable(res.data.xuezhi.value,res.data.series,res.data.weekDays,n);
+					})
+				}
+				if (n == 'stepNumber') {
+					that.nChange = '';
+					http.Post('sys_fkcy/auhd/getMotionData', data, (res) => {
+						console.log('步数数据');
+						console.log(res);
+						that.renderTable(res.data.motion.value,res.data.series,res.data.weekDays,n);
+					})
+				}
+				if (n == 'tiwen') {
+					that.nChange = '';
+					http.Post('sys_fkcy/auhd/getTemperatureData', data, (res) => {
+						console.log('体温数据');
+						console.log(res);
+						that.renderTable(res.data.tiwen.value,res.data.series,res.data.weekDays,n);
+					})
+				}
+				if (n == 'shuimian') {
+					that.nChange = '';
+					http.Post('sys_fkcy/auhd/getSleepData', data, (res) => {
+						console.log('睡眠数据');
+						console.log(res);
+						that.renderTable(res.data.sleep.value,res.data.series,res.data.weekDays,n);
+					})
+				}
+				if (n == 'bloodSugar') {
+					that.nChange = '';
+					http.Post('sys_fkcy/auhd/getBloodSugarData', data, (res) => {
+						console.log('血糖数据');
+						console.log(res);
+						that.renderTable(res.data.xuetang.value,res.data.series,res.data.weekDays,n);
+					})
+				}
+			},
+			//渲染图表
+			renderTable(singleData,seriseData,weekDays,n){
+				if(n == 'bloodPressure'){
+					this.chartLine.setOption(config.bloodPressure(singleData), true);
+					this.lineChart.setOption(config.bloodPressure_lineChart(seriseData[0].data,seriseData[1].data,weekDays), true);
+					// seriseData[0] 收缩压
+					// seriseData[1] 舒张压
+					this.showTabBottm = n;
+					this.showEdit = true;
+				}
+				if(n == 'bloodOxygen'){
+					this.chartLine.setOption(config.bloodOxygen(singleData), true);
+					this.lineChart.setOption(config.bloodOxygen_lineChart(seriseData[0].data,weekDays), true);
+					this.showTabBottm = n;
+					this.showEdit = false;
+				}
+				if(n == 'heartRate'){
+					this.chartLine.setOption(config.heartRate(singleData), true);
+					this.lineChart.setOption(config.heartRate_lineChart(seriseData[0].data,weekDays), true);
+					this.showTabBottm = n;
+					this.showEdit = false;
+				}
+				if(n == 'bloodFat'){
+					this.chartLine.setOption(config.bloodFat(singleData), true);
+					this.lineChart.setOption(config.bloodFat_lineChart(seriseData[0].data,weekDays), true);
+					this.showTabBottm = n;
+					this.showEdit = false;
+				}
+				if(n =='stepNumber'){
+					this.chartLine.setOption(config.stepNumber(singleData), true);
+					this.lineChart.setOption(config.stepNumber_lineChart(seriseData[0].data,weekDays), true);
+					this.showTabBottm = n;
+					this.showEdit = false;
+				}
+				if(n == 'tiwen'){
+					this.chartLine.setOption(config.tiwen(singleData), true);
+					this.lineChart.setOption(config.tiwen_lineChart(seriseData[0].data,weekDays), true);
+					this.showTabBottm = n;
+					this.showEdit = false;
+				}
+				if(n =='shuimian') {
+					this.chartLine.setOption(config.shuimian(singleData), true);
+					this.lineChart.setOption(config.shuimian_lineChart(seriseData[0].data,weekDays), true);
+					this.showTabBottm = n;
+					this.showEdit = false;
+				}
+				if(n == 'bloodSugar'){
+					this.chartLine.setOption(config.bloodSugar(singleData), true);
+					this.lineChart.setOption(config.bloodSugar_lineChart(seriseData[0].data,weekDays), true);
+					this.showTabBottm = n;
+					this.showEdit = false;
+				}
 			}
 		},
 		onLoad(option) {
 			console.log(option.tab);
 			this.cTab = option.tab;
 		},
+		//初始化界面时候 渲染仪表盘和折线图数据
 		mounted() {
-			console.log(this.cTab);
-			if (this.cTab == 'bloodPressure' || this.cTab == undefined) {
+			this.getData('bloodPressure');
+			// console.log(this.cTab);
+			if (this.cTab == 'bloodPressure' || this.cTab == undefined){ 
+				//请求血压的数据
+				this.getThisTab('bloodPressure');
 				let echarts = require('echarts');
 				this.chartLine = echarts.init(document.getElementById('chartBox'));
 				this.lineChart = echarts.init(document.getElementById('chartBox2'));
 				this.lineChart.setOption(config.bloodPressure_lineChart(), true);
-				let that = this;
-				http.Get('/sys_fkcy/auhd/getHealthyData', {
-					'appUserId': '4c404454-0d30-475e-a4c5-57bfea958c96'
-				}, function(res) {
-					// console.log(res);
-					that.steps_value = res.data.steps.value;
-					that.sleep_value = res.data.sleep.value;
-					that.tiwen_value = res.data.tiwen.value;
-					that.xinlu_value = res.data.xinlu.value;
-					that.xuetang_value = res.data.xuetang.value;
-					that.xueya_value = res.data.xueya.value;
-					that.xueyang_value = res.data.xueyang.value;
-					that.getThisTab('bloodPressure');
-					that.cTab = 'bloodPressure';
-				});
-			} else if (this.cTab != 'bloodPressure') {
+				this.getData('bloodPressure');
+			} else if (this.cTab != 'bloodPressure'){
+				//渲染对应的cTab 的值的内容
 				document.querySelector(".tabActive").scrollIntoView();
 				let echarts = require('echarts');
 				this.chartLine = echarts.init(document.getElementById('chartBox'));
 				this.lineChart = echarts.init(document.getElementById('chartBox2'));
-				let that = this;
-				//获取app用户健康信息
-				http.Get('/sys_fkcy/auhd/getHealthyData', {
-					'appUserId': '4c404454-0d30-475e-a4c5-57bfea958c96'
-				}, function(res) {
-					// console.log(res);
-					that.steps_value = res.data.steps.value;
-					that.sleep_value = res.data.sleep.value;
-					that.tiwen_value = res.data.tiwen.value;
-					that.xinlu_value = res.data.xinlu.value;
-					that.xuetang_value = res.data.xuetang.value;
-					that.xueya_value = res.data.xueya.value;
-					that.xueyang_value = res.data.xueyang.value;
-					that.getThisTab(that.cTab);
-				});
+				this.getData(this.cTab);
 			}
 		},
 	}
 </script>
 <style>
 	@import url("../../util/tool/common.css");
+	.plu_bloodOxygen{
+		/* border: 1px solid red; */
+		position: absolute;
+		width: 80%;
+		border: 1px solid #00D193;
+		border-radius: .5rem;
+		left: 10%;
+		top:30vh;
+		padding:.2rem 0rem;
+		height: 10vh;
+		
+	}
+	.plu_bloodOxygen2{
+		/* border: 1px solid red; */
+		position: absolute;
+		width: 80%;
+		border: 1px solid #00D193;
+		border-radius: .5rem;
+		left: 10%;
+		top:43vh;
+		height: 10vh;
+		padding:.2rem 0rem;
+		
+	}
+	.plu_bloodOxygen>view>view{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		font-size: .7rem;
+		color: #00D193; 
+	}
+	.plu_bloodOxygen2>view>view{
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		font-size: .7rem;
+		color: #00D193; 
+	}
 	.data-show {
 		display: flex;
 		flex-direction: row;
@@ -361,7 +529,6 @@
 		text-align: center;
 		width: 80%;
 		top: 2vh;
-		height: 10vh;
 		left: 10%;
 		color: #00D193;
 		border: 1px solid #00D193;
@@ -607,10 +774,12 @@
 		top: 2vh;
 		height: 50vh;
 		width: 90%;
-		left:5%;
+		left: 5%;
 		letter-spacing: 0rem !important;
 	}
-
+	.changeBox2{
+		padding-top:15vh;
+	}
 	#chartBox {
 		/* border: 1px solid red; */
 		width: 100%;

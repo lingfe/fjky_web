@@ -34,4 +34,12 @@
 	.uni-modal__bd{
 		font-size: .8rem !important;
 	}
+	uni-actionsheet .uni-actionsheet{
+		left: 0px;
+		right: 0px;
+		bottom:0px;
+	}
+	uni-actionsheet .uni-actionsheet.uni-actionsheet_toggle{
+		background-color: #dedede;
+	}
 </style>
