@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>选择功能</title>
+		<!-- 引入css资源 -->
+		<link rel="stylesheet" href="../../../../lib/layui-v2.5.5/css/layui.css" media="all">
+	</head>
+	
+	<body>
+		<!-- 搜索 start -->
+		<fieldset class="table-search-fieldset">
+			<legend>模糊搜索</legend>
+			<div style="margin: 10px;">
+				<form class="layui-form layui-form-pane">
+					<div class="layui-form-item">
+						<div class="layui-inline">
+							<label class="layui-form-label">关键字</label>
+							<div class="layui-input-inline">
+								<input type="text" name="searchKey" placeholder="请输入关键字点击搜索" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-inline">
+							<button type="submit" class="layui-btn layui-btn-primary" lay-submit lay-filter="data-search-btn"><i class="layui-icon layui-icon-search"></i>搜索</button>
+						</div>
+					</div>
+				</form>
+			</div>
+		</fieldset>
+		<!-- 搜索 end -->
+		
+		<!-- table数据列表 -->
+		<table class="layui-hide" id="currentTableId" lay-filter="currentTableFilter"></table>
+
+		<!-- 功能值类型 -->
+		<script type="text/html" id="id_fun_value_type">
+			{{# if (d.fun_value_type == 0) { }}
+				<button type="button" class="layui-btn layui-btn-xs layui-btn-radius">文本</button>
+			{{# }else if(d.fun_value_type == 1){ }}
+				<button type="button" class="layui-btn layui-btn-xs layui-btn-normal layui-btn-radius">数值</button>
+			{{# }else if(d.fun_value_type == 2){ }}
+				<button type="button" class="layui-btn layui-btn-xs layui-btn-danger layui-btn-radius">开关</button>
+			{{# }else if(d.fun_value_type == 3){ }}
+				<button type="button" class="layui-btn layui-btn-xs layui-btn-danger layui-btn-radius">数值范围</button>
+			{{# }else if(d.fun_value_type == 4){ }}
+				<button type="button" class="layui-btn layui-btn-xs layui-btn-danger layui-btn-radius">日期范围</button>
+			{{# }else if(d.fun_value_type == 5){ }}
+				<button type="button" class="layui-btn layui-btn-xs layui-btn-danger layui-btn-radius">文本分隔(xx,xx)</button>
+			{{# }else if(d.fun_value_type == 6){ }}
+				<button type="button" class="layui-btn layui-btn-xs layui-btn-danger layui-btn-radius">数值分隔(xx,xx)</button>
+			{{# }else if(d.fun_value_type == 7){ }}
+				<button type="button" class="layui-btn layui-btn-xs layui-btn-danger layui-btn-radius">文本分隔(xx-xx)</button>
+			{{# }else if(d.fun_value_type == 8){ }}
+				<button type="button" class="layui-btn layui-btn-xs layui-btn-danger layui-btn-radius">数值分隔(xx-xx)</button>
+			{{# }else if(d.fun_value_type == 9){ }}
+				<button type="button" class="layui-btn layui-btn-xs layui-btn-danger layui-btn-radius">无值(无需传值</button>
+			{{# } else { }}
+				<button type="button" class="layui-btn layui-btn-xs layui-btn-danger layui-btn-radius">未选择</button>
+			{{# } }}
+		</script>
+		
+		<!-- 引入js资源 -->
+		<script src="../../../../lib/layui-v2.5.5/layui.js" charset="utf-8"></script>
+		<script src="../../../bcxt/login/login.js" charset="utf-8"></script>
+		<script charset="utf-8">
+			//加载layui指定组件
+			layui.use(['form', 'table','upload'], function () {
+				//定义layui组件变量
+				var $ = layui.jquery, 
+					form = layui.form,
+					table = layui.table,
+					upload = layui.upload;
+				
+				//table数据列表
+				table.render({
+					elem: '#currentTableId',					//将数据通过id选择器渲染到目标div
+					url: '/sys_fkcy/main_function/getPage',	//请求接口也可换成josn
+					toolbar: '#toolbarDemo',					//头部操作id
+					cellMinWidth: 180,							//全局定义所有常规单元格的最小宽度（默认：60），优先级低于minWidth
+					cols: [[ 									//table数据字段以及处理
+						{ type: "checkbox", width: 50 },
+						{ field: 'id', width: 80, title: 'ID', sort: true, align: "center" },
+						{ field: 'fun_name', width: 230, title: '功能名称', align: "center" },
+						{ field: 'fun_value', width: 120, title: '默认值', align: 'center'},
+						{ field: 'fun_value_type',  title: '值类型', align: "center", toolbar: '#id_fun_value_type'},
+						{ field: 'crt_date', width:240,  title: '创建时间', templet: "<div>{{layui.util.toDateString(d.crt_date, 'yyyy年-MM月-dd日 HH:mm:ss')}}</div>", align: "center" }
+					]],
+					response: {
+						statusName: 'code', //规定返回的状态码字段为code
+						statusCode: 200 	//规定成功的状态码味200
+					},
+					request: {
+						pageName: 'pageIndex',	//当前页，默认page，
+						limitName: 'pageNum',	//页容量，默认limit
+					},
+					parseData: function (res) {
+						return { //返回值字段对应处理
+							"code": res.state, 			//解析接口状态
+							"msg": res.msg, 			//解析提示文本
+							"count": res.data.numCount,	//总数量量
+							"data": res.data.data 		//解析数据列表
+						}
+					},
+					page: true,								//开启分页
+					limits: [5,10, 15, 20, 25, 50, 100],	//分页页容量选择
+					limit: 10,								//默认页容量
+					skin: 'line'
+				});
+				
+				// 监听搜索操作
+				form.on('submit(data-search-btn)', function (data) {
+					var result = data.field;
+					//执行搜索重载
+					table.reload('currentTableId', {
+						where: {
+							searchKey: result.searchKey	//关键字
+						}
+						, page: {
+							curr: 1 //默认第一页
+						}
+					});
+					return false;
+				});
+				
+				//row点击事件(向父页面传值)
+	            table.on('row(currentTableFilter)', function (obj) {
+	            	var index = parent.layer.getFrameIndex(window.name);
+					parent.layer.close(index);//关闭当前页
+					
+					//传值
+					var parent$ = window.parent.layui.jquery;
+					parent$('#fun_id').val(obj.data.id);
+					parent$('#fun_name').val(obj.data.fun_name);
+					parent$('#fun_value').val(obj.data.fun_value);
+					parent$('#fun_value_type').val(obj.data.fun_value_type);
+					// 更新表单
+					parent.layui.form.render("select");
+	            });
+				
+				//toolbar监听事件
+				table.on('toolbar(currentTableFilter)', function (obj) {
+					// 监听添加操作
+					if (obj.event === 'add') {
+						var index = layer.open({
+							title: '添加功能',	//弹窗标题
+							type: 2,			//基本层类型0（信息框，默认）1（页面层）2（iframe层）3（加载层）4（tips层）。
+							shade: 0.2,			//遮罩层透明度0.1~1
+							maxmin: true,		//是否开启最大化
+							shadeClose: false,	//是否点击遮罩关闭
+							area: ['100%','100%'],		//指定窗口大小
+							content: './add.html'	//内容
+						});
+					} 
+				});
+
+				//监听表格复选框选择
+				table.on('checkbox(currentTableFilter)', function (obj) {
+					layer.msg("复选框选择");
+				});
+				
+				//监听行双击事件
+				table.on('rowDouble(currentTableFilter)', function(obj){
+					layer.msg("双击");
+				});
+			});
+		</script>
+	</body>
+</html>

@@ -418,12 +418,11 @@
         var data_ess_info = {};
         //得到数据
         getData();
-
         function getData() {
             $.ajax({
                 url: '/sys_fkcy/essential_information/getPageCustomerRelated.action',
                 headers: {
-                    token: JSON.parse(localStorage.getItem("token"))
+                    token: localStorage.getItem("token")
                 },
                 context: document.body,
                 success: function(data) {
