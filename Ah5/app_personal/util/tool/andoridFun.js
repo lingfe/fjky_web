@@ -13,5 +13,5 @@ export default {
 		// token_ = appNative.getUserToken();
 		token_ = '3d9b2cf4-1de4-46ea-bb70-02c581303eb6';
 		return token_ ;
-	}
+	},
 }
