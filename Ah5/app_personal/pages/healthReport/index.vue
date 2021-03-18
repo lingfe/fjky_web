@@ -116,7 +116,7 @@
 		<view class='showAnother bloodPressure'>
 					<text style='color:black;font-size: .7rem;display: inline-block;padding-bottom: .2rem;display: inline-block;padding-bottom: .2rem;'>{{xueyang_zhengduan}}</text>
 					<view class='a'>
-						<text>脉率</text>
+						<!-- <text>脉率</text> -->
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
 						</view>
@@ -132,7 +132,7 @@
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
 						</view>
-						<text>98次/分</text>
+						<!-- <text>98次/分</text> -->
 					</view>
 				</view>
 			</view>
@@ -309,7 +309,8 @@
 					http.Post('sys_fkcy/auhd/getXueYaData', data, (res) => {
 						console.log('血压的数据');
 						console.log(res);
-						that.xueya_value = res.data.xueya.value;
+						that.xueya_value = res.data.xueya.systolic_pressure;
+						that.xueya_value2 = res.data.xueya.diastolic_pressure;
 						that.xueya_zhengduan = res.data.xueya.zhengduan; 
 						that.xy_di_bfb = res.data.xy_di_bfb;
 						that.xy_zc_bfb = res.data.xy_zc_bfb;
@@ -317,7 +318,7 @@
 						that.xy_gao_bfb = res.data.xy_gao_bfb;
 						that.showTabBottm = 'bloodPressure';
 						//渲染数据
-						that.renderTable(res.data.xueya.value, res.data.series,res.data.weekDays,n);
+						that.renderTable(that.xueya_value, res.data.series,res.data.weekDays,n);
 					})
 				}
 				if (n == 'bloodOxygen'){
@@ -389,7 +390,7 @@
 			//渲染图表
 			renderTable(singleData,seriseData,weekDays,n){
 				if(n == 'bloodPressure'){
-					this.chartLine.setOption(config.bloodPressure(singleData), true);
+					this.chartLine.setOption(config.bloodPressure(this.xueya_value,this.xueya_value2), true);
 					this.lineChart.setOption(config.bloodPressure_lineChart(seriseData[0].data,seriseData[1].data,weekDays), true);
 					// seriseData[0] 收缩压
 					// seriseData[1] 舒张压
@@ -471,12 +472,6 @@
 				if (this.timerId!=''){
 				    clearInterval(this.timerId);
 				}
-				if (this.timerId2!=''){
-				    clearInterval(this.timerId2);
-				}
-				if (this.timerId3!=''){
-				    clearInterval(this.timerId3);
-				}
 			},
 			//清除步数单数据图表定时器
 			clear_time2(){
@@ -491,13 +486,13 @@
 			doing(option,num){
 				// 开启两个定时器
 				this.timerId2 = setInterval(()=>{
+					console.log(num);
 					num = num + 5
 				}, 100);
 				this.timerId3 = setInterval(()=>{
-					console.log('123');
 					option.series[1].startAngle = option.series[1].startAngle - 1;
 					this.chartLine.setOption(option,true);
-				},100);
+				},500);
 			},
 		},
 		onLoad(option) {

@@ -54,7 +54,7 @@
 				<view class='showAnother bloodPressure'>
 					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
 					<view class='a'>
-						<text>脉率</text>
+						<!-- <text>脉率</text> -->
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
 						</view>
@@ -70,7 +70,7 @@
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
 						</view>
-						<text>98次/分</text>
+						<!-- <text>98次/分</text> -->
 					</view>
 				</view>
 
@@ -266,6 +266,7 @@
 				niaosuan_value: 0,
 				shuimian_value: 0,
 				xuezhi_value: 0,
+				xueya_value2:0,
 				xueya_zhegnduan:'',
 			}
 		},
@@ -310,7 +311,7 @@
 			//暂时不做的功能
 			noTodo(){
 				uni.showToast({
-					title: '功能开发中，敬请期待！',
+					title: '暂未开发！',
 					duration: 2000,
 					icon: 'none',
 				});
@@ -326,7 +327,7 @@
 					this.showTabBottm = n;
 				} else if (n == 'bloodPressure') {
 					//渲染血压的数据和报表  仪表盘
-					this.chartLine.setOption(config.bloodPressure(this.xueya_value), true);
+					this.chartLine.setOption(config.bloodPressure(this.xueya_value,this.xueya_value2), true);
 					this.showTabBottm = n;
 				} else if (n == 'heartRate') {
 					//渲染心率的数据和报表 得分环
@@ -385,20 +386,21 @@
 			that.tiwen_value = res.data.tiwen.value;
 			that.xinlu_value = res.data.xinlu.value;
 			that.xuetang_value = res.data.xuetang.value;
-			that.xueya_value = res.data.xueya.value;
+			that.xueya_value = res.data.xueya.diastolic_pressure;  //舒张压
+			that.xueya_value2 = res.data.xueya.systolic_pressure;  //收缩压
 			that.xueyang_value = res.data.xueyang.value;
 			that.xueya_zhegnduan = res.data.xueya.zhengduan;
-			that.chartLine.setOption(config.bloodPressure(that.xueya_value), true);
+			that.chartLine.setOption(config.bloodPressure(that.xueya_value,that.xueya_value2), true);
 		});
 		//根据token获取用户个人信息
 		let userId = appToast.appUserId();
 		let data = {
-			'user_id': userId,
+			'appUserId': userId,
 		};
-		http.Post('/sys_fkcy/appUser/getRelevantData', data, function(res) {
-			// console.log(res);
-			that.userName = res.data.ess_info.full_name;
-			that.userImg = res.data.ess_info.img;
+		http.Post('/sys_fkcy/appUser/getEssInfo.app', data, function(res) {
+			console.log(res);
+			that.userName = res.data.full_name;
+			that.userImg = res.data.img;
 		});
 	},
 	}

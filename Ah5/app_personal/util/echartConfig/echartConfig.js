@@ -702,7 +702,7 @@ export default config = {
 		}
 	},
 	//血压
-	bloodPressure: function(n){
+	bloodPressure: function(n,n2){
 		if (n == '未测量') {
 			n = 0;
 		}
@@ -780,8 +780,7 @@ export default config = {
 					offsetCenter: [0, '-30%'],
 					valueAnimation: true,
 					formatter: function(value) {
-						// return Math.round(value * 100) + '分'; 
-						return value + '/85';
+						return value + '/'+n2;
 					},
 					color: 'black',
 				},
@@ -834,7 +833,8 @@ export default config = {
 					},
 					data: [{
 						value: n,
-						name: '次/分',
+						// name: '次/分',
+						name:'',
 						title: {
 							offsetCenter: ['0%', '20%']
 						},
@@ -898,12 +898,13 @@ export default config = {
 					},
 					data: [{
 						value: n,
-						name: '次/分',
+						// name: '次/分',
+						name: '',
 						title: {
 							offsetCenter: ['0%', '20%']
 						},
 						detail: {
-							offsetCenter: ['0%', '-20%']
+							offsetCenter: ['0%', '0%']
 						}
 					}, ],
 					title: {
@@ -918,7 +919,7 @@ export default config = {
 						borderColor: 'auto',
 						borderRadius: 20,
 						// borderWidth: 1,
-						formatter: '{value}bmp',
+						formatter: '{value}',
 					}
 				}]
 			};
@@ -1011,7 +1012,7 @@ export default config = {
 					},
 					data: [{
 						value: n,
-						name: '饱和度'
+						name: '' 
 					}]
 				}]
 			};
@@ -1441,7 +1442,7 @@ export default config = {
 					},
 					detail: {
 						fontSize: 25,
-						offsetCenter: ['-30%', '-30%'],
+						offsetCenter: ['0%', '-30%'],
 						valueAnimation: true,
 						formatter: function(value) {
 							return value;
@@ -1450,7 +1451,7 @@ export default config = {
 					},
 					data: [{
 						value: n,
-						name: 'mmol/L'
+						// name: 'mmol/L'
 					}]
 				}]
 			};
@@ -1458,7 +1459,7 @@ export default config = {
 		}
 	},
 	//血糖
-	bloodSugar: function(n) {
+	bloodSugar: function(n){
 		if (n == '未测量') {
 			n = 0;
 			return {
@@ -1542,7 +1543,7 @@ export default config = {
 					},
 					data: [{
 						value: n,
-						name: '总胆固醇',
+						// name: '总胆固醇',
 					}]
 				}]
 			};
@@ -1622,13 +1623,13 @@ export default config = {
 						valueAnimation: true,
 						formatter: function(value) {
 							// return Math.round(value * 100) + '分';
-							return value + `mmol/L`;
+							return value ;
 						},
 						color: 'black',
 					},
 					data: [{
 						value: n,
-						name: '总胆固醇',
+						// name: '总胆固醇',
 					}]
 				}]
 			};
@@ -1827,7 +1828,7 @@ export default config = {
 			let option = {
 			     backgroundColor: 'white',
 			     title: {
-			         text:value,
+			         text:value+'h',
 			         x: 'center',
 			         y: 'center',
 			         textStyle: {
