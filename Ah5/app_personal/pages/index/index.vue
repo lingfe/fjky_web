@@ -34,7 +34,7 @@
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodPressure'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
+					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>{{xueya_zhegnduan}}</text>
 					<view class='b'>
 						<view style='background-color: #FF9A21;'></view>
 						<view style='background-color: #00D193;'></view>
@@ -266,6 +266,7 @@
 				niaosuan_value: 0,
 				shuimian_value: 0,
 				xuezhi_value: 0,
+				xueya_zhegnduan:'',
 			}
 		},
 		methods: {
@@ -365,15 +366,6 @@
 					url: n,
 				})
 			},
-			//调用安卓对象
-			appToast(){
-				let userId_ = '';
-				//从安卓对象哪里获取token数据 ，根据token数据获取用户姓名、用户头像、健康描述
-				// userId_ = appNative.getUserId();
-				//暂时的测试数据 
-				userId_ = '4c404454-0d30-475e-a4c5-57bfea958c96';
-				return userId_;
-			},
 			refresh() {
 				location.reload();
 			}
@@ -387,7 +379,7 @@
 		http.Get('/sys_fkcy/auhd/getHealthyData', {
 			'appUserId': '4c404454-0d30-475e-a4c5-57bfea958c96'
 		}, function(res) {
-			// console.log(res);
+			console.log(res);
 			that.steps_value = res.data.steps.value;
 			that.sleep_value = res.data.sleep.value;
 			that.tiwen_value = res.data.tiwen.value;
@@ -395,6 +387,7 @@
 			that.xuetang_value = res.data.xuetang.value;
 			that.xueya_value = res.data.xueya.value;
 			that.xueyang_value = res.data.xueyang.value;
+			that.xueya_zhegnduan = res.data.xueya.zhengduan;
 			that.chartLine.setOption(config.bloodPressure(that.xueya_value), true);
 		});
 		//根据token获取用户个人信息
@@ -533,7 +526,6 @@
 		color: #222222;
 		/* color:red; */
 		/* text-decoration: underline; */
-		/* border: 1px solid red; */
 	}
 
 	.tabActive:before {

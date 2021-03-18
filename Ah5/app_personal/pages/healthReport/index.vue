@@ -19,8 +19,7 @@
 			</view>
 			<view id='chartBox' class='box-css'></view>
 			<view class='more_type' @click='stepNumberDetail()' style='display: none;'>
-				<text
-					style="border-top-left-radius: .8rem;border-bottom-left-radius: .8rem;border-right: none;">今天</text>
+				<text style="border-top-left-radius: .8rem;border-bottom-left-radius: .8rem;border-right: none;">今天</text>
 				<text class='active_option' style='border-right: none;'>7天</text>
 				<text>15天</text>
 				<text style="border-top-right-radius: .8rem;border-bottom-right-radius: .8rem;border-left: none;">30天</text>
@@ -115,8 +114,7 @@
 								</view>
 							</view>
 		<view class='showAnother bloodPressure'>
-					<text
-						style='color:black;font-size: .7rem;display: inline-block;padding-bottom: .2rem;display: inline-block;padding-bottom: .2rem;'>{{xueyang_zhengduan}}</text>
+					<text style='color:black;font-size: .7rem;display: inline-block;padding-bottom: .2rem;display: inline-block;padding-bottom: .2rem;'>{{xueyang_zhengduan}}</text>
 					<view class='a'>
 						<text>脉率</text>
 						<view>
@@ -274,6 +272,9 @@
 				xy_piandi_bfb2:'',
 				xy_zc2:'',
 				xy_zc_bfb2:'',
+				timerId:'', //定时器对象
+				timerId2:'', 
+				timerId3:'',
 			}
 		},
 		methods: {
@@ -306,8 +307,8 @@
 				if (n == 'bloodPressure'){
 					that.nChange = '';
 					http.Post('sys_fkcy/auhd/getXueYaData', data, (res) => {
-						// console.log('血压的数据');
-						// console.log(res);
+						console.log('血压的数据');
+						console.log(res);
 						that.xueya_value = res.data.xueya.value;
 						that.xueya_zhengduan = res.data.xueya.zhengduan; 
 						that.xy_di_bfb = res.data.xy_di_bfb;
@@ -394,50 +395,110 @@
 					// seriseData[1] 舒张压
 					this.showTabBottm = n;
 					this.showEdit = true;
+					this.clear_time();
+					this.clear_time2();
 				}
 				if(n == 'bloodOxygen'){
 					this.chartLine.setOption(config.bloodOxygen(singleData), true);
 					this.lineChart.setOption(config.bloodOxygen_lineChart(seriseData[0].data,weekDays), true);
 					this.showTabBottm = n;
 					this.showEdit = false;
+					this.clear_time();
+					this.clear_time2();
 				}
 				if(n == 'heartRate'){
 					this.chartLine.setOption(config.heartRate(singleData), true);
 					this.lineChart.setOption(config.heartRate_lineChart(seriseData[0].data,weekDays), true);
 					this.showTabBottm = n;
 					this.showEdit = false;
+					this.clear_time();
+					this.clear_time2();
 				}
 				if(n == 'bloodFat'){
 					this.chartLine.setOption(config.bloodFat(singleData), true);
 					this.lineChart.setOption(config.bloodFat_lineChart(seriseData[0].data,weekDays), true);
 					this.showTabBottm = n;
 					this.showEdit = false;
+					this.clear_time();
+					this.clear_time2();
 				}
 				if(n =='stepNumber'){
-					this.chartLine.setOption(config.stepNumber(singleData), true);
+					this.clear_time();
+					this.chartLine.setOption(config.stepNumber(singleData),true);
 					this.lineChart.setOption(config.stepNumber_lineChart(seriseData[0].data,weekDays), true);
 					this.showTabBottm = n;
 					this.showEdit = false;
+					let num = 0;
+					this.doing(config.stepNumber(singleData,num),num);
+					
 				}
 				if(n == 'tiwen'){
 					this.chartLine.setOption(config.tiwen(singleData), true);
 					this.lineChart.setOption(config.tiwen_lineChart(seriseData[0].data,weekDays), true);
 					this.showTabBottm = n;
 					this.showEdit = false;
+					this.clear_time();
+					this.clear_time2();
 				}
-				if(n =='shuimian') {
+				if(n =='shuimian'){
+					this.clear_time2();
 					this.chartLine.setOption(config.shuimian(singleData), true);
 					this.lineChart.setOption(config.shuimian_lineChart(seriseData[0].data,weekDays), true);
 					this.showTabBottm = n;
 					this.showEdit = false;
+					let angle = 0;
+					this.draw(this.chartLine,singleData,angle);
 				}
 				if(n == 'bloodSugar'){
 					this.chartLine.setOption(config.bloodSugar(singleData), true);
 					this.lineChart.setOption(config.bloodSugar_lineChart(seriseData[0].data,weekDays), true);
 					this.showTabBottm = n;
 					this.showEdit = false;
+					this.clear_time();
+					this.clear_time2();
 				}
-			}
+			},
+			
+			//睡眠单数据图表定时器任务
+			draw(myEchart,singleData,angle){
+				this.timerId= setInterval(()=>{
+					angle = angle + 10;
+					myEchart.setOption(config.shuimian(singleData,angle), true);
+				},100)
+			},
+			//清除睡眠数据图表定时器
+			clear_time(){
+				if (this.timerId!=''){
+				    clearInterval(this.timerId);
+				}
+				if (this.timerId2!=''){
+				    clearInterval(this.timerId2);
+				}
+				if (this.timerId3!=''){
+				    clearInterval(this.timerId3);
+				}
+			},
+			//清除步数单数据图表定时器
+			clear_time2(){
+				if (this.timerId2!=''){
+				    clearInterval(this.timerId2);
+				}
+				if (this.timerId3!=''){
+				    clearInterval(this.timerId3);
+				}
+			},
+			//步数单数据定时器任务
+			doing(option,num){
+				// 开启两个定时器
+				this.timerId2 = setInterval(()=>{
+					num = num + 5
+				}, 100);
+				this.timerId3 = setInterval(()=>{
+					console.log('123');
+					option.series[1].startAngle = option.series[1].startAngle - 1;
+					this.chartLine.setOption(option,true);
+				},100);
+			},
 		},
 		onLoad(option) {
 			console.log(option.tab);
@@ -765,6 +826,7 @@
 		justify-content: center;
 		align-items: center;
 		box-shadow: 0 .2rem .2rem #eeeeee inset;
+		/* border: 1px solid red; */
 	}
 
 	#chartBox2 {
