@@ -42,4 +42,7 @@
 	uni-actionsheet .uni-actionsheet.uni-actionsheet_toggle{
 		background-color: #dedede;
 	}
+	.uni-actionsheet__menu .uni-actionsheet__cell{
+		color:red !important;
+	}
 </style>

@@ -129,7 +129,7 @@
 				console.log(s);
 				if (s == 0) {
 					uni.showActionSheet({
-						itemList: ['未读'],
+						itemList: ['设置已读'],
 						success: function(res) {
 							// console.log('选中了第' + (res.tapIndex + 1) + '个按钮');
 							http.Post('sys_fkcy/device_alerting/setRead', {

@@ -224,19 +224,19 @@
 			</view>
 			<view @click="noTodo()">
 				<img src="../../static/indexImg/icon_anquan@3x.png" alt="">
-				<text>
+				<text class='gray_color'>
 					安全中心
 				</text>
 			</view>
 			<view @click="noTodo()">
 				<img src="../../static/indexImg/icon_yiyuan@2x.png" alt="">
-				<text>
+				<text class='gray_color'>
 					合作医院
 				</text>
 			</view>
 			<view @click="noTodo()">
 				<img src="../../static/indexImg/icon_yisheng@3x.png" alt="">
-				<text>
+				<text class='gray_color'>
 					合作医生
 				</text>
 			</view>
@@ -406,6 +406,9 @@
 <style>
 	@import url("../../util/tool/common.css");
 	.content {}
+	.gray_color{
+		color:gray;
+	}
 	.tab-lan {
 		font-size: .9rem;
 		/* border: 1px solid red; */
