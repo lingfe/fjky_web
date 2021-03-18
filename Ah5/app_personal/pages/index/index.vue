@@ -304,7 +304,7 @@
 				// console.log('查看详情-体温');
 				goto.goto('../healthReport/index?tab=tiwen');
 			},
-			shuimianDetail() {
+			shuimianDetail(){
 				// console.log('查看详情-睡眠');
 				goto.goto('../healthReport/index?tab=shuimian');
 			},
@@ -650,7 +650,5 @@
 	.otherTabFunction {
 		/* border: 1px solid red; */
 		width: 90%;
-
-
 	}
 </style>

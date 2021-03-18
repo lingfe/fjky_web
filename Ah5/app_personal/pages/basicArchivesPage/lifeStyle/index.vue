@@ -186,9 +186,18 @@
 						}
 					})
 				})
+			},
+			getData(){
+				
 			}
 		},
 		mounted() {
 		},
+		onLoad(option){
+			console.log(option);
+			this.A = 'A'+option.dl;
+			this.B = 'B'+option.yj;
+			this.C = 'C'+option.xy;
+		}
 	}
 </script>

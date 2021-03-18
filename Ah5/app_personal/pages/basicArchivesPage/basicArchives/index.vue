@@ -58,7 +58,7 @@
 			<view>
 				<view class='title'>
 					<text>生活方式</text>
-					<img src="../../../static/edit-2.png" alt="" @click="a.goto('../lifeStyle/index')">
+					<img src="../../../static/edit-2.png" alt="" @click="a.goto(`../lifeStyle/index?dl=`+dl+`&&yj=`+yj+`&&xy=`+xy) ">
 				</view>
 				<view class='tab_item'>
 					<text>锻炼情况</text>

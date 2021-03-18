@@ -486,7 +486,6 @@
 			doing(option,num){
 				// 开启两个定时器
 				this.timerId2 = setInterval(()=>{
-					console.log(num);
 					num = num + 5
 				}, 100);
 				this.timerId3 = setInterval(()=>{
