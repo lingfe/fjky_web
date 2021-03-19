@@ -4,7 +4,7 @@
 		<text class='addBtn' @click='addfamilyHistory()'>添加</text>
 		<!-- 搜索框内容 -->
 		<view class='searchiBox'>
-			<input type="text"  v-model="searchKey" placeholder="搜索" @keypress.enter='getlist(0)'>
+			<input type="text"  v-model="searchKey" placeholder="搜索" @confirm='getlist(0)'>
 			<icon type="search" size="15" />
 		</view>
 		<!-- 列表页列表内容 -->

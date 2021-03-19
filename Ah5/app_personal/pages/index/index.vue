@@ -141,7 +141,7 @@
 						<view>
 							<view style='background-color: #00D193;'></view>
 						</view>
-						<view>
+						<view>                                                                                                                                                                                    
 							<view style='background-color: #FF9A21;width: 1.8rem;'></view>
 						</view>
 						<view>
@@ -268,6 +268,8 @@
 				xuezhi_value: 0,
 				xueya_value2:0,
 				xueya_zhegnduan:'',
+				
+				timerId:'', //睡眠图表动画定时器
 			}
 		},
 		methods: {
@@ -300,7 +302,7 @@
 				// console.log('查看详情-血糖');
 				goto.goto('../healthReport/index?tab=bloodSugar');
 			},
-			tiwenDetail() {
+			tiwenDetail(){
 				// console.log('查看详情-体温');
 				goto.goto('../healthReport/index?tab=tiwen');
 			},
@@ -311,7 +313,7 @@
 			//暂时不做的功能
 			noTodo(){
 				uni.showToast({
-					title: '暂未开发！',
+					title: '暂未开放',
 					duration: 2000,
 					icon: 'none',
 				});
@@ -321,51 +323,96 @@
 				this.cTab = n;
 				// console.log(n);
 				if (n == 'stepNumber') {
+					this.clear_time();
 					//渲染步数的数据和报表 得分环
 					// this.chartLine = echarts.init(document.getElementById('chartBox'));
 					this.chartLine.setOption(config.stepNumber(this.steps_value), true);
 					this.showTabBottm = n;
-				} else if (n == 'bloodPressure') {
+					this.doing(config.stepNumber(this.steps_value));
+				} else if (n == 'bloodPressure'){
+					this.clear_time();
+					this.clear_time2();
 					//渲染血压的数据和报表  仪表盘
 					this.chartLine.setOption(config.bloodPressure(this.xueya_value,this.xueya_value2), true);
 					this.showTabBottm = n;
 				} else if (n == 'heartRate') {
+					this.clear_time();
+					this.clear_time2();
 					//渲染心率的数据和报表 得分环
 					this.chartLine.setOption(config.heartRate(this.xinlu_value), true);
 					this.showTabBottm = n;
 				} else if (n == 'bloodOxygen') {
+					this.clear_time();
+					this.clear_time2();
 					//渲染血氧的数据和报表  仪表盘
 					this.chartLine.setOption(config.bloodOxygen(this.xueyang_value), true);
 					this.showTabBottm = n;
-				} else if (n == 'uricAcid') {
+				} else if (n == 'uricAcid'){
+					this.clear_time();
+					this.clear_time2();
 					//渲染尿酸的数据和报表 仪表盘
 					this.chartLine.setOption(config.uricAcid(this.niaosuan_value), true);
 					this.showTabBottm = n;
 				} else if (n == 'bloodFat') {
+					this.clear_time();
+					this.clear_time2();
 					//渲染血脂的数据和报表 仪表盘
 					this.chartLine.setOption(config.bloodFat(this.xuezhi_value), true);
 					this.showTabBottm = n;
 				} else if (n == 'bloodSugar'){
-					console.log('123');
+					this.clear_time();
+					this.clear_time2();
 					//渲染血糖的数据和报表 仪表盘
 					this.chartLine.setOption(config.bloodSugar(this.xuetang_value), true);
 					this.showTabBottm = n;
 				} else if (n == 'tiwen') {
+					this.clear_time();
+					this.clear_time2();
 					//渲染体温的数据和报表 仪表盘
 					this.chartLine.setOption(config.tiwen(this.tiwen_value), true);
 					this.showTabBottm = n;
 				} else if (n == 'shuimian'){
+					this.clear_time2();
 					//渲染睡眠的数据和报表 仪表盘
 					this.chartLine.setOption(config.shuimian(this.sleep_value), true);
+					let angle = 0;
 					this.showTabBottm = n;
+					this.draw(this.chartLine,this.sleep_value,angle);
+					
 				}
 			},
 			//链接跳转
-			goto(n) {
+			goto(n){
 				// console.log(n);
 				uni.navigateTo({
 					url: n,
 				})
+			},
+			//睡眠单数据图表定时器任务
+			draw(myEchart,singleData,angle){
+				this.timerId= setInterval(()=>{
+					angle = angle + 10;
+					myEchart.setOption(config.shuimian(singleData,angle), true);
+				},100)
+			},
+			//清除睡眠数据图表定时器
+			clear_time(){
+				if (this.timerId!=''){
+				    clearInterval(this.timerId);
+				}
+			},
+			//清除步数单数据图表定时器
+			clear_time2(){
+				if (this.timerId3!=''){
+				    clearInterval(this.timerId3);
+				}
+			},
+			//步数单数据定时器任务
+			doing(option){
+				this.timerId3 = setInterval(()=>{
+					option.series[1].startAngle = option.series[1].startAngle - 5;
+					this.chartLine.setOption(option,true);
+				},100);
 			},
 			refresh() {
 				location.reload();
@@ -386,11 +433,13 @@
 			that.tiwen_value = res.data.tiwen.value;
 			that.xinlu_value = res.data.xinlu.value;
 			that.xuetang_value = res.data.xuetang.value;
-			that.xueya_value = res.data.xueya.diastolic_pressure;  //舒张压
-			that.xueya_value2 = res.data.xueya.systolic_pressure;  //收缩压
+			that.xueya_value = res.data.xueya.systolic_pressure;  //舒张压
+			that.xueya_value2 = res.data.xueya.diastolic_pressure;  //收缩压
 			that.xueyang_value = res.data.xueyang.value;
 			that.xueya_zhegnduan = res.data.xueya.zhengduan;
-			that.chartLine.setOption(config.bloodPressure(that.xueya_value,that.xueya_value2), true);
+			if(that.xuetang_value){
+				that.chartLine.setOption(config.bloodPressure(that.xueya_value,that.xueya_value2), true);
+			}
 		});
 		//根据token获取用户个人信息
 		let userId = appToast.appUserId();

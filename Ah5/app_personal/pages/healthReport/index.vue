@@ -284,13 +284,13 @@
 				this.getData(n);
 			},
 			//链接跳转
-			goto(n) {
+			goto(n){
 				uni.navigateTo({
 					url: n,
 				})
 			},
 			//功能还在开发中
-			editPng_c() {
+			editPng_c(){
 				uni.showToast({
 					title: '功能开发中',
 					icon: 'none',
@@ -422,16 +422,14 @@
 					this.showEdit = false;
 					this.clear_time();
 					this.clear_time2();
-				}
+				} 
 				if(n =='stepNumber'){
 					this.clear_time();
 					this.chartLine.setOption(config.stepNumber(singleData),true);
 					this.lineChart.setOption(config.stepNumber_lineChart(seriseData[0].data,weekDays), true);
 					this.showTabBottm = n;
 					this.showEdit = false;
-					let num = 0;
-					this.doing(config.stepNumber(singleData,num),num);
-					
+					this.doing(config.stepNumber(singleData)); 
 				}
 				if(n == 'tiwen'){
 					this.chartLine.setOption(config.tiwen(singleData), true);
@@ -475,26 +473,19 @@
 			},
 			//清除步数单数据图表定时器
 			clear_time2(){
-				if (this.timerId2!=''){
-				    clearInterval(this.timerId2);
-				}
 				if (this.timerId3!=''){
 				    clearInterval(this.timerId3);
 				}
 			},
 			//步数单数据定时器任务
-			doing(option,num){
-				// 开启两个定时器
-				this.timerId2 = setInterval(()=>{
-					num = num + 5
-				}, 100);
+			doing(option){  
 				this.timerId3 = setInterval(()=>{
-					option.series[1].startAngle = option.series[1].startAngle - 1;
+					option.series[1].startAngle = option.series[1].startAngle - 5;
 					this.chartLine.setOption(option,true);
-				},500);
+				},100);
 			},
 		},
-		onLoad(option) {
+		onLoad(option){
 			console.log(option.tab);
 			this.cTab = option.tab;
 		},
@@ -601,6 +592,7 @@
 		top: 5rem;
 		right: 8%;
 		z-index: 1000000;
+		display: none;
 	}
 
 	.active_option {

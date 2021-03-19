@@ -201,7 +201,8 @@
 							})
 							let t = setInterval(function(){
 								clearInterval(t); 
-								uni.navigateBack()
+								uni.navigateBack();
+								appNative.updateCalendarEvent();
 							},2000)
 						}
 						else{

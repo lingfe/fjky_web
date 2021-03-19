@@ -4,7 +4,7 @@
 		<text class='addBtn' @click='addallergicHistoryd()'>添加</text>
 		<!-- 搜索框内容 -->
 		<view class='searchiBox'>
-			<input type="text" placeholder="搜索" @keypress.enter='getlist(0)' v-model="searchKey">
+			<input type="text" placeholder="搜索" @confirm='getlist(0)' v-model="searchKey">
 			<icon type="search" size="15" />
 		</view>
 		<!-- 列表页列表内容 -->

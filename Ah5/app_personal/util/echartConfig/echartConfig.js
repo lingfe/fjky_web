@@ -2,7 +2,174 @@ var config = {};
 export default config = {
 	//仪表盘图系列-单数据渲染
 	//步数
-	stepNumber: function(n,num){
+	stepNumber: function(n){
+		let num = 0;
+		function _pie1() {
+		    let dataArr = [];
+		    for (var i = 0; i < 8; i++) {
+		        dataArr.push({
+		            name: (i + 1).toString(),
+		            value: 20,
+		            itemStyle: {
+		                normal: {
+		                    color: "rgba(88,142,197,0.4)",
+		                    borderWidth: 0,
+		                    borderColor: "rgba(0,0,0,0)"
+		                }
+		            }
+		        })
+		
+		    }
+		    return dataArr
+		}
+		function _pie2() {
+		    let dataArr = [];
+		    let _color = {
+		        type: 'linear',
+		        x: 0,
+		        y: 0,
+		        x2: 0,
+		        y2: 1,
+		        colorStops: [{
+		            offset: 0,
+		            color: '#9933FF' // 0% 处的颜色
+		        }, {
+		            offset: 1,
+		            color: '#00CCFF' // 100% 处的颜色
+		        }],
+		        global: false // 缺省为 false
+		    }
+		    for (var i = 0; i < 16; i++) {
+		        if (i % 4 === 0) {
+		            dataArr.push({
+		                name: (i + 1).toString(),
+		                value: 50,
+		                itemStyle: {
+		                    normal: {
+		                        //color: "rgba(88,142,197,0.5)",
+		                        borderWidth: 0,
+		                        borderColor: "rgba(0,0,0,0)"
+		                    }
+		                }
+		            })
+		        } else if (i % 4 === 1) {
+		            dataArr.push({
+		                name: (i + 1).toString(),
+		                value: 2,
+		                itemStyle: {
+		                    normal: {
+		                        color: "rgba(88,142,197,0)",
+		                        borderWidth: 0,
+		                        borderColor: "rgba(0,0,0,0)"
+		                    }
+		                }
+		            })
+		        } else if (i % 4 === 2) {
+		            dataArr.push({
+		                name: (i + 1).toString(),
+		                value: 20,
+		                itemStyle: {
+		                    normal: {
+		                        //color: "rgba(88,142,197,0.2)",
+		                        borderWidth: 0,
+		                        borderColor: "rgba(0,0,0,0)"
+		                    }
+		                }
+		            })
+		        } else {
+		            dataArr.push({
+		                name: (i + 1).toString(),
+		                value: 2,
+		                itemStyle: {
+		                    normal: {
+		                        //color: "rgba(0,0,0,0)",
+		                        color: "rgba(88,142,197,0)",
+		                        borderWidth: 0,
+		                        borderColor: "rgba(0,0,0,0)"
+		                    }
+		                }
+		            })
+		        }
+		
+		    }
+		    return dataArr
+		
+		}
+		function _pie3() {
+		    let dataArr = [];
+		    for (var i = 0; i < 100; i++) {
+		        if (i % 2 === 0) {
+		            dataArr.push({
+		                name: (i + 1).toString(),
+		                value: 25,
+		                itemStyle: {
+		                    normal: {
+		                        color: "rgb(126,190,255)",
+		                        borderWidth: 0,
+		                        borderColor: "rgba(0,0,0,0)"
+		                    }
+		                }
+		            })
+		        } else {
+		            dataArr.push({
+		                name: (i + 1).toString(),
+		                value: 20,
+		                itemStyle: {
+		                    normal: {
+		                        color: "rgba(0,0,0,0)",
+		                        borderWidth: 0,
+		                        borderColor: "rgba(0,0,0,0)"
+		                    }
+		                }
+		            })
+		        }
+		
+		    }
+		    return dataArr
+		
+		}	
+		function _pieData(data) {
+		    let _data = data;
+		    let dataArr = [];
+		    for (var i = 0; i < 5; i++) {
+		        if (i === 2) {
+		            let dt = (data[0].unit) ? 25 : (Number(data[0].value));
+		            dataArr.push({
+		                name: (i + 1).toString(),
+		                value: dt,
+		                itemStyle: {
+		                    normal: {
+		                        color: new echarts.graphic.LinearGradient(0, 1, 1, 0, [{
+		                            offset: 0,
+		                            color: 'rgb(147,187,216)'
+		                        }, {
+		                            offset: 1,
+		                            color: '#588ec5'
+		                        }]),
+		                        borderWidth: 0,
+		                        borderColor: "rgba(0,0,0,0.4)"
+		                    }
+		                }
+		            })
+		        } else {
+		            let dta = (data[0].unit) ? 25 : (1 - Number(data[0].value)) / 4;
+		            dataArr.push({
+		                name: (i + 1).toString(),
+		                value: dta,
+		                itemStyle: {
+		                    normal: {
+		                        color: "rgba(0,0,0,0)",
+		                        borderWidth: 0,
+		                        borderColor: "rgba(0,0,0,0)"
+		                    }
+		                }
+		            })
+		        }
+		
+		    }
+		    //console.log(dataArr)
+		    return dataArr
+		}
 		if (n == '未测量'){
 			n = 0;
 		let value = n;
@@ -131,13 +298,13 @@ export default config = {
 		            type: 'custom',
 		            zlevel: 7,
 		            coordinateSystem: "none",
-		            renderItem: function(params, api) {
+		            renderItem: function(params, api){
 		                return {
 		                    type: 'arc',
 		                    shape: {
-		                        cx: api.getWidth() / 2, // 图形元素的中心在父节点坐标系（以父节点左上角为原点）中的横坐标值。
-		                        cy: api.getHeight() / 2, // 图形元素的中心在父节点坐标系（以父节点左上角为原点）中的纵坐标值。
-		                        r: Math.min(api.getWidth(), api.getHeight()) / 3 * 0.75, // 外半径。
+		                        cx: api.getWidth()/2, // 图形元素的中心在父节点坐标系（以父节点左上角为原点）中的横坐标值。
+		                        cy: api.getHeight()/2, // 图形元素的中心在父节点坐标系（以父节点左上角为原点）中的纵坐标值。
+		                        r: Math.min(api.getWidth(), api.getHeight()) / 2.5 * 0.55, // 外半径。
 		                        startAngle: (0 + num) * Math.PI / 180, // 开始弧度。
 		                        endAngle: (5 + num) * Math.PI / 180, // 结束弧度。
 		                        clockwise: false, //是否顺时针。
@@ -148,10 +315,10 @@ export default config = {
 		                        stroke: "#765EF9",
 		                        fill: "transparent",
 		                        shadowBlur: 2, //阴影
-		                        shadowOffsetX: 0,
-		                        shadowOffsetY: 0,
+		                        shadowOffsetX: 6,
+		                        shadowOffsetY: 8,
 		                        shadowColor: '#4E7EFA',
-		                        lineWidth: 9,
+		                        lineWidth: 0,
 		                    },
 		                    silent: true
 		                };
@@ -160,132 +327,6 @@ export default config = {
 		        },
 		    ]
 		};
-		function _pie1() {
-		    let dataArr = [];
-		    for (var i = 0; i < 8; i++) {
-		
-		        dataArr.push({
-		            name: (i + 1).toString(),
-		            value: 20,
-		            itemStyle: {
-		                normal: {
-		                    color: "rgba(88,142,197,0.4)",
-		                    borderWidth: 0,
-		                    borderColor: "rgba(0,0,0,0)"
-		                }
-		            }
-		        })
-		
-		    }
-		    return dataArr
-		
-		}
-		function _pie2() {
-		    let dataArr = [];
-		    let _color = {
-		        type: 'linear',
-		        x: 0,
-		        y: 0,
-		        x2: 0,
-		        y2: 1,
-		        colorStops: [{
-		            offset: 0,
-		            color: '#9933FF' // 0% 处的颜色
-		        }, {
-		            offset: 1,
-		            color: '#00CCFF' // 100% 处的颜色
-		        }],
-		        global: false // 缺省为 false
-		    }
-		    for (var i = 0; i < 16; i++) {
-		        if (i % 4 === 0) {
-		            dataArr.push({
-		                name: (i + 1).toString(),
-		                value: 50,
-		                itemStyle: {
-		                    normal: {
-		                        //color: "rgba(88,142,197,0.5)",
-		                        borderWidth: 0,
-		                        borderColor: "rgba(0,0,0,0)"
-		                    }
-		                }
-		            })
-		        } else if (i % 4 === 1) {
-		            dataArr.push({
-		                name: (i + 1).toString(),
-		                value: 2,
-		                itemStyle: {
-		                    normal: {
-		                        color: "rgba(88,142,197,0)",
-		                        borderWidth: 0,
-		                        borderColor: "rgba(0,0,0,0)"
-		                    }
-		                }
-		            })
-		        } else if (i % 4 === 2) {
-		            dataArr.push({
-		                name: (i + 1).toString(),
-		                value: 20,
-		                itemStyle: {
-		                    normal: {
-		                        //color: "rgba(88,142,197,0.2)",
-		                        borderWidth: 0,
-		                        borderColor: "rgba(0,0,0,0)"
-		                    }
-		                }
-		            })
-		        } else {
-		            dataArr.push({
-		                name: (i + 1).toString(),
-		                value: 2,
-		                itemStyle: {
-		                    normal: {
-		                        //color: "rgba(0,0,0,0)",
-		                        color: "rgba(88,142,197,0)",
-		                        borderWidth: 0,
-		                        borderColor: "rgba(0,0,0,0)"
-		                    }
-		                }
-		            })
-		        }
-		
-		    }
-		    return dataArr
-		
-		}
-		function _pie3() {
-		    let dataArr = [];
-		    for (var i = 0; i < 100; i++) {
-		        if (i % 2 === 0) {
-		            dataArr.push({
-		                name: (i + 1).toString(),
-		                value: 25,
-		                itemStyle: {
-		                    normal: {
-		                        color: "rgb(126,190,255)",
-		                        borderWidth: 0,
-		                        borderColor: "rgba(0,0,0,0)"
-		                    }
-		                }
-		            })
-		        } else {
-		            dataArr.push({
-		                name: (i + 1).toString(),
-		                value: 20,
-		                itemStyle: {
-		                    normal: {
-		                        color: "rgba(0,0,0,0)",
-		                        borderWidth: 0,
-		                        borderColor: "rgba(0,0,0,0)"
-		                    }
-		                }
-		            })
-		        }
-		
-		    }
-		    return dataArr
-		
-		}	
 		return option;
 		// 	return {
 		// 		series: [{
@@ -485,7 +526,7 @@ export default config = {
 			                    shape: {
 			                        cx: api.getWidth() / 2, // 图形元素的中心在父节点坐标系（以父节点左上角为原点）中的横坐标值。
 			                        cy: api.getHeight() / 2, // 图形元素的中心在父节点坐标系（以父节点左上角为原点）中的纵坐标值。
-			                        r: Math.min(api.getWidth(), api.getHeight()) / 2 * 0.75, // 外半径。
+			                        r: Math.min(api.getWidth(), api.getHeight()) / 2.5 * 0.75, // 外半径。
 			                        startAngle: (0 + num) * Math.PI / 180, // 开始弧度。
 			                        endAngle: (5 + num) * Math.PI / 180, // 结束弧度。
 			                        clockwise: false, //是否顺时针。
@@ -499,7 +540,7 @@ export default config = {
 			                        shadowOffsetX: 6,
 			                        shadowOffsetY: 8,
 			                        shadowColor: '#4E7EFA',
-			                        lineWidth: 15,
+			                        lineWidth: 0,
 			
 			                    },
 			                    silent: true
@@ -509,131 +550,6 @@ export default config = {
 			        },
 			    ]
 			};
-			function _pie1() {
-			    let dataArr = [];
-			    for (var i = 0; i < 8; i++) {
-			
-			        dataArr.push({
-			            name: (i + 1).toString(),
-			            value: 20,
-			            itemStyle: {
-			                normal: {
-			                    color: "rgba(88,142,197,0.4)",
-			                    borderWidth: 0,
-			                    borderColor: "rgba(0,0,0,0)"
-			                }
-			            }
-			        })
-			
-			    }
-			    return dataArr
-			
-			}
-			function _pie2() {
-			    let dataArr = [];
-			    let _color = {
-			        type: 'linear',
-			        x: 0,
-			        y: 0,
-			        x2: 0,
-			        y2: 1,
-			        colorStops: [{
-			            offset: 0,
-			            color: '#9933FF' // 0% 处的颜色
-			        }, {
-			            offset: 1,
-			            color: '#00CCFF' // 100% 处的颜色
-			        }],
-			        global: false // 缺省为 false
-			    }
-			    for (var i = 0; i < 16; i++) {
-			        if (i % 4 === 0) {
-			            dataArr.push({
-			                name: (i + 1).toString(),
-			                value: 50,
-			                itemStyle: {
-			                    normal: {
-			                        //color: "rgba(88,142,197,0.5)",
-			                        borderWidth: 0,
-			                        borderColor: "rgba(0,0,0,0)"
-			                    }
-			                }
-			            })
-			        } else if (i % 4 === 1) {
-			            dataArr.push({
-			                name: (i + 1).toString(),
-			                value: 2,
-			                itemStyle: {
-			                    normal: {
-			                        color: "rgba(88,142,197,0)",
-			                        borderWidth: 0,
-			                        borderColor: "rgba(0,0,0,0)"
-			                    }
-			                }
-			            })
-			        } else if (i % 4 === 2) {
-			            dataArr.push({
-			                name: (i + 1).toString(),
-			                value: 20,
-			                itemStyle: {
-			                    normal: {
-			                        //color: "rgba(88,142,197,0.2)",
-			                        borderWidth: 0,
-			                        borderColor: "rgba(0,0,0,0)"
-			                    }
-			                }
-			            })
-			        } else {
-			            dataArr.push({
-			                name: (i + 1).toString(),
-			                value: 2,
-			                itemStyle: {
-			                    normal: {
-			                        //color: "rgba(0,0,0,0)",
-			                        color: "rgba(88,142,197,0)",
-			                        borderWidth: 0,
-			                        borderColor: "rgba(0,0,0,0)"
-			                    }
-			                }
-			            })
-			        }
-			
-			    }
-			    return dataArr
-			
-			}
-			function _pie3() {
-			    let dataArr = [];
-			    for (var i = 0; i < 100; i++) {
-			        if (i % 2 === 0) {
-			            dataArr.push({
-			                name: (i + 1).toString(),
-			                value: 25,
-			                itemStyle: {
-			                    normal: {
-			                        color: "rgb(126,190,255)",
-			                        borderWidth: 0,
-			                        borderColor: "rgba(0,0,0,0)"
-			                    }
-			                }
-			            })
-			        } else {
-			            dataArr.push({
-			                name: (i + 1).toString(),
-			                value: 20,
-			                itemStyle: {
-			                    normal: {
-			                        color: "rgba(0,0,0,0)",
-			                        borderWidth: 0,
-			                        borderColor: "rgba(0,0,0,0)"
-			                    }
-			                }
-			            })
-			        }
-			
-			    }
-			    return dataArr
-			}	
 			return option;
 		// 	return {
 		// 		series: [{
@@ -780,7 +696,7 @@ export default config = {
 					offsetCenter: [0, '-30%'],
 					valueAnimation: true,
 					formatter: function(value) {
-						return value + '/'+n2;
+						return n + '/'+n2;
 					},
 					color: 'black',
 				},
@@ -2220,7 +2136,6 @@ export default config = {
 			// 	}]
 			// };
 		} else {
-			let angle = 0; //角度，用来做简单的动画效果的
 			let value = n;
 			let option = {
 			     backgroundColor: 'white',

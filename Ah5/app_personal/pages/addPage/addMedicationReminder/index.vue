@@ -122,9 +122,11 @@
 				return `${year}.${month}.${day}`;
 			},
 			//保存数据 
-			saveData() {
+			saveData(){
 				//1验证数据 组织数据
-				if(this.time_hour && this.time_second){
+				// console.log(this.time_hour);
+				// console.log(this.time_second);
+				if(this.time_hour && this.time_second && this.time_hour!='00' && this.time_second!='00'){
 					// console.log(this.time);
 					console.log(parseInt(this.time_hour));
 					if(0<parseInt(this.time_hour) && parseInt(this.time_hour)<=6){
@@ -142,9 +144,46 @@
 					if(18<parseInt(this.time_hour)&& parseInt(this.time_hour)<=24){
 						this.dText ='晚上';
 					}
+					let data = {
+						mr_title:'已设置-'+this.dText+'-吃药',
+						//用药标题		
+						mr_time:this.time,
+						//用药时间点		
+						mr_txt:'您今天在'+this.dText+this.time_hour+'点'+this.time_second+'分该吃药了啦!不要忘记了哦~',
+						//用药提醒文字
+						mr_way:0,  //日历提醒
+						//提醒方式
+						mr_start_date:this.date_s,
+						//开始用药提醒日期
+						mr_ent_date:this.date_e,
+						//结束用药提醒日期
+					} 
+					//2发送数据后台系统
+					http.Post('/sys_fkcy/mr/save.app', data, res =>{
+						console.log(res);
+						if(res.data){
+							uni.showToast({
+								title:res.msg,
+								icon:'none',
+							})
+							let t = setInterval(function(){
+								//添加成功，发起安卓的通信
+								clearInterval(t); 
+								uni.navigateBack();
+								appNative.updateCalendarEvent();
+							},2000)
+						}
+						else{
+							uni.showToast({ 
+								title:res.msg,
+								icon:'none',
+							})
+						}
+					})
+								
 				}
 				if(this.time_hour == '00' && this.time_second == '00'){
-					uni.showToast({
+					uni.showToast({ 
 						title:'请先选择吃药时间',
 						icon:'none',
 					})
@@ -161,40 +200,6 @@
 						icon:'none',
 					})
 				}
-				let data = {
-					mr_title:'已设置-'+this.dText+'-吃药',
-					//用药标题		
-					mr_time:this.time,
-					//用药时间点		
-					mr_txt:'您今天在'+this.dText+this.time_hour+'点'+this.time_second+'分该吃药了啦!不要忘记了哦~',
-					//用药提醒文字
-					mr_way:0,  //日历提醒
- 					//提醒方式		
-					mr_start_date:this.date_s,
-					//开始用药提醒日期
-					mr_ent_date:this.date_e,
-					//结束用药提醒日期
-				} 
-				//2发送数据后台系统
-				http.Post('/sys_fkcy/mr/save.app', data, res => {
-					// console.log(res);
-					if(res.data){
-						uni.showToast({
-							title:res.msg,
-							icon:'none',
-						})
-						let t = setInterval(function(){
-							clearInterval(t);
-							uni.navigateBack();
-						},2000)
-					}
-					else{
-						uni.showToast({
-							title:res.msg,
-							icon:'none',
-						})
-					}
-				})
 			}
 		},
 		mounted() {
