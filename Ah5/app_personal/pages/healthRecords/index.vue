@@ -143,14 +143,14 @@
 			//根据token获取用户个人信息
 			let userId = appToast.appUserId();
 			let data = {
-				'user_id': userId,
+				'appUserId': userId,
 			};
 			let that = this;
-			http.Post('/sys_fkcy/appUser/getRelevantData', data, function(res) {
-				// console.log(res);
-				that.userName = res.data.ess_info.full_name;
-				that.userImg = res.data.ess_info.img;
-				that.age = res.data.ess_info.age +'岁';
+			http.Post('/sys_fkcy/appUser/getEssInfo.app', data, function(res) {
+				console.log(res);
+				that.userName = res.data.full_name;
+				that.userImg = res.data.img;
+				that.age = res.data.age +'岁';
 			});
 		},
 	}

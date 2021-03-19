@@ -4,7 +4,7 @@
 		<text class='addBtn' @click='addallergicHistoryd()'>添加</text>
 		<!-- 搜索框内容 -->
 		<view class='searchiBox'>
-			<input type="text" placeholder="搜索" @keypress='getlist(0)' v-model="searchKey">
+			<input type="text" placeholder="搜索" @keypress.enter='getlist(0)' v-model="searchKey">
 			<icon type="search" size="15" />
 		</view>
 		<!-- 列表页列表内容 -->
@@ -47,7 +47,7 @@
 		data(){
 			return {
 				items: [1, 2],
-				searchKey: '',
+				searchKey:'',
 				//根据请求数据的状态更改该值
 				status: 'moMore', //more/loading/moMore
 				textObj: {

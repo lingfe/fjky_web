@@ -36,10 +36,10 @@
 				<text style='margin-bottom: .8rem;font-weight: 600;'>提醒方式</text>
 				<view class='remandType'>
 					<view style='color:#00D193;border: 1px solid #00D193;'>日历</view>
-					<view style='color:gray;' @click="undo('短信提醒')">
+					<view style='color:gray;' >
 						短信
 					</view>
-					<view style='color:gray;' @click="undo('app提醒')">
+					<view style='color:gray;' >
 						app
 					</view>
 				</view>

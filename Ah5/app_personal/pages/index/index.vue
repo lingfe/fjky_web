@@ -34,7 +34,7 @@
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodPressure'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
+					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>{{xueya_zhegnduan}}</text>
 					<view class='b'>
 						<view style='background-color: #FF9A21;'></view>
 						<view style='background-color: #00D193;'></view>
@@ -54,7 +54,7 @@
 				<view class='showAnother bloodPressure'>
 					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
 					<view class='a'>
-						<text>脉率</text>
+						<!-- <text>脉率</text> -->
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
 						</view>
@@ -70,7 +70,7 @@
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
 						</view>
-						<text>98次/分</text>
+						<!-- <text>98次/分</text> -->
 					</view>
 				</view>
 
@@ -224,19 +224,19 @@
 			</view>
 			<view @click="noTodo()">
 				<img src="../../static/indexImg/icon_anquan@3x.png" alt="">
-				<text>
+				<text class='gray_color'>
 					安全中心
 				</text>
 			</view>
 			<view @click="noTodo()">
 				<img src="../../static/indexImg/icon_yiyuan@2x.png" alt="">
-				<text>
+				<text class='gray_color'>
 					合作医院
 				</text>
 			</view>
 			<view @click="noTodo()">
 				<img src="../../static/indexImg/icon_yisheng@3x.png" alt="">
-				<text>
+				<text class='gray_color'>
 					合作医生
 				</text>
 			</view>
@@ -266,6 +266,8 @@
 				niaosuan_value: 0,
 				shuimian_value: 0,
 				xuezhi_value: 0,
+				xueya_value2:0,
+				xueya_zhegnduan:'',
 			}
 		},
 		methods: {
@@ -302,14 +304,14 @@
 				// console.log('查看详情-体温');
 				goto.goto('../healthReport/index?tab=tiwen');
 			},
-			shuimianDetail() {
+			shuimianDetail(){
 				// console.log('查看详情-睡眠');
 				goto.goto('../healthReport/index?tab=shuimian');
 			},
 			//暂时不做的功能
 			noTodo(){
 				uni.showToast({
-					title: '功能开发中，敬请期待！',
+					title: '暂未开发！',
 					duration: 2000,
 					icon: 'none',
 				});
@@ -325,7 +327,7 @@
 					this.showTabBottm = n;
 				} else if (n == 'bloodPressure') {
 					//渲染血压的数据和报表  仪表盘
-					this.chartLine.setOption(config.bloodPressure(this.xueya_value), true);
+					this.chartLine.setOption(config.bloodPressure(this.xueya_value,this.xueya_value2), true);
 					this.showTabBottm = n;
 				} else if (n == 'heartRate') {
 					//渲染心率的数据和报表 得分环
@@ -365,15 +367,6 @@
 					url: n,
 				})
 			},
-			//调用安卓对象
-			appToast(){
-				let userId_ = '';
-				//从安卓对象哪里获取token数据 ，根据token数据获取用户姓名、用户头像、健康描述
-				// userId_ = appNative.getUserId();
-				//暂时的测试数据 
-				userId_ = '4c404454-0d30-475e-a4c5-57bfea958c96';
-				return userId_;
-			},
 			refresh() {
 				location.reload();
 			}
@@ -387,25 +380,27 @@
 		http.Get('/sys_fkcy/auhd/getHealthyData', {
 			'appUserId': '4c404454-0d30-475e-a4c5-57bfea958c96'
 		}, function(res) {
-			// console.log(res);
+			console.log(res);
 			that.steps_value = res.data.steps.value;
 			that.sleep_value = res.data.sleep.value;
 			that.tiwen_value = res.data.tiwen.value;
 			that.xinlu_value = res.data.xinlu.value;
 			that.xuetang_value = res.data.xuetang.value;
-			that.xueya_value = res.data.xueya.value;
+			that.xueya_value = res.data.xueya.diastolic_pressure;  //舒张压
+			that.xueya_value2 = res.data.xueya.systolic_pressure;  //收缩压
 			that.xueyang_value = res.data.xueyang.value;
-			that.chartLine.setOption(config.bloodPressure(that.xueya_value), true);
+			that.xueya_zhegnduan = res.data.xueya.zhengduan;
+			that.chartLine.setOption(config.bloodPressure(that.xueya_value,that.xueya_value2), true);
 		});
 		//根据token获取用户个人信息
 		let userId = appToast.appUserId();
 		let data = {
-			'user_id': userId,
+			'appUserId': userId,
 		};
-		http.Post('/sys_fkcy/appUser/getRelevantData', data, function(res) {
-			// console.log(res);
-			that.userName = res.data.ess_info.full_name;
-			that.userImg = res.data.ess_info.img;
+		http.Post('/sys_fkcy/appUser/getEssInfo.app', data, function(res) {
+			console.log(res);
+			that.userName = res.data.full_name;
+			that.userImg = res.data.img;
 		});
 	},
 	}
@@ -413,6 +408,9 @@
 <style>
 	@import url("../../util/tool/common.css");
 	.content {}
+	.gray_color{
+		color:gray;
+	}
 	.tab-lan {
 		font-size: .9rem;
 		/* border: 1px solid red; */
@@ -533,7 +531,6 @@
 		color: #222222;
 		/* color:red; */
 		/* text-decoration: underline; */
-		/* border: 1px solid red; */
 	}
 
 	.tabActive:before {
@@ -653,7 +650,5 @@
 	.otherTabFunction {
 		/* border: 1px solid red; */
 		width: 90%;
-
-
 	}
 </style>

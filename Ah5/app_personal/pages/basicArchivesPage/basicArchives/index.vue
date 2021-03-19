@@ -58,19 +58,19 @@
 			<view>
 				<view class='title'>
 					<text>生活方式</text>
-					<img src="../../../static/edit-2.png" alt="" @click="a.goto('../lifeStyle/index')">
+					<img src="../../../static/edit-2.png" alt="" @click="a.goto(`../lifeStyle/index?dl=`+dl+`&&yj=`+yj+`&&xy=`+xy) ">
 				</view>
 				<view class='tab_item'>
 					<text>锻炼情况</text>
-					<text>{{dl==0?'	从不锻炼':dl==1?'偶尔锻炼':'经常锻炼'}}</text>
+					<text>{{dl==2?'	从不锻炼':dl==1?'偶尔锻炼':'经常锻炼'}}</text>
 				</view>
 				<view class='tab_item'>
 					<text>饮酒情况</text>
-					<text>{{yj==0?'从不饮酒':yj==1?'偶尔饮酒':'经常饮酒'}}</text>
+					<text>{{yj==2?'从不饮酒':yj==1?'偶尔饮酒':'经常饮酒'}}</text>
 				</view>
 				<view class='tab_item'>
 					<text>吸烟情况</text>
-					<text>{{xy==0?'从不吸烟':xy==1?'偶尔吸烟':'经常吸烟'}}</text>
+					<text>{{xy==2?'从不吸烟':xy==1?'偶尔吸烟':'经常吸烟'}}</text>
 				</view>
 			</view>
 			<view>
@@ -263,7 +263,7 @@
 					that.yw = (res.data.ess_info.ess_waistline == undefined ? '未知' : res.data.ess_info
 						.ess_waistline);
 					that.tw = (res.data.ess_info.ess_wh_than == undefined ? '未知' : res.data.ess_info
-						.ess_wh_than);
+						.ess_hipline);
 					//生活方式信息
 					that.dl = (res.data.style_info.exercise_state == undefined ? '未知' : res.data.style_info
 						.exercise_state);

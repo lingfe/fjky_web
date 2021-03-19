@@ -142,15 +142,15 @@
 				}
 				else if(str =='B0'){
 					this.B = str;
-					thi.drinking_state = '0';
+					this.drinking_state = '0';
 				}
 				else if(str =='B1'){
 					this.B = str;
-					thi.drinking_state = '1';
+					this.drinking_state = '1';
 				}
 				else if(str =='B2'){
 					this.B = str;
-					thi.drinking_state = '2';
+					this.drinking_state = '2';
 				}
 				else if(str =='C0'){
 					this.C = str;
@@ -186,9 +186,18 @@
 						}
 					})
 				})
+			},
+			getData(){
+				
 			}
 		},
 		mounted() {
 		},
+		onLoad(option){
+			console.log(option);
+			this.A = 'A'+option.dl;
+			this.B = 'B'+option.yj;
+			this.C = 'C'+option.xy;
+		}
 	}
 </script>
