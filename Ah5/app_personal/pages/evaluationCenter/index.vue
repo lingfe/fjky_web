@@ -30,24 +30,28 @@
 						title_text:'慢性病服务体验服务评估',
 						subTitle_text:'您还没有评估哦，赶紧去评估吧',
 						url_goto:'../evaluationCenter-evaluations/chronicDisease/index',
+						url_goto2:'../evaluationCenter-evaluations/chronicDiseaseResult/index',
 					},
 					{
 						title_img:'../../static/indexImg/b.png',
 						title_text:'心理健康评估',
 						subTitle_text:'您还没有评估哦，赶紧去评估吧',
 						url_goto:'../evaluationCenter-evaluations/mentalHealth/index',
+						url_goto2:'../evaluationCenter-evaluations/mentalHealthResult/index',
 					},
 					{
 						title_img:'../../static/indexImg/c.png',
 						title_text:'自理能力评估',
 						subTitle_text:'您还没有评估哦，赶紧去评估吧',
 						url_goto:'../evaluationCenter-evaluations/selfCareAbility/index',
+						url_goto2:'../evaluationCenter-evaluations/selfCareAbilityResult/index',
 					},
 					{
 						title_img:'../../static/indexImg/d.png',
 						title_text:'认知能力评估',
 						subTitle_text:'您还没有评估哦，赶紧去评估吧',
 						url_goto:'../evaluationCenter-evaluations/cognitiveAbility/index',
+						url_goto2:'../evaluationCenter-evaluations/cognitiveAbilityResult/index',
 					},
 				]
 			}
@@ -65,18 +69,22 @@
 					if(res.data.eva_mxb_res!=undefined){
 						that.items[0].subTitle_text = res.data.eva_mxb_res;
 						that.items[0].url_goto = that.items[0].url_goto+'?result='+res.data.eva_mxb_res;
+						that.items[0].url_goto = that.items[0].url_goto2+'?result='+res.data.eva_mxb_res;
 					}
 					if(res.data.eva_xljk_res  !=undefined){
 						that.items[1].subTitle_text = res.data.eva_xljk_res;
 						that.items[1].url_goto = that.items[1].url_goto+'?result='+res.data.eva_xljk_res;
+						that.items[1].url_goto = that.items[1].url_goto2+'?result='+res.data.eva_mxb_res;
 					}
 					if(res.data.eva_zlnl_res  !=undefined){
 						that.items[2].subTitle_text = res.data.eva_zlnl_res;
 						that.items[2].url_goto = that.items[2].url_goto+'?result='+res.data.eva_zlnl_res;
+						that.items[2].url_goto = that.items[2].url_goto2+'?result='+res.data.eva_mxb_res;
 					}
 					if(res.data.eva_rznl_res !=undefined){
 						that.items[3].subTitle_text = res.data.eva_rznl_res;
 						that.items[3].url_goto = that.items[3].url_goto+'?result='+res.data.eva_rznl_res;
+						that.items[3].url_goto = that.items[3].url_goto2+'?result='+res.data.eva_mxb_res;
 					}
 				})
 			}

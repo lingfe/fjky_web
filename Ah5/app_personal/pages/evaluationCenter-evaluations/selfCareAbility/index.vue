@@ -15,7 +15,7 @@
 				</view>
 			</view>
 		</view>
-		<view v-if='!now' class='wh100'>
+	<!-- 	<view v-if='!now' class='wh100'>
 			<view>
 				<view class='type'>
 					{{zTotal}}
@@ -27,7 +27,7 @@
 					您的认知能力等级是{{abilityLevel}}
 				</view>
 			</view>
-		</view>
+		</view> -->
 		<!-- 触发按钮 -->
 		<view v-if='now' @click='next()' class='nextBtn'>
 			<text>下一步</text>
@@ -39,6 +39,7 @@
 </template>
 <script>
 	import http from '../../../util/tool/http.js';
+	import app from '../../../util/tool/andoridFun.js';
 	export default {
 		data() {
 			return {
@@ -223,10 +224,13 @@
  							this.abilityLevel = '无需依赖，无需他人照护';
 						}
 						this.saveDataHttp(this.abilityLevel);
+						uni.navigateTo({
+							url:'../../evaluationCenter-evaluations/selfCareAbilityResult/index?result='+this.abilityLevel,
+						})
 						return false;
 					}
 					//切换下一个问题展示
-					if (this.items[i].show == true) {
+					if (this.items[i].show == true){
 						if (this.cTotal != null) {
 							//记录分数
 							this.zTotal = this.zTotal + parseInt(this.cTotal);
@@ -263,7 +267,7 @@
 			//提交保存用户的自理能力评估特征
 			saveDataHttp(n){
 				let data = {
-					user_id:'34f35165-b714-448c-8ede-cd8343a43b1a',
+					user_id:app.appUserId(),
 					eva_zlnl_res :n , 
 				};
 				http.Post('sys_fkcy/eva_res/setUserEvaRes',data,(res)=>{

@@ -59,6 +59,7 @@
 	import config from '../../../util/echartConfig/echartConfig.js';
 	import tool from '../../../util/tool/tool.js';
 	import http from '../../../util/tool/http.js';
+	import app from '../../../util/tool/andoridFun.js';
 	export default {
 		data() {
 			return {
@@ -94,8 +95,11 @@
 							//结束渲染图表
 							clearInterval(time_);
 							//系统评估结束
-							that.show = 'getResult';
+							// that.show = 'getResult';
 							that.saveDataHttp('正常');  //暂时 默认系统评估统一给与正常值
+							uni.navigateTo({
+								url:'../../evaluationCenter-evaluations/chronicDiseaseResult/index?result='+'正常',
+							})
 						}
 						if(time == 0){
 							//渲染图表
@@ -118,8 +122,8 @@
 			//提交保存用户的慢性病评估特征
 			saveDataHttp(n){
 				let data = {
-					user_id:'34f35165-b714-448c-8ede-cd8343a43b1a',
-					eva_mxb_res :n , 
+					user_id:app.appUserId(),
+					eva_mxb_res :n,
 				};
 				http.Post('sys_fkcy/eva_res/setUserEvaRes',data,(res)=>{
 					console.log(res);
