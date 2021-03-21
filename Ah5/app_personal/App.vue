@@ -17,7 +17,6 @@
 		}
 	}
 </script>
-
 <style>
 	/*公共css */ 
 	@import './uni.scss';
