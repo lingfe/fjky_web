@@ -9,7 +9,7 @@
 					{{userName}}
 				</view>
 				<view style='font-size: .75rem;'>
-					健康数据无任何异常情况
+					{{location_}}
 				</view>
 			</view>
 		</view>
@@ -252,6 +252,7 @@
 	export default {
 		data() {
 			return {
+				location_:'',
 				userName:'用户姓名',
 				userImg:'../../static/tx1.png',
 				cTab: 'bloodPressure',
@@ -411,7 +412,7 @@
 				this.timerId3 = setInterval(()=>{
 					option.series[1].startAngle = option.series[1].startAngle - 5;
 					this.chartLine.setOption(option,true);
-				},100);
+				},1000);
 			},
 			refresh() {
 				location.reload();
@@ -447,12 +448,16 @@
 		http.Post('/sys_fkcy/appUser/getEssInfo.app', data, function(res){
 			console.log(res);
 			that.userName = res.data.full_name;
-			if(res.data.full_name ==undefined){
+			if(res.data.full_name ==undefined  || res.data.full_name ==''){
 				that.userName = '未设置';
 			}
 			that.userImg = res.data.img;
-			if(res.data.img == undefined){
-				that.userImg = 'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2561659095,299912888&fm=26&gp=0.jpg';
+			if(res.data.img == undefined || res.data.img == ''){
+  				that.userImg = 'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2561659095,299912888&fm=26&gp=0.jpg';
+			}
+			that.location_ = res.data.permanent_address;
+			if(res.data.permanent_address == undefined || res.data.permanent_address ==''){
+				that.location_ = '未填写地址';
 			}
 		});
 	},

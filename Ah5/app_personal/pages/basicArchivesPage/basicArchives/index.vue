@@ -250,27 +250,27 @@
 					console.log(res);
 					// 个人基本信息
 					that.userName = res.data.ess_info.full_name;
-					if(res.data.ess_info.full_name == undefined){
+					if(res.data.ess_info.full_name == undefined || res.data.ess_info.full_name ==''){
 						that.userName = '';
 					}
 					that.userImg = res.data.ess_info.img;
-					if(res.data.ess_info.img ==undefined){
+					if(res.data.ess_info.img ==undefined || res.data.ess_info.img==''){
 						that.userImg = 'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2561659095,299912888&fm=26&gp=0.jpg';
 					}
 					that.age = res.data.ess_info.age;
-					if(res.data.ess_info.age == undefined){
-						that.age = '0';
+					if(res.data.ess_info.age == undefined || res.data.ess_info.age ==''){
+						that.age = '0'; 
 					}
 					that.tele = res.data.ess_info.phone;
-					if(res.data.ess_info.phone == undefined){
+					if(res.data.ess_info.phone == undefined ||res.data.ess_info.phone =='' ){
 						that.tele = '未设置';
 					}
 					that.addr = res.data.ess_info.permanent_address;
-					if(res.data.ess_info.permanent_address == undefined){
+					if(res.data.ess_info.permanent_address == undefined || res.data.ess_info.permanent_address==''){
 						that.addr = '未设置';
 					}
 					that.idNumber = res.data.ess_info.id_card;
-					if(res.data.ess_info.id_card == undefined){
+					if(res.data.ess_info.id_card == undefined || res.data.ess_info.id_card==''){
 						that.idNumber = '未设置';
 					}
 					// 身体参数信息

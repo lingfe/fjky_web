@@ -66,22 +66,22 @@
 				http.Post('sys_fkcy/eva_res/getUserEvaRes',{'user_id':app.appUserId()},(res) => {
 					console.log(res);
 					//慢性病 心理健康 自理能力 认知能力
-					if(res.data.eva_mxb_res!=undefined){
+					if(res.data.eva_mxb_res!=undefined || res.data.eva_mxb_res!=''){
 						that.items[0].subTitle_text = res.data.eva_mxb_res;
 						that.items[0].url_goto = that.items[0].url_goto+'?result='+res.data.eva_mxb_res;
 						that.items[0].url_goto = that.items[0].url_goto2+'?result='+res.data.eva_mxb_res;
 					}
-					if(res.data.eva_xljk_res  !=undefined){
+					if(res.data.eva_xljk_res  !=undefined || res.data.eva_xljk_res !=''){
 						that.items[1].subTitle_text = res.data.eva_xljk_res;
 						that.items[1].url_goto = that.items[1].url_goto+'?result='+res.data.eva_xljk_res;
 						that.items[1].url_goto = that.items[1].url_goto2+'?result='+res.data.eva_mxb_res;
 					}
-					if(res.data.eva_zlnl_res  !=undefined){
+					if(res.data.eva_zlnl_res  !=undefined || res.data.eva_zlnl_res !=''){
 						that.items[2].subTitle_text = res.data.eva_zlnl_res;
 						that.items[2].url_goto = that.items[2].url_goto+'?result='+res.data.eva_zlnl_res;
 						that.items[2].url_goto = that.items[2].url_goto2+'?result='+res.data.eva_mxb_res;
 					}
-					if(res.data.eva_rznl_res !=undefined){
+					if(res.data.eva_rznl_res !=undefined || res.data.eva_rznl_res!=''){
 						that.items[3].subTitle_text = res.data.eva_rznl_res;
 						that.items[3].url_goto = that.items[3].url_goto+'?result='+res.data.eva_rznl_res;
 						that.items[3].url_goto = that.items[3].url_goto2+'?result='+res.data.eva_mxb_res;

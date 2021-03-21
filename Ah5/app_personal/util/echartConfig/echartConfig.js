@@ -1007,7 +1007,7 @@ export default config = {
 						valueAnimation: true,
 						formatter: function(value) {
 							// return Math.round(value * 100) + '分';
-							return value + '%';
+							return value ;
 						},
 						color: 'black',
 					},
@@ -1635,7 +1635,7 @@ export default config = {
 					},
 					data: [{
 						value: n,
-						name: '°C'
+						name: ''
 					}]
 				}]
 			};
@@ -1721,7 +1721,7 @@ export default config = {
 					},
 					data: [{
 						value: n,
-						name: '°C'
+						name: ''
 					}]
 				}]
 			};
