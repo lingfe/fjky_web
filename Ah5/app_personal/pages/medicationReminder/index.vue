@@ -33,7 +33,7 @@
 		},
 		data(){
 			return {
-				noDataShow:'false',
+				noDataShow:false,
 				items: [], 
 				goto: goto, 
 				status: 'moMore', //more/loading/moMore
@@ -57,8 +57,15 @@
 		methods: {
 			//获取吃药提醒列表
 			getList(){
+				let that = this;
 				http.Post('/sys_fkcy/mr/getMrList.app', {}, (res) => {
 					console.log(res);
+					if(res.data.length == 0){
+						that.noDataShow = true;
+					}
+					else{
+						that.noDataShow = false;
+					}
 					this.items = res.data;
 					//停止上拉刷新的数据请求
 					uni.stopPullDownRefresh();

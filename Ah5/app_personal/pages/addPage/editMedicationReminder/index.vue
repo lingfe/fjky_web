@@ -73,7 +73,7 @@
 				id_:'',
 			}
 		},
-		computed: {
+		computed: { 
 			startDate(){
 				return this.getDate('start');
 			},
@@ -89,7 +89,7 @@
 				})
 			},
 			//开始时间
-			bindDateChange: function(e) {
+			bindDateChange: function(e){
 				this.date = e.target.value.replace(/-/g,'.');
 				console.log(this.date);
 				document.querySelector('.timeS').innerHTML  = this.date;
@@ -204,7 +204,7 @@
 						})
 					}
 					if(this.date_s == '' ){
-						uni.showToast({
+						uni.showToast({ 
 							title:'请选择开始吃药的时间',
 							icon:'none',
 						})

@@ -93,6 +93,7 @@
 	.lists {
 		padding: .8rem;
 		background-color: #ededed;
+		padding-top: .1rem;
 	}
 
 	.item {

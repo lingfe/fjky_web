@@ -50,7 +50,7 @@
 		},
 		data(){
 			return {
-				noDataShow:false,
+				noDataShow:false, 
 				items: [1, 2],
 				searchKey:'',
 				//根据请求数据的状态更改该值
@@ -96,6 +96,8 @@
 						this.status = 'more';
 					} else if (res.data.numCount - that.items.length == 0) {
 						this.status = 'moMore';
+					}
+					if(res.data.data.length == 0){
 						this.noDataShow = true;
 					}
 					uni.stopPullDownRefresh();

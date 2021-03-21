@@ -98,6 +98,8 @@
 							this.status = 'more';
 						} else if (res.data.numCount - that.items.length == 0) {
 							this.status = 'moMore';
+						}
+						if(res.data.data.length == 0){
 							this.noDataShow = true;
 						}
 						uni.stopPullDownRefresh();

@@ -127,7 +127,7 @@
 				//1验证数据 组织数据
 				// console.log(this.time_hour);
 				// console.log(this.time_second);
-				if(this.time_hour && this.time_second && this.time_hour!='00' && this.time_second!='00'){
+				if(this.time_hour && this.time_second && this.time_hour!='00' && this.time_second!='00'&&this.date_e!=''&&this.date_s!=''){
 					// console.log(this.time);
 					console.log(parseInt(this.time_hour));
 					if(0<parseInt(this.time_hour) && parseInt(this.time_hour)<=6){
@@ -183,9 +183,10 @@
 					})
 								
 				}
-				if(this.time_hour == '00' && this.time_second == '00'){
-					uni.showToast({ 
-						title:'请先选择吃药时间',
+			
+				if(this.date_e == ""){
+					uni.showToast({
+						title:'请选择结束吃药的时间',
 						icon:'none',
 					})
 				}
@@ -195,9 +196,10 @@
 						icon:'none',
 					})
 				}
-				if(this.date_e == ""){
-					uni.showToast({
-						title:'请选择结束吃药的时间',
+				
+				if(this.time_hour == '00' && this.time_second == '00'){
+					uni.showToast({ 
+						title:'请先选择吃药时间',
 						icon:'none',
 					})
 				}
