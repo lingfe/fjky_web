@@ -59,7 +59,7 @@
 			getData(){
 				let that = this;
 				//获取评估结果的数据
-				http.Post('sys_fkcy/eva_res/getUserEvaRes',{'user_id':'34f35165-b714-448c-8ede-cd8343a43b1a'},(res) => {
+				http.Post('sys_fkcy/eva_res/getUserEvaRes',{'user_id':appToast.appUserId()},(res) => {
 					console.log(res);
 					//慢性病 心理健康 自理能力 认知能力
 					if(res.data.eva_mxb_res!=undefined){

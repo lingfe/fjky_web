@@ -378,7 +378,6 @@
 					let angle = 0;
 					this.showTabBottm = n;
 					this.draw(this.chartLine,this.sleep_value,angle);
-					
 				}
 			},
 			//链接跳转
@@ -425,7 +424,7 @@
 		this.chartLine = echarts.init(document.getElementById('chartBox'));
 		//获取app用户健康信息
 		http.Get('/sys_fkcy/auhd/getHealthyData', {
-			'appUserId': '4c404454-0d30-475e-a4c5-57bfea958c96'
+			'appUserId': appToast.appUserId()
 		}, function(res) {
 			console.log(res);
 			that.steps_value = res.data.steps.value;
@@ -442,9 +441,8 @@
 			}
 		});
 		//根据token获取用户个人信息
-		let userId = appToast.appUserId();
 		let data = {
-			'appUserId': userId,
+			'appUserId': appToast.appUserId(),
 		};
 		http.Post('/sys_fkcy/appUser/getEssInfo.app', data, function(res){
 			console.log(res);

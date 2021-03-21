@@ -123,6 +123,7 @@
 			},
 			//保存数据 
 			saveData(){
+				console.log('123');
 				//1验证数据 组织数据
 				// console.log(this.time_hour);
 				// console.log(this.time_second);
