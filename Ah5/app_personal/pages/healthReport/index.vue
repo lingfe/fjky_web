@@ -484,11 +484,11 @@
 				}
 			},
 			//步数单数据定时器任务
-			doing(option){  
+			doing(option){
 				this.timerId3 = setInterval(()=>{
 					option.series[1].startAngle = option.series[1].startAngle - 5;
 					this.chartLine.setOption(option,true);
-				},100);
+				},1000);
 			},
 		},
 		onLoad(option){
