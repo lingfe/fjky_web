@@ -149,15 +149,15 @@
 			http.Post('/sys_fkcy/appUser/getEssInfo.app', data, function(res) {
 				console.log(res.data);
 				that.userName = res.data.full_name;
-				if(res.data.full_name == undefined || res.data.full_name!=''){
+				if(res.data.full_name == undefined || res.data.full_name==''){
 					that.userName = '未设置';
 				}
 				that.userImg = res.data.img;
-				if(res.data.img == undefined || res.data.img !=''){
+				if(res.data.img == undefined || res.data.img ==''){
 					that.userImg = 'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2561659095,299912888&fm=26&gp=0.jpg';
 				}
 				that.age = res.data.age;
-				if(res.data.age ==undefined || res.data.age!=''){
+				if(res.data.age ==undefined || res.data.age==''){
 					that.age =	'0';
 				}
 			});
