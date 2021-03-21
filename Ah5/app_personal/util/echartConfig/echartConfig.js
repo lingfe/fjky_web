@@ -2,625 +2,801 @@ var config = {};
 export default config = {
 	//仪表盘图系列-单数据渲染
 	//步数
-	stepNumber: function(n){
+	stepNumber: function(n) {
 		let num = 0;
+
 		function _pie1() {
-		    let dataArr = [];
-		    for (var i = 0; i < 8; i++) {
-		        dataArr.push({
-		            name: (i + 1).toString(),
-		            value: 20,
-		            itemStyle: {
-		                normal: {
-		                    color: "rgba(88,142,197,0.4)",
-		                    borderWidth: 0,
-		                    borderColor: "rgba(0,0,0,0)"
-		                }
-		            }
-		        })
-		
-		    }
-		    return dataArr
+			let dataArr = [];
+			for (var i = 0; i < 8; i++) {
+				dataArr.push({
+					name: (i + 1).toString(),
+					value: 20,
+					itemStyle: {
+						normal: {
+							color: "rgba(88,142,197,0.4)",
+							borderWidth: 0,
+							borderColor: "rgba(0,0,0,0)"
+						}
+					}
+				})
+
+			}
+			return dataArr
 		}
+
 		function _pie2() {
-		    let dataArr = [];
-		    let _color = {
-		        type: 'linear',
-		        x: 0,
-		        y: 0,
-		        x2: 0,
-		        y2: 1,
-		        colorStops: [{
-		            offset: 0,
-		            color: '#9933FF' // 0% 处的颜色
-		        }, {
-		            offset: 1,
-		            color: '#00CCFF' // 100% 处的颜色
-		        }],
-		        global: false // 缺省为 false
-		    }
-		    for (var i = 0; i < 16; i++) {
-		        if (i % 4 === 0) {
-		            dataArr.push({
-		                name: (i + 1).toString(),
-		                value: 50,
-		                itemStyle: {
-		                    normal: {
-		                        //color: "rgba(88,142,197,0.5)",
-		                        borderWidth: 0,
-		                        borderColor: "rgba(0,0,0,0)"
-		                    }
-		                }
-		            })
-		        } else if (i % 4 === 1) {
-		            dataArr.push({
-		                name: (i + 1).toString(),
-		                value: 2,
-		                itemStyle: {
-		                    normal: {
-		                        color: "rgba(88,142,197,0)",
-		                        borderWidth: 0,
-		                        borderColor: "rgba(0,0,0,0)"
-		                    }
-		                }
-		            })
-		        } else if (i % 4 === 2) {
-		            dataArr.push({
-		                name: (i + 1).toString(),
-		                value: 20,
-		                itemStyle: {
-		                    normal: {
-		                        //color: "rgba(88,142,197,0.2)",
-		                        borderWidth: 0,
-		                        borderColor: "rgba(0,0,0,0)"
-		                    }
-		                }
-		            })
-		        } else {
-		            dataArr.push({
-		                name: (i + 1).toString(),
-		                value: 2,
-		                itemStyle: {
-		                    normal: {
-		                        //color: "rgba(0,0,0,0)",
-		                        color: "rgba(88,142,197,0)",
-		                        borderWidth: 0,
-		                        borderColor: "rgba(0,0,0,0)"
-		                    }
-		                }
-		            })
-		        }
-		
-		    }
-		    return dataArr
-		
+			let dataArr = [];
+			let _color = {
+				type: 'linear',
+				x: 0,
+				y: 0,
+				x2: 0,
+				y2: 1,
+				colorStops: [{
+					offset: 0,
+					color: '#9933FF' // 0% 处的颜色
+				}, {
+					offset: 1,
+					color: '#00CCFF' // 100% 处的颜色
+				}],
+				global: false // 缺省为 false
+			}
+			for (var i = 0; i < 16; i++) {
+				if (i % 4 === 0) {
+					dataArr.push({
+						name: (i + 1).toString(),
+						value: 50,
+						itemStyle: {
+							normal: {
+								//color: "rgba(88,142,197,0.5)",
+								borderWidth: 0,
+								borderColor: "rgba(0,0,0,0)"
+							}
+						}
+					})
+				} else if (i % 4 === 1) {
+					dataArr.push({
+						name: (i + 1).toString(),
+						value: 2,
+						itemStyle: {
+							normal: {
+								color: "rgba(88,142,197,0)",
+								borderWidth: 0,
+								borderColor: "rgba(0,0,0,0)"
+							}
+						}
+					})
+				} else if (i % 4 === 2) {
+					dataArr.push({
+						name: (i + 1).toString(),
+						value: 20,
+						itemStyle: {
+							normal: {
+								//color: "rgba(88,142,197,0.2)",
+								borderWidth: 0,
+								borderColor: "rgba(0,0,0,0)"
+							}
+						}
+					})
+				} else {
+					dataArr.push({
+						name: (i + 1).toString(),
+						value: 2,
+						itemStyle: {
+							normal: {
+								//color: "rgba(0,0,0,0)",
+								color: "rgba(88,142,197,0)",
+								borderWidth: 0,
+								borderColor: "rgba(0,0,0,0)"
+							}
+						}
+					})
+				}
+
+			}
+			return dataArr
+
 		}
+
 		function _pie3() {
-		    let dataArr = [];
-		    for (var i = 0; i < 100; i++) {
-		        if (i % 2 === 0) {
-		            dataArr.push({
-		                name: (i + 1).toString(),
-		                value: 25,
-		                itemStyle: {
-		                    normal: {
-		                        color: "rgb(126,190,255)",
-		                        borderWidth: 0,
-		                        borderColor: "rgba(0,0,0,0)"
-		                    }
-		                }
-		            })
-		        } else {
-		            dataArr.push({
-		                name: (i + 1).toString(),
-		                value: 20,
-		                itemStyle: {
-		                    normal: {
-		                        color: "rgba(0,0,0,0)",
-		                        borderWidth: 0,
-		                        borderColor: "rgba(0,0,0,0)"
-		                    }
-		                }
-		            })
-		        }
-		
-		    }
-		    return dataArr
-		
-		}	
-		function _pieData(data) {
-		    let _data = data;
-		    let dataArr = [];
-		    for (var i = 0; i < 5; i++) {
-		        if (i === 2) {
-		            let dt = (data[0].unit) ? 25 : (Number(data[0].value));
-		            dataArr.push({
-		                name: (i + 1).toString(),
-		                value: dt,
-		                itemStyle: {
-		                    normal: {
-		                        color: new echarts.graphic.LinearGradient(0, 1, 1, 0, [{
-		                            offset: 0,
-		                            color: 'rgb(147,187,216)'
-		                        }, {
-		                            offset: 1,
-		                            color: '#588ec5'
-		                        }]),
-		                        borderWidth: 0,
-		                        borderColor: "rgba(0,0,0,0.4)"
-		                    }
-		                }
-		            })
-		        } else {
-		            let dta = (data[0].unit) ? 25 : (1 - Number(data[0].value)) / 4;
-		            dataArr.push({
-		                name: (i + 1).toString(),
-		                value: dta,
-		                itemStyle: {
-		                    normal: {
-		                        color: "rgba(0,0,0,0)",
-		                        borderWidth: 0,
-		                        borderColor: "rgba(0,0,0,0)"
-		                    }
-		                }
-		            })
-		        }
-		
-		    }
-		    //console.log(dataArr)
-		    return dataArr
+			let dataArr = [];
+			for (var i = 0; i < 100; i++) {
+				if (i % 2 === 0) {
+					dataArr.push({
+						name: (i + 1).toString(),
+						value: 25,
+						itemStyle: {
+							normal: {
+								color: "rgb(126,190,255)",
+								borderWidth: 0,
+								borderColor: "rgba(0,0,0,0)"
+							}
+						}
+					})
+				} else {
+					dataArr.push({
+						name: (i + 1).toString(),
+						value: 20,
+						itemStyle: {
+							normal: {
+								color: "rgba(0,0,0,0)",
+								borderWidth: 0,
+								borderColor: "rgba(0,0,0,0)"
+							}
+						}
+					})
+				}
+
+			}
+			return dataArr
+
 		}
-		if (n == '未测量'){
+
+		function _pieData(data) {
+			let _data = data;
+			let dataArr = [];
+			for (var i = 0; i < 5; i++) {
+				if (i === 2) {
+					let dt = (data[0].unit) ? 25 : (Number(data[0].value));
+					dataArr.push({
+						name: (i + 1).toString(),
+						value: dt,
+						itemStyle: {
+							normal: {
+								color: new echarts.graphic.LinearGradient(0, 1, 1, 0, [{
+									offset: 0,
+									color: 'rgb(147,187,216)'
+								}, {
+									offset: 1,
+									color: '#588ec5'
+								}]),
+								borderWidth: 0,
+								borderColor: "rgba(0,0,0,0.4)"
+							}
+						}
+					})
+				} else {
+					let dta = (data[0].unit) ? 25 : (1 - Number(data[0].value)) / 4;
+					dataArr.push({
+						name: (i + 1).toString(),
+						value: dta,
+						itemStyle: {
+							normal: {
+								color: "rgba(0,0,0,0)",
+								borderWidth: 0,
+								borderColor: "rgba(0,0,0,0)"
+							}
+						}
+					})
+				}
+
+			}
+			//console.log(dataArr)
+			return dataArr
+		}
+		if (n == '未测量') {
 			n = 0;
-		let value = n;
-		var option = {
-		    backgroundColor: 'white',
-		    title: {
-		        text:value,
-		        textStyle: {
-		            color: "#765EF9",
-		            fontSize: 25,
-		            fontWeight: '100',
-		            rich: {
-		                a: {
-		                    fontSize: 48,
-		                    color: '#765EF9'
-		                },
-		
-		                c: {
-		                    fontSize: 40,
-		                    lineHeight: 75,
-		                    color: '#4E7EFA',
-		                    // padding: [5,0]
-		                }
-		            }
-		        },
-		        x: "center",
-		        y: "center"
-		    },
-		    series: [{
-		            type: 'pie',
-		            zlevel: 1,
-		            silent: true,
-		            /*
-		            radius
-		            饼图的半径。可以为如下类型：
-		            number：直接指定外半径值。
-		            string：例如，'20%'，表示外半径为可视区尺寸（容器高宽中较小一项）的 20% 长度。
-		            Array.<number|string>：数组的第一项是内半径，第二项是外半径。每一项遵从上述 number string 的描述。
-		            */
-		            radius: ['77%', '78%'],
-		            hoverAnimation: false,
-		            //color: "rgba(88,142,197,0.5)",
-		            color: {
-		                type: 'linear',
-		                x: 0,
-		                y: 0,
-		                x2: 0,
-		                y2: 1,
-		                colorStops: [{
-		                    offset: 0,
-		                    color: '#9933FF' // 0% 处的颜色
-		                }, {
-		                    offset: 1,
-		                    color: '#00CCFF' // 100% 处的颜色
-		                }],
-		                global: false // 缺省为 false
-		            },
-		            // animation:false,    //charts3 no
-		            label: {
-		                normal: {
-		                    show: false
-		                },
-		            },
-		            labelLine: {
-		                normal: {
-		                    show: false
-		                }
-		            },
-		            data: [1]
-		        },
-		        {
-		            type: 'pie',
-		            zlevel: 2,
-		            silent: true,
-		            radius: ['70%', '71%'],
-		            startAngle: 90,
-		            hoverAnimation: false,
-		            // animation:false,    //charts3 no
-		            color: {
-		                type: 'linear',
-		                x: 0,
-		                y: 0,
-		                x2: 0,
-		                y2: 1,
-		                colorStops: [{
-		                    offset: 0,
-		                    color: '#9933FF' // 0% 处的颜色
-		                }, {
-		                    offset: 1,
-		                    color: '#00CCFF' // 100% 处的颜色
-		                }],
-		                global: false // 缺省为 false
-		            },
-		            label: {
-		                normal: {
-		                    show: false
-		                },
-		            },
-		            labelLine: {
-		                normal: {
-		                    show: false
-		                }
-		            },
-		            data: _pie2()
-		        },
-		        {
-		            type: 'pie',
-		            zlevel: 3,
-		            silent: true,
-		            radius: ['63%', '64%'],
-		            label: {
-		                normal: {
-		                    show: false
-		                },
-		            },
-		            labelLine: {
-		                normal: {
-		                    show: false
-		                }
-		            },
-		            data: _pie3()
-		        },
-		
-		        {
-		            name: "",
-		            type: 'custom',
-		            zlevel: 7,
-		            coordinateSystem: "none",
-		            renderItem: function(params, api){
-		                return {
-		                    type: 'arc',
-		                    shape: {
-		                        cx: api.getWidth()/2, // 图形元素的中心在父节点坐标系（以父节点左上角为原点）中的横坐标值。
-		                        cy: api.getHeight()/2, // 图形元素的中心在父节点坐标系（以父节点左上角为原点）中的纵坐标值。
-		                        r: Math.min(api.getWidth(), api.getHeight()) / 2.5 * 0.55, // 外半径。
-		                        startAngle: (0 + num) * Math.PI / 180, // 开始弧度。
-		                        endAngle: (5 + num) * Math.PI / 180, // 结束弧度。
-		                        clockwise: false, //是否顺时针。
-		                    },
-		
-		                    style: {
-		                        // #00CEF3
-		                        stroke: "#765EF9",
-		                        fill: "transparent",
-		                        shadowBlur: 2, //阴影
-		                        shadowOffsetX: 6,
-		                        shadowOffsetY: 8,
-		                        shadowColor: '#4E7EFA',
-		                        lineWidth: 0,
-		                    },
-		                    silent: true
-		                };
-		            },
-		            data: [0]
-		        },
-		    ]
-		};
-		return option;
-		// 	return {
-		// 		series: [{
-		// 			type: 'gauge',
-		// 			startAngle: 90,
-		// 			endAngle: -270,
-		// 			pointer: {
-		// 				show: false,
-		// 			},
-		// 			max: 10000,
-		// 			min: 0,
-		// 			progress: {
-		// 				show: true,
-		// 				overlap: false,
-		// 				roundCap: true,
-		// 				clip: false,
-		// 				itemStyle: {
-		// 					color: '#00D193',
-		// 				},
-		// 			},
-		// 			itemStyle: {
-		// 				shadowColor: 'red',
-		// 			},
-		// 			axisLine: {
-		// 				lineStyle: {
-		// 					width: 10,
-		// 				}
-		// 			},
-		// 			splitLine: {
-		// 				show: false,
-		// 				distance: 0,
-		// 				length: 20
-		// 			},
-		// 			axisTick: {
-		// 				show: false
-		// 			},
-		// 			axisLabel: {
-		// 				show: false,
-		// 				distance: 50
-		// 			},
-		// 			data: [{
-		// 				value: n,
-		// 				name: '步',
-		// 				title: {
-		// 					offsetCenter: ['0%', '35%']
-		// 				},
-		// 				detail: {
-		// 					offsetCenter: ['0%', '-10%']
-		// 				}
-		// 			}, ],
-		// 			title: {
-		// 				fontSize: 13,
-		// 				color: 'grey',
-		// 			},
-		// 			detail: {
-		// 				width: 50,
-		// 				height: 14,
-		// 				fontSize: 25,
-		// 				color: 'black',
-		// 				borderRadius: 20,
-		// 				formatter: '未测量'
-		// 			}
-		// 		}]
-		// 	};
-		
+			let value = n;
+			var option = {
+				backgroundColor: 'white',
+				title: {
+					text: value,
+					textStyle: {
+						color: "#765EF9",
+						fontSize: 25,
+						fontWeight: '100',
+						rich: {
+							a: {
+								fontSize: 48,
+								color: '#765EF9'
+							},
+
+							c: {
+								fontSize: 40,
+								lineHeight: 75,
+								color: '#4E7EFA',
+								// padding: [5,0]
+							}
+						}
+					},
+					x: "center",
+					y: "center"
+				},
+				series: [{
+						type: 'pie',
+						zlevel: 1,
+						silent: true,
+						/*
+						radius
+						饼图的半径。可以为如下类型：
+						number：直接指定外半径值。
+						string：例如，'20%'，表示外半径为可视区尺寸（容器高宽中较小一项）的 20% 长度。
+						Array.<number|string>：数组的第一项是内半径，第二项是外半径。每一项遵从上述 number string 的描述。
+						*/
+						radius: ['77%', '78%'],
+						hoverAnimation: false,
+						//color: "rgba(88,142,197,0.5)",
+						color: {
+							type: 'linear',
+							x: 0,
+							y: 0,
+							x2: 0,
+							y2: 1,
+							colorStops: [{
+								offset: 0,
+								color: '#9933FF' // 0% 处的颜色
+							}, {
+								offset: 1,
+								color: '#00CCFF' // 100% 处的颜色
+							}],
+							global: false // 缺省为 false
+						},
+						// animation:false,    //charts3 no
+						label: {
+							normal: {
+								show: false
+							},
+						},
+						labelLine: {
+							normal: {
+								show: false
+							}
+						},
+						data: [1]
+					},
+					{
+						type: 'pie',
+						zlevel: 2,
+						silent: true,
+						radius: ['70%', '71%'],
+						startAngle: 90,
+						hoverAnimation: false,
+						// animation:false,    //charts3 no
+						color: {
+							type: 'linear',
+							x: 0,
+							y: 0,
+							x2: 0,
+							y2: 1,
+							colorStops: [{
+								offset: 0,
+								color: '#9933FF' // 0% 处的颜色
+							}, {
+								offset: 1,
+								color: '#00CCFF' // 100% 处的颜色
+							}],
+							global: false // 缺省为 false
+						},
+						label: {
+							normal: {
+								show: false
+							},
+						},
+						labelLine: {
+							normal: {
+								show: false
+							}
+						},
+						data: _pie2()
+					},
+					{
+						type: 'pie',
+						zlevel: 3,
+						silent: true,
+						radius: ['63%', '64%'],
+						label: {
+							normal: {
+								show: false
+							},
+						},
+						labelLine: {
+							normal: {
+								show: false
+							}
+						},
+						data: _pie3()
+					},
+
+					{
+						name: "",
+						type: 'custom',
+						zlevel: 7,
+						coordinateSystem: "none",
+						renderItem: function(params, api) {
+							return {
+								type: 'arc',
+								shape: {
+									cx: api.getWidth() / 2, // 图形元素的中心在父节点坐标系（以父节点左上角为原点）中的横坐标值。
+									cy: api.getHeight() / 2, // 图形元素的中心在父节点坐标系（以父节点左上角为原点）中的纵坐标值。
+									r: Math.min(api.getWidth(), api.getHeight()) / 2.5 *
+									0.55, // 外半径。
+									startAngle: (0 + num) * Math.PI / 180, // 开始弧度。
+									endAngle: (5 + num) * Math.PI / 180, // 结束弧度。
+									clockwise: false, //是否顺时针。
+								},
+
+								style: {
+									// #00CEF3
+									stroke: "#765EF9",
+									fill: "transparent",
+									shadowBlur: 2, //阴影
+									shadowOffsetX: 6,
+									shadowOffsetY: 8,
+									shadowColor: '#4E7EFA',
+									lineWidth: 0,
+								},
+								silent: true
+							};
+						},
+						data: [0]
+					},
+				]
+			};
+			return option;
+			// 	return {
+			// 		series: [{
+			// 			type: 'gauge',
+			// 			startAngle: 90,
+			// 			endAngle: -270,
+			// 			pointer: {
+			// 				show: false,
+			// 			},
+			// 			max: 10000,
+			// 			min: 0,
+			// 			progress: {
+			// 				show: true,
+			// 				overlap: false,
+			// 				roundCap: true,
+			// 				clip: false,
+			// 				itemStyle: {
+			// 					color: '#00D193',
+			// 				},
+			// 			},
+			// 			itemStyle: {
+			// 				shadowColor: 'red',
+			// 			},
+			// 			axisLine: {
+			// 				lineStyle: {
+			// 					width: 10,
+			// 				}
+			// 			},
+			// 			splitLine: {
+			// 				show: false,
+			// 				distance: 0,
+			// 				length: 20
+			// 			},
+			// 			axisTick: {
+			// 				show: false
+			// 			},
+			// 			axisLabel: {
+			// 				show: false,
+			// 				distance: 50
+			// 			},
+			// 			data: [{
+			// 				value: n,
+			// 				name: '步',
+			// 				title: {
+			// 					offsetCenter: ['0%', '35%']
+			// 				},
+			// 				detail: {
+			// 					offsetCenter: ['0%', '-10%']
+			// 				}
+			// 			}, ],
+			// 			title: {
+			// 				fontSize: 13,
+			// 				color: 'grey',
+			// 			},
+			// 			detail: {
+			// 				width: 50,
+			// 				height: 14,
+			// 				fontSize: 25,
+			// 				color: 'black',
+			// 				borderRadius: 20,
+			// 				formatter: '未测量'
+			// 			}
+			// 		}]
+			// 	};
+
 		} else {
 			let value = n;
 			var option = {
-			    backgroundColor: 'white',
-			    title: {
-			        text:value ,
-			        textStyle: {
-			            color: "#765EF9",
-			            fontSize: 30,
-			            fontWeight: '100',
-			            rich: {
-			                a: {
-			                    fontSize: 25,
-			                    color: '#765EF9'
-			                },
-			
-			                c: {
-			                    fontSize: 40,
-			                    lineHeight: 75,
-			                    color: '#4E7EFA',
-			                    // padding: [5,0]
-			                }
-			            }
-			        },
-			        x: "center",
-			        y: "center"
-			    },
-			    series: [{
-			            type: 'pie',
-			            zlevel: 1,
-			            silent: true,
-			            /*
-			            radius
-			            饼图的半径。可以为如下类型：
-			            number：直接指定外半径值。
-			            string：例如，'20%'，表示外半径为可视区尺寸（容器高宽中较小一项）的 20% 长度。
-			            Array.<number|string>：数组的第一项是内半径，第二项是外半径。每一项遵从上述 number string 的描述。
-			            */
-			            radius: ['77%', '78%'],
-			            hoverAnimation: false,
-			            //color: "rgba(88,142,197,0.5)",
-			            color: {
-			                type: 'linear',
-			                x: 0,
-			                y: 0,
-			                x2: 0,
-			                y2: 1,
-			                colorStops: [{
-			                    offset: 0,
-			                    color: '#9933FF' // 0% 处的颜色
-			                }, {
-			                    offset: 1,
-			                    color: '#00CCFF' // 100% 处的颜色
-			                }],
-			                global: false // 缺省为 false
-			            },
-			            // animation:false,    //charts3 no
-			            label: {
-			                normal: {
-			                    show: false
-			                },
-			            },
-			            labelLine: {
-			                normal: {
-			                    show: false
-			                }
-			            },
-			            data: [1]
-			        },
-			        {
-			            type: 'pie',
-			            zlevel: 2,
-			            silent: true,
-			            radius: ['70%', '71%'],
-			            startAngle: 90,
-			            hoverAnimation: false,
-			            // animation:false,    //charts3 no
-			            color: {
-			                type: 'linear',
-			                x: 0,
-			                y: 0,
-			                x2: 0,
-			                y2: 1,
-			                colorStops: [{
-			                    offset: 0,
-			                    color: '#9933FF' // 0% 处的颜色
-			                }, {
-			                    offset: 1,
-			                    color: '#00CCFF' // 100% 处的颜色
-			                }],
-			                global: false // 缺省为 false
-			            },
-			            label: {
-			                normal: {
-			                    show: false
-			                },
-			            },
-			            labelLine: {
-			                normal: {
-			                    show: false
-			                }
-			            },
-			            data: _pie2()
-			        },
-			        {
-			            type: 'pie',
-			            zlevel: 3,
-			            silent: true,
-			            radius: ['63%', '64%'],
-			            label: {
-			                normal: {
-			                    show: false
-			                },
-			            },
-			            labelLine: {
-			                normal: {
-			                    show: false
-			                }
-			            },
-			            data: _pie3()
-			        },
-			
-			        {
-			            name: "",
-			            type: 'custom',
-			            zlevel: 7,
-			
-			            coordinateSystem: "none",
-			            renderItem: function(params, api) {
-			                return {
-			                    type: 'arc',
-			                    shape: {
-			                        cx: api.getWidth() / 2, // 图形元素的中心在父节点坐标系（以父节点左上角为原点）中的横坐标值。
-			                        cy: api.getHeight() / 2, // 图形元素的中心在父节点坐标系（以父节点左上角为原点）中的纵坐标值。
-			                        r: Math.min(api.getWidth(), api.getHeight()) / 2.5 * 0.75, // 外半径。
-			                        startAngle: (0 + num) * Math.PI / 180, // 开始弧度。
-			                        endAngle: (5 + num) * Math.PI / 180, // 结束弧度。
-			                        clockwise: false, //是否顺时针。
-			                    },
-			
-			                    style: {
-			                        // #00CEF3
-			                        stroke: "#765EF9",
-			                        fill: "transparent",
-			                        shadowBlur: 2, //阴影
-			                        shadowOffsetX: 6,
-			                        shadowOffsetY: 8,
-			                        shadowColor: '#4E7EFA',
-			                        lineWidth: 0,
-			
-			                    },
-			                    silent: true
-			                };
-			            },
-			            data: [0]
-			        },
-			    ]
+				backgroundColor: 'white',
+				title: {
+					text: value,
+					textStyle: {
+						color: "#765EF9",
+						fontSize: 30,
+						fontWeight: '100',
+						rich: {
+							a: {
+								fontSize: 25,
+								color: '#765EF9'
+							},
+
+							c: {
+								fontSize: 40,
+								lineHeight: 75,
+								color: '#4E7EFA',
+								// padding: [5,0]
+							}
+						}
+					},
+					x: "center",
+					y: "center"
+				},
+				series: [{
+						type: 'pie',
+						zlevel: 1,
+						silent: true,
+						/*
+						radius
+						饼图的半径。可以为如下类型：
+						number：直接指定外半径值。
+						string：例如，'20%'，表示外半径为可视区尺寸（容器高宽中较小一项）的 20% 长度。
+						Array.<number|string>：数组的第一项是内半径，第二项是外半径。每一项遵从上述 number string 的描述。
+						*/
+						radius: ['77%', '78%'],
+						hoverAnimation: false,
+						//color: "rgba(88,142,197,0.5)",
+						color: {
+							type: 'linear',
+							x: 0,
+							y: 0,
+							x2: 0,
+							y2: 1,
+							colorStops: [{
+								offset: 0,
+								color: '#9933FF' // 0% 处的颜色
+							}, {
+								offset: 1,
+								color: '#00CCFF' // 100% 处的颜色
+							}],
+							global: false // 缺省为 false
+						},
+						// animation:false,    //charts3 no
+						label: {
+							normal: {
+								show: false
+							},
+						},
+						labelLine: {
+							normal: {
+								show: false
+							}
+						},
+						data: [1]
+					},
+					{
+						type: 'pie',
+						zlevel: 2,
+						silent: true,
+						radius: ['70%', '71%'],
+						startAngle: 90,
+						hoverAnimation: false,
+						// animation:false,    //charts3 no
+						color: {
+							type: 'linear',
+							x: 0,
+							y: 0,
+							x2: 0,
+							y2: 1,
+							colorStops: [{
+								offset: 0,
+								color: '#9933FF' // 0% 处的颜色
+							}, {
+								offset: 1,
+								color: '#00CCFF' // 100% 处的颜色
+							}],
+							global: false // 缺省为 false
+						},
+						label: {
+							normal: {
+								show: false
+							},
+						},
+						labelLine: {
+							normal: {
+								show: false
+							}
+						},
+						data: _pie2()
+					},
+					{
+						type: 'pie',
+						zlevel: 3,
+						silent: true,
+						radius: ['63%', '64%'],
+						label: {
+							normal: {
+								show: false
+							},
+						},
+						labelLine: {
+							normal: {
+								show: false
+							}
+						},
+						data: _pie3()
+					},
+
+					{
+						name: "",
+						type: 'custom',
+						zlevel: 7,
+
+						coordinateSystem: "none",
+						renderItem: function(params, api) {
+							return {
+								type: 'arc',
+								shape: {
+									cx: api.getWidth() / 2, // 图形元素的中心在父节点坐标系（以父节点左上角为原点）中的横坐标值。
+									cy: api.getHeight() / 2, // 图形元素的中心在父节点坐标系（以父节点左上角为原点）中的纵坐标值。
+									r: Math.min(api.getWidth(), api.getHeight()) / 2.5 *
+									0.75, // 外半径。
+									startAngle: (0 + num) * Math.PI / 180, // 开始弧度。
+									endAngle: (5 + num) * Math.PI / 180, // 结束弧度。
+									clockwise: false, //是否顺时针。
+								},
+
+								style: {
+									// #00CEF3
+									stroke: "#765EF9",
+									fill: "transparent",
+									shadowBlur: 2, //阴影
+									shadowOffsetX: 6,
+									shadowOffsetY: 8,
+									shadowColor: '#4E7EFA',
+									lineWidth: 0,
+
+								},
+								silent: true
+							};
+						},
+						data: [0]
+					},
+				]
 			};
 			return option;
-		// 	return {
-		// 		series: [{
-		// 			type: 'gauge',
-		// 			startAngle: 90,
-		// 			endAngle: -270,
-		// 			pointer: {
-		// 				show: false,
-		// 			},
-		// 			max: 10000,
-		// 			min: 0,
-		// 			progress: {
-		// 				show: true,
-		// 				overlap: false,
-		// 				roundCap: true,
-		// 				clip: false,
-		// 				itemStyle: {
-		// 					color: '#00D193',
-		// 				},
+			// 	return {
+			// 		series: [{
+			// 			type: 'gauge',
+			// 			startAngle: 90,
+			// 			endAngle: -270,
+			// 			pointer: {
+			// 				show: false,
+			// 			},
+			// 			max: 10000,
+			// 			min: 0,
+			// 			progress: {
+			// 				show: true,
+			// 				overlap: false,
+			// 				roundCap: true,
+			// 				clip: false,
+			// 				itemStyle: {
+			// 					color: '#00D193',
+			// 				},
 
-		// 			},
-		// 			itemStyle: {
-		// 				shadowColor: 'red',
-		// 			},
-		// 			axisLine: {
-		// 				lineStyle: {
-		// 					width: 10,
-		// 				}
-		// 			},
-		// 			splitLine: {
-		// 				show: false,
-		// 				distance: 0,
-		// 				length: 20
-		// 			},
-		// 			axisTick: {
-		// 				show: false
-		// 			},
-		// 			axisLabel: {
-		// 				show: false,
-		// 				distance: 50
-		// 			},
-		// 			data: [{
-		// 				value: n,
-		// 				name: '步',
-		// 				title: {
-		// 					offsetCenter: ['0%', '35%']
-		// 				},
-		// 				detail: {
-		// 					offsetCenter: ['0%', '-10%']
-		// 				}
-		// 			}, ],
-		// 			title: {
-		// 				fontSize: 13,
-		// 				color: 'grey',
-		// 			},
-		// 			detail: {
-		// 				width: 50,
-		// 				height: 14,
-		// 				fontSize: 25,
-		// 				color: 'black',
-		// 				borderRadius: 20,
-		// 				formatter: '{value}'
-		// 			}
-		// 		}]
-		// 	};
+			// 			},
+			// 			itemStyle: {
+			// 				shadowColor: 'red',
+			// 			},
+			// 			axisLine: {
+			// 				lineStyle: {
+			// 					width: 10,
+			// 				}
+			// 			},
+			// 			splitLine: {
+			// 				show: false,
+			// 				distance: 0,
+			// 				length: 20
+			// 			},
+			// 			axisTick: {
+			// 				show: false
+			// 			},
+			// 			axisLabel: {
+			// 				show: false,
+			// 				distance: 50
+			// 			},
+			// 			data: [{
+			// 				value: n,
+			// 				name: '步',
+			// 				title: {
+			// 					offsetCenter: ['0%', '35%']
+			// 				},
+			// 				detail: {
+			// 					offsetCenter: ['0%', '-10%']
+			// 				}
+			// 			}, ],
+			// 			title: {
+			// 				fontSize: 13,
+			// 				color: 'grey',
+			// 			},
+			// 			detail: {
+			// 				width: 50,
+			// 				height: 14,
+			// 				fontSize: 25,
+			// 				color: 'black',
+			// 				borderRadius: 20,
+			// 				formatter: '{value}'
+			// 			}
+			// 		}]
+			// 	};
 		}
 	},
 	//血压
-	bloodPressure: function(n,n2){
+	bloodPressure: function(n, n2) {
 		if (n == '未测量') {
-			n = 0;
+			n = '0';
+			return {
+				series: [{
+					type: 'gauge',
+					startAngle: 180,
+					endAngle: 0,
+					min: 0,
+					max: 200,
+					splitNumber: 8,
+					progress: {
+						show: false,
+					},
+					axisLine: {
+						lineStyle: {
+							width: 13,
+							color: [
+								[0.33, '#FF9A21'],
+								[0.66, '#00D193'],
+								[1, '#F72600'],
+							]
+						}
+					},
+					pointer: {
+						show: true,
+						icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+						length: '10%',
+						width: 15,
+						offsetCenter: [0, '-80%'],
+						itemStyle: {
+							color: 'white'
+						}
+					},
+					axisTick: {
+						show: false,
+						length: 12,
+						lineStyle: {
+							color: 'auto',
+							width: 2
+						}
+					},
+					splitLine: {
+						show: false,
+						length: 20,
+						lineStyle: {
+							color: 'auto',
+							width: 5
+						}
+					},
+					axisLabel: {
+						show: false,
+						color: '#464646',
+						fontSize: 20,
+						distance: -60,
+						formatter: function(value) {
+							if (value === 0.875) {
+								return '优';
+							} else if (value === 0.625) {
+								return '中';
+							} else if (value === 0.375) {
+								return '良';
+							} else if (value === 0.125) {
+								return '差';
+							}
+						}
+					},
+					title: {
+						offsetCenter: [0, '10%'],
+						fontSize: 13,
+						color: 'gray',
+					},
+					detail: {
+						fontSize: 25,
+						offsetCenter: [0, '-30%'],
+						valueAnimation: true,
+						formatter: function(value) {
+							return '未测量';
+						},
+						color: 'black',
+					},
+					data: [{
+						value: n,
+						name: '收/舒'
+					}]
+				}]
+			};
+		} else {
+			return {
+				series: [{
+					type: 'gauge',
+					startAngle: 180,
+					endAngle: 0,
+					min: 0,
+					max: 200,
+					splitNumber: 8,
+					progress: {
+						show: false,
+					},
+					axisLine: {
+						lineStyle: {
+							width: 13,
+							color: [
+								[0.33, '#FF9A21'],
+								[0.66, '#00D193'],
+								[1, '#F72600'],
+							]
+						}
+					},
+					pointer: {
+						show: true,
+						icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
+						length: '10%',
+						width: 15,
+						offsetCenter: [0, '-80%'],
+						itemStyle: {
+							color: 'white'
+						}
+					},
+					axisTick: {
+						show: false,
+						length: 12,
+						lineStyle: {
+							color: 'auto',
+							width: 2
+						}
+					},
+					splitLine: {
+						show: false,
+						length: 20,
+						lineStyle: {
+							color: 'auto',
+							width: 5
+						}
+					},
+					axisLabel: {
+						show: false,
+						color: '#464646',
+						fontSize: 20,
+						distance: -60,
+						formatter: function(value) {
+							if (value === 0.875) {
+								return '优';
+							} else if (value === 0.625) {
+								return '中';
+							} else if (value === 0.375) {
+								return '良';
+							} else if (value === 0.125) {
+								return '差';
+							}
+						}
+					},
+					title: {
+						offsetCenter: [0, '10%'],
+						fontSize: 13,
+						color: 'gray',
+					},
+					detail: {
+						fontSize: 25,
+						offsetCenter: [0, '-30%'],
+						valueAnimation: true,
+						formatter: function(value) {
+							return n + '/' + n2;
+						},
+						color: 'black',
+					},
+					data: [{
+						value: n,
+						name: '收/舒'
+					}]
+				}]
+			};
+
 		}
 		return {
 			series: [{
@@ -696,7 +872,7 @@ export default config = {
 					offsetCenter: [0, '-30%'],
 					valueAnimation: true,
 					formatter: function(value) {
-						return n + '/'+n2;
+						return n + '/' + n2;
 					},
 					color: 'black',
 				},
@@ -750,7 +926,7 @@ export default config = {
 					data: [{
 						value: n,
 						// name: '次/分',
-						name:'',
+						name: '',
 						title: {
 							offsetCenter: ['0%', '20%']
 						},
@@ -863,9 +1039,9 @@ export default config = {
 						lineStyle: {
 							width: 13,
 							color: [
-								[0.33, '#F72600'],
-								[0.66, '#FF9A21'],
-								[1, '#00D193'],
+								[0.33, '#FF9A21'],
+								[0.66, '#00D193'],
+								[1, '#F72600']
 							]
 						}
 					},
@@ -928,7 +1104,7 @@ export default config = {
 					},
 					data: [{
 						value: n,
-						name: '' 
+						name: ''
 					}]
 				}]
 			};
@@ -948,9 +1124,9 @@ export default config = {
 						lineStyle: {
 							width: 13,
 							color: [
-								[0.33, '#F72600'],
-								[0.66, '#FF9A21'],
-								[1, '#00D193'],
+								[0.33, '#FF9A21'],
+								[0.66, '#00D193'],
+								[1, '#F72600'],
 							]
 						}
 					},
@@ -1007,7 +1183,7 @@ export default config = {
 						valueAnimation: true,
 						formatter: function(value) {
 							// return Math.round(value * 100) + '分';
-							return value ;
+							return value;
 						},
 						color: 'black',
 					},
@@ -1375,7 +1551,7 @@ export default config = {
 		}
 	},
 	//血糖
-	bloodSugar: function(n){
+	bloodSugar: function(n) {
 		if (n == '未测量') {
 			n = 0;
 			return {
@@ -1539,7 +1715,7 @@ export default config = {
 						valueAnimation: true,
 						formatter: function(value) {
 							// return Math.round(value * 100) + '分';
-							return value ;
+							return value;
 						},
 						color: 'black',
 					},
@@ -1552,7 +1728,7 @@ export default config = {
 		}
 	},
 	//体温
-	tiwen: function(n){
+	tiwen: function(n) {
 		if (n == '未测量') {
 			n = 0;
 			return {
@@ -1728,352 +1904,352 @@ export default config = {
 		}
 	},
 	//睡眠
-	shuimian: function(n,angle){
+	shuimian: function(n, angle) {
 		//获取圆上面某点的坐标(x0,y0表示坐标，r半径，angle角度)
 		function getCirlPoint(x0, y0, r, angle) {
-		    let x1 = x0 + r * Math.cos(angle * Math.PI / 180)
-		    let y1 = y0 + r * Math.sin(angle * Math.PI / 180)
-		    return {
-		        x: x1,
-		        y: y1
-		    }
+			let x1 = x0 + r * Math.cos(angle * Math.PI / 180)
+			let y1 = y0 + r * Math.sin(angle * Math.PI / 180)
+			return {
+				x: x1,
+				y: y1
+			}
 		}
-		if (n == '未测量'){
-			 n = 0;
+		if (n == '未测量') {
+			n = 0;
 			let value = n;
 			let option = {
-			     backgroundColor: 'white',
-			     title: {
-			         text:value+'h',
-			         x: 'center',
-			         y: 'center',
-			         textStyle: {
-			             rich: {
-			                 a: {
-			                     fontSize: 30,
-			                     color: '#29EEF3'
-			                 },
-			
-			                 c: {
-			                     fontSize: 20,
-			                     color: '#ffffff',
-			                     // padding: [5,0]
-			                 }
-			             }
-			         }
-			     },
-			
-			     series: [
-			         // 紫色
-			         {
-			             name: "ring5",
-			             type: 'custom',
-			             coordinateSystem: "none",
-			             renderItem: function(params, api) {
-			                 return {
-			                     type: 'arc',
-			                     shape: {
-			                         cx: api.getWidth() / 2,
-			                         cy: api.getHeight() / 2,
-			                         r: Math.min(api.getWidth(), api.getHeight()) / 2 * 0.6,
-			                         startAngle: (0 + angle) * Math.PI / 180,
-			                         endAngle: (90 + angle) * Math.PI / 180
-			                     },
-			                     style: {
-			                         stroke: "#8383FA",
-			                         fill: "transparent",
-			                         lineWidth: 1.5
-			                     },
-			                     silent: true
-			                 };
-			             },
-			             data: [0]
-			         }, {
-			             name: "ring5", //紫点
-			             type: 'custom',
-			             coordinateSystem: "none",
-			             renderItem: function(params, api) {
-			                 let x0 = api.getWidth() / 2;
-			                 let y0 = api.getHeight() / 2;
-			                 let r = Math.min(api.getWidth(), api.getHeight()) / 2 * 0.6;
-			                 let point = getCirlPoint(x0, y0, r, (90 + angle))
-			                 return {
-			                     type: 'circle',
-			                     shape: {
-			                         cx: point.x,
-			                         cy: point.y,
-			                         r: 4
-			                     },
-			                     style: {
-			                         stroke: "#8450F9", //绿
-			                         fill: "#8450F9"
-			                     },
-			                     silent: true
-			                 };
-			             },
-			             data: [0]
-			         },
-			         // 蓝色
-			
-			         {
-			             name: "ring5",
-			             type: 'custom',
-			             coordinateSystem: "none",
-			             renderItem: function(params, api) {
-			                 return {
-			                     type: 'arc',
-			                     shape: {
-			                         cx: api.getWidth() / 2,
-			                         cy: api.getHeight() / 2,
-			                         r: Math.min(api.getWidth(), api.getHeight()) / 2 * 0.6,
-			                         startAngle: (180 + angle) * Math.PI / 180,
-			                         endAngle: (270 + angle) * Math.PI / 180
-			                     },
-			                     style: {
-			                         stroke: "#4386FA",
-			                         fill: "transparent",
-			                         lineWidth: 1.5
-			                     },
-			                     silent: true
-			                 };
-			             },
-			             data: [0]
-			         },
-			         {
-			             name: "ring5", // 蓝色
-			             type: 'custom',
-			             coordinateSystem: "none",
-			             renderItem: function(params, api) {
-			                 let x0 = api.getWidth() / 2;
-			                 let y0 = api.getHeight() / 2;
-			                 let r = Math.min(api.getWidth(), api.getHeight()) / 2 * 0.6;
-			                 let point = getCirlPoint(x0, y0, r, (180 + angle))
-			                 return {
-			                     type: 'circle',
-			                     shape: {
-			                         cx: point.x,
-			                         cy: point.y,
-			                         r: 4
-			                     },
-			                     style: {
-			                         stroke: "#4386FA", //绿
-			                         fill: "#4386FA"
-			                     },
-			                     silent: true
-			                 };
-			             },
-			             data: [0]
-			         },
-			
-			         {
-			             name: "ring5",
-			             type: 'custom',
-			             coordinateSystem: "none",
-			             renderItem: function(params, api) {
-			                 return {
-			                     type: 'arc',
-			                     shape: {
-			                         cx: api.getWidth() / 2,
-			                         cy: api.getHeight() / 2,
-			                         r: Math.min(api.getWidth(), api.getHeight()) / 2 * 0.65,
-			                         startAngle: (270 + -angle) * Math.PI / 180,
-			                         endAngle: (40 + -angle) * Math.PI / 180
-			                     },
-			                     style: {
-			                         stroke: "#0CD3DB",
-			                         fill: "transparent",
-			                         lineWidth: 1.5
-			                     },
-			                     silent: true
-			                 };
-			             },
-			             data: [0]
-			         },
-			         // 橘色
-			
-			         {
-			             name: "ring5",
-			             type: 'custom',
-			             coordinateSystem: "none",
-			             renderItem: function(params, api) {
-			                 return {
-			                     type: 'arc',
-			                     shape: {
-			                         cx: api.getWidth() / 2,
-			                         cy: api.getHeight() / 2,
-			                         r: Math.min(api.getWidth(), api.getHeight()) / 2 * 0.65,
-			                         startAngle: (90 + -angle) * Math.PI / 180,
-			                         endAngle: (220 + -angle) * Math.PI / 180
-			                     },
-			                     style: {
-			                         stroke: "#FF8E89",
-			                         fill: "transparent",
-			                         lineWidth: 1.5
-			                     },
-			                     silent: true
-			                 };
-			             },
-			             data: [0]
-			         }, {
-			             name: "ring5",
-			             type: 'custom',
-			             coordinateSystem: "none",
-			             renderItem: function(params, api) {
-			                 let x0 = api.getWidth() / 2;
-			                 let y0 = api.getHeight() / 2;
-			                 let r = Math.min(api.getWidth(), api.getHeight()) / 2 * 0.65;
-			                 let point = getCirlPoint(x0, y0, r, (90 + -angle))
-			                 return {
-			                     type: 'circle',
-			                     shape: {
-			                         cx: point.x,
-			                         cy: point.y,
-			                         r: 4
-			                     },
-			                     style: {
-			                         stroke: "#FF8E89", //粉
-			                         fill: "#FF8E89"
-			                     },
-			                     silent: true
-			                 };
-			             },
-			             data: [0]
-			         }, {
-			             name: "ring5", //绿点
-			             type: 'custom',
-			             coordinateSystem: "none",
-			             renderItem: function(params, api) {
-			                 let x0 = api.getWidth() / 2;
-			                 let y0 = api.getHeight() / 2;
-			                 let r = Math.min(api.getWidth(), api.getHeight()) / 2 * 0.65;
-			                 let point = getCirlPoint(x0, y0, r, (270 + -angle))
-			                 return {
-			                     type: 'circle',
-			                     shape: {
-			                         cx: point.x,
-			                         cy: point.y,
-			                         r: 4
-			                     },
-			                     style: {
-			                         stroke: "#0CD3DB", //绿
-			                         fill: "#0CD3DB"
-			                     },
-			                     silent: true
-			                 };
-			             },
-			             data: [0]
-			         }, {
-			             name: '吃猪肉频率',
-			             type: 'pie',
-			             radius: ['50%', '40%'],
-			             silent: true,
-			             clockwise: true,
-			             startAngle: 90,
-			             z: 0,
-			             zlevel: 0,
-			             label: {
-			                 normal: {
-			                     position: "center",
-			
-			                 }
-			             },
-			             data: [{
-			                     value: value,
-			                     name: "",
-			                     itemStyle: {
-			                         normal: {
-			                             color: { // 完成的圆环的颜色
-			                                 colorStops: [{
-			                                         offset: 0,
-			                                         color: '#A098FC' // 0% 处的颜色
-			                                     },
-			                                     {
-			                                         offset: 0.3,
-			                                         color: '#4386FA' // 0% 处的颜色
-			                                     },
-			                                     {
-			                                         offset: 0.6,
-			                                         color: '#4FADFD' // 0% 处的颜色
-			                                     },
-			                                     {
-			                                         offset: 0.8,
-			                                         color: '#0CD3DB' // 100% 处的颜色
-			                                     }, {
-			                                         offset: 1,
-			                                         color: '#646CF9' // 100% 处的颜色
-			                                     }
-			                                 ]
-			                             },
-			                         }
-			                     }
-			                 },
-			                 {
-			                     value: 100 - value,
-			                     name: "",
-			                     label: {
-			                         normal: {
-			                             show: false
-			                         }
-			                     },
-			                     itemStyle: {
-			                         normal: {
-			                             color: "#173164"
-			                         }
-			                     }
-			                 }
-			             ]
-			         },
-			         {
-			             name: '吃猪肉频率',
-			             type: 'pie',
-			             radius: ['32%', '35%'],
-			             silent: true,
-			             clockwise: true,
-			             startAngle: 270,
-			             z: 0,
-			             zlevel: 0,
-			             label: {
-			                 normal: {
-			                     position: "center",
-			
-			                 }
-			             },
-			             data: [{
-			                     value: value,
-			                     name: "",
-			                     itemStyle: {
-			                         normal: {
-			                             color: { // 完成的圆环的颜色
-			                                 colorStops: [{
-			                                     offset: 0,
-			                                     color: '#00EDF3' // 0% 处的颜色
-			                                 }, {
-			                                     offset: 1,
-			                                     color: '#646CF9' // 100% 处的颜色
-			                                 }]
-			                             },
-			                         }
-			                     }
-			                 },
-			                 {
-			                     value: 100 - value,
-			                     name: "",
-			                     label: {
-			                         normal: {
-			                             show: false
-			                         }
-			                     },
-			                     itemStyle: {
-			                         normal: {
-			                             color: "#173164"
-			                         }
-			                     }
-			                 }
-			             ]
-			         },
-			
-			     ]
-			 };
+				backgroundColor: 'white',
+				title: {
+					text: value + 'h',
+					x: 'center',
+					y: 'center',
+					textStyle: {
+						rich: {
+							a: {
+								fontSize: 30,
+								color: '#29EEF3'
+							},
+
+							c: {
+								fontSize: 20,
+								color: '#ffffff',
+								// padding: [5,0]
+							}
+						}
+					}
+				},
+
+				series: [
+					// 紫色
+					{
+						name: "ring5",
+						type: 'custom',
+						coordinateSystem: "none",
+						renderItem: function(params, api) {
+							return {
+								type: 'arc',
+								shape: {
+									cx: api.getWidth() / 2,
+									cy: api.getHeight() / 2,
+									r: Math.min(api.getWidth(), api.getHeight()) / 2 * 0.6,
+									startAngle: (0 + angle) * Math.PI / 180,
+									endAngle: (90 + angle) * Math.PI / 180
+								},
+								style: {
+									stroke: "#8383FA",
+									fill: "transparent",
+									lineWidth: 1.5
+								},
+								silent: true
+							};
+						},
+						data: [0]
+					}, {
+						name: "ring5", //紫点
+						type: 'custom',
+						coordinateSystem: "none",
+						renderItem: function(params, api) {
+							let x0 = api.getWidth() / 2;
+							let y0 = api.getHeight() / 2;
+							let r = Math.min(api.getWidth(), api.getHeight()) / 2 * 0.6;
+							let point = getCirlPoint(x0, y0, r, (90 + angle))
+							return {
+								type: 'circle',
+								shape: {
+									cx: point.x,
+									cy: point.y,
+									r: 4
+								},
+								style: {
+									stroke: "#8450F9", //绿
+									fill: "#8450F9"
+								},
+								silent: true
+							};
+						},
+						data: [0]
+					},
+					// 蓝色
+
+					{
+						name: "ring5",
+						type: 'custom',
+						coordinateSystem: "none",
+						renderItem: function(params, api) {
+							return {
+								type: 'arc',
+								shape: {
+									cx: api.getWidth() / 2,
+									cy: api.getHeight() / 2,
+									r: Math.min(api.getWidth(), api.getHeight()) / 2 * 0.6,
+									startAngle: (180 + angle) * Math.PI / 180,
+									endAngle: (270 + angle) * Math.PI / 180
+								},
+								style: {
+									stroke: "#4386FA",
+									fill: "transparent",
+									lineWidth: 1.5
+								},
+								silent: true
+							};
+						},
+						data: [0]
+					},
+					{
+						name: "ring5", // 蓝色
+						type: 'custom',
+						coordinateSystem: "none",
+						renderItem: function(params, api) {
+							let x0 = api.getWidth() / 2;
+							let y0 = api.getHeight() / 2;
+							let r = Math.min(api.getWidth(), api.getHeight()) / 2 * 0.6;
+							let point = getCirlPoint(x0, y0, r, (180 + angle))
+							return {
+								type: 'circle',
+								shape: {
+									cx: point.x,
+									cy: point.y,
+									r: 4
+								},
+								style: {
+									stroke: "#4386FA", //绿
+									fill: "#4386FA"
+								},
+								silent: true
+							};
+						},
+						data: [0]
+					},
+
+					{
+						name: "ring5",
+						type: 'custom',
+						coordinateSystem: "none",
+						renderItem: function(params, api) {
+							return {
+								type: 'arc',
+								shape: {
+									cx: api.getWidth() / 2,
+									cy: api.getHeight() / 2,
+									r: Math.min(api.getWidth(), api.getHeight()) / 2 * 0.65,
+									startAngle: (270 + -angle) * Math.PI / 180,
+									endAngle: (40 + -angle) * Math.PI / 180
+								},
+								style: {
+									stroke: "#0CD3DB",
+									fill: "transparent",
+									lineWidth: 1.5
+								},
+								silent: true
+							};
+						},
+						data: [0]
+					},
+					// 橘色
+
+					{
+						name: "ring5",
+						type: 'custom',
+						coordinateSystem: "none",
+						renderItem: function(params, api) {
+							return {
+								type: 'arc',
+								shape: {
+									cx: api.getWidth() / 2,
+									cy: api.getHeight() / 2,
+									r: Math.min(api.getWidth(), api.getHeight()) / 2 * 0.65,
+									startAngle: (90 + -angle) * Math.PI / 180,
+									endAngle: (220 + -angle) * Math.PI / 180
+								},
+								style: {
+									stroke: "#FF8E89",
+									fill: "transparent",
+									lineWidth: 1.5
+								},
+								silent: true
+							};
+						},
+						data: [0]
+					}, {
+						name: "ring5",
+						type: 'custom',
+						coordinateSystem: "none",
+						renderItem: function(params, api) {
+							let x0 = api.getWidth() / 2;
+							let y0 = api.getHeight() / 2;
+							let r = Math.min(api.getWidth(), api.getHeight()) / 2 * 0.65;
+							let point = getCirlPoint(x0, y0, r, (90 + -angle))
+							return {
+								type: 'circle',
+								shape: {
+									cx: point.x,
+									cy: point.y,
+									r: 4
+								},
+								style: {
+									stroke: "#FF8E89", //粉
+									fill: "#FF8E89"
+								},
+								silent: true
+							};
+						},
+						data: [0]
+					}, {
+						name: "ring5", //绿点
+						type: 'custom',
+						coordinateSystem: "none",
+						renderItem: function(params, api) {
+							let x0 = api.getWidth() / 2;
+							let y0 = api.getHeight() / 2;
+							let r = Math.min(api.getWidth(), api.getHeight()) / 2 * 0.65;
+							let point = getCirlPoint(x0, y0, r, (270 + -angle))
+							return {
+								type: 'circle',
+								shape: {
+									cx: point.x,
+									cy: point.y,
+									r: 4
+								},
+								style: {
+									stroke: "#0CD3DB", //绿
+									fill: "#0CD3DB"
+								},
+								silent: true
+							};
+						},
+						data: [0]
+					}, {
+						name: '吃猪肉频率',
+						type: 'pie',
+						radius: ['50%', '40%'],
+						silent: true,
+						clockwise: true,
+						startAngle: 90,
+						z: 0,
+						zlevel: 0,
+						label: {
+							normal: {
+								position: "center",
+
+							}
+						},
+						data: [{
+								value: value,
+								name: "",
+								itemStyle: {
+									normal: {
+										color: { // 完成的圆环的颜色
+											colorStops: [{
+													offset: 0,
+													color: '#A098FC' // 0% 处的颜色
+												},
+												{
+													offset: 0.3,
+													color: '#4386FA' // 0% 处的颜色
+												},
+												{
+													offset: 0.6,
+													color: '#4FADFD' // 0% 处的颜色
+												},
+												{
+													offset: 0.8,
+													color: '#0CD3DB' // 100% 处的颜色
+												}, {
+													offset: 1,
+													color: '#646CF9' // 100% 处的颜色
+												}
+											]
+										},
+									}
+								}
+							},
+							{
+								value: 100 - value,
+								name: "",
+								label: {
+									normal: {
+										show: false
+									}
+								},
+								itemStyle: {
+									normal: {
+										color: "#173164"
+									}
+								}
+							}
+						]
+					},
+					{
+						name: '吃猪肉频率',
+						type: 'pie',
+						radius: ['32%', '35%'],
+						silent: true,
+						clockwise: true,
+						startAngle: 270,
+						z: 0,
+						zlevel: 0,
+						label: {
+							normal: {
+								position: "center",
+
+							}
+						},
+						data: [{
+								value: value,
+								name: "",
+								itemStyle: {
+									normal: {
+										color: { // 完成的圆环的颜色
+											colorStops: [{
+												offset: 0,
+												color: '#00EDF3' // 0% 处的颜色
+											}, {
+												offset: 1,
+												color: '#646CF9' // 100% 处的颜色
+											}]
+										},
+									}
+								}
+							},
+							{
+								value: 100 - value,
+								name: "",
+								label: {
+									normal: {
+										show: false
+									}
+								},
+								itemStyle: {
+									normal: {
+										color: "#173164"
+									}
+								}
+							}
+						]
+					},
+
+				]
+			};
 			return option;
 			// return {
 			// 	series: [{
@@ -2138,335 +2314,335 @@ export default config = {
 		} else {
 			let value = n;
 			let option = {
-			     backgroundColor: 'white',
-			     title: {
-			         text:value,
-			         x: 'center',
-			         y: 'center',
-			         textStyle: {
-			             rich: {
-			                 a: {
-			                     fontSize: 30,
-			                     color: '#29EEF3'
-			                 },
-			
-			                 c: {
-			                     fontSize: 20,
-			                     color: '#ffffff',
-			                     // padding: [5,0]
-			                 }
-			             }
-			         }
-			     },
-			
-			     series: [
-			         // 紫色
-			         {
-			             name: "ring5",
-			             type: 'custom',
-			             coordinateSystem: "none",
-			             renderItem: function(params, api) {
-			                 return {
-			                     type: 'arc',
-			                     shape: {
-			                         cx: api.getWidth() / 2,
-			                         cy: api.getHeight() / 2,
-			                         r: Math.min(api.getWidth(), api.getHeight()) / 2 * 0.6,
-			                         startAngle: (0 + angle) * Math.PI / 180,
-			                         endAngle: (90 + angle) * Math.PI / 180
-			                     },
-			                     style: {
-			                         stroke: "#8383FA",
-			                         fill: "transparent",
-			                         lineWidth: 1.5
-			                     },
-			                     silent: true
-			                 };
-			             },
-			             data: [0]
-			         }, {
-			             name: "ring5", //紫点
-			             type: 'custom',
-			             coordinateSystem: "none",
-			             renderItem: function(params, api) {
-			                 let x0 = api.getWidth() / 2;
-			                 let y0 = api.getHeight() / 2;
-			                 let r = Math.min(api.getWidth(), api.getHeight()) / 2 * 0.6;
-			                 let point = getCirlPoint(x0, y0, r, (90 + angle))
-			                 return {
-			                     type: 'circle',
-			                     shape: {
-			                         cx: point.x,
-			                         cy: point.y,
-			                         r: 4
-			                     },
-			                     style: {
-			                         stroke: "#8450F9", //绿
-			                         fill: "#8450F9"
-			                     },
-			                     silent: true
-			                 };
-			             },
-			             data: [0]
-			         },
-			         // 蓝色
-			         {
-			             name: "ring5",
-			             type: 'custom',
-			             coordinateSystem: "none",
-			             renderItem: function(params, api) {
-			                 return {
-			                     type: 'arc',
-			                     shape: {
-			                         cx: api.getWidth() / 2,
-			                         cy: api.getHeight() / 2,
-			                         r: Math.min(api.getWidth(), api.getHeight()) / 2 * 0.6,
-			                         startAngle: (180 + angle) * Math.PI / 180,
-			                         endAngle: (270 + angle) * Math.PI / 180
-			                     },
-			                     style: {
-			                         stroke: "#4386FA",
-			                         fill: "transparent",
-			                         lineWidth: 1.5
-			                     },
-			                     silent: true
-			                 };
-			             },
-			             data: [0]
-			         },
-			         {
-			             name: "ring5", // 蓝色
-			             type: 'custom',
-			             coordinateSystem: "none",
-			             renderItem: function(params, api) {
-			                 let x0 = api.getWidth() / 2;
-			                 let y0 = api.getHeight() / 2;
-			                 let r = Math.min(api.getWidth(), api.getHeight()) / 2 * 0.6;
-			                 let point = getCirlPoint(x0, y0, r, (180 + angle))
-			                 return {
-			                     type: 'circle',
-			                     shape: {
-			                         cx: point.x,
-			                         cy: point.y,
-			                         r: 4
-			                     },
-			                     style: {
-			                         stroke: "#4386FA", //绿
-			                         fill: "#4386FA"
-			                     },
-			                     silent: true
-			                 };
-			             },
-			             data: [0]
-			         },
-			
-			         {
-			             name: "ring5",
-			             type: 'custom',
-			             coordinateSystem: "none",
-			             renderItem: function(params, api) {
-			                 return {
-			                     type: 'arc',
-			                     shape: {
-			                         cx: api.getWidth() / 2,
-			                         cy: api.getHeight() / 2,
-			                         r: Math.min(api.getWidth(), api.getHeight()) / 2 * 0.65,
-			                         startAngle: (270 + -angle) * Math.PI / 180,
-			                         endAngle: (40 + -angle) * Math.PI / 180
-			                     },
-			                     style: {
-			                         stroke: "#0CD3DB",
-			                         fill: "transparent",
-			                         lineWidth: 1.5
-			                     },
-			                     silent: true
-			                 };
-			             },
-			             data: [0]
-			         },
-			         // 橘色
-			         {
-			             name: "ring5",
-			             type: 'custom',
-			             coordinateSystem: "none",
-			             renderItem: function(params, api) {
-			                 return {
-			                     type: 'arc',
-			                     shape: {
-			                         cx: api.getWidth() / 2,
-			                         cy: api.getHeight() / 2,
-			                         r: Math.min(api.getWidth(), api.getHeight()) / 2 * 0.65,
-			                         startAngle: (90 + -angle) * Math.PI / 180,
-			                         endAngle: (220 + -angle) * Math.PI / 180
-			                     },
-			                     style: {
-			                         stroke: "#FF8E89",
-			                         fill: "transparent",
-			                         lineWidth: 1.5
-			                     },
-			                     silent: true
-			                 };
-			             },
-			             data: [0]
-			         }, {
-			             name: "ring5",
-			             type: 'custom',
-			             coordinateSystem: "none",
-			             renderItem: function(params, api) {
-			                 let x0 = api.getWidth() / 2;
-			                 let y0 = api.getHeight() / 2;
-			                 let r = Math.min(api.getWidth(), api.getHeight()) / 2 * 0.65;
-			                 let point = getCirlPoint(x0, y0, r, (90 + -angle))
-			                 return {
-			                     type: 'circle',
-			                     shape: {
-			                         cx: point.x,
-			                         cy: point.y,
-			                         r: 4
-			                     },
-			                     style: {
-			                         stroke: "#FF8E89", //粉
-			                         fill: "#FF8E89"
-			                     },
-			                     silent: true
-			                 };
-			             },
-			             data: [0]
-			         }, {
-			             name: "ring5", //绿点
-			             type: 'custom',
-			             coordinateSystem: "none",
-			             renderItem: function(params, api) {
-			                 let x0 = api.getWidth() / 2;
-			                 let y0 = api.getHeight() / 2;
-			                 let r = Math.min(api.getWidth(), api.getHeight()) / 2 * 0.65;
-			                 let point = getCirlPoint(x0, y0, r, (270 + -angle))
-			                 return {
-			                     type: 'circle',
-			                     shape: {
-			                         cx: point.x,
-			                         cy: point.y,
-			                         r: 4
-			                     },
-			                     style: {
-			                         stroke: "#0CD3DB", //绿
-			                         fill: "#0CD3DB"
-			                     },
-			                     silent: true
-			                 };
-			             },
-			             data: [0]
-			         }, {
-			             name: '吃猪肉频率',
-			             type: 'pie',
-			             radius: ['50%', '40%'],
-			             silent: true,
-			             clockwise: true,
-			             startAngle: 90,
-			             z: 0,
-			             zlevel: 0,
-			             label: {
-			                 normal: {
-			                     position: "center",
-			
-			                 }
-			             },
-			             data: [{
-			                     value: value,
-			                     name: "",
-			                     itemStyle: {
-			                         normal: {
-			                             color: { // 完成的圆环的颜色
-			                                 colorStops: [{
-			                                         offset: 0,
-			                                         color: '#A098FC' // 0% 处的颜色
-			                                     },
-			                                     {
-			                                         offset: 0.3,
-			                                         color: '#4386FA' // 0% 处的颜色
-			                                     },
-			                                     {
-			                                         offset: 0.6,
-			                                         color: '#4FADFD' // 0% 处的颜色
-			                                     },
-			                                     {
-			                                         offset: 0.8,
-			                                         color: '#0CD3DB' // 100% 处的颜色
-			                                     }, {
-			                                         offset: 1,
-			                                         color: '#646CF9' // 100% 处的颜色
-			                                     }
-			                                 ]
-			                             },
-			                         }
-			                     }
-			                 },
-			                 {
-			                     value: 100 - value,
-			                     name: "",
-			                     label: {
-			                         normal: {
-			                             show: false
-			                         }
-			                     },
-			                     itemStyle: {
-			                         normal: {
-			                             color: "#173164"
-			                         }
-			                     }
-			                 }
-			             ]
-			         },
-			         {
-			             name: '吃猪肉频率',
-			             type: 'pie',
-			             radius: ['32%', '35%'],
-			             silent: true,
-			             clockwise: true,
-			             startAngle: 270,
-			             z: 0,
-			             zlevel: 0,
-			             label: {
-			                 normal: {
-			                     position: "center",
-			
-			                 }
-			             },
-			             data: [{
-			                     value: value,
-			                     name: "",
-			                     itemStyle: {
-			                         normal: {
-			                             color: { // 完成的圆环的颜色
-			                                 colorStops: [{
-			                                     offset: 0,
-			                                     color: '#00EDF3' // 0% 处的颜色
-			                                 }, {
-			                                     offset: 1,
-			                                     color: '#646CF9' // 100% 处的颜色
-			                                 }]
-			                             },
-			                         }
-			                     }
-			                 },
-			                 {
-			                     value: 100 - value,
-			                     name: "",
-			                     label: {
-			                         normal: {
-			                             show: false
-			                         }
-			                     },
-			                     itemStyle: {
-			                         normal: {
-			                             color: "#173164"
-			                         }
-			                     }
-			                 }
-			             ]
-			         },
-			     ]
-			 };
+				backgroundColor: 'white',
+				title: {
+					text: value,
+					x: 'center',
+					y: 'center',
+					textStyle: {
+						rich: {
+							a: {
+								fontSize: 30,
+								color: '#29EEF3'
+							},
+
+							c: {
+								fontSize: 20,
+								color: '#ffffff',
+								// padding: [5,0]
+							}
+						}
+					}
+				},
+
+				series: [
+					// 紫色
+					{
+						name: "ring5",
+						type: 'custom',
+						coordinateSystem: "none",
+						renderItem: function(params, api) {
+							return {
+								type: 'arc',
+								shape: {
+									cx: api.getWidth() / 2,
+									cy: api.getHeight() / 2,
+									r: Math.min(api.getWidth(), api.getHeight()) / 2 * 0.6,
+									startAngle: (0 + angle) * Math.PI / 180,
+									endAngle: (90 + angle) * Math.PI / 180
+								},
+								style: {
+									stroke: "#8383FA",
+									fill: "transparent",
+									lineWidth: 1.5
+								},
+								silent: true
+							};
+						},
+						data: [0]
+					}, {
+						name: "ring5", //紫点
+						type: 'custom',
+						coordinateSystem: "none",
+						renderItem: function(params, api) {
+							let x0 = api.getWidth() / 2;
+							let y0 = api.getHeight() / 2;
+							let r = Math.min(api.getWidth(), api.getHeight()) / 2 * 0.6;
+							let point = getCirlPoint(x0, y0, r, (90 + angle))
+							return {
+								type: 'circle',
+								shape: {
+									cx: point.x,
+									cy: point.y,
+									r: 4
+								},
+								style: {
+									stroke: "#8450F9", //绿
+									fill: "#8450F9"
+								},
+								silent: true
+							};
+						},
+						data: [0]
+					},
+					// 蓝色
+					{
+						name: "ring5",
+						type: 'custom',
+						coordinateSystem: "none",
+						renderItem: function(params, api) {
+							return {
+								type: 'arc',
+								shape: {
+									cx: api.getWidth() / 2,
+									cy: api.getHeight() / 2,
+									r: Math.min(api.getWidth(), api.getHeight()) / 2 * 0.6,
+									startAngle: (180 + angle) * Math.PI / 180,
+									endAngle: (270 + angle) * Math.PI / 180
+								},
+								style: {
+									stroke: "#4386FA",
+									fill: "transparent",
+									lineWidth: 1.5
+								},
+								silent: true
+							};
+						},
+						data: [0]
+					},
+					{
+						name: "ring5", // 蓝色
+						type: 'custom',
+						coordinateSystem: "none",
+						renderItem: function(params, api) {
+							let x0 = api.getWidth() / 2;
+							let y0 = api.getHeight() / 2;
+							let r = Math.min(api.getWidth(), api.getHeight()) / 2 * 0.6;
+							let point = getCirlPoint(x0, y0, r, (180 + angle))
+							return {
+								type: 'circle',
+								shape: {
+									cx: point.x,
+									cy: point.y,
+									r: 4
+								},
+								style: {
+									stroke: "#4386FA", //绿
+									fill: "#4386FA"
+								},
+								silent: true
+							};
+						},
+						data: [0]
+					},
+
+					{
+						name: "ring5",
+						type: 'custom',
+						coordinateSystem: "none",
+						renderItem: function(params, api) {
+							return {
+								type: 'arc',
+								shape: {
+									cx: api.getWidth() / 2,
+									cy: api.getHeight() / 2,
+									r: Math.min(api.getWidth(), api.getHeight()) / 2 * 0.65,
+									startAngle: (270 + -angle) * Math.PI / 180,
+									endAngle: (40 + -angle) * Math.PI / 180
+								},
+								style: {
+									stroke: "#0CD3DB",
+									fill: "transparent",
+									lineWidth: 1.5
+								},
+								silent: true
+							};
+						},
+						data: [0]
+					},
+					// 橘色
+					{
+						name: "ring5",
+						type: 'custom',
+						coordinateSystem: "none",
+						renderItem: function(params, api) {
+							return {
+								type: 'arc',
+								shape: {
+									cx: api.getWidth() / 2,
+									cy: api.getHeight() / 2,
+									r: Math.min(api.getWidth(), api.getHeight()) / 2 * 0.65,
+									startAngle: (90 + -angle) * Math.PI / 180,
+									endAngle: (220 + -angle) * Math.PI / 180
+								},
+								style: {
+									stroke: "#FF8E89",
+									fill: "transparent",
+									lineWidth: 1.5
+								},
+								silent: true
+							};
+						},
+						data: [0]
+					}, {
+						name: "ring5",
+						type: 'custom',
+						coordinateSystem: "none",
+						renderItem: function(params, api) {
+							let x0 = api.getWidth() / 2;
+							let y0 = api.getHeight() / 2;
+							let r = Math.min(api.getWidth(), api.getHeight()) / 2 * 0.65;
+							let point = getCirlPoint(x0, y0, r, (90 + -angle))
+							return {
+								type: 'circle',
+								shape: {
+									cx: point.x,
+									cy: point.y,
+									r: 4
+								},
+								style: {
+									stroke: "#FF8E89", //粉
+									fill: "#FF8E89"
+								},
+								silent: true
+							};
+						},
+						data: [0]
+					}, {
+						name: "ring5", //绿点
+						type: 'custom',
+						coordinateSystem: "none",
+						renderItem: function(params, api) {
+							let x0 = api.getWidth() / 2;
+							let y0 = api.getHeight() / 2;
+							let r = Math.min(api.getWidth(), api.getHeight()) / 2 * 0.65;
+							let point = getCirlPoint(x0, y0, r, (270 + -angle))
+							return {
+								type: 'circle',
+								shape: {
+									cx: point.x,
+									cy: point.y,
+									r: 4
+								},
+								style: {
+									stroke: "#0CD3DB", //绿
+									fill: "#0CD3DB"
+								},
+								silent: true
+							};
+						},
+						data: [0]
+					}, {
+						name: '吃猪肉频率',
+						type: 'pie',
+						radius: ['50%', '40%'],
+						silent: true,
+						clockwise: true,
+						startAngle: 90,
+						z: 0,
+						zlevel: 0,
+						label: {
+							normal: {
+								position: "center",
+
+							}
+						},
+						data: [{
+								value: value,
+								name: "",
+								itemStyle: {
+									normal: {
+										color: { // 完成的圆环的颜色
+											colorStops: [{
+													offset: 0,
+													color: '#A098FC' // 0% 处的颜色
+												},
+												{
+													offset: 0.3,
+													color: '#4386FA' // 0% 处的颜色
+												},
+												{
+													offset: 0.6,
+													color: '#4FADFD' // 0% 处的颜色
+												},
+												{
+													offset: 0.8,
+													color: '#0CD3DB' // 100% 处的颜色
+												}, {
+													offset: 1,
+													color: '#646CF9' // 100% 处的颜色
+												}
+											]
+										},
+									}
+								}
+							},
+							{
+								value: 100 - value,
+								name: "",
+								label: {
+									normal: {
+										show: false
+									}
+								},
+								itemStyle: {
+									normal: {
+										color: "#173164"
+									}
+								}
+							}
+						]
+					},
+					{
+						name: '吃猪肉频率',
+						type: 'pie',
+						radius: ['32%', '35%'],
+						silent: true,
+						clockwise: true,
+						startAngle: 270,
+						z: 0,
+						zlevel: 0,
+						label: {
+							normal: {
+								position: "center",
+
+							}
+						},
+						data: [{
+								value: value,
+								name: "",
+								itemStyle: {
+									normal: {
+										color: { // 完成的圆环的颜色
+											colorStops: [{
+												offset: 0,
+												color: '#00EDF3' // 0% 处的颜色
+											}, {
+												offset: 1,
+												color: '#646CF9' // 100% 处的颜色
+											}]
+										},
+									}
+								}
+							},
+							{
+								value: 100 - value,
+								name: "",
+								label: {
+									normal: {
+										show: false
+									}
+								},
+								itemStyle: {
+									normal: {
+										color: "#173164"
+									}
+								}
+							}
+						]
+					},
+				]
+			};
 			return option;
 			// return {
 			// 	series: [{
@@ -2532,7 +2708,7 @@ export default config = {
 	},
 	//折线图系列-多条数据渲染
 	//步数
-	stepNumber_lineChart: function(arr, xarr){
+	stepNumber_lineChart: function(arr, xarr) {
 		return {
 			xAxis: {
 				type: 'category',
@@ -2628,9 +2804,12 @@ export default config = {
 					splitNumber: 10,
 				},
 				name: '单位：次/分',
-				nameTextStyle: {
-					padding: [0, 0, 10, 20]
-				},
+			
+			axisLabel: {
+				textStyle: {
+					align: 'center'
+				}
+			}
 			},
 			series: [{
 				symbol: "none",
@@ -2713,9 +2892,12 @@ export default config = {
 					splitNumber: 10,
 				},
 				name: '单位：次/分',
-				nameTextStyle: {
-					padding: [0, 0, 10, 20]
-				},
+			
+			axisLabel: {
+				textStyle: {
+					align: 'center'
+				}
+			}
 			},
 			series: [{
 					symbol: "none",
@@ -2799,9 +2981,12 @@ export default config = {
 					interval: 50,
 					name: '饱和度',
 					data: arr1,
-					nameTextStyle: {
-						padding: [10, 10, 10, -5]
-					},
+				
+				axisLabel: {
+					textStyle: {
+						align: 'center'
+					}
+				}
 				}
 				// ,
 				// {
@@ -2858,9 +3043,12 @@ export default config = {
 				max: 150,
 				interval: 50,
 				name: '单位mmol/L',
-				nameTextStyle: {
-					padding: [0, 0, 10, 20]
-				},
+			
+			axisLabel: {
+				textStyle: {
+					align: 'center'
+				}
+			}
 			}, ],
 			series: [{
 				symbol: "none",
@@ -2919,9 +3107,12 @@ export default config = {
 				max: 6,
 				interval: 1,
 				name: '单位mmol/L',
-				nameTextStyle: {
-					padding: [0, 0, 10, 20]
-				},
+			
+			axisLabel: {
+				textStyle: {
+					align: 'center'
+				}
+			}
 			}, ],
 			series: [{
 					symbol: "none",
@@ -2982,9 +3173,12 @@ export default config = {
 				max: 150,
 				interval: 50,
 				name: '单位mmol/L',
-				nameTextStyle: {
-					padding: [0, 0, 10, 20]
-				},
+			
+			axisLabel: {
+				textStyle: {
+					align: 'center'
+				}
+			}
 			}, ],
 			series: [{
 				symbol: "none",
@@ -3017,10 +3211,11 @@ export default config = {
 				min: 0,
 				max: 150,
 				interval: 50,
-				name: '单位mmol/L',
-				nameTextStyle: {
-					padding: [0, 0, 10, 20]
-				},
+				axisLabel: {
+					textStyle: {
+						align: 'center'
+					}
+				}
 			}, ],
 			series: [{
 				symbol: "none",
@@ -3053,10 +3248,15 @@ export default config = {
 				min: 0,
 				max: 150,
 				interval: 50,
-				name: '单位mmol/L',
+				name: '单位°C',
 				nameTextStyle: {
-					padding: [0, 0, 10, 20]
+					padding: [0, 0, 10, 0]
 				},
+				axisLabel: {
+					textStyle: {
+						align: 'center'
+					}
+				}
 			}, ],
 			series: [{
 				symbol: "none",

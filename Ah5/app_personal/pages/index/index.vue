@@ -53,8 +53,8 @@
 			<view class='w100' v-else-if="showTabBottm == 'bloodOxygen'">
 				<view class='showAnother bloodPressure'>
 					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
-					<view class='a'>
-						<!-- <text>脉率</text> -->
+			<!-- 		<view class='a'>
+						<text>脉率</text>
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
 						</view>
@@ -70,7 +70,12 @@
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
 						</view>
-						<!-- <text>98次/分</text> -->
+						<text>98次/分</text>
+					</view> -->
+					<view class='b'>
+						<view style='background-color: #FF9A21;'></view>
+						<view style='background-color: #00D193;'></view>
+						<view style='background-color: #F72600;'></view>
 					</view>
 				</view>
 
@@ -81,7 +86,7 @@
 			<view class='w100' v-else-if="showTabBottm == 'uricAcid'">
 				<view class='showAnother bloodPressure'>
 					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
-					<view class='a'>
+				<!-- 	<view class='a'>
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
 						</view>
@@ -97,6 +102,11 @@
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
 						</view>
+					</view> -->
+					<view class='b'>
+						<view style='background-color: #FF9A21;'></view>
+						<view style='background-color: #00D193;'></view>
+						<view style='background-color: #F72600;'></view>
 					</view>
 				</view>
 				<view class='more_type' @click='uricAcidDetail()'>
@@ -106,7 +116,7 @@
 			<view class='w100' v-else-if="showTabBottm == 'bloodFat'">
 				<view class='showAnother bloodPressure'>
 					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
-					<view class='a'>
+			<!-- 		<view class='a'>
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
 						</view>
@@ -122,6 +132,11 @@
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
 						</view>
+					</view> -->
+					<view class='b'>
+						<view style='background-color: #FF9A21;'></view>
+						<view style='background-color: #00D193;'></view>
+						<view style='background-color: #F72600;'></view>
 					</view>
 				</view>
 				<view class='more_type' @click='bloodFatDetail()'>
@@ -131,7 +146,7 @@
 			<view class='w100' v-else-if="showTabBottm == 'bloodSugar'">
 				<view class='showAnother bloodPressure'>
 					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
-					<view class='a'>
+			<!-- 		<view class='a'>
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
 						</view>
@@ -147,6 +162,11 @@
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
 						</view>
+					</view> -->
+					<view class='b'>
+						<view style='background-color: #FF9A21;'></view>
+						<view style='background-color: #00D193;'></view>
+						<view style='background-color: #F72600;'></view>
 					</view>
 				</view>
 				<view class='more_type' @click='bloodSugarDetail()'>
@@ -170,7 +190,7 @@
 				<view class='showAnother shuimian'>
 					<view>
 						<text style='color:black;font-weight: bolder;'>
-							3.0h
+							{{s_sleep}}
 						</text>
 						<text style='color: gray;'>
 							深睡
@@ -178,7 +198,7 @@
 					</view>
 					<view>
 						<text style='color:black;font-weight: bolder;'>
-							4.5h
+							{{q_sleep}}
 						</text>
 						<text style='color: gray;'>
 							浅睡
@@ -271,6 +291,8 @@
 				xueya_zhegnduan:'',
 				
 				timerId:'', //睡眠图表动画定时器
+				s_sleep:'',
+				q_sleep:'',
 			}
 		},
 		methods: {
@@ -437,6 +459,8 @@
 			that.xueya_value2 = res.data.xueya.diastolic_pressure;  //收缩压
 			that.xueyang_value = res.data.xueyang.value;
 			that.xueya_zhegnduan = res.data.xueya.zhengduan;
+			that.q_sleep = res.data.sleep.qian; 
+			that.s_sleep =  res.data.sleep.shen;
 			if(that.xuetang_value){
 				that.chartLine.setOption(config.bloodPressure(that.xueya_value,that.xueya_value2), true);
 			}
