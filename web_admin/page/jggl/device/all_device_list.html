@@ -67,7 +67,7 @@
 	
 	<!-- 关联用户 start -->
     <script type="text/html" id="glUser">
-        {{# if(d.user_id == ''|| d.user_id ==undefined || d.user_id!='null') { }}
+        {{# if( d.user_id == undefined || d.user_id == '' ||  d.user_id == "null") { }}
 			<span>未关联</span>
         {{#  } else {  }}
 			<span>{{d.user_name}}</span>
