@@ -62,15 +62,15 @@
 				</view>
 				<view class='tab_item'>
 					<text>锻炼情况</text>
-					<text>{{dl==2?'	从不锻炼':dl==1?'偶尔锻炼':'经常锻炼'}}</text>
+					<text>{{dl==2?'	从不锻炼':dl==1?'偶尔锻炼':dl==0?'经常锻炼':'未选择'}}</text>
 				</view>
 				<view class='tab_item'>
 					<text>饮酒情况</text>
-					<text>{{yj==2?'从不饮酒':yj==1?'偶尔饮酒':'经常饮酒'}}</text>
+					<text>{{yj==2?'从不饮酒':yj==1?'偶尔饮酒':yj==0?'经常饮酒':'未选择'}}</text>
 				</view>
 				<view class='tab_item'>
 					<text>吸烟情况</text>
-					<text>{{xy==2?'从不吸烟':xy==1?'偶尔吸烟':'经常吸烟'}}</text>
+					<text>{{xy==2?'从不吸烟':xy==1?'偶尔吸烟':xy==0?'经常吸烟':'未选择'}}</text>
 				</view>
 			</view>
 			<view>
@@ -250,35 +250,53 @@
 					console.log(res);
 					// 个人基本信息
 					that.userName = res.data.ess_info.full_name;
+					if(res.data.ess_info.full_name == undefined){
+						that.userName = '';
+					}
 					that.userImg = res.data.ess_info.img;
+					if(res.data.ess_info.img ==undefined){
+						that.userImg = 'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2561659095,299912888&fm=26&gp=0.jpg';
+					}
 					that.age = res.data.ess_info.age;
+					if(res.data.ess_info.age == undefined){
+						that.age = '0';
+					}
 					that.tele = res.data.ess_info.phone;
+					if(res.data.ess_info.phone == undefined){
+						that.tele = '未设置';
+					}
 					that.addr = res.data.ess_info.permanent_address;
+					if(res.data.ess_info.permanent_address == undefined){
+						that.addr = '未设置';
+					}
 					that.idNumber = res.data.ess_info.id_card;
+					if(res.data.ess_info.id_card == undefined){
+						that.idNumber = '未设置';
+					}
 					// 身体参数信息
-					that.sg = (res.data.ess_info.ess_stature == undefined ? '未知' : res.data.ess_info
+					that.sg = (res.data.ess_info.ess_stature == undefined ? '未填写' : res.data.ess_info
 						.ess_stature);
-					that.tz = (res.data.ess_info.ess_weight == undefined ? '未知' : res.data.ess_info.ess_weight);
-					that.bmi = (res.data.ess_info.ess_bmi == undefined ? '未知' : res.data.ess_info.ess_bmi);
-					that.yw = (res.data.ess_info.ess_waistline == undefined ? '未知' : res.data.ess_info
+					that.tz = (res.data.ess_info.ess_weight == undefined ? '未填写' : res.data.ess_info.ess_weight);
+					that.bmi = (res.data.ess_info.ess_bmi == undefined ? '未填写' : res.data.ess_info.ess_bmi);
+					that.yw = (res.data.ess_info.ess_waistline == undefined ? '未填写' : res.data.ess_info
 						.ess_waistline);
-					that.tw = (res.data.ess_info.ess_wh_than == undefined ? '未知' : res.data.ess_info
+					that.tw = (res.data.ess_info.ess_wh_than == undefined ? '未填写' : res.data.ess_info
 						.ess_hipline);
 					//生活方式信息
-					that.dl = (res.data.style_info.exercise_state == undefined ? '未知' : res.data.style_info
+					that.dl = (res.data.style_info.exercise_state == undefined ? '未填写' : res.data.style_info
 						.exercise_state);
-					that.yj = (res.data.style_info.drinking_state == undefined ? '未知' : res.data.style_info
+					that.yj = (res.data.style_info.drinking_state == undefined ? '未填写' : res.data.style_info
 						.drinking_state);
-					that.xy = (res.data.style_info.smoke_state == undefined ? '未知' : res.data.style_info
+					that.xy = (res.data.style_info.smoke_state == undefined ? '未填写' : res.data.style_info
 						.smoke_state);
 				});
 				//获取评估结果的数据
 				http.Post('sys_fkcy/eva_res/getUserEvaRes',{'user_id':'34f35165-b714-448c-8ede-cd8343a43b1a'},(res) => {
 					// console.log(res);
-					that.mxb = (res.data.eva_mxb_res == undefined ? '去评估' : res.data.eva_mxb_res );
-					that.xl = (res.data.eva_xljk_res == undefined ? '去评估' : res.data.eva_xljk_res );
-					that.rz = (res.data.eva_rznl_res  == undefined ? '去评估': res.data.eva_rznl_res); 
-					that.zl = (res.data.eva_zlnl_res  == undefined ? '去评估' : res.data.eva_zlnl_res); 
+					that.mxb = (res.data.eva_mxb_res == undefined ? '未评估' : res.data.eva_mxb_res );
+					that.xl = (res.data.eva_xljk_res == undefined ? '未评估' : res.data.eva_xljk_res );
+					that.rz = (res.data.eva_rznl_res  == undefined ? '未评估': res.data.eva_rznl_res); 
+					that.zl = (res.data.eva_zlnl_res  == undefined ? '未评估' : res.data.eva_zlnl_res); 
 				})
 			}
 		},

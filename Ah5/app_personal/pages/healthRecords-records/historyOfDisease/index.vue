@@ -31,6 +31,10 @@
 					<text class='showDetail' @click="detailhistoryOfDisease(item.id)">查看详情</text>
 				</view>
 			</view>
+			<view class='noData' v-if='noDataShow'>
+				<img src="../../../static/noData.png" alt="">
+				<!-- <text>查无数据</text> -->
+			</view>
 		</view>
 		<uniLoadMore :status="status" :contentText='textObj' @clickLoadMore='getMore'></uniLoadMore>
 	</view>
@@ -46,6 +50,7 @@
 		},
 		data() {
 			return {
+				noDataShow:false,
 				items: [1, 2],
 				searchKey: '',
 				//根据请求数据的状态更改该值
@@ -91,6 +96,7 @@
 						this.status = 'more';
 					} else if (res.data.numCount - that.items.length == 0) {
 						this.status = 'moMore';
+						this.noDataShow = true;
 					}
 					uni.stopPullDownRefresh();
 				})
@@ -109,6 +115,22 @@
 </script>
 <style>
 	@import url("../../../util/tool/common.css");
+	.noData img {
+		width: 5rem;
+		height: auto;
+		margin-bottom: 1rem;
+	}
+	
+	.noData {
+		font-size: .8rem;
+		color: gray;
+		text-align: center;
+		margin-top: 3rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
 	.result_ {
 		color: #999999;
 		/* border: 1px solid red; */

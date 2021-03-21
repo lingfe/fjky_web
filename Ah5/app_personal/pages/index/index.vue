@@ -446,10 +446,16 @@
 		let data = {
 			'appUserId': userId,
 		};
-		http.Post('/sys_fkcy/appUser/getEssInfo.app', data, function(res) {
+		http.Post('/sys_fkcy/appUser/getEssInfo.app', data, function(res){
 			console.log(res);
 			that.userName = res.data.full_name;
+			if(res.data.full_name ==undefined){
+				that.userName = '未设置';
+			}
 			that.userImg = res.data.img;
+			if(res.data.img == undefined){
+				that.userImg = 'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2561659095,299912888&fm=26&gp=0.jpg';
+			}
 		});
 	},
 	}

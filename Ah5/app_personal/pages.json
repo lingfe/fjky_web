@@ -1,4 +1,10 @@
 {
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "white",
+		"backgroundColor": "#F8F8F8"
+	},
 	"pages": [
 		//健康中心-首页
 		{
@@ -76,7 +82,7 @@
 		{
 			"path": "pages/healthRecords-records/allergicHistory/index",
 			"style": {
-				"navigationBarTitleText": "过敏史", 
+				"navigationBarTitleText": "过敏史",
 				"enablePullDownRefresh": true
 			}
 		},
@@ -109,7 +115,7 @@
 			"path": "pages/addPage/addPhysicalExaminationRecord/index",
 			"style": {
 				"navigationBarTitleText": "添加"
-			} 
+			}
 		},
 		//基础档案-体检记录查看详情页
 		{
@@ -152,7 +158,7 @@
 			"style": {
 				"navigationBarTitleText": "添加"
 			}
-		}, 
+		},
 		//基础档案-过敏史详情页A
 		{
 			"path": "pages/detailPage/detailAllergicHistory/index",
@@ -169,13 +175,13 @@
 		},
 		//基础档案-疾病史详情页A
 		{
-			"path": "pages/detailPage/detailHistoryOfDisease/index", 
+			"path": "pages/detailPage/detailHistoryOfDisease/index",
 			"style": {
-				"navigationBarTitleText": "过敏史" 
+				"navigationBarTitleText": "过敏史"
 			}
 		},
 		//基础档案-疾病史添加页
-		{ 
+		{
 			"path": "pages/addPage/addHistoryOfSurgery/index",
 			"style": {
 				"navigationBarTitleText": "添加"
@@ -189,102 +195,125 @@
 			}
 		},
 		//基础档案-家族史添加页
-		{ 
+		{
 			"path": "pages/addPage/addFamilyHistory/index",
 			"style": {
 				"navigationBarTitleText": "添加"
 			}
 		},
 		//基础档案-家族史详情页
-		{ 
+		{
 			"path": "pages/detailPage/detailFamilyHistory/index",
-			"style": { 
+			"style": {
 				"navigationBarTitleText": "家族史"
 			}
 		},
 		//健康报告
 		{
 			"path": "pages/healthReport/index",
-			"style": { 
+			"style": {
 				"navigationBarTitleText": "健康报告"
 			}
 		},
 		//预警设置
 		{
-			"path":"pages/warnningSetting/index",
-			"style":{
-				"navigationBarTitleText":"预警通知"
+			"path": "pages/warnningSetting/index",
+			"style": {
+				"navigationBarTitleText": "预警通知"
 			}
 		},
 		//吃药提醒
 		{
-			"path":"pages/medicationReminder/index",
-			"style":{
-				"navigationBarTitleText":"吃药提醒",
-			"enablePullDownRefresh": true
+			"path": "pages/medicationReminder/index",
+			"style": {
+				"navigationBarTitleText": "吃药提醒",
+				"enablePullDownRefresh": true
 			}
 		},
 		//吃药提醒-新增
 		{
-			"path":"pages/addPage/addMedicationReminder/index",
-			"style":{
-				"navigationBarTitleText":"新增"
+			"path": "pages/addPage/addMedicationReminder/index",
+			"style": {
+				"navigationBarTitleText": "新增"
 			}
-		} ,
+		},
 		//吃药提醒-编辑
 		{
-			"path":"pages/addPage/editMedicationReminder/index",
-			"style":{ 
-				"navigationBarTitleText":"编辑"
+			"path": "pages/addPage/editMedicationReminder/index",
+			"style": {
+				"navigationBarTitleText": "编辑"
 			}
 		},
 		//安全中心
 		{
-			"path":"pages/securityCenter/index",
-			"style":{
-				"navigationBarTitleText":"安全中心"
+			"path": "pages/securityCenter/index",
+			"style": {
+				"navigationBarTitleText": "安全中心"
 			}
-		}, 
+		},
 		//评估中心 
 		{
-			"path":"pages/evaluationCenter/index",
-			"style":{
-				"navigationBarTitleText":"评估中心"
+			"path": "pages/evaluationCenter/index",
+			"style": {
+				"navigationBarTitleText": "评估中心"
 			}
 		},
 		//慢性病评估
 		{
-			"path":"pages/evaluationCenter-evaluations/chronicDisease/index",
-			"style":{
-				"navigationBarTitleText":"慢性病服务体验"
+			"path": "pages/evaluationCenter-evaluations/chronicDisease/index",
+			"style": {
+				"navigationBarTitleText": "慢性病服务体验"
 			}
 		},
 		//心理健康评估
 		{
-			"path":"pages/evaluationCenter-evaluations/mentalHealth/index",
-			"style":{
-				"navigationBarTitleText":"心理健康"
+			"path": "pages/evaluationCenter-evaluations/mentalHealth/index",
+			"style": {
+				"navigationBarTitleText": "心理健康"
 			}
 		},
 		//自理能力评估
 		{
-			"path":"pages/evaluationCenter-evaluations/selfCareAbility/index",
-			"style":{
-				"navigationBarTitleText":"自理能力"
+			"path": "pages/evaluationCenter-evaluations/selfCareAbility/index",
+			"style": {
+				"navigationBarTitleText": "自理能力"
 			}
 		},
 		//认知能力 
 		{
-			"path":"pages/evaluationCenter-evaluations/cognitiveAbility/index",
-			"style":{
-				"navigationBarTitleText":"认知能力"
+			"path": "pages/evaluationCenter-evaluations/cognitiveAbility/index",
+			"style": {
+				"navigationBarTitleText": "认知能力"
+			}
+		},
+		//慢性病评估结果
+
+		{
+			"path": "pages/evaluationCenter-evaluations/chronicDiseaseResult/index",
+			"style": {
+				"navigationBarTitleText": "慢性病评估结果"
+			}
+		},
+		//认知能力评估结果
+		{
+			"path": "pages/evaluationCenter-evaluations/cognitiveAbilityResult/index",
+			"style": {
+				"navigationBarTitleText": "认知能力评估结果"
+			}
+		},
+		//心理健康评估结果
+		{
+			"path": "pages/evaluationCenter-evaluations/mentalHealthResult/index",
+			"style": {
+				"navigationBarTitleText": "心理健康评估结果"
+			}
+		},
+		//自理能力评估结果
+		{
+			"path": "pages/evaluationCenter-evaluations/selfCareAbilityResult/index",
+			"style": {
+				"navigationBarTitleText": "心理健康评估结果"
 			}
 		}
-	],
-	"globalStyle": {
-		"navigationBarTextStyle": "black",
-		"navigationBarTitleText": "uni-app", 
-		"navigationBarBackgroundColor": "white",
-		"backgroundColor": "#F8F8F8"
-	}
+	]
 }

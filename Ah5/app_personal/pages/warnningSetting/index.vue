@@ -26,7 +26,7 @@
 			</view>
 			<view class='noData' v-if='noDataShow'>
 				<img src="../../static/noData.png" alt="">
-				<text>查无数据</text>
+				<text style='font-size: .6rem;'>没有更多数据了</text>
 			</view>
 		</view>
 	</view>
@@ -84,15 +84,15 @@
 		width: 1.5rem;
 		height: 1.5rem;
 	}
-
 	.content1 {
 		background-color: #ededed;
-		height: 93.4vh;
 		font-size: .7rem !important;
+		height: 93.5vh;
 	}
 
 	.lists {
 		padding: .8rem;
+		background-color: #ededed;
 	}
 
 	.item {

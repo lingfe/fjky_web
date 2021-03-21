@@ -45,4 +45,7 @@
 	.uni-actionsheet__menu .uni-actionsheet__cell{
 		color:red !important;
 	}
+	.uni-load-more__text{
+		font-size: .6rem !important;
+	}
 </style>

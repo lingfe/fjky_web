@@ -8,7 +8,7 @@
 			</view>
 			<view class='userName'>
 				<text>{{userName}}</text>
-				<text class='age_'>{{age}}</text>
+				<text class='age_'>{{age}}岁</text>
 			</view>
 			<view class='basicArchives' @click="goto('../basicArchivesPage/basicArchives/index')">
 				<text>基础档案</text>
@@ -133,7 +133,7 @@
 		},
 		methods: {
 		//链接跳转
-			goto(n) {  
+			goto(n) {
 				uni.navigateTo({
 					url: n,
 				})
@@ -147,10 +147,19 @@
 			};
 			let that = this;
 			http.Post('/sys_fkcy/appUser/getEssInfo.app', data, function(res) {
-				console.log(res);
+				console.log(res.data);
 				that.userName = res.data.full_name;
+				if(res.data.full_name == undefined){
+					that.userName = '未设置';
+				}
 				that.userImg = res.data.img;
-				that.age = res.data.age +'岁';
+				if(res.data.img == undefined){
+					that.userImg = 'https://dss1.bdstatic.com/70cFuXSh_Q1YnxGkpoWK1HF6hhy/it/u=2561659095,299912888&fm=26&gp=0.jpg';
+				}
+				that.age = res.data.age;
+				if(res.data.age ==undefined){
+					that.age =	'0';
+				}
 			});
 		},
 	}
@@ -212,7 +221,7 @@
 	}
 
 	.situation>view {
-		margin: .2rem;
+		margin: .1rem;
 		display: flex;
 		flex-direction: row;
 		font-size: .8rem;
@@ -220,21 +229,31 @@
 		justify-content: center;
 		align-items: center;
 		border-radius: .5rem;
+		width: 22%;
+		padding-left: 5%;
+		padding-right: 5%;
 	}
-
 	.img_v {
 		padding-right: .3rem;
 	}
 
 	.img_v img {
-		width: 2.3rem;
+		width: 2rem;
 	}
 
 	.text_v {
 		font-size: .65rem;
 		letter-spacing: .1rem !important;
+		width: 4rem;
+		display: flex;
+		flex-direction: column;
 	}
-
+	.text_v>text{
+		display: inline-block;
+		overflow:hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
 	.userInfo {
 		position: relative;
 		display: block;

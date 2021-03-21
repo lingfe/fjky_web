@@ -31,6 +31,10 @@
 					<text class='showDetail' @click="detaillongTermMedication()">查看详情</text>
 				</view>
 			</view>
+			<view class='noData' v-if='noDataShow'>
+				<img src="../../../static/noData.png" alt="">
+				<!-- <text>查无数据</text> -->
+			</view>
 		</view>
 	</view>
 </template>
@@ -40,6 +44,7 @@
 	export default {
 		data() {
 			return { 
+				noDataShow:false,
 				items:[1,2],
 			}
 		},
@@ -57,6 +62,23 @@
 
 <style>
 	@import url("../../../util/tool/common.css");
+	
+	.noData img {
+		width: 5rem;
+		height: auto;
+		margin-bottom: 1rem;
+	}
+	
+	.noData {
+		font-size: .8rem;
+		color: gray;
+		text-align: center;
+		margin-top: 3rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
 	.result_ {
 		color: #999999;
 		/* border: 1px solid red; */

@@ -318,6 +318,12 @@
 						that.xy_gao_bfb = res.data.xy_gao_bfb;
 						that.showTabBottm = 'bloodPressure';
 						//渲染数据
+						if(that.xueya_value == undefined){
+							that.xueya_value = '0';
+						}
+						if(that.xueya_value2 == undefined){
+							that.xueya_value2 = '0';
+						}
 						that.renderTable(that.xueya_value, res.data.series,res.data.weekDays,n);
 					})
 				}

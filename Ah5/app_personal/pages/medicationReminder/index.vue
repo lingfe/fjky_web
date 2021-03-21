@@ -13,6 +13,9 @@
 					<text>编辑</text>
 				</view>
 			</view>
+			<view class='noData' v-if='noDataShow'>
+				<img src="../../static/noData.png" alt="">
+			</view>
 		</view> 
 		<uniLoadMore :status="status" :contentText='textObj' @clickLoadMore='getMore'></uniLoadMore>
 		<view class='add_btn' @click="goto.goto('../addPage/addMedicationReminder/index')">
@@ -30,7 +33,8 @@
 		},
 		data(){
 			return {
-				items: [1], 
+				noDataShow:'false',
+				items: [], 
 				goto: goto, 
 				status: 'moMore', //more/loading/moMore
 				textObj:{
@@ -72,6 +76,21 @@
 </script>
 <style>
 	@import url("../../util/tool/common.css");
+	.noData img {
+		width: 5rem;
+		height: auto;
+		margin-bottom: 1rem;
+	}
+	.noData {
+		font-size: .8rem;
+		color: gray;
+		text-align: center;
+		margin-top: 3rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+	}
 	.add_btn {
 		position: absolute;
 		top: -1.7rem;
