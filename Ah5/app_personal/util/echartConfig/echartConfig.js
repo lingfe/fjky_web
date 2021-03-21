@@ -1197,7 +1197,7 @@ export default config = {
 	},
 	//尿酸
 	uricAcid: function(n) {
-		if (n == '未测量') {
+		if (n == '未测量'){
 			n = 0;
 			return {
 				series: [{
