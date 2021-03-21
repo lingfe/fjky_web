@@ -423,7 +423,7 @@
 		let echarts = require('echarts');
 		this.chartLine = echarts.init(document.getElementById('chartBox'));
 		//获取app用户健康信息
-		http.Get('/sys_fkcy/auhd/getHealthyData', {
+		http.Get('/sys_fkcy/auhd/getHealthyData',{
 			'appUserId': appToast.appUserId()
 		}, function(res) {
 			console.log(res);
