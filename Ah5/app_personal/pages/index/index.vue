@@ -52,7 +52,7 @@
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodOxygen'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
+					<!-- <text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text> -->
 			<!-- 		<view class='a'>
 						<text>脉率</text>
 						<view>
@@ -85,7 +85,7 @@
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'uricAcid'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
+					<!-- <text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text> -->
 				<!-- 	<view class='a'>
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
@@ -115,7 +115,7 @@
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodFat'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
+					<!-- <text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text> -->
 			<!-- 		<view class='a'>
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
@@ -145,7 +145,7 @@
 			</view>
 			<view class='w100' v-else-if="showTabBottm == 'bloodSugar'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
+					<!-- <text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text> -->
 			<!-- 		<view class='a'>
 						<view>
 							<view style='background-color: #F72600;width: 1.5rem;'></view>
@@ -175,7 +175,7 @@
 			</view>
 			<view class='w100' v-if="showTabBottm == 'tiwen'">
 				<view class='showAnother bloodPressure'>
-					<text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text>
+					<!-- <text style='color:black;font-size: .8rem;display: inline-block;padding-bottom: .2rem;'>正常</text> -->
 					<view class='b'>
 						<view style='background-color: #72A7FE;'></view>
 						<view style='background-color: #00D193;'></view>

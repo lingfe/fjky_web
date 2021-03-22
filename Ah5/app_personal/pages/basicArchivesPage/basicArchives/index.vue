@@ -293,11 +293,11 @@
 				//获取评估结果的数据
 				http.Post('sys_fkcy/eva_res/getUserEvaRes',{'user_id':'34f35165-b714-448c-8ede-cd8343a43b1a'},(res) => {
 					// console.log(res);
-					that.mxb = (res.data.eva_mxb_res == undefined ? '未评估' : res.data.eva_mxb_res );
-					that.xl = (res.data.eva_xljk_res == undefined ? '未评估' : res.data.eva_xljk_res );
-					that.rz = (res.data.eva_rznl_res  == undefined ? '未评估': res.data.eva_rznl_res); 
-					that.zl = (res.data.eva_zlnl_res  == undefined ? '未评估' : res.data.eva_zlnl_res); 
-				})
+					that.mxb = (res.data.eva_mxb_is == 0 ? '未评估' : res.data.eva_mxb_res );
+					that.xl = (res.data.eva_xljk_is == 0 ? '未评估' : res.data.eva_xljk_res );
+					that.rz = (res.data.eva_rznl_is  == 0 ? '未评估': res.data.eva_rznl_res);
+					that.zl = (res.data.eva_zlnl_is  == 0 ? '未评估' : res.data.eva_zlnl_res);
+				});
 			}
 		},
 		mounted() {},

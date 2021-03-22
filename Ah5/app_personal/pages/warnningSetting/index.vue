@@ -1,7 +1,7 @@
 <template>
 	<view class='content content1'>
-		<view class='lists'>
-			<view class='item' v-for='(item,index) in items'>
+		<view class='lists' :class="[showA == true ?'whiteBack':'']">
+			<view class='item' v-for='(item,index) in items' >
 				<view>
 					<text>设备报警通知</text>
 					<img @click='getStates(item.state,item.id)' src="../../static/allinfo.png" alt="">
@@ -24,7 +24,7 @@
 					</view>
 				</view>
 			</view>
-			<view class='noData' v-if='noDataShow'>
+			<view class='noData' v-if='noDataShow' >
 				<img src="../../static/noData.png" alt="">
 				<text style='font-size: .6rem;'>没有更多数据了</text>
 			</view>
@@ -84,8 +84,8 @@
 		width: 1.5rem;
 		height: 1.5rem;
 	}
-	.content1 {
-		background-color: #ededed;
+	.content1{
+		background-color: white;
 		font-size: .7rem !important;
 		height: 93.5vh;
 	}
@@ -95,7 +95,9 @@
 		background-color: #ededed;
 		padding-top: .1rem;
 	}
-
+	.whiteBack{
+		background-color: white !important;
+	}
 	.item {
 		padding: .7rem;
 		background-color: white;
@@ -117,6 +119,7 @@
 			return {
 				items: [],
 				noDataShow: false,
+				showA:false,
 			}
 		},
 		filters: {
@@ -156,7 +159,7 @@
 						success: function(res) {
 							// console.log('选中了第' + (res.tapIndex + 1) + '个按钮');
 						},
-						fail: function(res) {
+						fail: function(res){
 							console.log(res.errMsg);
 						}
 					});
@@ -171,8 +174,10 @@
 				}, (res) => {
 					if (res.data.length == 0) {
 						that.noDataShow = true;
+						that.showA = true;
 					} else {
 						that.items = res.data;
+						that.showA = false;
 					}
 				})
 			}

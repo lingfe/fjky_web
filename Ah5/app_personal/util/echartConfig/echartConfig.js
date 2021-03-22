@@ -309,7 +309,7 @@ export default config = {
 									cx: api.getWidth() / 2, // 图形元素的中心在父节点坐标系（以父节点左上角为原点）中的横坐标值。
 									cy: api.getHeight() / 2, // 图形元素的中心在父节点坐标系（以父节点左上角为原点）中的纵坐标值。
 									r: Math.min(api.getWidth(), api.getHeight()) / 2.5 *
-									0.55, // 外半径。
+										0.55, // 外半径。
 									startAngle: (0 + num) * Math.PI / 180, // 开始弧度。
 									endAngle: (5 + num) * Math.PI / 180, // 结束弧度。
 									clockwise: false, //是否顺时针。
@@ -532,7 +532,7 @@ export default config = {
 									cx: api.getWidth() / 2, // 图形元素的中心在父节点坐标系（以父节点左上角为原点）中的横坐标值。
 									cy: api.getHeight() / 2, // 图形元素的中心在父节点坐标系（以父节点左上角为原点）中的纵坐标值。
 									r: Math.min(api.getWidth(), api.getHeight()) / 2.5 *
-									0.75, // 外半径。
+										0.75, // 外半径。
 									startAngle: (0 + num) * Math.PI / 180, // 开始弧度。
 									endAngle: (5 + num) * Math.PI / 180, // 结束弧度。
 									clockwise: false, //是否顺时针。
@@ -624,8 +624,8 @@ export default config = {
 		}
 	},
 	//血压
-	bloodPressure: function(n, n2){
-		if (n == '未测量' || n ==0 ){
+	bloodPressure: function(n, n2) {
+		if (n == '未测量' || n == 0) {
 			n = '0';
 			return {
 				series: [{
@@ -679,7 +679,7 @@ export default config = {
 						color: '#464646',
 						fontSize: 20,
 						distance: -60,
-						formatter: function(value){
+						formatter: function(value) {
 							if (value === 0.875) {
 								return '优';
 							} else if (value === 0.625) {
@@ -1112,7 +1112,7 @@ export default config = {
 	},
 	//尿酸
 	uricAcid: function(n) {
-		if (n == '未测量'){
+		if (n == '未测量') {
 			n = 0;
 			return {
 				series: [{
@@ -2719,12 +2719,15 @@ export default config = {
 					splitNumber: 10,
 				},
 				name: '单位：次/分',
-			
-			axisLabel: {
-				textStyle: {
-					align: 'center'
+
+				nameTextStyle: {
+					padding: [0, 0, 10, 10]
+				},
+				axisLabel: {
+					textStyle: {
+						align: 'center'
+					}
 				}
-			}
 			},
 			series: [{
 				symbol: "none",
@@ -2807,12 +2810,15 @@ export default config = {
 					splitNumber: 10,
 				},
 				name: '单位：次/分',
-			
-			axisLabel: {
-				textStyle: {
-					align: 'center'
+
+				nameTextStyle: {
+					padding: [0, 0, 10, 10]
+				},
+				axisLabel: {
+					textStyle: {
+						align: 'center'
+					}
 				}
-			}
 			},
 			series: [{
 					symbol: "none",
@@ -2896,12 +2902,12 @@ export default config = {
 					interval: 50,
 					name: '饱和度',
 					data: arr1,
-				
-				axisLabel: {
-					textStyle: {
-						align: 'center'
+
+					axisLabel: {
+						textStyle: {
+							align: 'center'
+						}
 					}
-				}
 				}
 				// ,
 				// {
@@ -2923,6 +2929,14 @@ export default config = {
 				type: 'line',
 				lineStyle: {
 					color: '#329BFE',
+				},
+				nameTextStyle: {
+					padding: [0, 0, 10, 10]
+				},
+				axisLabel: {
+					textStyle: {
+						align: 'center'
+					}
 				}
 			}]
 			// , {
@@ -2958,12 +2972,12 @@ export default config = {
 				max: 150,
 				interval: 50,
 				name: '单位mmol/L',
-			
-			axisLabel: {
-				textStyle: {
-					align: 'center'
+
+				axisLabel: {
+					textStyle: {
+						align: 'center'
+					}
 				}
-			}
 			}, ],
 			series: [{
 				symbol: "none",
@@ -3022,12 +3036,15 @@ export default config = {
 				max: 6,
 				interval: 1,
 				name: '单位mmol/L',
-			
-			axisLabel: {
-				textStyle: {
-					align: 'center'
+
+				nameTextStyle: {
+					padding: [0, 0, 10, 10]
+				},
+				axisLabel: {
+					textStyle: {
+						align: 'center'
+					}
 				}
-			}
 			}, ],
 			series: [{
 					symbol: "none",
@@ -3088,12 +3105,14 @@ export default config = {
 				max: 150,
 				interval: 50,
 				name: '单位mmol/L',
-			
-			axisLabel: {
-				textStyle: {
-					align: 'center'
+				nameTextStyle: {
+					padding: [0, 0, 10, 0]
+				},
+				axisLabel: {
+					textStyle: {
+						align: 'right'
+					}
 				}
-			}
 			}, ],
 			series: [{
 				symbol: "none",
@@ -3165,7 +3184,7 @@ export default config = {
 				interval: 50,
 				name: '单位°C',
 				nameTextStyle: {
-					padding: [0, 0, 10, 0]
+					padding: [0, 0, 10, 10]
 				},
 				axisLabel: {
 					textStyle: {

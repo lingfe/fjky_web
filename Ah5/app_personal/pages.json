@@ -314,6 +314,13 @@
 			"style": {
 				"navigationBarTitleText": "心理健康评估结果"
 			}
+		},
+		//下载页
+		{
+			"path": "pages/downLoadPage/index",
+			"style": {
+				"navigationBarTitleText": "梵净康养App"
+			}
 		}
 	]
 }
