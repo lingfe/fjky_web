@@ -319,7 +319,12 @@
 		{
 			"path": "pages/downLoadPage/index",
 			"style": {
-				"navigationBarTitleText": "梵净康养App"
+				"navigationBarTitleText": "梵净康养App",
+				"h5": {
+					"titleNView": {
+						"autoBackButton": false 
+					}
+				}
 			}
 		}
 	]

@@ -3,6 +3,7 @@
 		<img src="../../static/logo.png" alt="">
 		<text class='type-name'>梵净康养乐园APPv1.0</text>
 		<a href="http://47.106.198.137:81/uploadFiles/publics/fjkyly_v1.0.apk">下载</a>
+		<a @click='copyLink'>点击复制下载链接</a>
 	</view>
 </template>
 <script>
@@ -19,28 +20,43 @@
 				   mac: false, 
 				   xll: false, 
 				   ipad: false
-				  }; 
+				  };
 				  //检测平台 
 				  var p = navigator.platform; 
+				  console.log(p);
 				  system.win = p.indexOf("Win") == 0; 
 				  system.mac = p.indexOf("Mac") == 0; 
 				  system.x11 = (p == "X11") || (p.indexOf("Linux") == 0); 
 				  system.ipad = (navigator.userAgent.match(/iPad/i) != null) ? true : false; 
-				  //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面 
-				  if (system.win || system.mac || system.xll || system.ipad) { 
+				  //跳转语句，如果是手机访问就自动跳转到wap.baidu.com页面
+				  if (system.win || system.mac || system.xll || system.ipad){
 				   alert("在PC端上打开的");
-				  } else { 
-				   var ua = navigator.userAgent.toLowerCase(); 
-				   if(ua.match(/MicroMessenger/i)=="micromessenger") { 
-				    alert("在手机端微信上打开的"); 
-				   } else { 
+				  } else{
+				   var ua = navigator.userAgent.toLowerCase();
+				   if(ua.match(/MicroMessenger/i)=="micromessenger"){
+				    alert("请通过浏览器打开");
+				   } else {
 				    alert("在手机上非微信上打开的");
 				   } 
 				  }
+			},
+			out_(){
+				var a = document.getElementsByClassName('uni-page-head-hd')[0];
+				a.style.display = 'none';
+			},
+			copyLink(){
+				console.log('123');
+				uni.setClipboardData({
+				       data:'http://47.106.198.137:81/uploadFiles/publics/fjkyly_v1.0.apk',
+					   success() {
+							alert('复制成功！');
+					   }
+				});
 			}
 		},
-		mounted() {
-			envriment_();
+		mounted(){
+			this.out_();
+			this.envriment_();
 		}
 	}
 </script>
