@@ -624,8 +624,8 @@ export default config = {
 		}
 	},
 	//血压
-	bloodPressure: function(n, n2) {
-		if (n == '未测量') {
+	bloodPressure: function(n, n2){
+		if (n == '未测量' || n ==0 ){
 			n = '0';
 			return {
 				series: [{
@@ -679,7 +679,7 @@ export default config = {
 						color: '#464646',
 						fontSize: 20,
 						distance: -60,
-						formatter: function(value) {
+						formatter: function(value){
 							if (value === 0.875) {
 								return '优';
 							} else if (value === 0.625) {
@@ -796,92 +796,7 @@ export default config = {
 					}]
 				}]
 			};
-
 		}
-		return {
-			series: [{
-				type: 'gauge',
-				startAngle: 180,
-				endAngle: 0,
-				min: 0,
-				max: 200,
-				splitNumber: 8,
-				progress: {
-					show: false,
-				},
-				axisLine: {
-					lineStyle: {
-						width: 13,
-						color: [
-							[0.33, '#FF9A21'],
-							[0.66, '#00D193'],
-							[1, '#F72600'],
-						]
-					}
-				},
-				pointer: {
-					show: true,
-					icon: 'path://M12.8,0.7l12,40.1H0.7L12.8,0.7z',
-					length: '10%',
-					width: 15,
-					offsetCenter: [0, '-80%'],
-					itemStyle: {
-						color: 'white'
-					}
-				},
-				axisTick: {
-					show: false,
-					length: 12,
-					lineStyle: {
-						color: 'auto',
-						width: 2
-					}
-				},
-				splitLine: {
-					show: false,
-					length: 20,
-					lineStyle: {
-						color: 'auto',
-						width: 5
-					}
-				},
-				axisLabel: {
-					show: false,
-					color: '#464646',
-					fontSize: 20,
-					distance: -60,
-					formatter: function(value) {
-						if (value === 0.875) {
-							return '优';
-						} else if (value === 0.625) {
-							return '中';
-						} else if (value === 0.375) {
-							return '良';
-						} else if (value === 0.125) {
-							return '差';
-						}
-					}
-				},
-				title: {
-					offsetCenter: [0, '10%'],
-					fontSize: 13,
-					color: 'gray',
-				},
-				detail: {
-					fontSize: 25,
-					offsetCenter: [0, '-30%'],
-					valueAnimation: true,
-					formatter: function(value) {
-						return n + '/' + n2;
-					},
-					color: 'black',
-				},
-				data: [{
-					value: n,
-					name: '收/舒'
-				}]
-			}]
-		};
 	},
 	//心率
 	heartRate: function(n) {

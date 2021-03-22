@@ -18,7 +18,7 @@
 	}
 </script>
 <style>
-	/*公共css */ 
+	/*公共css */
 	@import './uni.scss';
 	page{
 		font-size: .8rem;
