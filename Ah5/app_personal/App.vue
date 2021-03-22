@@ -8,7 +8,7 @@
 			//测试环境 192.168.124.25:8080
 			// getApp().globalData.api = '192.168.124.25:8080/sys_fkcy';
 			getApp().globalData.api = 'http://47.106.198.137:8080/sys_fkcy'; 
-		},
+		}, 
 		onShow: function(){
 			// console.log('App Show')
 		},

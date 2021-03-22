@@ -12,6 +12,6 @@ export default{
 		let token_ = '';
 		token_ = appNative.getUserToken();
 		// token_= '032b6006-9a21-4dad-aa8c-c25f6a0687d0'; //无数据的账户
-		return token_ ; 
+		return token_ ;
 	},
 }
